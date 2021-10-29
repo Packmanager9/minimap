@@ -1161,7 +1161,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             TIP_engine.x = XS_engine
             TIP_engine.y = YS_engine
             TIP_engine.body = TIP_engine
-            if(TIP_engine.x <= 820){
+            if(TIP_engine.x <= sandmap.window.body.x+sandmap.window.body.width){
                 let structuredpoint = new Point(0,0)
                 structuredpoint.x += sandmap.window.guide.x
                 structuredpoint.y += sandmap.window.guide.y
@@ -1172,13 +1172,25 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
                 sandmap.turn++
                 sandmap.turn%=sandmap.players.length
+            }else{
+                if(sandmap.window.minibody.isPointInside(TIP_engine)){
+                    let structuredpoint = new Point(0,0)
+                    let inv = 1/.28125
+                    structuredpoint.x += (TIP_engine.x - sandmap.window.minibody.x)*inv
+                    structuredpoint.y += (TIP_engine.y - sandmap.window.minibody.y)*inv
+                    sandmap.window.guide.x = structuredpoint.x-(sandmap.window.body.width*.25)
+                    sandmap.window.guide.y = structuredpoint.y-(sandmap.window.body.height*.25)
+                }
             }
+
+
             // example usage: if(object.isPointInside(TIP_engine)){ take action }
-        });
         window.addEventListener('pointermove', continued_stimuli);
 
+        });
+
         window.addEventListener('pointerup', e => {
-            // window.removeEventListener("pointermove", continued_stimuli);
+            window.removeEventListener("pointermove", continued_stimuli);
         })
         function continued_stimuli(e) {
             FLEX_engine = canvas.getBoundingClientRect();
@@ -1187,6 +1199,28 @@ window.addEventListener('DOMContentLoaded', (event) => {
             TIP_engine.x = XS_engine
             TIP_engine.y = YS_engine
             TIP_engine.body = TIP_engine
+
+            if(TIP_engine.x <= sandmap.window.body.x+sandmap.window.body.width){
+                let structuredpoint = new Point(0,0)
+                structuredpoint.x += sandmap.window.guide.x
+                structuredpoint.y += sandmap.window.guide.y
+                structuredpoint.x += (TIP_engine.x*.5)
+                structuredpoint.y += (TIP_engine.y*.5)
+                structuredpoint.x = Math.floor(structuredpoint.x*.1)
+                structuredpoint.y = Math.floor(structuredpoint.y*.1)
+                sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
+                sandmap.turn++
+                sandmap.turn%=sandmap.players.length
+            }else{
+                if(sandmap.window.minibody.isPointInside(TIP_engine)){
+                    let structuredpoint = new Point(0,0)
+                    let inv = 1/.28125
+                    structuredpoint.x += (TIP_engine.x - sandmap.window.minibody.x)*inv
+                    structuredpoint.y += (TIP_engine.y - sandmap.window.minibody.y)*inv
+                    sandmap.window.guide.x = structuredpoint.x-(sandmap.window.body.width*.25)
+                    sandmap.window.guide.y = structuredpoint.y-(sandmap.window.body.height*.25)
+                }
+            }
         }
     }
     function gamepad_control(object, speed = 1) { // basic control for objects using the controler
