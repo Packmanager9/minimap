@@ -65,7 +65,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
             gamepadAPI.axesStatus = axes;// assign received values
             gamepadAPI.buttonsStatus = pressed;
-            // console.log(pressed); // return buttons for debugging purposes
+            // //////console.log(pressed); // return buttons for debugging purposes
             return pressed;
         },
         buttonPressed: function (button, hold) {
@@ -374,7 +374,159 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.fill()
                 canvas_context.stroke();
             } else {
-                console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                //////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+            }
+        }
+        move() {
+            if (this.reflect == 1) {
+                if (this.x + this.radius > canvas.width) {
+                    if (this.xmom > 0) {
+                        this.xmom *= -1
+                    }
+                }
+                if (this.y + this.radius > canvas.height) {
+                    if (this.ymom > 0) {
+                        this.ymom *= -1
+                    }
+                }
+                if (this.x - this.radius < 0) {
+                    if (this.xmom < 0) {
+                        this.xmom *= -1
+                    }
+                }
+                if (this.y - this.radius < 0) {
+                    if (this.ymom < 0) {
+                        this.ymom *= -1
+                    }
+                }
+            }
+            this.x += this.xmom
+            this.y += this.ymom
+        }
+        unmove() {
+            if (this.reflect == 1) {
+                if (this.x + this.radius > canvas.width) {
+                    if (this.xmom > 0) {
+                        this.xmom *= -1
+                    }
+                }
+                if (this.y + this.radius > canvas.height) {
+                    if (this.ymom > 0) {
+                        this.ymom *= -1
+                    }
+                }
+                if (this.x - this.radius < 0) {
+                    if (this.xmom < 0) {
+                        this.xmom *= -1
+                    }
+                }
+                if (this.y - this.radius < 0) {
+                    if (this.ymom < 0) {
+                        this.ymom *= -1
+                    }
+                }
+            }
+            this.x -= this.xmom
+            this.y -= this.ymom
+        }
+        frictiveMove() {
+            if (this.reflect == 1) {
+                if (this.x + this.radius > canvas.width) {
+                    if (this.xmom > 0) {
+                        this.xmom *= -1
+                    }
+                }
+                if (this.y + this.radius > canvas.height) {
+                    if (this.ymom > 0) {
+                        this.ymom *= -1
+                    }
+                }
+                if (this.x - this.radius < 0) {
+                    if (this.xmom < 0) {
+                        this.xmom *= -1
+                    }
+                }
+                if (this.y - this.radius < 0) {
+                    if (this.ymom < 0) {
+                        this.ymom *= -1
+                    }
+                }
+            }
+            this.x += this.xmom
+            this.y += this.ymom
+            this.xmom *= this.friction
+            this.ymom *= this.friction
+        }
+        frictiveunMove() {
+            if (this.reflect == 1) {
+                if (this.x + this.radius > canvas.width) {
+                    if (this.xmom > 0) {
+                        this.xmom *= -1
+                    }
+                }
+                if (this.y + this.radius > canvas.height) {
+                    if (this.ymom > 0) {
+                        this.ymom *= -1
+                    }
+                }
+                if (this.x - this.radius < 0) {
+                    if (this.xmom < 0) {
+                        this.xmom *= -1
+                    }
+                }
+                if (this.y - this.radius < 0) {
+                    if (this.ymom < 0) {
+                        this.ymom *= -1
+                    }
+                }
+            }
+            this.xmom /= this.friction
+            this.ymom /= this.friction
+            this.x -= this.xmom
+            this.y -= this.ymom
+        }
+        isPointInside(point) {
+            this.areaY = point.y - this.y
+            this.areaX = point.x - this.x
+            if (((this.areaX * this.areaX) + (this.areaY * this.areaY)) <= (this.radius * this.radius)) {
+                return true
+            }
+            return false
+        }
+        doesPerimeterTouch(point) {
+            this.areaY = point.y - this.y
+            this.areaX = point.x - this.x
+            if (((this.areaX * this.areaX) + (this.areaY * this.areaY)) <= ((this.radius + point.radius) * (this.radius + point.radius))) {
+                return true
+            }
+            return false
+        }
+    } 
+    class UnitCircle {
+        constructor(x, y, radius, color, xmom = 0, ymom = 0, friction = 1, reflect = 0, strokeWidth = 0, strokeColor = "transparent") {
+            this.x = x
+            this.y = y
+            this.radius = radius
+            this.color = color
+            this.xmom = xmom
+            this.ymom = ymom
+            this.friction = friction
+            this.reflect = reflect
+            this.strokeWidth = strokeWidth
+            this.strokeColor = strokeColor
+        }
+        draw() {
+            map_context.lineWidth = this.strokeWidth
+            map_context.strokeStyle = this.color
+            map_context.beginPath();
+            if (this.radius > 0) {
+                map_context.arc(this.x, this.y, this.radius, 0, (Math.PI * 2), true)
+                map_context.fillStyle = this.color
+                map_context.fill()
+                map_context.strokeStyle = "black"
+                map_context.stroke();
+            } else {
+                //////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -525,7 +677,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.fill()
                 canvas_context.stroke();
             } else {
-                console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                //////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -1011,7 +1163,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             }
 
-            console.log(this)
+            //////console.log(this)
 
             // this.spring = new Spring(x, y, radius, color, this.pin, memberLength, gravity)
             // this.springs.push(this.spring)
@@ -1172,6 +1324,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
                 sandmap.turn++
                 sandmap.turn%=sandmap.players.length
+
+            for(let t = 0;t<sandmap.players[0].units.length;t++){
+                if(sandmap.players[0].units[t].selected == 1){
+                    sandmap.players[0].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile )
+                }
+            }
             }else{
                 if(sandmap.window.minibody.isPointInside(TIP_engine)){
                     let structuredpoint = new Point(0,0)
@@ -1182,6 +1340,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     sandmap.window.guide.y = structuredpoint.y-(sandmap.window.body.height*.25)
                 }
             }
+
 
 
             // example usage: if(object.isPointInside(TIP_engine)){ take action }
@@ -1201,16 +1360,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
             TIP_engine.body = TIP_engine
 
             if(TIP_engine.x <= sandmap.window.body.x+sandmap.window.body.width){
-                let structuredpoint = new Point(0,0)
-                structuredpoint.x += sandmap.window.guide.x
-                structuredpoint.y += sandmap.window.guide.y
-                structuredpoint.x += (TIP_engine.x*.5)
-                structuredpoint.y += (TIP_engine.y*.5)
-                structuredpoint.x = Math.floor(structuredpoint.x*.1)
-                structuredpoint.y = Math.floor(structuredpoint.y*.1)
-                sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
-                sandmap.turn++
-                sandmap.turn%=sandmap.players.length
+                // let structuredpoint = new Point(0,0)
+                // structuredpoint.x += sandmap.window.guide.x
+                // structuredpoint.y += sandmap.window.guide.y
+                // structuredpoint.x += (TIP_engine.x*.5)
+                // structuredpoint.y += (TIP_engine.y*.5)
+                // structuredpoint.x = Math.floor(structuredpoint.x*.1)
+                // structuredpoint.y = Math.floor(structuredpoint.y*.1)
+                // sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
+                // sandmap.turn++
+                // sandmap.turn%=sandmap.players.length
             }else{
                 if(sandmap.window.minibody.isPointInside(TIP_engine)){
                     let structuredpoint = new Point(0,0)
@@ -1224,7 +1383,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     }
     function gamepad_control(object, speed = 1) { // basic control for objects using the controler
-//         console.log(gamepadAPI.axesStatus[1]*gamepadAPI.axesStatus[0]) //debugging
+//         //////console.log(gamepadAPI.axesStatus[1]*gamepadAPI.axesStatus[0]) //debugging
         if (typeof object.body != 'undefined') {
             if(typeof (gamepadAPI.axesStatus[1]) != 'undefined'){
                 if(typeof (gamepadAPI.axesStatus[0]) != 'undefined'){
@@ -1315,9 +1474,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
     map_canvas.style.background = "tan"
     setUp(setup_canvas)
     // object instantiation and creation happens here 
+   
+    
     
     class Tile {
-        constructor(x, y, width, height, color, fill = 1, stroke = 0, strokeWidth = 1) {
+        constructor(x, y, width, height, color, id, size, posx, posy, walkable) {
             this.x = x
             this.y = y
             this.height = height
@@ -1325,10 +1486,112 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.color = color
             this.xmom = 0
             this.ymom = 0
-            this.stroke = stroke
-            this.strokeWidth = strokeWidth
-            this.fill = fill
+            
+
+        var F;
+    
+        var parent;
+        this.inPath = false;
+        this.getGCost = this.getValueG;
+        this.getHCost = this.getValueH;
+    
+        this.size = size;
+        this.posx = posx;
+        this.posy = posy;
+        this.walkable = walkable;
+        if(Math.random()<.01){
+            this.walkable = false
+            this.color = "#000000"
         }
+    
+        this.id = id;
+        }
+
+  createStartNode() {
+    // nodeDrawer(gctx, this, 2, "black", "#00FFFF88");
+
+  }
+  createEndNode() {
+    // nodeDrawer(gctx, this, 2, "black", "#FFFF0088");
+
+  }
+  toggleWalkable() {
+    this.walkable = !this.walkable;
+  }
+  getValueF() {
+    //this is a problem
+    var fValue = (this.getValueH()) + (this.getValueG());
+
+    return (fValue);
+  }
+  getValueH() {
+    var endNodePosition = {
+      posx: endPoint.x,
+      posy: endPoint.y
+    };
+
+    return (getDistance(this, endNodePosition));
+
+  }
+  getValueG() {
+    var startPointPosition = {
+      posx: endPoint.x,
+      posy: endPoint.y
+    };
+    return (getDistance(this, startPointPosition));
+  }
+  createWall() {
+    // nodeDrawer(gctx, this, 2, "transparent", "black");
+
+  }
+  drawOpenNode() {
+    // nodeDrawer(gctx, this, 2, "transparent", "transparent");
+
+  }
+  drawClosedNode() {
+    // nodeDrawer(gctx, this, 2, "transparent", "transparent");
+  }
+  drawPath() {
+    // nodeDrawer(gctx, this, 2, "transparent", "#FF000033");
+  }
+  drawNode() {
+
+    //gctx.beginPath();
+    //gctx.lineWidth = ".1";
+    //gctx.strokeStyle = "black";
+    //gctx.fillStyle = "transparent";
+
+    // let link = new Line(this.posx, this.posy, bottle.crew[bottle.selectedcrew].body.x-100, bottle.crew[bottle.selectedcrew].body.y-300, "red", 1)
+    // if (link.hypotenuse() < 108) {
+    // //////////console.log(link)
+    // //////////console.log(bottle)
+    // }
+    let roundedx = (Math.round((startPoint.x)/10))
+    let roundedy = (Math.round((startPoint.y)/10))
+    if (this.walkable !== false) {
+    //gctx.fillRect(this.posx, this.posy, this.size, this.size);
+    //gctx.rect(this.posx, this.posy, this.size, this.size);
+    //gctx.closePath();
+    //gctx.stroke();
+    }
+    if (this.inPath === true) {
+      this.drawPath();
+    }else if (this.walkable === false) {
+        // //////////console.log(this)
+
+      this.createWall();
+      return;
+    // }else if (link.hypotenuse() < 11) {
+    }else if(this.posx == roundedx && this.posy == roundedy){
+    //   //////////console.log("hit the startNode");
+    //   this.createStartNode();
+      return;
+    }else if (this.posx == endPoint.x && this.posy == endPoint.y) {
+    //   this.createEndNode();
+
+    }
+
+  }
         draw() {
             map_context.fillStyle = this.color
             map_context.fillRect(this.x, this.y, this.width, this.height)
@@ -1364,30 +1627,111 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
 
     class Sandmap {
-        constructor(){
+        constructor(width, height, posx, posy, gridPoints) {
+            this.width = width;
+            this.height = height;
+            this.posx = posx;
+            this.posy = posy;
+            this.gridPoints = gridPoints;
             this.turn = 0
             this.blocks = []
+            let id = 0
             for(let t = 0;t<128;t++){
                 let rects = []
                 for(let k = 0;k<128;k++){
-                    let rect = new Tile(t*10, k*10, 10, 10, "tan")
+                    
+                    let rect = new Tile(t*10, k*10, 10, 10, "tan", id, 10, t*10,k*10, true)
                     if(Math.random()<.013){
-                        rect.color = getRandomColor()
+                        // rect.color = getRandomColor()
                         rect.rock = 1
                     }
                     rect.t = t
                     rect.k = k
                     rects.push(rect)
+                    id++
                 }
                 this.blocks.push(rects)
             }
             this.window = new Window()
             this.players = []
-            this.players.push(new Player('Skribulons', "#696969"))
-            this.players.push(new Player('Palletae', "pink"))
-            this.players.push(new Player('Bulbato', "#00ff00"))
-            this.players.push(new Player('Hydruzan' , "purple" ))
+            this.players.push(new Player('Blattadar', "#FF00FF"))
+            // this.players.push(new Player('Skribulons', "#696969"))
+            // this.players.push(new Player('Palletae', "pink"))
+            // this.players.push(new Player('Bulbato', "#00ff00"))
+            // this.players.push(new Player('Hydruzan' , "purple" ))
+            this.createGrid()
+            this.gridPoints = []
+            
+            for(let t = 0;t<this.blocks.length;t++){
+                for(let k = 0;k<this.blocks[t].length;k++){
+               this.gridPoints.push(this.blocks[t][k])
+            }
         }
+        }
+
+  createGrid() {
+    // //gctx.drawImage(shipImage, 0, 0, shipImage.width/2, shipImage.height/2)
+    var tempNode;
+    var countNodes = 0;
+    //gctx.beginPath();
+    //gctx.lineWidth =  0;
+    //gctx.strokeStyle = "transparent";
+    //gctx.rect(0, 0, this.width, this.height);
+    //gctx.stroke();
+
+    for (var i = 0; i < this.width; i += NODESIZE) {
+      gridPointsByPos[i] = [];
+
+      for (var j = 0; j < this.height; j += NODESIZE) {
+        gridPointsByPos[i][j] = countNodes;
+        //here's the problem , need to set the walkability of the node without always being true...
+        //////////console.log(countNodes)
+        tempNode = new Tile(i,j, 10, 10, "tan", countNodes, NODESIZE, i, j, true);
+
+        // let cutOut = [0,1 ,2, 3, 4, 5,6,7, 8, 9, 10, 11, 12,13, 18, 19,20, 32,33,  26, 31, 39, 44, 45, 46, 52, 57,58,59,99, 112, 108, 95, 197, 198, 199, 205, 203, 204, 236, 237, 238, 242, 243,244, 216, 212, 229, 225, 210, 211, 223, 224, 217, 218, 230, 231]
+        // for(let t = 0; t< 1000; t++){
+        //     if(t%13 == 0){
+        //         cutOut.push(t)
+        //     }
+        //     if((t-12)%13 == 0){
+        //         cutOut.push(t)
+        //     }
+        //     if((t-1)%13 == 0){
+        //         if(t>195){
+        //             cutOut.push(t)
+        //         }
+        //     }
+        //     if((t-11)%13 == 0){
+        //         if(t>195){
+        //             cutOut.push(t)
+        //         }
+        //     }
+        // }
+        // for(let t  = 0; t<bottle.crew.length; t++){
+        //     if(tempNode.isPointInside(bottle.crew[t].body)){
+        //         tempNode.walkable = false;
+        //     }
+        // }
+        // if (cutOut.includes(countNodes)){
+        //         tempNode.walkable = false;
+     
+        // }
+        // if (wallSet.has(countNodes)) {
+        // //   //////////console.log("wallSet had countNodes!")
+        //   tempNode.walkable = false;
+        // }
+
+        // tempNode.drawNode();
+        tempNode.F = tempNode.getValueF();
+        this.gridPoints.push(tempNode);
+
+        countNodes++;
+
+      }
+    }
+
+  }
+
         draw(){
             for(let t = 0;t<this.blocks.length;t++){
                 for(let k = 0;k<this.blocks[t].length;k++){
@@ -1433,17 +1777,398 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.selected_tile = {}
             this.color = color
             this.buildings = []
+            this.units = []
         }
         draw(){
-            this.selected_tile.color = this.color
-            for(let t = 0;t<this.buildings.length;t++)[
+            // this.selected_tile.color = this.color
+            for(let t = 0;t<this.buildings.length;t++){
                 this.buildings[t].draw()
-            ]
+            }
+            for(let t = 0;t<this.units.length;t++){
+                this.units[t].move()
+            }
+            for(let t = 0;t<this.units.length;t++){
+                this.units[t].draw()
+            }
+            //console.log(this)
         }
     }
 
 
-    let sandmap = new Sandmap()
+    var gCanvas = document.getElementById("gCanvas");
+    var gCanvasOffset;
+    var gctx = gCanvas.getContext("2d");
+    var CANVAS_WIDTH = 1280;
+    var CANVAS_HEIGHT = 1280;
+    var NODESIZE = 10;
+    
+    
+    var path;
+    
+    var openSet = new Set();
+    var closedSet = new Set();
+    var gridPointsByPos = [];
+    var gridPoints = [];
+    
+    var wallSet = new Set;
+    
+    //used to store the start and endPoint during resets, etc. 
+    var startPoint;
+    var endPoint;
+    let mode = "endPoint"
+    
+    //any point in 2D space
+    class Vec2 {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+      }
+    }
+    
+    
+    gCanvasOffset = new Vec2(gCanvas.offsetLeft, gCanvas.offsetTop);
+    
+    
+    // startPoint = new Vec2(bottle.crew[bottle.selectedcrew].body.x, bottle.crew[bottle.selectedcrew].body.y);
+    endPoint = new Vec2(640, 640);
+  
+    class PathFindingAlg {
+        constructor(grid, startNode, endNode, agent = {}) {
+            this.agent = agent
+          this.grid = grid;
+          let gridarray = Array.from(grid)
+          // for(let t = 0; t<gridarray.length; t++){
+          //     for(let k = 0; k<gridarray[t].length; k++){
+                  
+          //     }
+          // }
+          gridPointsByPos = [...this.grid]
+          // this.startNode = gridPointsByPos[startNode.x][startNode.y];
+          let roundedx = (Math.round((startNode.x)))*.1
+          let roundedy = (Math.round((startNode.y)))*.1
+          //////console.log(gridPointsByPos, roundedx, roundedy)
+          //////////console.log(gridPointsByPos[roundedx] [roundedy])
+          this.startNode = startNode // gridPointsByPos[roundedx] [roundedy]
+          this.endNode = endNode //gridPointsByPos[endNode.x][endNode.y];
+          this.currentNode = null;
+      
+          this.openSet = [];
+          this.closedset = [];
+          this.breaker = 0
+        }
+        findPath() {
+            // this.breaker++
+            // if(this.breaker > 1){
+            //     return
+            // }
+          openSet.clear();
+          closedSet.clear();
+      
+          var grid = this.grid; //the grid we're working with
+      
+          var currentNode = this.startNode; // the currentNode, defaults to start node for now
+      
+          var endNode = sandmap.gridPoints[this.endNode.id]; //the target node
+          var startNode = sandmap.gridPoints[this.startNode.id];
+      
+          var tempArray;
+      
+          var newMovementCost; //the new movement cost to neighbor
+      
+          openSet.add(currentNode);
+        //   ////console.log(currentNode)
+        // currentNode.color = "black"
+          // //////////console.log('begin');
+          while (openSet.size > 0) {
+            tempArray = Array.from(openSet);
+            ////console.log(tempArray)
+            currentNode = tempArray[0];
+      
+            for (var i = 1; i < tempArray.length; i++) {
+              //this if statement is solely to build the starting walls.
+              if (tempArray[i].getValueF() < currentNode.getValueF() || tempArray[i].getValueF() == currentNode.getValueF() && tempArray[i].getValueH() < currentNode.getValueH()) {
+                currentNode = tempArray[i]; //sets the currentNode to openSetI if it has a lower F value, or an = F value with a lower HCost.
+      
+              }
+            }
+      
+            //exits for loop with either lowest F value or combined H value and F value
+      
+            openSet.delete(currentNode);
+      
+            // currentNode.drawClosedNode();
+      
+            closedSet.add(currentNode);
+      
+            //might need to put this after getNighbors.... then replace closedSet.hasIn(neighborNode with currentNode
+            // if (currentNode.id == startNode.id) {
+            //   currentNode.drawNode();
+            // }
+            // if (currentNode.id == endNode.id) {
+            //   currentNode.drawNode();
+            // }
+            // if (currentNode.walkable == false) {
+            //   currentNode.drawNode();
+            // }
+      
+            ////console.log(currentNode, endNode)
+            // currentNode.color = "black"
+            //////console.log(currentNode, endNode)
+            if (currentNode.id == endNode.id) {
+              retracePath(startNode, endNode, this.agent);
+              //hit the last point, exit's the loop.
+      
+              return; //exits loop
+            }
+            getNeighbors(currentNode).forEach(function(neighbor) {
+      
+              var neighborNode = sandmap.gridPoints[neighbor.id];
+              var neighborH = neighborNode.getHCost();
+              var neighborG = neighborNode.getGCost();
+      
+              var currentG = currentNode.getGCost();
+              var currentH = currentNode.getHCost();
+      
+              if (!neighborNode.walkable || closedSet.has(neighborNode)) {
+      
+                return; //acts as a continue, no need to continue if the wall was already checked.
+      
+              }
+      
+              newMovementCost = currentG + (getDistance(currentNode, neighborNode));
+      
+              if (newMovementCost < neighborG || !openSet.has(neighborNode)) {
+      
+                neighborNode.gCost = newMovementCost;
+                neighborNode.hCost = neighborH;
+                neighborNode.parent = currentNode;
+      
+                if (!openSet.has(neighborNode)) {
+                  //push the neighborNode to the openSet, to check against other open values
+                  openSet.add(neighborNode);
+      
+                  neighborNode.drawOpenNode();
+      
+                }
+              }
+      
+            })
+          }
+      
+        }
+      
+      }
+    //distance from a node to  another node
+    function getDistance(nodeA, nodeB) {
+      var distX = Math.abs(nodeA.x - nodeB.x);
+      var distY = Math.abs(nodeA.y - nodeB.y);
+    
+      if (distX > distY) {
+        return ((1.4 * distY) + ((distX - distY)))
+    
+      }
+      return (1.4 * distX + ( (distY - distX)));
+    }
+    
+    function retracePath(startNode, endNode, agent = {}) {
+      path = new Set();
+      var currentNode = endNode;
+      var reverseArray;
+      while (currentNode != startNode) {
+        path.add(currentNode);
+        currentNode = currentNode.parent;
+        currentNode.inPath = true;
+        if (currentNode != startNode)
+          currentNode.drawPath();
+      }
+    
+      reverseArray = Array.from(path);
+    
+      reverseArray.reverse();
+      path = new Set(reverseArray);
+    
+    //   //////////console.log(path)
+    
+      realPath = Array.from(path)
+    //   //////////console.log(realPath)
+    
+    if(realPath.length == 1){
+        realPath[0].walkable = false
+        ////////console.log("hit")
+        wallSet.add( realPath[0])
+        ////////console.log(wallSet)
+    }
+    
+    ////console.log(realPath)
+      if(realPath.length>0){
+          agent.realPath = [...realPath]
+        //   for(let t = 0;t<realPath.length;t++){
+        //       realPath[t].color = "black"
+        //   }
+        // bottle.crew[bottle.selectedcrew].body.x =realPath[0].posx+105
+        // bottle.crew[bottle.selectedcrew].body.y  = realPath[0].posy+285
+    
+    // startPoint = new Vec2(bottle.crew[bottle.selectedcrew].body.x, bottle.crew[bottle.selectedcrew].body.y);
+    // startPoint = new Vec2(realPath[0].posx+100, realPath[0].posy+280);
+    // bottle.crew[bottle.selectedcrew].body.x =startPoint.x+4
+    // bottle.crew[bottle.selectedcrew].body.y  = startPoint.y+4
+        // startPoint = new Vec2(realPath[0].posx, realPath[0].posy);
+        //////////console.log(startPoint)
+        // bottle.crew[bottle.selectedcrew].moving = 1
+      }else{
+        //   //////console.log(endPoint)
+    
+    //     if(bottle.crew[bottle.selectedcrew].moving == 1){
+    //         // //////console.log(endPoint)
+    //     // bottle.crew[bottle.selectedcrew].body.x =endPoint.x+96
+    //     // bottle.crew[bottle.selectedcrew].body.y  = endPoint.y+284
+    //     // bottle.crew[bottle.selectedcrew].moving = 0
+    //     // //////console.log(endPoint)
+    //         reset()
+    //   }
+      }
+    }
+    //list of neighbors
+    function getNeighbors(node) {
+      var checkX;
+      var checkY;
+      var neighborList = [];
+      var tempList = [];
+    //   for (var x = -NODESIZE; x <= NODESIZE; x += NODESIZE) {
+    //     for (var y = -NODESIZE; y <= NODESIZE; y += NODESIZE) {
+    //       if (x == 0 && y == 0) {
+    //         continue;
+    //       }
+    //       checkX = node.posx + x;
+    //       checkY = node.posy + y;
+    
+    //       if (checkX >= 0 && checkX <= CANVAS_WIDTH - NODESIZE && checkY >= 0 && checkY <= CANVAS_HEIGHT - NODESIZE) {
+    
+    //         if(x == 0 || y == 0){
+    
+    //             if(checkX<=gridPointsByPos.length ){
+    //                 if(checkY<=gridPointsByPos[checkX].length ){
+    //                     if(sandmap.gridPoints[gridPointsByPos[checkX][checkY].id].walkable !== false){
+    //                         tempList.push(gridPointsByPos[checkX][checkY]);
+    //                     }
+    
+    //             }
+    //         }
+    //         }
+    //       }
+    //     }
+    //   }
+
+
+    for (var x = -1; x <= 1; x += 1) {
+        for (var y = -1; y <= 1; y += 1) {
+          if (x == 0 && y == 0) {
+            continue;
+          }
+          checkX = node.t + x;
+          checkY = node.k + y;
+    
+          if (checkX >= 0 && checkX <= 127 && checkY >= 0 && checkY <= 127) { //127 mapsize
+    
+            if(x == 0 || y == 0 || Math.random()< .25){  // randomness leads to organic
+    
+                if(checkX<sandmap.blocks.length ){
+                    if(checkY<sandmap.blocks[0].length ){
+                        if(sandmap.gridPoints[sandmap.blocks[checkX][checkY].id].walkable !== false){
+                            tempList.push(sandmap.blocks[checkX][checkY]);
+                        }
+    
+                }
+            }
+            }
+          }
+        }
+      }
+
+
+      neighborList = tempList;
+      ////console.log(neighborList)
+      return (neighborList);
+    
+    }
+    
+    
+    
+    //UI, buttons, and click events/functions
+    
+    //tells canvas to how to draw the node
+    function nodeDrawer(context, target, lineW, strokeS, fillS) {
+    //   context.beginPath();
+    //   context.lineWidth = lineW;
+    //   context.strokeStyle = strokeS;
+    //   context.fillStyle = fillS;
+    //   context.fillRect(target.posx, target.posy, target.size, target.size);
+    //   context.rect(target.posx, target.posy, target.size, target.size);
+    //   context.closePath();
+    //   context.stroke();
+    }
+    //clears the path WITHOUT clearing the walls
+    function reset() {
+      gridPoints = []; // resets the gridPoints so that it clears the walls etc. on reset.
+      gridPointsByPos = [];
+      openSet.clear();
+      closedSet.clear();
+      //gctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+      grid.createGrid();
+    
+    }
+    //resets everything INCLUDING walls
+    function resetWalls() {
+    
+      wallSet.clear();
+      reset();
+    }
+    
+
+    let sandmap = new Sandmap(CANVAS_WIDTH, CANVAS_HEIGHT, 0, 0, []);
+
+    class Agent{
+        constructor(tile, player){
+            this.selected = 1
+            this.faction = player
+            this.tile = tile
+            this.movespeedcount = 0
+            this.movespeed = 3
+            this.pather = new PathFindingAlg(sandmap.blocks, this.tile, this.tile, this)
+            this.body = new Circle(this.tile.x+(this.tile.width*.5), this.tile.y+(this.tile.height*.5), 5, this.faction.color)
+            this.faction.units.push(this)
+            this.index = 0
+            this.realPath = [this.tile]
+        }
+        pathTo(point){
+            this.index = 0
+            this.pather = new PathFindingAlg(sandmap.blocks, this.tile, point, this)
+            this.pather.agent = this
+            this.pather.findPath()
+        }
+        move(){
+            if(this.index < this.realPath.length-1){
+                this.movespeedcount++
+                if(this.movespeedcount%this.movespeed == 0){
+                    this.index+=1
+                }
+            }
+            this.tile = this.realPath[this.index]
+        }
+        draw(){
+            this.body = new UnitCircle(this.tile.x+(this.tile.width*.5), this.tile.y+(this.tile.height*.5), 5, this.faction.color)
+            this.body.draw()
+        }
+    }
+
+    let agent1 = new Agent(sandmap.blocks[0][0], sandmap.players[0])
+
+
+    // let pather = new PathFindingAlg(sandmap.blocks, sandmap.blocks[10][10], sandmap.blocks[12][25])
+    // for(let t = 0;t<10;t++){
+        // pather.findPath()
+        
+    // }
 
     function main() {
         canvas_context.clearRect(0, 0, canvas.width, canvas.height)  // refreshes the image
@@ -1451,4 +2176,5 @@ window.addEventListener('DOMContentLoaded', (event) => {
         // // game code goes here
         sandmap.draw()
     }
+
 })
