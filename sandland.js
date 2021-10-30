@@ -1,96 +1,109 @@
 
 window.addEventListener('DOMContentLoaded', (event) => {
 
+    function empty() {
+
+    }
     let pomaoimg = new Image()
     pomaoimg.src = 'rcpomao.png'
+    let rectstart = {}
+    rectstart.x = 0
+    rectstart.y = 0
+    let selectrect = {}
+    selectrect.x = 0
+    selectrect.y = 0
+    selectrect.width = 0
+    selectrect.height = 0
+    selectrect.color = "transparent"
+    selectrect.draw = empty
 
     const squaretable = {} // this section of code is an optimization for use of the hypotenuse function on Line and LineOP objects
-    for(let t = 0;t<10000000;t++){
+    for (let t = 0; t < 10000000; t++) {
         squaretable[`${t}`] = Math.sqrt(t)
-        if(t > 999){
-            t+=9
+        if (t > 999) {
+            t += 9
         }
     }
-    const gamepadAPI = {
-        controller: {},
-        turbo: true,
-        connect: function (evt) {
-            if (navigator.getGamepads()[0] != null) {
-                gamepadAPI.controller = navigator.getGamepads()[0]
-                gamepadAPI.turbo = true;
-            } else if (navigator.getGamepads()[1] != null) {
-                gamepadAPI.controller = navigator.getGamepads()[0]
-                gamepadAPI.turbo = true;
-            } else if (navigator.getGamepads()[2] != null) {
-                gamepadAPI.controller = navigator.getGamepads()[0]
-                gamepadAPI.turbo = true;
-            } else if (navigator.getGamepads()[3] != null) {
-                gamepadAPI.controller = navigator.getGamepads()[0]
-                gamepadAPI.turbo = true;
-            }
-            for (let i = 0; i < gamepads.length; i++) {
-                if (gamepads[i] === null) {
-                    continue;
-                }
-                if (!gamepads[i].connected) {
-                    continue;
-                }
-            }
-        },
-        disconnect: function (evt) {
-            gamepadAPI.turbo = false;
-            delete gamepadAPI.controller;
-        },
-        update: function () {
-            gamepadAPI.controller = navigator.getGamepads()[0]
-            gamepadAPI.buttonsCache = [];// clear the buttons cache
-            for (var k = 0; k < gamepadAPI.buttonsStatus.length; k++) {// move the buttons status from the previous frame to the cache
-                gamepadAPI.buttonsCache[k] = gamepadAPI.buttonsStatus[k];
-            }
-            gamepadAPI.buttonsStatus = [];// clear the buttons status
-            var c = gamepadAPI.controller || {}; // get the gamepad object
-            var pressed = [];
-            if (c.buttons) {
-                for (var b = 0, t = c.buttons.length; b < t; b++) {// loop through buttons and push the pressed ones to the array
-                    if (c.buttons[b].pressed) {
-                        pressed.push(gamepadAPI.buttons[b]);
-                    }
-                }
-            }
-            var axes = [];
-            if (c.axes) {
-                for (var a = 0, x = c.axes.length; a < x; a++) {// loop through axes and push their values to the array
-                    axes.push(c.axes[a].toFixed(2));
-                }
-            }
-            gamepadAPI.axesStatus = axes;// assign received values
-            gamepadAPI.buttonsStatus = pressed;
-            // //////console.log(pressed); // return buttons for debugging purposes
-            return pressed;
-        },
-        buttonPressed: function (button, hold) {
-            var newPress = false;
-            for (var i = 0, s = gamepadAPI.buttonsStatus.length; i < s; i++) {// loop through pressed buttons
-                if (gamepadAPI.buttonsStatus[i] == button) {// if we found the button we're looking for...
-                    newPress = true;// set the boolean variable to true
-                    if (!hold) {// if we want to check the single press
-                        for (var j = 0, p = gamepadAPI.buttonsCache.length; j < p; j++) {// loop through the cached states from the previous frame
-                            if (gamepadAPI.buttonsCache[j] == button) { // if the button was already pressed, ignore new press
-                                newPress = false;
-                            }
-                        }
-                    }
-                }
-            }
-            return newPress;
-        },
-        buttons: [
-            'A', 'B', 'X', 'Y', 'LB', 'RB', 'Left-Trigger', 'Right-Trigger', 'Back', 'Start', 'Axis-Left', 'Axis-Right', 'DPad-Up', 'DPad-Down', 'DPad-Left', 'DPad-Right', "Power"
-        ],
-        buttonsCache: [],
-        buttonsStatus: [],
-        axesStatus: []
-    };
+    // const gamepadAPI = {
+    //     controller: {},
+    //     turbo: true,
+    //     connect: function (evt) {
+    //         if (navigator.getGamepads()[0] != null) {
+    //             gamepadAPI.controller = navigator.getGamepads()[0]
+    //             gamepadAPI.turbo = true;
+    //         } else if (navigator.getGamepads()[1] != null) {
+    //             gamepadAPI.controller = navigator.getGamepads()[0]
+    //             gamepadAPI.turbo = true;
+    //         } else if (navigator.getGamepads()[2] != null) {
+    //             gamepadAPI.controller = navigator.getGamepads()[0]
+    //             gamepadAPI.turbo = true;
+    //         } else if (navigator.getGamepads()[3] != null) {
+    //             gamepadAPI.controller = navigator.getGamepads()[0]
+    //             gamepadAPI.turbo = true;
+    //         }
+    //         for (let i = 0; i < gamepads.length; i++) {
+    //             if (gamepads[i] === null) {
+    //                 continue;
+    //             }
+    //             if (!gamepads[i].connected) {
+    //                 continue;
+    //             }
+    //         }
+    //     },
+    //     disconnect: function (evt) {
+    //         gamepadAPI.turbo = false;
+    //         delete gamepadAPI.controller;
+    //     },
+    //     update: function () {
+    //         gamepadAPI.controller = navigator.getGamepads()[0]
+    //         gamepadAPI.buttonsCache = [];// clear the buttons cache
+    //         for (var k = 0; k < gamepadAPI.buttonsStatus.length; k++) {// move the buttons status from the previous frame to the cache
+    //             gamepadAPI.buttonsCache[k] = gamepadAPI.buttonsStatus[k];
+    //         }
+    //         gamepadAPI.buttonsStatus = [];// clear the buttons status
+    //         var c = gamepadAPI.controller || {}; // get the gamepad object
+    //         var pressed = [];
+    //         if (c.buttons) {
+    //             for (var b = 0, t = c.buttons.length; b < t; b++) {// loop through buttons and push the pressed ones to the array
+    //                 if (c.buttons[b].pressed) {
+    //                     pressed.push(gamepadAPI.buttons[b]);
+    //                 }
+    //             }
+    //         }
+    //         var axes = [];
+    //         if (c.axes) {
+    //             for (var a = 0, x = c.axes.length; a < x; a++) {// loop through axes and push their values to the array
+    //                 axes.push(c.axes[a].toFixed(2));
+    //             }
+    //         }
+    //         gamepadAPI.axesStatus = axes;// assign received values
+    //         gamepadAPI.buttonsStatus = pressed;
+    //         // ////////console.log(pressed); // return buttons for debugging purposes
+    //         return pressed;
+    //     },
+    //     buttonPressed: function (button, hold) {
+    //         var newPress = false;
+    //         for (var i = 0, s = gamepadAPI.buttonsStatus.length; i < s; i++) {// loop through pressed buttons
+    //             if (gamepadAPI.buttonsStatus[i] == button) {// if we found the button we're looking for...
+    //                 newPress = true;// set the boolean variable to true
+    //                 if (!hold) {// if we want to check the single press
+    //                     for (var j = 0, p = gamepadAPI.buttonsCache.length; j < p; j++) {// loop through the cached states from the previous frame
+    //                         if (gamepadAPI.buttonsCache[j] == button) { // if the button was already pressed, ignore new press
+    //                             newPress = false;
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //         return newPress;
+    //     },
+    //     buttons: [
+    //         'A', 'B', 'X', 'Y', 'LB', 'RB', 'Left-Trigger', 'Right-Trigger', 'Back', 'Start', 'Axis-Left', 'Axis-Right', 'DPad-Up', 'DPad-Down', 'DPad-Left', 'DPad-Right', "Power"
+    //     ],
+    //     buttonsCache: [],
+    //     buttonsStatus: [],
+    //     axesStatus: []
+    // };
     let canvas
     let canvas_context
     let keysPressed = {}
@@ -111,58 +124,58 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 
-    class Vector{ // vector math and physics if you prefer this over vector components on circles
-        constructor(object = (new Point(0,0)), xmom = 0, ymom = 0){
+    class Vector { // vector math and physics if you prefer this over vector components on circles
+        constructor(object = (new Point(0, 0)), xmom = 0, ymom = 0) {
             this.xmom = xmom
             this.ymom = ymom
             this.object = object
         }
-        isToward(point){
+        isToward(point) {
             let link = new LineOP(this.object, point)
             let dis1 = link.sqrDis()
-            let dummy = new Point(this.object.x+this.xmom, this.object.y+this.ymom)
+            let dummy = new Point(this.object.x + this.xmom, this.object.y + this.ymom)
             let link2 = new LineOP(dummy, point)
             let dis2 = link2.sqrDis()
-            if(dis2 < dis1){
+            if (dis2 < dis1) {
                 return true
-            }else{
+            } else {
                 return false
             }
         }
-        rotate(angleGoal){
-            let link = new Line(this.xmom, this.ymom, 0,0)
+        rotate(angleGoal) {
+            let link = new Line(this.xmom, this.ymom, 0, 0)
             let length = link.hypotenuse()
             let x = (length * Math.cos(angleGoal))
             let y = (length * Math.sin(angleGoal))
             this.xmom = x
             this.ymom = y
         }
-        magnitude(){
-            return (new Line(this.xmom, this.ymom, 0,0)).hypotenuse()
+        magnitude() {
+            return (new Line(this.xmom, this.ymom, 0, 0)).hypotenuse()
         }
-        normalize(size = 1){
+        normalize(size = 1) {
             let magnitude = this.magnitude()
-            this.xmom/=magnitude
-            this.ymom/=magnitude
-            this.xmom*=size
-            this.ymom*=size
+            this.xmom /= magnitude
+            this.ymom /= magnitude
+            this.xmom *= size
+            this.ymom *= size
         }
-        multiply(vect){
-            let point = new Point(0,0)
-            let end = new Point(this.xmom+vect.xmom, this.ymom+vect.ymom)
+        multiply(vect) {
+            let point = new Point(0, 0)
+            let end = new Point(this.xmom + vect.xmom, this.ymom + vect.ymom)
             return point.pointDistance(end)
         }
-        add(vect){
-            return new Vector(this.object, this.xmom+vect.xmom, this.ymom+vect.ymom)
+        add(vect) {
+            return new Vector(this.object, this.xmom + vect.xmom, this.ymom + vect.ymom)
         }
-        subtract(vect){
-            return new Vector(this.object, this.xmom-vect.xmom, this.ymom-vect.ymom)
+        subtract(vect) {
+            return new Vector(this.object, this.xmom - vect.xmom, this.ymom - vect.ymom)
         }
-        divide(vect){
-            return new Vector(this.object, this.xmom/vect.xmom, this.ymom/vect.ymom) //be careful with this, I don't think this is right
+        divide(vect) {
+            return new Vector(this.object, this.xmom / vect.xmom, this.ymom / vect.ymom) //be careful with this, I don't think this is right
         }
-        draw(){
-            let dummy = new Point(this.object.x+this.xmom, this.object.y+this.ymom)
+        draw() {
+            let dummy = new Point(this.object.x + this.xmom, this.object.y + this.ymom)
             let link = new LineOP(this.object, dummy, "#FFFFFF", 1)
             link.draw()
         }
@@ -189,13 +202,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             let xdif = this.x1 - this.x2
             let ydif = this.y1 - this.y2
             let hypotenuse = (xdif * xdif) + (ydif * ydif)
-            if(hypotenuse < 10000000-1){
-                if(hypotenuse > 1000){
-                    return squaretable[`${Math.round(10*Math.round((hypotenuse*.1)))}`]
-                }else{
-                return squaretable[`${Math.round(hypotenuse)}`]
+            if (hypotenuse < 10000000 - 1) {
+                if (hypotenuse > 1000) {
+                    return squaretable[`${Math.round(10 * Math.round((hypotenuse * .1)))}`]
+                } else {
+                    return squaretable[`${Math.round(hypotenuse)}`]
                 }
-            }else{
+            } else {
                 return Math.sqrt(hypotenuse)
             }
         }
@@ -227,13 +240,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             let xdif = this.object.x - this.target.x
             let ydif = this.object.y - this.target.y
             let hypotenuse = (xdif * xdif) + (ydif * ydif)
-            if(hypotenuse < 10000000-1){
-                if(hypotenuse > 1000){
-                    return squaretable[`${Math.round(10*Math.round((hypotenuse*.1)))}`]
-                }else{
-                return squaretable[`${Math.round(hypotenuse)}`]
+            if (hypotenuse < 10000000 - 1) {
+                if (hypotenuse > 1000) {
+                    return squaretable[`${Math.round(10 * Math.round((hypotenuse * .1)))}`]
+                } else {
+                    return squaretable[`${Math.round(hypotenuse)}`]
                 }
-            }else{
+            } else {
                 return Math.sqrt(hypotenuse)
             }
         }
@@ -319,8 +332,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.fill = fill
         }
         draw() {
-            canvas_context.fillStyle = this.color
-            canvas_context.fillRect(this.x, this.y, this.width, this.height)
+            map_context.fillStyle = this.color
+            map_context.fillRect(this.x, this.y, this.width, this.height)
         }
         move() {
             this.x += this.xmom
@@ -374,7 +387,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.fill()
                 canvas_context.stroke();
             } else {
-                //////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                ////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -501,7 +514,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
             return false
         }
-    } 
+    }
     class UnitCircle {
         constructor(x, y, radius, color, xmom = 0, ymom = 0, friction = 1, reflect = 0, strokeWidth = 0, strokeColor = "transparent") {
             this.x = x
@@ -526,7 +539,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 map_context.strokeStyle = "black"
                 map_context.stroke();
             } else {
-                //////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                ////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -653,7 +666,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
             return false
         }
-    } 
+    }
     class CircleRing {
         constructor(x, y, radius, color, xmom = 0, ymom = 0, friction = 1, reflect = 0, strokeWidth = 0, strokeColor = "transparent") {
             this.x = x
@@ -677,7 +690,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.fill()
                 canvas_context.stroke();
             } else {
-                //////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                ////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -927,25 +940,25 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
             return false
         }
-        adjustByFromDisplacement(x,y) {
+        adjustByFromDisplacement(x, y) {
             for (let t = 0; t < this.shapes.length; t++) {
-                if(typeof this.shapes[t].fromRatio == "number"){
-                    this.shapes[t].x+=x*this.shapes[t].fromRatio
-                    this.shapes[t].y+=y*this.shapes[t].fromRatio
+                if (typeof this.shapes[t].fromRatio == "number") {
+                    this.shapes[t].x += x * this.shapes[t].fromRatio
+                    this.shapes[t].y += y * this.shapes[t].fromRatio
                 }
             }
         }
-        adjustByToDisplacement(x,y) {
+        adjustByToDisplacement(x, y) {
             for (let t = 0; t < this.shapes.length; t++) {
-                if(typeof this.shapes[t].toRatio == "number"){
-                    this.shapes[t].x+=x*this.shapes[t].toRatio
-                    this.shapes[t].y+=y*this.shapes[t].toRatio
+                if (typeof this.shapes[t].toRatio == "number") {
+                    this.shapes[t].x += x * this.shapes[t].toRatio
+                    this.shapes[t].y += y * this.shapes[t].toRatio
                 }
             }
         }
-        mixIn(arr){
-            for(let t = 0;t<arr.length;t++){
-                for(let k = 0;k<arr[t].shapes.length;k++){
+        mixIn(arr) {
+            for (let t = 0; t < arr.length; t++) {
+                for (let k = 0; k < arr[t].shapes.length; k++) {
                     this.shapes.push(arr[t].shapes[k])
                 }
             }
@@ -1002,7 +1015,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.anchor.move()
         }
 
-    }  
+    }
     class SpringOP {
         constructor(body, anchor, length, width = 3, color = body.color) {
             this.body = body
@@ -1012,10 +1025,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         balance() {
             if (this.beam.hypotenuse() < this.length) {
-                this.body.xmom += ((this.body.x - this.anchor.x) / this.length) 
-                this.body.ymom += ((this.body.y - this.anchor.y) / this.length) 
-                this.anchor.xmom -= ((this.body.x - this.anchor.x) / this.length) 
-                this.anchor.ymom -= ((this.body.y - this.anchor.y) / this.length) 
+                this.body.xmom += ((this.body.x - this.anchor.x) / this.length)
+                this.body.ymom += ((this.body.y - this.anchor.y) / this.length)
+                this.anchor.xmom -= ((this.body.x - this.anchor.x) / this.length)
+                this.anchor.ymom -= ((this.body.y - this.anchor.y) / this.length)
             } else if (this.beam.hypotenuse() > this.length) {
                 this.body.xmom -= (this.body.x - this.anchor.x) / (this.length)
                 this.body.ymom -= (this.body.y - this.anchor.y) / (this.length)
@@ -1134,25 +1147,25 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.points = []
             this.flop = 0
             let angle = 0
-            this.size = size 
-            let line = new Line((Math.cos(angle)*size), (Math.sin(angle)*size), (Math.cos(angle+ ((Math.PI*2)/members))*size), (Math.sin(angle+ ((Math.PI*2)/members))*size) )
+            this.size = size
+            let line = new Line((Math.cos(angle) * size), (Math.sin(angle) * size), (Math.cos(angle + ((Math.PI * 2) / members)) * size), (Math.sin(angle + ((Math.PI * 2) / members)) * size))
             let distance = line.hypotenuse()
-            for(let t =0;t<members;t++){
-                let circ = new Circle(x+(Math.cos(angle)*size), y+(Math.sin(angle)*size), radius, color)
+            for (let t = 0; t < members; t++) {
+                let circ = new Circle(x + (Math.cos(angle) * size), y + (Math.sin(angle) * size), radius, color)
                 circ.reflect = 1
-                circ.bigbody = new Circle(x+(Math.cos(angle)*size), y+(Math.sin(angle)*size), distance, color)
+                circ.bigbody = new Circle(x + (Math.cos(angle) * size), y + (Math.sin(angle) * size), distance, color)
                 circ.draw()
                 circ.touch = []
                 this.points.push(circ)
-                angle += ((Math.PI*2)/members)
+                angle += ((Math.PI * 2) / members)
             }
 
-            for(let t =0;t<this.points.length;t++){
-                for(let k =0;k<this.points.length;k++){
-                    if(t!=k){
-                        if(this.points[k].bigbody.doesPerimeterTouch(this.points[t])){
-                        if(!this.points[k].touch.includes(t) && !this.points[t].touch.includes(k)){
-                                let spring = new SpringOP(this.points[k], this.points[t], (size*Math.PI)/members, 2, color)
+            for (let t = 0; t < this.points.length; t++) {
+                for (let k = 0; k < this.points.length; k++) {
+                    if (t != k) {
+                        if (this.points[k].bigbody.doesPerimeterTouch(this.points[t])) {
+                            if (!this.points[k].touch.includes(t) && !this.points[t].touch.includes(k)) {
+                                let spring = new SpringOP(this.points[k], this.points[t], (size * Math.PI) / members, 2, color)
                                 this.points[k].touch.push(t)
                                 this.points[t].touch.push(k)
                                 this.springs.push(spring)
@@ -1163,7 +1176,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             }
 
-            //////console.log(this)
+            ////////console.log(this)
 
             // this.spring = new Spring(x, y, radius, color, this.pin, memberLength, gravity)
             // this.springs.push(this.spring)
@@ -1193,7 +1206,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             for (let t = 0; t < this.points.length; t++) {
                 this.points[t].x = this.centroid.x + (Math.cos(this.angle) * this.forceConstant)
                 this.points[t].y = this.centroid.y + (Math.sin(this.angle) * this.forceConstant)
-                this.angle += this.angleIncrement 
+                this.angle += this.angleIncrement
             }
         }
         balance() {
@@ -1211,24 +1224,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.link = new LineOP(this.points[s], this.centroid, 0, "transparent")
                 if (this.link.hypotenuse() != 0) {
 
-                    if(this.size < this.link.hypotenuse()){
-                        this.points[s].xmom -= (Math.cos(this.link.angle())*(this.link.hypotenuse())) * this.forceConstant*.1
-                        this.points[s].ymom -= (Math.sin(this.link.angle())*(this.link.hypotenuse())) * this.forceConstant*.1
-                    }else{
-                        this.points[s].xmom += (Math.cos(this.link.angle())*(this.link.hypotenuse())) * this.forceConstant*.1
-                        this.points[s].ymom += (Math.sin(this.link.angle())*(this.link.hypotenuse())) * this.forceConstant*.1
+                    if (this.size < this.link.hypotenuse()) {
+                        this.points[s].xmom -= (Math.cos(this.link.angle()) * (this.link.hypotenuse())) * this.forceConstant * .1
+                        this.points[s].ymom -= (Math.sin(this.link.angle()) * (this.link.hypotenuse())) * this.forceConstant * .1
+                    } else {
+                        this.points[s].xmom += (Math.cos(this.link.angle()) * (this.link.hypotenuse())) * this.forceConstant * .1
+                        this.points[s].ymom += (Math.sin(this.link.angle()) * (this.link.hypotenuse())) * this.forceConstant * .1
                     }
 
                     // this.points[s].xmom += (((this.points[s].x - this.centroid.x) / (this.link.hypotenuse()))) * this.forceConstant
                     // this.points[s].ymom += (((this.points[s].y - this.centroid.y) / (this.link.hypotenuse()))) * this.forceConstant
                 }
             }
-            if(this.flop%2 == 0){
-                for (let s =  0; s < this.springs.length; s++) {
+            if (this.flop % 2 == 0) {
+                for (let s = 0; s < this.springs.length; s++) {
                     this.springs[s].balance()
                 }
-            }else{
-                for (let s = this.springs.length-1;s>=0; s--) {
+            } else {
+                for (let s = this.springs.length - 1; s >= 0; s--) {
                     this.springs[s].balance()
                 }
             }
@@ -1236,7 +1249,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.points[s].move()
                 this.points[s].draw()
             }
-            for (let s =  0; s < this.springs.length; s++) {
+            for (let s = 0; s < this.springs.length; s++) {
                 this.springs[s].draw()
             }
             this.centroid.draw()
@@ -1313,55 +1326,133 @@ window.addEventListener('DOMContentLoaded', (event) => {
             TIP_engine.x = XS_engine
             TIP_engine.y = YS_engine
             TIP_engine.body = TIP_engine
-            if(TIP_engine.x <= sandmap.window.body.x+sandmap.window.body.width){
-                if(keysPressed['b']){
-                    let structuredpoint = new Point(0,0)
+            if (TIP_engine.x <= sandmap.window.body.x + sandmap.window.body.width) {
+                if (keysPressed['b']) {
+                    let structuredpoint = new Point(0, 0)
                     structuredpoint.x += sandmap.window.guide.x
                     structuredpoint.y += sandmap.window.guide.y
-                    structuredpoint.x += (TIP_engine.x*.5)
-                    structuredpoint.y += (TIP_engine.y*.5)
-                    structuredpoint.x = Math.floor(structuredpoint.x*.1)
-                    structuredpoint.y = Math.floor(structuredpoint.y*.1)
+                    structuredpoint.x += (TIP_engine.x * .5)
+                    structuredpoint.y += (TIP_engine.y * .5)
+                    structuredpoint.x = Math.floor(structuredpoint.x * .1)
+                    structuredpoint.y = Math.floor(structuredpoint.y * .1)
                     sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
-                    let building = new Building(sandmap.players[sandmap.turn].selected_tile, sandmap.players[sandmap.turn] )
-                }else{
-                        let structuredpoint = new Point(0,0)
-                        structuredpoint.x += sandmap.window.guide.x
-                        structuredpoint.y += sandmap.window.guide.y
-                        structuredpoint.x += (TIP_engine.x*.5)
-                        structuredpoint.y += (TIP_engine.y*.5)
-                        structuredpoint.x = Math.floor(structuredpoint.x*.1)
-                        structuredpoint.y = Math.floor(structuredpoint.y*.1)
-                        sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
-                        sandmap.turn++
-                        sandmap.turn%=sandmap.players.length
+                    let building = new Building(sandmap.players[sandmap.turn].selected_tile, sandmap.players[sandmap.turn])
+                } else {
+                    let structuredpoint = new Point(0, 0)
+                    structuredpoint.x += sandmap.window.guide.x
+                    structuredpoint.y += sandmap.window.guide.y
+                    structuredpoint.x += (TIP_engine.x * .5)
+                    structuredpoint.y += (TIP_engine.y * .5)
+                    structuredpoint.x = Math.floor(structuredpoint.x * .1)
+                    structuredpoint.y = Math.floor(structuredpoint.y * .1)
+                    sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
 
-                    for(let t = 0;t<sandmap.players[0].units.length;t++){
-                        if(sandmap.players[0].units[t].selected == 1){
-                            sandmap.players[0].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile )
+
+                    sandmap.turn++
+                    sandmap.turn %= sandmap.players.length
+                    rectstart.x = structuredpoint.x
+                    rectstart.y = structuredpoint.y
+                    for (let t = 0; t < sandmap.players[sandmap.turn].units.length; t++) {
+                        if (sandmap.players[sandmap.turn].selected_tile == sandmap.players[sandmap.turn].units[t].tile) {
+                            sandmap.players[sandmap.turn].units[t].selected = 2
+                        } else {
+                            // sandmap.players[sandmap.turn].units[t].selected = 0
                         }
                     }
+                    // for(let t = 0;t<sandmap.players[0].units.length;t++){
+                    //     if(sandmap.players[0].units[t].selected == 1){
+                    //         sandmap.players[0].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile )
+                    //     }
+                    // }
                 }
-            }else{
-                if(sandmap.window.minibody.isPointInside(TIP_engine)){
-                    let structuredpoint = new Point(0,0)
-                    let inv = 1/.28125
-                    structuredpoint.x += (TIP_engine.x - sandmap.window.minibody.x)*inv
-                    structuredpoint.y += (TIP_engine.y - sandmap.window.minibody.y)*inv
-                    sandmap.window.guide.x = structuredpoint.x-(sandmap.window.body.width*.25)
-                    sandmap.window.guide.y = structuredpoint.y-(sandmap.window.body.height*.25)
+            } else {
+                if (sandmap.window.minibody.isPointInside(TIP_engine)) {
+                    let structuredpoint = new Point(0, 0)
+                    let inv = 1 / .28125
+                    structuredpoint.x += (TIP_engine.x - sandmap.window.minibody.x) * inv
+                    structuredpoint.y += (TIP_engine.y - sandmap.window.minibody.y) * inv
+                    sandmap.window.guide.x = structuredpoint.x - (sandmap.window.body.width * .25)
+                    sandmap.window.guide.y = structuredpoint.y - (sandmap.window.body.height * .25)
                 }
             }
 
 
 
             // example usage: if(object.isPointInside(TIP_engine)){ take action }
-        window.addEventListener('pointermove', continued_stimuli);
+            window.addEventListener('pointermove', continued_stimuli);
+
+        });
+        window.addEventListener('contextmenu', e => {
+            e.preventDefault()
+            FLEX_engine = canvas.getBoundingClientRect();
+            XS_engine = e.clientX - FLEX_engine.left;
+            YS_engine = e.clientY - FLEX_engine.top;
+            TIP_engine.x = XS_engine
+            TIP_engine.y = YS_engine
+            TIP_engine.body = TIP_engine
+            if (TIP_engine.x <= sandmap.window.body.x + sandmap.window.body.width) {
+
+                let structuredpoint = new Point(0, 0)
+                structuredpoint.x += sandmap.window.guide.x
+                structuredpoint.y += sandmap.window.guide.y
+                structuredpoint.x += (TIP_engine.x * .5)
+                structuredpoint.y += (TIP_engine.y * .5)
+                structuredpoint.x = Math.floor(structuredpoint.x * .1)
+                structuredpoint.y = Math.floor(structuredpoint.y * .1)
+                sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
+                sandmap.turn++
+                sandmap.turn %= sandmap.players.length
+
+                for (let t = 0; t < sandmap.players[sandmap.turn].units.length; t++) {
+                    if (sandmap.players[sandmap.turn].units[t].selected == 1) {
+                        sandmap.players[sandmap.turn].units[t].selected = 2
+                        sandmap.players[sandmap.turn].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile)
+                    }
+                }
+
+            } else {
+                if (sandmap.window.minibody.isPointInside(TIP_engine)) {
+                    let structuredpoint = new Point(0, 0)
+                    let inv = 1 / .28125
+                    structuredpoint.x += (TIP_engine.x - sandmap.window.minibody.x) * inv
+                    structuredpoint.y += (TIP_engine.y - sandmap.window.minibody.y) * inv
+                    sandmap.window.guide.x = structuredpoint.x - (sandmap.window.body.width * .25)
+                    sandmap.window.guide.y = structuredpoint.y - (sandmap.window.body.height * .25)
+
+                    structuredpoint.x = Math.floor((sandmap.window.guide.x + (sandmap.window.body.width * .25)) * .1)
+                    structuredpoint.y = Math.floor(((sandmap.window.guide.y + (sandmap.window.body.height * .25)) * .1))
+                    sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
+                    for (let t = 0; t < sandmap.players[0].units.length; t++) {
+                        if (sandmap.players[0].units[t].selected == 1) {
+                            sandmap.players[0].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile)
+                        }
+                    }
+                }
+            }
+
+
+
+            // example usage: if(object.isPointInside(TIP_engine)){ take action }
+            window.addEventListener('pointermove', continued_stimuli);
 
         });
 
         window.addEventListener('pointerup', e => {
             window.removeEventListener("pointermove", continued_stimuli);
+            if (TIP_engine.x <= sandmap.window.body.x + sandmap.window.body.width) {
+                for (let t = 0; t < sandmap.players[sandmap.turn].units.length; t++) {
+                    if (selectrect.isPointInside(sandmap.players[sandmap.turn].units[t].body)) {
+                        sandmap.players[sandmap.turn].units[t].selected = 1
+                    } else {
+                        if(sandmap.players[sandmap.turn].units[t].selected == 2){
+                            sandmap.players[sandmap.turn].units[t].selected = 1
+                        }else{
+                            sandmap.players[sandmap.turn].units[t].selected = 0
+                        }
+                    }
+                }
+            }
+            selectrect = new Tile(0, 0, 0, 0, "transparent")
         })
         function continued_stimuli(e) {
             FLEX_engine = canvas.getBoundingClientRect();
@@ -1371,47 +1462,62 @@ window.addEventListener('DOMContentLoaded', (event) => {
             TIP_engine.y = YS_engine
             TIP_engine.body = TIP_engine
 
-            if(TIP_engine.x <= sandmap.window.body.x+sandmap.window.body.width){
-                // let structuredpoint = new Point(0,0)
-                // structuredpoint.x += sandmap.window.guide.x
-                // structuredpoint.y += sandmap.window.guide.y
-                // structuredpoint.x += (TIP_engine.x*.5)
-                // structuredpoint.y += (TIP_engine.y*.5)
-                // structuredpoint.x = Math.floor(structuredpoint.x*.1)
-                // structuredpoint.y = Math.floor(structuredpoint.y*.1)
+            if (TIP_engine.x <= sandmap.window.body.x + sandmap.window.body.width) {
+                let structuredpoint = new Point(0, 0)
+                structuredpoint.x += sandmap.window.guide.x
+                structuredpoint.y += sandmap.window.guide.y
+                structuredpoint.x += (TIP_engine.x * .5)
+                structuredpoint.y += (TIP_engine.y * .5)
+                structuredpoint.x1 = Math.ceil(structuredpoint.x * .1)
+                structuredpoint.y1 = Math.ceil(structuredpoint.y * .1)
+                structuredpoint.x = Math.floor(structuredpoint.x * .1)
+                structuredpoint.y = Math.floor(structuredpoint.y * .1)
+
+                selectrect = new Tile(rectstart.x * 10, rectstart.y * 10, (structuredpoint.x1 - rectstart.x) * 10, (structuredpoint.y1 - rectstart.y) * 10, sandmap.players[sandmap.turn].color + "22")
+                if (selectrect.width < 0) {
+                    selectrect.x += selectrect.width
+                    selectrect.width = Math.abs(selectrect.width)
+                }
+                if (selectrect.height < 0) {
+                    selectrect.y += selectrect.height
+                    selectrect.height = Math.abs(selectrect.height)
+                }
+
+                // //console.log(selectrect)
+                // selectrect.draw()
                 // sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
                 // sandmap.turn++
                 // sandmap.turn%=sandmap.players.length
-            }else{
-                if(sandmap.window.minibody.isPointInside(TIP_engine)){
-                    let structuredpoint = new Point(0,0)
-                    let inv = 1/.28125
-                    structuredpoint.x += (TIP_engine.x - sandmap.window.minibody.x)*inv
-                    structuredpoint.y += (TIP_engine.y - sandmap.window.minibody.y)*inv
-                    sandmap.window.guide.x = structuredpoint.x-(sandmap.window.body.width*.25)
-                    sandmap.window.guide.y = structuredpoint.y-(sandmap.window.body.height*.25)
+            } else {
+                if (sandmap.window.minibody.isPointInside(TIP_engine)) {
+                    let structuredpoint = new Point(0, 0)
+                    let inv = 1 / .28125
+                    structuredpoint.x += (TIP_engine.x - sandmap.window.minibody.x) * inv
+                    structuredpoint.y += (TIP_engine.y - sandmap.window.minibody.y) * inv
+                    sandmap.window.guide.x = structuredpoint.x - (sandmap.window.body.width * .25)
+                    sandmap.window.guide.y = structuredpoint.y - (sandmap.window.body.height * .25)
                 }
             }
         }
     }
-    function gamepad_control(object, speed = 1) { // basic control for objects using the controler
-//         //////console.log(gamepadAPI.axesStatus[1]*gamepadAPI.axesStatus[0]) //debugging
-        if (typeof object.body != 'undefined') {
-            if(typeof (gamepadAPI.axesStatus[1]) != 'undefined'){
-                if(typeof (gamepadAPI.axesStatus[0]) != 'undefined'){
-                object.body.x += (gamepadAPI.axesStatus[0] * speed)
-                object.body.y += (gamepadAPI.axesStatus[1] * speed)
-                }
-            }
-        } else if (typeof object != 'undefined') {
-            if(typeof (gamepadAPI.axesStatus[1]) != 'undefined'){
-                if(typeof (gamepadAPI.axesStatus[0]) != 'undefined'){
-                object.x += (gamepadAPI.axesStatus[0] * speed)
-                object.y += (gamepadAPI.axesStatus[1] * speed)
-                }
-            }
-        }
-    }
+    //     function gamepad_control(object, speed = 1) { // basic control for objects using the controler
+    // //         ////////console.log(gamepadAPI.axesStatus[1]*gamepadAPI.axesStatus[0]) //debugging
+    //         if (typeof object.body != 'undefined') {
+    //             if(typeof (gamepadAPI.axesStatus[1]) != 'undefined'){
+    //                 if(typeof (gamepadAPI.axesStatus[0]) != 'undefined'){
+    //                 object.body.x += (gamepadAPI.axesStatus[0] * speed)
+    //                 object.body.y += (gamepadAPI.axesStatus[1] * speed)
+    //                 }
+    //             }
+    //         } else if (typeof object != 'undefined') {
+    //             if(typeof (gamepadAPI.axesStatus[1]) != 'undefined'){
+    //                 if(typeof (gamepadAPI.axesStatus[0]) != 'undefined'){
+    //                 object.x += (gamepadAPI.axesStatus[0] * speed)
+    //                 object.y += (gamepadAPI.axesStatus[1] * speed)
+    //                 }
+    //             }
+    //         }
+    //     }
     function control(object, speed = 1) { // basic control for objects
         if (typeof object.body != 'undefined') {
             if (keysPressed['w']) {
@@ -1466,15 +1572,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
         return color;
     }
     function castBetween(from, to, granularity = 10, radius = 1) { //creates a sort of beam hitbox between two points, with a granularity (number of members over distance), with a radius defined as well
-            let limit = granularity
-            let shape_array = []
-            for (let t = 0; t < limit; t++) {
-                let circ = new Circle((from.x * (t / limit)) + (to.x * ((limit - t) / limit)), (from.y * (t / limit)) + (to.y * ((limit - t) / limit)), radius, "red")
-                circ.toRatio = t/limit
-                circ.fromRatio = (limit-t)/limit
-                shape_array.push(circ)
-            }
-            return (new Shape(shape_array))
+        let limit = granularity
+        let shape_array = []
+        for (let t = 0; t < limit; t++) {
+            let circ = new Circle((from.x * (t / limit)) + (to.x * ((limit - t) / limit)), (from.y * (t / limit)) + (to.y * ((limit - t) / limit)), radius, "red")
+            circ.toRatio = t / limit
+            circ.fromRatio = (limit - t) / limit
+            shape_array.push(circ)
+        }
+        return (new Shape(shape_array))
     }
 
     let setup_canvas = document.getElementById('canvas') //getting canvas from document
@@ -1486,9 +1592,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
     map_canvas.style.background = "tan"
     setUp(setup_canvas)
     // object instantiation and creation happens here 
-   
-    
-    
+
+
+
     class Tile {
         constructor(x, y, width, height, color, id, size, posx, posy, walkable) {
             this.x = x
@@ -1498,112 +1604,112 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.color = color
             this.xmom = 0
             this.ymom = 0
-            
 
-        var F;
-    
-        var parent;
-        this.inPath = false;
-        this.getGCost = this.getValueG;
-        this.getHCost = this.getValueH;
-    
-        this.size = size;
-        this.posx = posx;
-        this.posy = posy;
-        this.walkable = walkable;
-        if(Math.random()<.01){
-            this.walkable = false
-            this.color = "#000000"
+
+            var F;
+
+            var parent;
+            this.inPath = false;
+            this.getGCost = this.getValueG;
+            this.getHCost = this.getValueH;
+
+            this.size = size;
+            this.posx = posx;
+            this.posy = posy;
+            this.walkable = walkable;
+            if (Math.random() < .01) {
+                this.walkable = false
+                this.color = "#000000"
+            }
+
+            this.id = id;
         }
-    
-        this.id = id;
+
+        createStartNode() {
+            // nodeDrawer(gctx, this, 2, "black", "#00FFFF88");
+
         }
+        createEndNode() {
+            // nodeDrawer(gctx, this, 2, "black", "#FFFF0088");
 
-  createStartNode() {
-    // nodeDrawer(gctx, this, 2, "black", "#00FFFF88");
+        }
+        toggleWalkable() {
+            this.walkable = !this.walkable;
+        }
+        getValueF() {
+            //this is a problem
+            var fValue = (this.getValueH()) + (this.getValueG());
 
-  }
-  createEndNode() {
-    // nodeDrawer(gctx, this, 2, "black", "#FFFF0088");
+            return (fValue);
+        }
+        getValueH() {
+            var endNodePosition = {
+                posx: endPoint.x,
+                posy: endPoint.y
+            };
 
-  }
-  toggleWalkable() {
-    this.walkable = !this.walkable;
-  }
-  getValueF() {
-    //this is a problem
-    var fValue = (this.getValueH()) + (this.getValueG());
+            return (getDistance(this, endNodePosition));
 
-    return (fValue);
-  }
-  getValueH() {
-    var endNodePosition = {
-      posx: endPoint.x,
-      posy: endPoint.y
-    };
+        }
+        getValueG() {
+            var startPointPosition = {
+                posx: endPoint.x,
+                posy: endPoint.y
+            };
+            return (getDistance(this, startPointPosition));
+        }
+        createWall() {
+            // nodeDrawer(gctx, this, 2, "transparent", "black");
 
-    return (getDistance(this, endNodePosition));
+        }
+        drawOpenNode() {
+            // nodeDrawer(gctx, this, 2, "transparent", "transparent");
 
-  }
-  getValueG() {
-    var startPointPosition = {
-      posx: endPoint.x,
-      posy: endPoint.y
-    };
-    return (getDistance(this, startPointPosition));
-  }
-  createWall() {
-    // nodeDrawer(gctx, this, 2, "transparent", "black");
+        }
+        drawClosedNode() {
+            // nodeDrawer(gctx, this, 2, "transparent", "transparent");
+        }
+        drawPath() {
+            // nodeDrawer(gctx, this, 2, "transparent", "#FF000033");
+        }
+        drawNode() {
 
-  }
-  drawOpenNode() {
-    // nodeDrawer(gctx, this, 2, "transparent", "transparent");
+            //gctx.beginPath();
+            //gctx.lineWidth = ".1";
+            //gctx.strokeStyle = "black";
+            //gctx.fillStyle = "transparent";
 
-  }
-  drawClosedNode() {
-    // nodeDrawer(gctx, this, 2, "transparent", "transparent");
-  }
-  drawPath() {
-    // nodeDrawer(gctx, this, 2, "transparent", "#FF000033");
-  }
-  drawNode() {
+            // let link = new Line(this.posx, this.posy, bottle.crew[bottle.selectedcrew].body.x-100, bottle.crew[bottle.selectedcrew].body.y-300, "red", 1)
+            // if (link.hypotenuse() < 108) {
+            // ////////////console.log(link)
+            // ////////////console.log(bottle)
+            // }
+            let roundedx = (Math.round((startPoint.x) / 10))
+            let roundedy = (Math.round((startPoint.y) / 10))
+            if (this.walkable !== false) {
+                //gctx.fillRect(this.posx, this.posy, this.size, this.size);
+                //gctx.rect(this.posx, this.posy, this.size, this.size);
+                //gctx.closePath();
+                //gctx.stroke();
+            }
+            if (this.inPath === true) {
+                this.drawPath();
+            } else if (this.walkable === false) {
+                // ////////////console.log(this)
 
-    //gctx.beginPath();
-    //gctx.lineWidth = ".1";
-    //gctx.strokeStyle = "black";
-    //gctx.fillStyle = "transparent";
+                this.createWall();
+                return;
+                // }else if (link.hypotenuse() < 11) {
+            } else if (this.posx == roundedx && this.posy == roundedy) {
+                //   ////////////console.log("hit the startNode");
+                //   this.createStartNode();
+                return;
+            } else if (this.posx == endPoint.x && this.posy == endPoint.y) {
+                //   this.createEndNode();
 
-    // let link = new Line(this.posx, this.posy, bottle.crew[bottle.selectedcrew].body.x-100, bottle.crew[bottle.selectedcrew].body.y-300, "red", 1)
-    // if (link.hypotenuse() < 108) {
-    // //////////console.log(link)
-    // //////////console.log(bottle)
-    // }
-    let roundedx = (Math.round((startPoint.x)/10))
-    let roundedy = (Math.round((startPoint.y)/10))
-    if (this.walkable !== false) {
-    //gctx.fillRect(this.posx, this.posy, this.size, this.size);
-    //gctx.rect(this.posx, this.posy, this.size, this.size);
-    //gctx.closePath();
-    //gctx.stroke();
-    }
-    if (this.inPath === true) {
-      this.drawPath();
-    }else if (this.walkable === false) {
-        // //////////console.log(this)
+            }
 
-      this.createWall();
-      return;
-    // }else if (link.hypotenuse() < 11) {
-    }else if(this.posx == roundedx && this.posy == roundedy){
-    //   //////////console.log("hit the startNode");
-    //   this.createStartNode();
-      return;
-    }else if (this.posx == endPoint.x && this.posy == endPoint.y) {
-    //   this.createEndNode();
-
-    }
-
-  }
+        }
         draw() {
             map_context.fillStyle = this.color
             map_context.fillRect(this.x, this.y, this.width, this.height)
@@ -1648,12 +1754,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.turn = 0
             this.blocks = []
             let id = 0
-            for(let t = 0;t<128;t++){
+            for (let t = 0; t < 128; t++) {
                 let rects = []
-                for(let k = 0;k<128;k++){
-                    
-                    let rect = new Tile(t*10, k*10, 10, 10, "tan", id, 10, t*10,k*10, true)
-                    if(Math.random()<.013){
+                for (let k = 0; k < 128; k++) {
+
+                    let rect = new Tile(t * 10, k * 10, 10, 10, "tan", id, 10, t * 10, k * 10, true)
+                    if (Math.random() < .013) {
                         // rect.color = getRandomColor()
                         rect.rock = 1
                     }
@@ -1673,136 +1779,138 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // this.players.push(new Player('Hydruzan' , "purple" ))
             this.createGrid()
             this.gridPoints = []
-            
-            for(let t = 0;t<this.blocks.length;t++){
-                for(let k = 0;k<this.blocks[t].length;k++){
-               this.gridPoints.push(this.blocks[t][k])
+
+            for (let t = 0; t < this.blocks.length; t++) {
+                for (let k = 0; k < this.blocks[t].length; k++) {
+                    this.gridPoints.push(this.blocks[t][k])
+                }
             }
         }
-        }
 
-  createGrid() {
-    // //gctx.drawImage(shipImage, 0, 0, shipImage.width/2, shipImage.height/2)
-    var tempNode;
-    var countNodes = 0;
-    //gctx.beginPath();
-    //gctx.lineWidth =  0;
-    //gctx.strokeStyle = "transparent";
-    //gctx.rect(0, 0, this.width, this.height);
-    //gctx.stroke();
+        createGrid() {
+            // //gctx.drawImage(shipImage, 0, 0, shipImage.width/2, shipImage.height/2)
+            var tempNode;
+            var countNodes = 0;
+            //gctx.beginPath();
+            //gctx.lineWidth =  0;
+            //gctx.strokeStyle = "transparent";
+            //gctx.rect(0, 0, this.width, this.height);
+            //gctx.stroke();
 
-    for (var i = 0; i < this.width; i += NODESIZE) {
-      gridPointsByPos[i] = [];
+            for (var i = 0; i < this.width; i += NODESIZE) {
+                gridPointsByPos[i] = [];
 
-      for (var j = 0; j < this.height; j += NODESIZE) {
-        gridPointsByPos[i][j] = countNodes;
-        //here's the problem , need to set the walkability of the node without always being true...
-        //////////console.log(countNodes)
-        tempNode = new Tile(i,j, 10, 10, "tan", countNodes, NODESIZE, i, j, true);
+                for (var j = 0; j < this.height; j += NODESIZE) {
+                    gridPointsByPos[i][j] = countNodes;
+                    //here's the problem , need to set the walkability of the node without always being true...
+                    ////////////console.log(countNodes)
+                    tempNode = new Tile(i, j, 10, 10, "tan", countNodes, NODESIZE, i, j, true);
 
-        // let cutOut = [0,1 ,2, 3, 4, 5,6,7, 8, 9, 10, 11, 12,13, 18, 19,20, 32,33,  26, 31, 39, 44, 45, 46, 52, 57,58,59,99, 112, 108, 95, 197, 198, 199, 205, 203, 204, 236, 237, 238, 242, 243,244, 216, 212, 229, 225, 210, 211, 223, 224, 217, 218, 230, 231]
-        // for(let t = 0; t< 1000; t++){
-        //     if(t%13 == 0){
-        //         cutOut.push(t)
-        //     }
-        //     if((t-12)%13 == 0){
-        //         cutOut.push(t)
-        //     }
-        //     if((t-1)%13 == 0){
-        //         if(t>195){
-        //             cutOut.push(t)
-        //         }
-        //     }
-        //     if((t-11)%13 == 0){
-        //         if(t>195){
-        //             cutOut.push(t)
-        //         }
-        //     }
-        // }
-        // for(let t  = 0; t<bottle.crew.length; t++){
-        //     if(tempNode.isPointInside(bottle.crew[t].body)){
-        //         tempNode.walkable = false;
-        //     }
-        // }
-        // if (cutOut.includes(countNodes)){
-        //         tempNode.walkable = false;
-     
-        // }
-        // if (wallSet.has(countNodes)) {
-        // //   //////////console.log("wallSet had countNodes!")
-        //   tempNode.walkable = false;
-        // }
+                    // let cutOut = [0,1 ,2, 3, 4, 5,6,7, 8, 9, 10, 11, 12,13, 18, 19,20, 32,33,  26, 31, 39, 44, 45, 46, 52, 57,58,59,99, 112, 108, 95, 197, 198, 199, 205, 203, 204, 236, 237, 238, 242, 243,244, 216, 212, 229, 225, 210, 211, 223, 224, 217, 218, 230, 231]
+                    // for(let t = 0; t< 1000; t++){
+                    //     if(t%13 == 0){
+                    //         cutOut.push(t)
+                    //     }
+                    //     if((t-12)%13 == 0){
+                    //         cutOut.push(t)
+                    //     }
+                    //     if((t-1)%13 == 0){
+                    //         if(t>195){
+                    //             cutOut.push(t)
+                    //         }
+                    //     }
+                    //     if((t-11)%13 == 0){
+                    //         if(t>195){
+                    //             cutOut.push(t)
+                    //         }
+                    //     }
+                    // }
+                    // for(let t  = 0; t<bottle.crew.length; t++){
+                    //     if(tempNode.isPointInside(bottle.crew[t].body)){
+                    //         tempNode.walkable = false;
+                    //     }
+                    // }
+                    // if (cutOut.includes(countNodes)){
+                    //         tempNode.walkable = false;
 
-        // tempNode.drawNode();
-        tempNode.F = tempNode.getValueF();
-        this.gridPoints.push(tempNode);
+                    // }
+                    // if (wallSet.has(countNodes)) {
+                    // //   ////////////console.log("wallSet had countNodes!")
+                    //   tempNode.walkable = false;
+                    // }
 
-        countNodes++;
+                    // tempNode.drawNode();
+                    tempNode.F = tempNode.getValueF();
+                    this.gridPoints.push(tempNode);
 
-      }
-    }
+                    countNodes++;
 
-  }
-
-        draw(){
-            for(let t = 0;t<this.blocks.length;t++){
-                for(let k = 0;k<this.blocks[t].length;k++){
-                this.blocks[t][k].draw()
+                }
             }
+
         }
-            for(let t = 0;t<this.players.length;t++){
+
+        draw() {
+            for (let t = 0; t < this.blocks.length; t++) {
+                for (let k = 0; k < this.blocks[t].length; k++) {
+                    this.blocks[t][k].draw()
+                }
+            }
+            for (let t = 0; t < this.players.length; t++) {
                 this.players[t].draw()
             }
             this.window.draw()
         }
     }
-    class Window{
-        constructor(){
-            this.body = new Rectangle(0,0,900,720,"transparent")
-            this.minibody = new Rectangle(this.body.x+this.body.width+10,360,360,360,"transparent")
-            this.guide = new Circle(0,0,1,"transparent")
+    class Window {
+        constructor() {
+            this.body = new Rectangle(0, 0, 900, 720, "transparent")
+            this.minibody = new Rectangle(this.body.x + this.body.width + 10, 360, 360, 360, "transparent")
+            this.guide = new Circle(0, 0, 1, "transparent")
         }
-        draw(){
-            control(this.guide,5)
-            if(this.guide.x < 0){
+        draw() {
+            control(this.guide, 5)
+            if (this.guide.x < 0) {
                 this.guide.x = 0
             }
-            if(this.guide.y < 0){
+            if (this.guide.y < 0) {
                 this.guide.y = 0
             }
-            if(this.guide.x > map_canvas.width-(this.body.width*.5)){
-                this.guide.x = map_canvas.width-(this.body.width*.5)
+            if (this.guide.x > map_canvas.width - (this.body.width * .5)) {
+                this.guide.x = map_canvas.width - (this.body.width * .5)
             }
-            if(this.guide.y > map_canvas.width-(this.body.height*.5)){
-                this.guide.y = map_canvas.width-(this.body.height*.5)
+            if (this.guide.y > map_canvas.width - (this.body.height * .5)) {
+                this.guide.y = map_canvas.width - (this.body.height * .5)
             }
-            canvas_context.drawImage(map_canvas, this.guide.x, this.guide.y, this.body.width*.5, this.body.height*.5, this.body.x, this.body.y, this.body.width, this.body.height )
-            canvas_context.drawImage(map_canvas, 0,0, map_canvas.width, map_canvas.height, this.minibody.x, this.minibody.y, this.minibody.width, this.minibody.height)
+            selectrect.color = (sandmap.players[sandmap.turn].color + "22")
+            selectrect.draw()
+            canvas_context.drawImage(map_canvas, this.guide.x, this.guide.y, this.body.width * .5, this.body.height * .5, this.body.x, this.body.y, this.body.width, this.body.height)
+            canvas_context.drawImage(map_canvas, 0, 0, map_canvas.width, map_canvas.height, this.minibody.x, this.minibody.y, this.minibody.width, this.minibody.height)
             canvas_context.strokeStyle = "white"
             canvas_context.lineWidth = 1
-            canvas_context.strokeRect(this.minibody.x+(this.guide.x*.28125), this.minibody.y+(this.guide.y*.28125),(this.body.width*.5)*.28125, (this.body.height*.5)*.28125 )
+            canvas_context.strokeRect(this.minibody.x + (this.guide.x * .28125), this.minibody.y + (this.guide.y * .28125), (this.body.width * .5) * .28125, (this.body.height * .5) * .28125)
         }
     }
     class Player {
-        constructor(name, color){
+        constructor(name, color) {
             this.name = name
             this.selected_tile = {}
             this.color = color
             this.buildings = []
             this.units = []
         }
-        draw(){
+        draw() {
             // this.selected_tile.color = this.color
-            for(let t = 0;t<this.buildings.length;t++){
+            for (let t = 0; t < this.buildings.length; t++) {
                 this.buildings[t].draw()
             }
-            for(let t = 0;t<this.units.length;t++){
+            for (let t = 0; t < this.units.length; t++) {
                 this.units[t].move()
             }
-            for(let t = 0;t<this.units.length;t++){
+            for (let t = 0; t < this.units.length; t++) {
                 this.units[t].draw()
             }
-            //console.log(this)
+            ////console.log(this)
         }
     }
 
@@ -1813,413 +1921,413 @@ window.addEventListener('DOMContentLoaded', (event) => {
     var CANVAS_WIDTH = 1280;
     var CANVAS_HEIGHT = 1280;
     var NODESIZE = 10;
-    
-    
+
+
     var path;
-    
+
     var openSet = new Set();
     var closedSet = new Set();
     var gridPointsByPos = [];
     var gridPoints = [];
-    
+
     var wallSet = new Set;
-    
+
     //used to store the start and endPoint during resets, etc. 
     var startPoint;
     var endPoint;
     let mode = "endPoint"
-    
+
     //any point in 2D space
     class Vec2 {
-      constructor(x, y) {
-        this.x = x;
-        this.y = y;
-      }
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+        }
     }
-    
-    
+
+
     gCanvasOffset = new Vec2(gCanvas.offsetLeft, gCanvas.offsetTop);
-    
-    
+
+
     // startPoint = new Vec2(bottle.crew[bottle.selectedcrew].body.x, bottle.crew[bottle.selectedcrew].body.y);
     endPoint = new Vec2(640, 640);
-  
+
     class PathFindingAlg {
         constructor(grid, startNode, endNode, agent = {}) {
             this.agent = agent
-          this.grid = grid;
-          let gridarray = Array.from(grid)
-          // for(let t = 0; t<gridarray.length; t++){
-          //     for(let k = 0; k<gridarray[t].length; k++){
-                  
-          //     }
-          // }
-          gridPointsByPos = [...this.grid]
-          // this.startNode = gridPointsByPos[startNode.x][startNode.y];
-          let roundedx = (Math.round((startNode.x)))*.1
-          let roundedy = (Math.round((startNode.y)))*.1
-          //////console.log(gridPointsByPos, roundedx, roundedy)
-          //////////console.log(gridPointsByPos[roundedx] [roundedy])
-          this.startNode = startNode // gridPointsByPos[roundedx] [roundedy]
-          this.endNode = endNode //gridPointsByPos[endNode.x][endNode.y];
-          this.currentNode = null;
-      
-          this.openSet = [];
-          this.closedset = [];
-          this.breaker = 0
+            this.grid = grid;
+            let gridarray = Array.from(grid)
+            // for(let t = 0; t<gridarray.length; t++){
+            //     for(let k = 0; k<gridarray[t].length; k++){
+
+            //     }
+            // }
+            gridPointsByPos = [...this.grid]
+            // this.startNode = gridPointsByPos[startNode.x][startNode.y];
+            let roundedx = (Math.round((startNode.x))) * .1
+            let roundedy = (Math.round((startNode.y))) * .1
+            ////////console.log(gridPointsByPos, roundedx, roundedy)
+            ////////////console.log(gridPointsByPos[roundedx] [roundedy])
+            this.startNode = startNode // gridPointsByPos[roundedx] [roundedy]
+            this.endNode = endNode //gridPointsByPos[endNode.x][endNode.y];
+            this.currentNode = null;
+
+            this.openSet = [];
+            this.closedset = [];
+            this.breaker = 0
         }
         findPath() {
             // this.breaker++
             // if(this.breaker > 1){
             //     return
             // }
-          openSet.clear();
-          closedSet.clear();
-      
-          var grid = this.grid; //the grid we're working with
-      
-          var currentNode = this.startNode; // the currentNode, defaults to start node for now
-      
-          var endNode = sandmap.gridPoints[this.endNode.id]; //the target node
-          var startNode = sandmap.gridPoints[this.startNode.id];
-      
-          var tempArray;
-      
-          var newMovementCost; //the new movement cost to neighbor
-      
-          openSet.add(currentNode);
-        //   ////console.log(currentNode)
-        // currentNode.color = "black"
-          // //////////console.log('begin');
-          while (openSet.size > 0) {
-            tempArray = Array.from(openSet);
-            ////console.log(tempArray)
-            currentNode = tempArray[0];
-      
-            for (var i = 1; i < tempArray.length; i++) {
-              //this if statement is solely to build the starting walls.
-              if (tempArray[i].getValueF() < currentNode.getValueF() || tempArray[i].getValueF() == currentNode.getValueF() && tempArray[i].getValueH() < currentNode.getValueH()) {
-                currentNode = tempArray[i]; //sets the currentNode to openSetI if it has a lower F value, or an = F value with a lower HCost.
-      
-              }
-            }
-      
-            //exits for loop with either lowest F value or combined H value and F value
-      
-            openSet.delete(currentNode);
-      
-            // currentNode.drawClosedNode();
-      
-            closedSet.add(currentNode);
-      
-            //might need to put this after getNighbors.... then replace closedSet.hasIn(neighborNode with currentNode
-            // if (currentNode.id == startNode.id) {
-            //   currentNode.drawNode();
-            // }
-            // if (currentNode.id == endNode.id) {
-            //   currentNode.drawNode();
-            // }
-            // if (currentNode.walkable == false) {
-            //   currentNode.drawNode();
-            // }
-      
-            ////console.log(currentNode, endNode)
+            openSet.clear();
+            closedSet.clear();
+
+            var grid = this.grid; //the grid we're working with
+
+            var currentNode = this.startNode; // the currentNode, defaults to start node for now
+
+            var endNode = sandmap.gridPoints[this.endNode.id]; //the target node
+            var startNode = sandmap.gridPoints[this.startNode.id];
+
+            var tempArray;
+
+            var newMovementCost; //the new movement cost to neighbor
+
+            openSet.add(currentNode);
+            //   //////console.log(currentNode)
             // currentNode.color = "black"
-            //////console.log(currentNode, endNode)
-            if (currentNode.id == endNode.id) {
-              retracePath(startNode, endNode, this.agent);
-              //hit the last point, exit's the loop.
-      
-              return; //exits loop
-            }
-            getNeighbors(currentNode).forEach(function(neighbor) {
-      
-              var neighborNode = sandmap.gridPoints[neighbor.id];
-              var neighborH = neighborNode.getHCost();
-              var neighborG = neighborNode.getGCost();
-      
-              var currentG = currentNode.getGCost();
-              var currentH = currentNode.getHCost();
-      
-              if (!neighborNode.walkable || closedSet.has(neighborNode)) {
-      
-                return; //acts as a continue, no need to continue if the wall was already checked.
-      
-              }
-      
-              newMovementCost = currentG + (getDistance(currentNode, neighborNode));
-      
-              if (newMovementCost < neighborG || !openSet.has(neighborNode)) {
-      
-                neighborNode.gCost = newMovementCost;
-                neighborNode.hCost = neighborH;
-                neighborNode.parent = currentNode;
-      
-                if (!openSet.has(neighborNode)) {
-                  //push the neighborNode to the openSet, to check against other open values
-                  openSet.add(neighborNode);
-      
-                  neighborNode.drawOpenNode();
-      
+            // ////////////console.log('begin');
+            while (openSet.size > 0) {
+                tempArray = Array.from(openSet);
+                //////console.log(tempArray)
+                currentNode = tempArray[0];
+
+                for (var i = 1; i < tempArray.length; i++) {
+                    //this if statement is solely to build the starting walls.
+                    if (tempArray[i].getValueF() < currentNode.getValueF() || tempArray[i].getValueF() == currentNode.getValueF() && tempArray[i].getValueH() < currentNode.getValueH()) {
+                        currentNode = tempArray[i]; //sets the currentNode to openSetI if it has a lower F value, or an = F value with a lower HCost.
+
+                    }
                 }
-              }
-      
-            })
-          }
-      
+
+                //exits for loop with either lowest F value or combined H value and F value
+
+                openSet.delete(currentNode);
+
+                // currentNode.drawClosedNode();
+
+                closedSet.add(currentNode);
+
+                //might need to put this after getNighbors.... then replace closedSet.hasIn(neighborNode with currentNode
+                // if (currentNode.id == startNode.id) {
+                //   currentNode.drawNode();
+                // }
+                // if (currentNode.id == endNode.id) {
+                //   currentNode.drawNode();
+                // }
+                // if (currentNode.walkable == false) {
+                //   currentNode.drawNode();
+                // }
+
+                //////console.log(currentNode, endNode)
+                // currentNode.color = "black"
+                ////////console.log(currentNode, endNode)
+                if (currentNode.id == endNode.id) {
+                    retracePath(startNode, endNode, this.agent);
+                    //hit the last point, exit's the loop.
+
+                    return; //exits loop
+                }
+                getNeighbors(currentNode).forEach(function (neighbor) {
+
+                    var neighborNode = sandmap.gridPoints[neighbor.id];
+                    var neighborH = neighborNode.getHCost();
+                    var neighborG = neighborNode.getGCost();
+
+                    var currentG = currentNode.getGCost();
+                    var currentH = currentNode.getHCost();
+
+                    if (!neighborNode.walkable || closedSet.has(neighborNode)) {
+
+                        return; //acts as a continue, no need to continue if the wall was already checked.
+
+                    }
+
+                    newMovementCost = currentG + (getDistance(currentNode, neighborNode));
+
+                    if (newMovementCost < neighborG || !openSet.has(neighborNode)) {
+
+                        neighborNode.gCost = newMovementCost;
+                        neighborNode.hCost = neighborH;
+                        neighborNode.parent = currentNode;
+
+                        if (!openSet.has(neighborNode)) {
+                            //push the neighborNode to the openSet, to check against other open values
+                            openSet.add(neighborNode);
+
+                            neighborNode.drawOpenNode();
+
+                        }
+                    }
+
+                })
+            }
+
         }
-      
-      }
+
+    }
     //distance from a node to  another node
     function getDistance(nodeA, nodeB) {
-      var distX = Math.abs(nodeA.x - nodeB.x);
-      var distY = Math.abs(nodeA.y - nodeB.y);
-    
-      if (distX > distY) {
-        return ((1.4 * distY) + ((distX - distY)))
-    
-      }
-      return (1.4 * distX + ( (distY - distX)));
+        var distX = Math.abs(nodeA.x - nodeB.x);
+        var distY = Math.abs(nodeA.y - nodeB.y);
+
+        if (distX > distY) {
+            return ((1.4 * distY) + ((distX - distY)))
+
+        }
+        return (1.4 * distX + ((distY - distX)));
     }
-    
+
     function retracePath(startNode, endNode, agent = {}) {
-      path = new Set();
-      var currentNode = endNode;
-      var reverseArray;
-      while (currentNode != startNode) {
-        path.add(currentNode);
-        currentNode = currentNode.parent;
-        currentNode.inPath = true;
-        if (currentNode != startNode)
-          currentNode.drawPath();
-      }
-    
-      reverseArray = Array.from(path);
-    
-      reverseArray.reverse();
-      path = new Set(reverseArray);
-    
-    //   //////////console.log(path)
-    
-      realPath = Array.from(path)
-    //   //////////console.log(realPath)
-    
-    if(realPath.length == 1){
-        realPath[0].walkable = false
-        ////////console.log("hit")
-        wallSet.add( realPath[0])
-        ////////console.log(wallSet)
-    }
-    
-    ////console.log(realPath)
-      if(realPath.length>0){
-          realPath.unshift(agent.tile)
-          agent.realPath = [...realPath]
-        //   for(let t = 0;t<realPath.length;t++){
-        //       realPath[t].color = "black"
-        //   }
-        // bottle.crew[bottle.selectedcrew].body.x =realPath[0].posx+105
-        // bottle.crew[bottle.selectedcrew].body.y  = realPath[0].posy+285
-    
-    // startPoint = new Vec2(bottle.crew[bottle.selectedcrew].body.x, bottle.crew[bottle.selectedcrew].body.y);
-    // startPoint = new Vec2(realPath[0].posx+100, realPath[0].posy+280);
-    // bottle.crew[bottle.selectedcrew].body.x =startPoint.x+4
-    // bottle.crew[bottle.selectedcrew].body.y  = startPoint.y+4
-        // startPoint = new Vec2(realPath[0].posx, realPath[0].posy);
-        //////////console.log(startPoint)
-        // bottle.crew[bottle.selectedcrew].moving = 1
-      }else{
-        //   //////console.log(endPoint)
-    
-    //     if(bottle.crew[bottle.selectedcrew].moving == 1){
-    //         // //////console.log(endPoint)
-    //     // bottle.crew[bottle.selectedcrew].body.x =endPoint.x+96
-    //     // bottle.crew[bottle.selectedcrew].body.y  = endPoint.y+284
-    //     // bottle.crew[bottle.selectedcrew].moving = 0
-    //     // //////console.log(endPoint)
-    //         reset()
-    //   }
-      }
+        path = new Set();
+        var currentNode = endNode;
+        var reverseArray;
+        while (currentNode != startNode) {
+            path.add(currentNode);
+            currentNode = currentNode.parent;
+            currentNode.inPath = true;
+            if (currentNode != startNode)
+                currentNode.drawPath();
+        }
+
+        reverseArray = Array.from(path);
+
+        reverseArray.reverse();
+        path = new Set(reverseArray);
+
+        //   ////////////console.log(path)
+
+        realPath = Array.from(path)
+        //   ////////////console.log(realPath)
+
+        if (realPath.length == 1) {
+            realPath[0].walkable = false
+            //////////console.log("hit")
+            wallSet.add(realPath[0])
+            //////////console.log(wallSet)
+        }
+
+        //////console.log(realPath)
+        if (realPath.length > 0) {
+            realPath.unshift(agent.tile)
+            agent.realPath = [...realPath]
+            //   for(let t = 0;t<realPath.length;t++){
+            //       realPath[t].color = "black"
+            //   }
+            // bottle.crew[bottle.selectedcrew].body.x =realPath[0].posx+105
+            // bottle.crew[bottle.selectedcrew].body.y  = realPath[0].posy+285
+
+            // startPoint = new Vec2(bottle.crew[bottle.selectedcrew].body.x, bottle.crew[bottle.selectedcrew].body.y);
+            // startPoint = new Vec2(realPath[0].posx+100, realPath[0].posy+280);
+            // bottle.crew[bottle.selectedcrew].body.x =startPoint.x+4
+            // bottle.crew[bottle.selectedcrew].body.y  = startPoint.y+4
+            // startPoint = new Vec2(realPath[0].posx, realPath[0].posy);
+            ////////////console.log(startPoint)
+            // bottle.crew[bottle.selectedcrew].moving = 1
+        } else {
+            //   ////////console.log(endPoint)
+
+            //     if(bottle.crew[bottle.selectedcrew].moving == 1){
+            //         // ////////console.log(endPoint)
+            //     // bottle.crew[bottle.selectedcrew].body.x =endPoint.x+96
+            //     // bottle.crew[bottle.selectedcrew].body.y  = endPoint.y+284
+            //     // bottle.crew[bottle.selectedcrew].moving = 0
+            //     // ////////console.log(endPoint)
+            //         reset()
+            //   }
+        }
     }
     //list of neighbors
     function getNeighbors(node) {
-      var checkX;
-      var checkY;
-      var neighborList = [];
-      var tempList = [];
-    //   for (var x = -NODESIZE; x <= NODESIZE; x += NODESIZE) {
-    //     for (var y = -NODESIZE; y <= NODESIZE; y += NODESIZE) {
-    //       if (x == 0 && y == 0) {
-    //         continue;
-    //       }
-    //       checkX = node.posx + x;
-    //       checkY = node.posy + y;
-    
-    //       if (checkX >= 0 && checkX <= CANVAS_WIDTH - NODESIZE && checkY >= 0 && checkY <= CANVAS_HEIGHT - NODESIZE) {
-    
-    //         if(x == 0 || y == 0){
-    
-    //             if(checkX<=gridPointsByPos.length ){
-    //                 if(checkY<=gridPointsByPos[checkX].length ){
-    //                     if(sandmap.gridPoints[gridPointsByPos[checkX][checkY].id].walkable !== false){
-    //                         tempList.push(gridPointsByPos[checkX][checkY]);
-    //                     }
-    
-    //             }
-    //         }
-    //         }
-    //       }
-    //     }
-    //   }
+        var checkX;
+        var checkY;
+        var neighborList = [];
+        var tempList = [];
+        //   for (var x = -NODESIZE; x <= NODESIZE; x += NODESIZE) {
+        //     for (var y = -NODESIZE; y <= NODESIZE; y += NODESIZE) {
+        //       if (x == 0 && y == 0) {
+        //         continue;
+        //       }
+        //       checkX = node.posx + x;
+        //       checkY = node.posy + y;
+
+        //       if (checkX >= 0 && checkX <= CANVAS_WIDTH - NODESIZE && checkY >= 0 && checkY <= CANVAS_HEIGHT - NODESIZE) {
+
+        //         if(x == 0 || y == 0){
+
+        //             if(checkX<=gridPointsByPos.length ){
+        //                 if(checkY<=gridPointsByPos[checkX].length ){
+        //                     if(sandmap.gridPoints[gridPointsByPos[checkX][checkY].id].walkable !== false){
+        //                         tempList.push(gridPointsByPos[checkX][checkY]);
+        //                     }
+
+        //             }
+        //         }
+        //         }
+        //       }
+        //     }
+        //   }
 
 
-    for (var x = -1; x <= 1; x += 1) {
-        for (var y = -1; y <= 1; y += 1) {
-          if (x == 0 && y == 0) {
-            continue;
-          }
-          checkX = node.t + x;
-          checkY = node.k + y;
-    
-          if (checkX >= 0 && checkX <= 127 && checkY >= 0 && checkY <= 127) { //127 mapsize
-    
-            if(x == 0 || y == 0 || Math.random()< .25){  // randomness leads to organic
-    
-                if(checkX<sandmap.blocks.length ){
-                    if(checkY<sandmap.blocks[0].length ){
-                        if(sandmap.gridPoints[sandmap.blocks[checkX][checkY].id].walkable !== false){
-                            tempList.push(sandmap.blocks[checkX][checkY]);
+        for (var x = -1; x <= 1; x += 1) {
+            for (var y = -1; y <= 1; y += 1) {
+                if (x == 0 && y == 0) {
+                    continue;
+                }
+                checkX = node.t + x;
+                checkY = node.k + y;
+
+                if (checkX >= 0 && checkX <= 127 && checkY >= 0 && checkY <= 127) { //127 mapsize
+
+                    if (x == 0 || y == 0 || Math.random() < .25) {  // randomness leads to organic
+
+                        if (checkX < sandmap.blocks.length) {
+                            if (checkY < sandmap.blocks[0].length) {
+                                if (sandmap.gridPoints[sandmap.blocks[checkX][checkY].id].walkable !== false) {
+                                    tempList.push(sandmap.blocks[checkX][checkY]);
+                                }
+
+                            }
                         }
-    
+                    }
                 }
             }
-            }
-          }
         }
-      }
 
 
-      neighborList = tempList;
-      ////console.log(neighborList)
-      return (neighborList);
-    
+        neighborList = tempList;
+        //////console.log(neighborList)
+        return (neighborList);
+
     }
-    
-    
-    
+
+
+
     //UI, buttons, and click events/functions
-    
+
     //tells canvas to how to draw the node
     function nodeDrawer(context, target, lineW, strokeS, fillS) {
-    //   context.beginPath();
-    //   context.lineWidth = lineW;
-    //   context.strokeStyle = strokeS;
-    //   context.fillStyle = fillS;
-    //   context.fillRect(target.posx, target.posy, target.size, target.size);
-    //   context.rect(target.posx, target.posy, target.size, target.size);
-    //   context.closePath();
-    //   context.stroke();
+        //   context.beginPath();
+        //   context.lineWidth = lineW;
+        //   context.strokeStyle = strokeS;
+        //   context.fillStyle = fillS;
+        //   context.fillRect(target.posx, target.posy, target.size, target.size);
+        //   context.rect(target.posx, target.posy, target.size, target.size);
+        //   context.closePath();
+        //   context.stroke();
     }
     //clears the path WITHOUT clearing the walls
     function reset() {
-      gridPoints = []; // resets the gridPoints so that it clears the walls etc. on reset.
-      gridPointsByPos = [];
-      openSet.clear();
-      closedSet.clear();
-      //gctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-      grid.createGrid();
-    
+        gridPoints = []; // resets the gridPoints so that it clears the walls etc. on reset.
+        gridPointsByPos = [];
+        openSet.clear();
+        closedSet.clear();
+        //gctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+        grid.createGrid();
+
     }
     //resets everything INCLUDING walls
     function resetWalls() {
-    
-      wallSet.clear();
-      reset();
+
+        wallSet.clear();
+        reset();
     }
-    
+
 
     let sandmap = new Sandmap(CANVAS_WIDTH, CANVAS_HEIGHT, 0, 0, []);
 
     class Building {
-        constructor(tile, faction){
-            if(tile.id%128 < 1){
-                tile = sandmap.gridPoints[tile.id+1]
+        constructor(tile, faction) {
+            if (tile.id % 128 < 1) {
+                tile = sandmap.gridPoints[tile.id + 1]
             }
-            if(tile.id < 128){
-                tile = sandmap.gridPoints[tile.id+128]
+            if (tile.id < 128) {
+                tile = sandmap.gridPoints[tile.id + 128]
             }
             this.tile = tile
             this.faction = faction
             this.tiles = []
-            for(let t = -1;t<1;t++){
-                for(let k = -1;k<1;k++){
-                this.tiles.push(sandmap.blocks[tile.t+t][tile.k+k])
+            for (let t = -1; t < 1; t++) {
+                for (let k = -1; k < 1; k++) {
+                    this.tiles.push(sandmap.blocks[tile.t + t][tile.k + k])
                 }
             }
             this.faction.buildings.push(this)
         }
-        draw(){
-            for(let t = 0;t<this.tiles.length;t++){
+        draw() {
+            for (let t = 0; t < this.tiles.length; t++) {
                 this.tiles[t].walkable = false
-                this.tiles[t].color =  "brown" // this.faction.color
+                this.tiles[t].color = "brown" // this.faction.color
             }
 
         }
     }
     class Agent {
-        constructor(tile, player){
+        constructor(tile, player) {
             this.selected = 1
             this.faction = player
             this.tile = tile
             this.movespeedcount = 0
-            this.movespeed = Math.floor(Math.random()*3)+2
+            this.movespeed = Math.floor(Math.random() * 3) + 2
             this.pather = new PathFindingAlg(sandmap.blocks, this.tile, this.tile, this)
-            this.body = new Circle(this.tile.x+(this.tile.width*.5), this.tile.y+(this.tile.height*.5), 5, this.faction.color)
+            this.body = new Circle(this.tile.x + (this.tile.width * .5), this.tile.y + (this.tile.height * .5), 5, this.faction.color)
             this.faction.units.push(this)
             this.index = 0
             this.realPath = [this.tile]
             this.repath = 0
         }
-        pathTo(point){
-            if(point.walkable == true){
+        pathTo(point) {
+            if (point.walkable == true) {
                 this.pather = new PathFindingAlg(sandmap.blocks, this.tile, point, this)
                 this.pather.agent = this
                 this.obvious = this.realPath[this.index]
                 this.pathsto = []
-                for(let t = 0;t<this.realPath.length;t++){
+                for (let t = 0; t < this.realPath.length; t++) {
                     this.pathsto.push(this.realPath[t])
                 }
                 this.pather.findPath()
-                if(this.obvious ==  this.realPath[0]){
+                if (this.obvious == this.realPath[0]) {
                     this.index = 0
-                }else{
+                } else {
                     this.realPath = [...this.pathsto]
                     this.repath = 10
                     this.snapto = point
                 }
             }
         }
-        move(){
+        move() {
             this.repath--
-            if(this.repath == 0){
-               this.pathTo(this.snapto)
+            if (this.repath == 0) {
+                this.pathTo(this.snapto)
             }
-            
-            if(this.index < this.realPath.length-1){
+
+            if (this.index < this.realPath.length - 1) {
                 this.movespeedcount++
-                if(this.movespeedcount%this.movespeed == 0){
-                    this.index+=1
-                    if(this.realPath[this.index].walkable == false){
-                        if(this.index == 0){
+                if (this.movespeedcount % this.movespeed == 0) {
+                    this.index += 1
+                    if (this.realPath[this.index].walkable == false) {
+                        if (this.index == 0) {
                             let goal = 0
                             goal += this.tile.id
-                            goal += (Math.sign(Math.random()-.5)*127)
-                            goal += (Math.sign(Math.random()-.5))
+                            goal += (Math.sign(Math.random() - .5) * 127)
+                            goal += (Math.sign(Math.random() - .5))
                             goal = Math.min(goal, sandmap.gridPoints.length)
                             goal = Math.max(goal, 0)
                             // let goal = Math.max(Math.min(this.tile.id+(Math.sign(Math.random()-.5)*127)+ Math.sign(Math.random()-.5), sandmap.gridPoints.length),0)
                             this.pathTo(sandmap.gridPoints[goal])
-                        }else{
+                        } else {
                             this.index--
                         }
                     }
@@ -2230,21 +2338,21 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.tile.walkable = false
 
         }
-        draw(){
-            this.body = new UnitCircle(this.tile.x+(this.tile.width*.5), this.tile.y+(this.tile.height*.5), 5, this.faction.color)
-            if(this.movespeed == 4){
+        draw() {
+            this.body = new UnitCircle(this.tile.x + (this.tile.width * .5), this.tile.y + (this.tile.height * .5), 5, this.faction.color)
+            if (this.movespeed == 4) {
                 this.body.color = "gray"
                 this.body.radius = 5.5
             }
-            if(this.movespeed == 2){
+            if (this.movespeed == 2) {
                 this.body.color = "red"
                 this.body.radius = 4
             }
-            if(this.movespeed == 3){
+            if (this.movespeed == 3) {
                 this.body.color = "magenta"
                 this.body.radius = 4.8
             }
-            if(this.movespeed == 5){
+            if (this.movespeed == 5) {
                 this.body.color = "black"
                 this.body.radius = 6
             }
@@ -2252,22 +2360,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 
-    for(let t = 0;t<20;t++){
+    for (let t = 0; t < 6; t++) {
         let agent1 = new Agent(sandmap.blocks[0][0], sandmap.players[0])
     }
 
 
     // let pather = new PathFindingAlg(sandmap.blocks, sandmap.blocks[10][10], sandmap.blocks[12][25])
     // for(let t = 0;t<10;t++){
-        // pather.findPath()
-        
+    // pather.findPath()
+
     // }
 
     function main() {
         canvas_context.clearRect(0, 0, canvas.width, canvas.height)  // refreshes the image
-        gamepadAPI.update() //checks for button presses/stick movement on the connected controller)
+        // gamepadAPI.update() //checks for button presses/stick movement on the connected controller)
         // // game code goes here
         sandmap.draw()
+        //console.log(selectrect)
     }
 
 })
