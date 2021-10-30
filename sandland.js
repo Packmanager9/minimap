@@ -1314,22 +1314,34 @@ window.addEventListener('DOMContentLoaded', (event) => {
             TIP_engine.y = YS_engine
             TIP_engine.body = TIP_engine
             if(TIP_engine.x <= sandmap.window.body.x+sandmap.window.body.width){
-                let structuredpoint = new Point(0,0)
-                structuredpoint.x += sandmap.window.guide.x
-                structuredpoint.y += sandmap.window.guide.y
-                structuredpoint.x += (TIP_engine.x*.5)
-                structuredpoint.y += (TIP_engine.y*.5)
-                structuredpoint.x = Math.floor(structuredpoint.x*.1)
-                structuredpoint.y = Math.floor(structuredpoint.y*.1)
-                sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
-                sandmap.turn++
-                sandmap.turn%=sandmap.players.length
+                if(keysPressed['b']){
+                    let structuredpoint = new Point(0,0)
+                    structuredpoint.x += sandmap.window.guide.x
+                    structuredpoint.y += sandmap.window.guide.y
+                    structuredpoint.x += (TIP_engine.x*.5)
+                    structuredpoint.y += (TIP_engine.y*.5)
+                    structuredpoint.x = Math.floor(structuredpoint.x*.1)
+                    structuredpoint.y = Math.floor(structuredpoint.y*.1)
+                    sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
+                    let building = new Building(sandmap.players[sandmap.turn].selected_tile, sandmap.players[sandmap.turn] )
+                }else{
+                        let structuredpoint = new Point(0,0)
+                        structuredpoint.x += sandmap.window.guide.x
+                        structuredpoint.y += sandmap.window.guide.y
+                        structuredpoint.x += (TIP_engine.x*.5)
+                        structuredpoint.y += (TIP_engine.y*.5)
+                        structuredpoint.x = Math.floor(structuredpoint.x*.1)
+                        structuredpoint.y = Math.floor(structuredpoint.y*.1)
+                        sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
+                        sandmap.turn++
+                        sandmap.turn%=sandmap.players.length
 
-            for(let t = 0;t<sandmap.players[0].units.length;t++){
-                if(sandmap.players[0].units[t].selected == 1){
-                    sandmap.players[0].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile )
+                    for(let t = 0;t<sandmap.players[0].units.length;t++){
+                        if(sandmap.players[0].units[t].selected == 1){
+                            sandmap.players[0].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile )
+                        }
+                    }
                 }
-            }
             }else{
                 if(sandmap.window.minibody.isPointInside(TIP_engine)){
                     let structuredpoint = new Point(0,0)
@@ -2001,6 +2013,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     
     ////console.log(realPath)
       if(realPath.length>0){
+          realPath.unshift(agent.tile)
           agent.realPath = [...realPath]
         //   for(let t = 0;t<realPath.length;t++){
         //       realPath[t].color = "black"
@@ -2127,41 +2140,121 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     let sandmap = new Sandmap(CANVAS_WIDTH, CANVAS_HEIGHT, 0, 0, []);
 
-    class Agent{
+    class Building {
+        constructor(tile, faction){
+            if(tile.id%128 < 1){
+                tile = sandmap.gridPoints[tile.id+1]
+            }
+            if(tile.id < 128){
+                tile = sandmap.gridPoints[tile.id+128]
+            }
+            this.tile = tile
+            this.faction = faction
+            this.tiles = []
+            for(let t = -1;t<1;t++){
+                for(let k = -1;k<1;k++){
+                this.tiles.push(sandmap.blocks[tile.t+t][tile.k+k])
+                }
+            }
+            this.faction.buildings.push(this)
+        }
+        draw(){
+            for(let t = 0;t<this.tiles.length;t++){
+                this.tiles[t].walkable = false
+                this.tiles[t].color =  "brown" // this.faction.color
+            }
+
+        }
+    }
+    class Agent {
         constructor(tile, player){
             this.selected = 1
             this.faction = player
             this.tile = tile
             this.movespeedcount = 0
-            this.movespeed = 3
+            this.movespeed = Math.floor(Math.random()*3)+2
             this.pather = new PathFindingAlg(sandmap.blocks, this.tile, this.tile, this)
             this.body = new Circle(this.tile.x+(this.tile.width*.5), this.tile.y+(this.tile.height*.5), 5, this.faction.color)
             this.faction.units.push(this)
             this.index = 0
             this.realPath = [this.tile]
+            this.repath = 0
         }
         pathTo(point){
-            this.index = 0
-            this.pather = new PathFindingAlg(sandmap.blocks, this.tile, point, this)
-            this.pather.agent = this
-            this.pather.findPath()
+            if(point.walkable == true){
+                this.pather = new PathFindingAlg(sandmap.blocks, this.tile, point, this)
+                this.pather.agent = this
+                this.obvious = this.realPath[this.index]
+                this.pathsto = []
+                for(let t = 0;t<this.realPath.length;t++){
+                    this.pathsto.push(this.realPath[t])
+                }
+                this.pather.findPath()
+                if(this.obvious ==  this.realPath[0]){
+                    this.index = 0
+                }else{
+                    this.realPath = [...this.pathsto]
+                    this.repath = 10
+                    this.snapto = point
+                }
+            }
         }
         move(){
+            this.repath--
+            if(this.repath == 0){
+               this.pathTo(this.snapto)
+            }
+            
             if(this.index < this.realPath.length-1){
                 this.movespeedcount++
                 if(this.movespeedcount%this.movespeed == 0){
                     this.index+=1
+                    if(this.realPath[this.index].walkable == false){
+                        if(this.index == 0){
+                            let goal = 0
+                            goal += this.tile.id
+                            goal += (Math.sign(Math.random()-.5)*127)
+                            goal += (Math.sign(Math.random()-.5))
+                            goal = Math.min(goal, sandmap.gridPoints.length)
+                            goal = Math.max(goal, 0)
+                            // let goal = Math.max(Math.min(this.tile.id+(Math.sign(Math.random()-.5)*127)+ Math.sign(Math.random()-.5), sandmap.gridPoints.length),0)
+                            this.pathTo(sandmap.gridPoints[goal])
+                        }else{
+                            this.index--
+                        }
+                    }
                 }
             }
+            this.tile.walkable = true
             this.tile = this.realPath[this.index]
+            this.tile.walkable = false
+
         }
         draw(){
             this.body = new UnitCircle(this.tile.x+(this.tile.width*.5), this.tile.y+(this.tile.height*.5), 5, this.faction.color)
+            if(this.movespeed == 4){
+                this.body.color = "gray"
+                this.body.radius = 5.5
+            }
+            if(this.movespeed == 2){
+                this.body.color = "red"
+                this.body.radius = 4
+            }
+            if(this.movespeed == 3){
+                this.body.color = "magenta"
+                this.body.radius = 4.8
+            }
+            if(this.movespeed == 5){
+                this.body.color = "black"
+                this.body.radius = 6
+            }
             this.body.draw()
         }
     }
 
-    let agent1 = new Agent(sandmap.blocks[0][0], sandmap.players[0])
+    for(let t = 0;t<20;t++){
+        let agent1 = new Agent(sandmap.blocks[0][0], sandmap.players[0])
+    }
 
 
     // let pather = new PathFindingAlg(sandmap.blocks, sandmap.blocks[10][10], sandmap.blocks[12][25])
