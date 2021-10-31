@@ -79,7 +79,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     //         }
     //         gamepadAPI.axesStatus = axes;// assign received values
     //         gamepadAPI.buttonsStatus = pressed;
-    //         // ////////console.log(pressed); // return buttons for debugging purposes
+    //         // //////////console.log(pressed); // return buttons for debugging purposes
     //         return pressed;
     //     },
     //     buttonPressed: function (button, hold) {
@@ -388,7 +388,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.fill()
                 canvas_context.stroke();
             } else {
-                ////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                //////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -540,7 +540,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 map_context.strokeStyle = "black"
                 map_context.stroke();
             } else {
-                ////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                //////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -691,7 +691,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.fill()
                 canvas_context.stroke();
             } else {
-                ////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                //////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -1177,7 +1177,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             }
 
-            ////////console.log(this)
+            //////////console.log(this)
 
             // this.spring = new Spring(x, y, radius, color, this.pin, memberLength, gravity)
             // this.springs.push(this.spring)
@@ -1313,7 +1313,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         canvas.style.background = style
         window.setInterval(function () {
             main()
-        }, 30)
+        }, 35)
         document.addEventListener('keydown', (event) => {
             keysPressed[event.key] = true;
         });
@@ -1337,7 +1337,39 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     structuredpoint.x = Math.floor(structuredpoint.x * .1)
                     structuredpoint.y = Math.floor(structuredpoint.y * .1)
                     sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
-                    let building = new Building(sandmap.players[sandmap.turn].selected_tile, sandmap.players[sandmap.turn], 1)
+
+                    let wet = 0
+                    for(let t = 0;t<sandmap.players[sandmap.turn].buildings.length;t++){
+                        if(sandmap.players[sandmap.turn].selected_tile == sandmap.players[sandmap.turn].buildings[t].tile){
+                            wet = 1
+                        }
+                    }
+                    if(sandmap.players[sandmap.turn].hotrock < 10){
+                        wet = 1
+                    }
+                    if(wet == 0){
+                        let building = new Building(sandmap.players[sandmap.turn].selected_tile, sandmap.players[sandmap.turn], 0)
+                    }
+                }else if (keysPressed['x']) {
+                    let structuredpoint = new Point(0, 0)
+                    structuredpoint.x += sandmap.window.guide.x
+                    structuredpoint.y += sandmap.window.guide.y
+                    structuredpoint.x += (TIP_engine.x * .5)
+                    structuredpoint.y += (TIP_engine.y * .5)
+                    structuredpoint.x = Math.floor(structuredpoint.x * .1)
+                    structuredpoint.y = Math.floor(structuredpoint.y * .1)
+                    sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
+                    for(let t = 0;t<sandmap.players[sandmap.turn].buildings.length;t++){
+                        if(sandmap.players[sandmap.turn].selected_tile == sandmap.players[sandmap.turn].buildings[t].tile){
+                            for(let k = 0;k<sandmap.players[sandmap.turn].buildings[t].tiles.length;k++){
+                                sandmap.players[sandmap.turn].buildings[t].tiles[k].walkable = true
+                                sandmap.players[sandmap.turn].buildings[t].tiles[k].color = "#AACCFF"
+                                delete sandmap.players[sandmap.turn].buildings[t].tiles[k].wallcolor
+                            }
+                            sandmap.players[sandmap.turn].buildings.splice(t,1)
+                            break
+                        }
+                    }
                 } else {
                     let structuredpoint = new Point(0, 0)
                     structuredpoint.x += sandmap.window.guide.x
@@ -1486,7 +1518,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     structuredpoint.x = Math.floor(structuredpoint.x * .1)
                     structuredpoint.y = Math.floor(structuredpoint.y * .1)
                     sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
-                    let building = new Building(sandmap.players[sandmap.turn].selected_tile, sandmap.players[sandmap.turn], 0)
+                    
+                    let wet = 0
+                    for(let t = 0;t<sandmap.players[sandmap.turn].buildings.length;t++){
+                        if(sandmap.players[sandmap.turn].selected_tile == sandmap.players[sandmap.turn].buildings[t].tile){
+                            wet = 1
+                        }
+                    }
+                    if(sandmap.players[sandmap.turn].hotrock < 10){
+                        wet = 1
+                    }
+                    if(wet == 0){
+                        let building = new Building(sandmap.players[sandmap.turn].selected_tile, sandmap.players[sandmap.turn], 0)
+                    }
                 }else{
 
                     let structuredpoint = new Point(0, 0)
@@ -1509,7 +1553,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         selectrect.height = Math.abs(selectrect.height)
                     }
     
-                    // //console.log(selectrect)
+                    // ////console.log(selectrect)
                     // selectrect.draw()
                     // sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
                     // sandmap.turn++
@@ -1532,7 +1576,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     }
     //     function gamepad_control(object, speed = 1) { // basic control for objects using the controler
-    // //         ////////console.log(gamepadAPI.axesStatus[1]*gamepadAPI.axesStatus[0]) //debugging
+    // //         //////////console.log(gamepadAPI.axesStatus[1]*gamepadAPI.axesStatus[0]) //debugging
     //         if (typeof object.body != 'undefined') {
     //             if(typeof (gamepadAPI.axesStatus[1]) != 'undefined'){
     //                 if(typeof (gamepadAPI.axesStatus[0]) != 'undefined'){
@@ -1620,8 +1664,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let map_canvas = document.getElementById('map') //getting canvas from document
 
     map_context = map_canvas.getContext('2d');
+    map_context.imageSmoothingEnabled = false;
     map_canvas.style.background = "tan"
     setUp(setup_canvas)
+    canvas_context.imageSmoothingEnabled = false;
     // object instantiation and creation happens here 
 
 
@@ -1714,8 +1760,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             // let link = new Line(this.posx, this.posy, bottle.crew[bottle.selectedcrew].body.x-100, bottle.crew[bottle.selectedcrew].body.y-300, "red", 1)
             // if (link.hypotenuse() < 108) {
-            // ////////////console.log(link)
-            // ////////////console.log(bottle)
+            // //////////////console.log(link)
+            // //////////////console.log(bottle)
             // }
             let roundedx = (Math.round((startPoint.x) / 10))
             let roundedy = (Math.round((startPoint.y) / 10))
@@ -1728,13 +1774,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (this.inPath === true) {
                 this.drawPath();
             } else if (this.walkable === false) {
-                // ////////////console.log(this)
+                // //////////////console.log(this)
 
                 this.createWall();
                 return;
                 // }else if (link.hypotenuse() < 11) {
             } else if (this.posx == roundedx && this.posy == roundedy) {
-                //   ////////////console.log("hit the startNode");
+                //   //////////////console.log("hit the startNode");
                 //   this.createStartNode();
                 return;
             } else if (this.posx == endPoint.x && this.posy == endPoint.y) {
@@ -1750,12 +1796,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 map_context.strokeStyle = this.wallcolor
                 map_context.strokeRect(this.x, this.y, this.width, this.height)
             }else{
-                if(this.walkable== true || this.drawish == 1){
-                    map_context.drawImage(snow, ((this.t+this.toffset))%189, (this.k+this.koffset)%189, 10,10, this.x, this.y, 10, 10)
-                }else{
+                // if(this.walkable== true || this.drawish == 1){
+                //     map_context.drawImage(snow, ((this.t+this.toffset))%189, (this.k+this.koffset)%189, 10,10, this.x, this.y, 10, 10)
+                // }else{
                 map_context.fillStyle = this.color
                 map_context.fillRect(this.x, this.y, this.width, this.height)
-                }
+                // }
             }
             if(sandmap.winddiry == 1){
                 this.toffset+=sandmap.windspeed
@@ -1867,8 +1913,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                     let rect = new Tile(t * 10, k * 10, 10, 10, "#AACCFF", id, 10, t * 10, k * 10, true)
                     let fogtile = new FogTile(t * 10, k * 10, 10, 10, "#090909", id, 10, t * 10, k * 10, true)
-                    if(t%127 > 60 && t%127 < 67 ){
-                        if(k%127 > 60 && k%127 < 67 ){
+                    if(t%127 > 7 && t%127 < 14 ){
+                        if(k%127 > 7 && k%127 < 14 ){
                             if(Math.random()< .5){
                                 rect.hotrock = 1
                                 rect.color = "#DDAA44"
@@ -1890,7 +1936,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
             this.window = new Window()
             this.players = []
-            this.players.push(new Player('Blattadar', "#FF00FF"))
+            this.players.push(new Player('Blattadar', "#AA00AA"))
             // this.players.push(new Player('Skribulons', "#696969"))
             // this.players.push(new Player('Palletae', "pink"))
             // this.players.push(new Player('Bulbato', "#00ff00"))
@@ -1921,7 +1967,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 for (var j = 0; j < this.height; j += NODESIZE) {
                     gridPointsByPos[i][j] = countNodes;
                     //here's the problem , need to set the walkability of the node without always being true...
-                    ////////////console.log(countNodes)
+                    //////////////console.log(countNodes)
                     tempNode = new Tile(i, j, 10, 10, "tan", countNodes, NODESIZE, i, j, true);
 
                     // let cutOut = [0,1 ,2, 3, 4, 5,6,7, 8, 9, 10, 11, 12,13, 18, 19,20, 32,33,  26, 31, 39, 44, 45, 46, 52, 57,58,59,99, 112, 108, 95, 197, 198, 199, 205, 203, 204, 236, 237, 238, 242, 243,244, 216, 212, 229, 225, 210, 211, 223, 224, 217, 218, 230, 231]
@@ -1953,7 +1999,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                     // }
                     // if (wallSet.has(countNodes)) {
-                    // //   ////////////console.log("wallSet had countNodes!")
+                    // //   //////////////console.log("wallSet had countNodes!")
                     //   tempNode.walkable = false;
                     // }
 
@@ -1970,13 +2016,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         draw() {
 
-            if(Math.random()<.001){
-                let chooser = Math.floor(Math.random()*11)
+            if(Math.random()<.002){
+                let chooser = Math.floor(Math.random()*2)
                 if(chooser == 0){
-                    this.windspeed*=.94
+                    if(this.windspeed > .5){
+                        this.windspeed/=1.5
+                    }
                 }
                 if(chooser == 1){
-                    this.windspeed*=1.05
+                    if(this.windspeed < 5){
+                        this.windspeed*=1.5
+                    }
                 }
                 if(chooser ==2){
                     this.winddirx*=-1
@@ -2003,6 +2053,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     this.winddiry = -1
                 }
             }
+
+
+            canvas_context.fillStyle = this.players[this.turn].color
+            canvas_context.font = "20px arial"
+            canvas_context.fillText("Windspeed: " + this.windspeed, this.window.body.x+this.window.body.width+10, 200)
+
             for (let t = 0; t < this.blocks.length; t++) {
                 for (let k = 0; k < this.blocks[t].length; k++) {
                     if(this.blocks[t][k].markdraw == 1){
@@ -2067,6 +2123,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.color = color
             this.buildings = []
             this.units = []
+            this.hotrock = 100
         }
         draw() {
             for (let t = 0; t < this.buildings.length; t++) {
@@ -2079,8 +2136,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     this.units[t].draw()
                 }
                 for (let t = 0; t < this.units.length; t++) {
+                    if(this.units[t].marked == 1){
+                        this.units.splice(t,1)
+                    }
+                }
+                for (let t = 0; t < this.units.length; t++) {
                     this.units[t].see()
                 }
+                canvas_context.fillText("Hotrock: " + Math.round(this.hotrock), sandmap.window.body.x+sandmap.window.body.width+10, 125)
         }
     }
 
@@ -2136,8 +2199,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // this.startNode = gridPointsByPos[startNode.x][startNode.y];
             let roundedx = (Math.round((startNode.x))) * .1
             let roundedy = (Math.round((startNode.y))) * .1
-            ////////console.log(gridPointsByPos, roundedx, roundedy)
-            ////////////console.log(gridPointsByPos[roundedx] [roundedy])
+            //////////console.log(gridPointsByPos, roundedx, roundedy)
+            //////////////console.log(gridPointsByPos[roundedx] [roundedy])
             this.startNode = startNode // gridPointsByPos[roundedx] [roundedy]
             this.endNode = endNode //gridPointsByPos[endNode.x][endNode.y];
             this.currentNode = null;
@@ -2166,12 +2229,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
             var newMovementCost; //the new movement cost to neighbor
 
             openSet.add(currentNode);
-            //   //////console.log(currentNode)
+            //   ////////console.log(currentNode)
             // currentNode.color = "black"
-            // ////////////console.log('begin');
+            // //////////////console.log('begin');
             while (openSet.size > 0) {
                 tempArray = Array.from(openSet);
-                //////console.log(tempArray)
+                ////////console.log(tempArray)
                 currentNode = tempArray[0];
 
                 for (var i = 1; i < tempArray.length; i++) {
@@ -2201,9 +2264,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 //   currentNode.drawNode();
                 // }
 
-                //////console.log(currentNode, endNode)
-                // currentNode.color = "black"
                 ////////console.log(currentNode, endNode)
+                // currentNode.color = "black"
+                //////////console.log(currentNode, endNode)
                 if (currentNode.id == endNode.id) {
                     retracePath(startNode, endNode, this.agent);
                     //hit the last point, exit's the loop.
@@ -2277,19 +2340,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
         reverseArray.reverse();
         path = new Set(reverseArray);
 
-        //   ////////////console.log(path)
+        //   //////////////console.log(path)
 
         realPath = Array.from(path)
-        //   ////////////console.log(realPath)
+        //   //////////////console.log(realPath)
 
         if (realPath.length == 1) {
             // realPath[0].walkable = false
-            //////////console.log("hit")
+            ////////////console.log("hit")
             // wallSet.add(realPath[0])
-            //////////console.log(wallSet)
+            ////////////console.log(wallSet)
         }
 
-        //////console.log(realPath)
+        ////////console.log(realPath)
         if (realPath.length > 0) {
             realPath.unshift(agent.tile)
             agent.realPath = [...realPath]
@@ -2304,17 +2367,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // bottle.crew[bottle.selectedcrew].body.x =startPoint.x+4
             // bottle.crew[bottle.selectedcrew].body.y  = startPoint.y+4
             // startPoint = new Vec2(realPath[0].posx, realPath[0].posy);
-            ////////////console.log(startPoint)
+            //////////////console.log(startPoint)
             // bottle.crew[bottle.selectedcrew].moving = 1
         } else {
-            //   ////////console.log(endPoint)
+            //   //////////console.log(endPoint)
 
             //     if(bottle.crew[bottle.selectedcrew].moving == 1){
-            //         // ////////console.log(endPoint)
+            //         // //////////console.log(endPoint)
             //     // bottle.crew[bottle.selectedcrew].body.x =endPoint.x+96
             //     // bottle.crew[bottle.selectedcrew].body.y  = endPoint.y+284
             //     // bottle.crew[bottle.selectedcrew].moving = 0
-            //     // ////////console.log(endPoint)
+            //     // //////////console.log(endPoint)
             //         reset()
             //   }
         }
@@ -2378,7 +2441,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
         neighborList = tempList;
-        //////console.log(neighborList)
+        ////////console.log(neighborList)
         return (neighborList);
 
     }
@@ -2438,6 +2501,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.health = 100
             this.maxhealth = this.health
             this.name = "Wall"
+            this.cost = 10
+            this.faction.hotrock-= this.cost
             this.faction.buildings.push(this)
         }
         dataOutput(){
@@ -2475,6 +2540,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.realPath = [this.tile]
             this.repath = 0
             this.sight = 1+this.movespeed
+            this.decayRate = (this.sight*this.movespeed)*.1
+            this.health = this.sight*100
+            this.maxhealth = this.health
         }
         pathTo(point) {
             if (point.walkable == true) {
@@ -2518,6 +2586,44 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             }
         }
+        heatwallcheck(){
+            this.dirs1 = 0
+            this.dirs2 = 0
+            this.dirs3 = 0
+            this.dirs4 = 0
+            for(let t = 0;t<this.faction.buildings.length;t++){
+                if(this.dirs1 == 0){
+                if(this.faction.buildings[t].tile.x >= this.tile.x){
+                    if(this.faction.buildings[t].tile.y == this.tile.y){
+                        this.dirs1 += 1
+                    }
+                }
+            }
+                if(this.dirs2 == 0){
+                if(this.faction.buildings[t].tile.y >= this.tile.y){
+                    if(this.faction.buildings[t].tile.x == this.tile.x){
+                        this.dirs2 += 1
+                    }
+                }
+            }
+                if(this.dirs3 == 0){
+                if(this.faction.buildings[t].tile.x <= this.tile.x){
+                    if(this.faction.buildings[t].tile.y == this.tile.y){
+                        this.dirs3 += 1
+                    }
+                }
+            }
+                if(this.dirs4 == 0){
+                    if(this.faction.buildings[t].tile.y <= this.tile.y){
+                        if(this.faction.buildings[t].tile.x == this.tile.x){
+                            this.dirs4 += 1
+                        }
+                    }
+                }
+            }
+            
+            this.decayingInTheWind = 1-((this.dirs1+this.dirs2+this.dirs3+this.dirs4)/4)
+        }
         move() {
             this.repath--
             if (this.repath == 0) {
@@ -2551,6 +2657,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.tile.drawish = 0
             this.tile.walkable = true
             this.tile = this.realPath[this.index]
+            this.heatwallcheck()
+            //console.log( (this.decayingInTheWind*sandmap.windspeed))
+            this.health -= (this.decayRate*this.decayingInTheWind*sandmap.windspeed)
+            if(this.health<=0){
+                this.marked = 1
+            }
+            if(this.tile.hotrock == 1){
+                this.faction.hotrock += this.movespeed*.01
+            }
+            if(this.tile.hotrock == 2){
+                this.faction.hotrock += this.movespeed*.02
+            }
             this.tile.walkable = false
             this.tile.drawish = 1
             // this.tile.draw()
@@ -2586,6 +2704,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.body.radius = 6
             }
             this.body.draw()
+            if(this.selected == 1 || this.selected == 2){
+                this.healthbar = new Rectangle(this.body.x-5.5, this.body.y+2.5, 11, 3, "black")
+                this.healthbar.draw()
+                this.healthbar = new Rectangle(this.body.x-5, this.body.y+3, (this.health/this.maxhealth)*10, 2, `rgb(${255-((this.health/this.maxhealth)*255)},${(this.health/this.maxhealth)*255},  0)`)
+                this.healthbar.draw()
+            }
         }
     }
 
@@ -2606,7 +2730,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         // gamepadAPI.update() //checks for button presses/stick movement on the connected controller)
         // // game code goes here
         sandmap.draw()
-        //console.log(selectrect)
+        ////console.log(selectrect)
     }
 
 })
