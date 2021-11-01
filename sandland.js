@@ -4,6 +4,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     function empty() {
 
     }
+    let dataflop = 0
     let snow = new Image()
     snow.src = 'smoothsnow2.png'
     let rectstart = {}
@@ -335,6 +336,52 @@ window.addEventListener('DOMContentLoaded', (event) => {
         draw() {
             map_context.fillStyle = this.color
             map_context.fillRect(this.x, this.y, this.width, this.height)
+        }
+        move() {
+            this.x += this.xmom
+            this.y += this.ymom
+        }
+        isPointInside(point) {
+            if (point.x >= this.x) {
+                if (point.y >= this.y) {
+                    if (point.x <= this.x + this.width) {
+                        if (point.y <= this.y + this.height) {
+                            return true
+                        }
+                    }
+                }
+            }
+            return false
+        }
+        doesPerimeterTouch(point) {
+            if (point.x + point.radius >= this.x) {
+                if (point.y + point.radius >= this.y) {
+                    if (point.x - point.radius <= this.x + this.width) {
+                        if (point.y - point.radius <= this.y + this.height) {
+                            return true
+                        }
+                    }
+                }
+            }
+            return false
+        }
+    }
+    class UiRectangle {
+        constructor(x, y, width, height, color, fill = 1, stroke = 0, strokeWidth = 1) {
+            this.x = x
+            this.y = y
+            this.height = height
+            this.width = width
+            this.color = color
+            this.xmom = 0
+            this.ymom = 0
+            this.stroke = stroke
+            this.strokeWidth = strokeWidth
+            this.fill = fill
+        }
+        draw() {
+            canvas_context.fillStyle = this.color
+            canvas_context.fillRect(this.x, this.y, this.width, this.height)
         }
         move() {
             this.x += this.xmom
@@ -1339,18 +1386,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
 
                     let wet = 0
-                    for(let t = 0;t<sandmap.players[sandmap.turn].buildings.length;t++){
-                        if(sandmap.players[sandmap.turn].selected_tile == sandmap.players[sandmap.turn].buildings[t].tile){
+                    for (let t = 0; t < sandmap.players[sandmap.turn].buildings.length; t++) {
+                        if (sandmap.players[sandmap.turn].selected_tile == sandmap.players[sandmap.turn].buildings[t].tile) {
                             wet = 1
                         }
                     }
-                    if(sandmap.players[sandmap.turn].hotrock < 10){
+                    if (sandmap.players[sandmap.turn].hotrock < 10) {
                         wet = 1
                     }
-                    if(wet == 0){
+                    if (wet == 0) {
                         let building = new Building(sandmap.players[sandmap.turn].selected_tile, sandmap.players[sandmap.turn], 0)
                     }
-                }else if (keysPressed['x']) {
+                } else if (keysPressed['x']) {
                     let structuredpoint = new Point(0, 0)
                     structuredpoint.x += sandmap.window.guide.x
                     structuredpoint.y += sandmap.window.guide.y
@@ -1359,16 +1406,42 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     structuredpoint.x = Math.floor(structuredpoint.x * .1)
                     structuredpoint.y = Math.floor(structuredpoint.y * .1)
                     sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
-                    for(let t = 0;t<sandmap.players[sandmap.turn].buildings.length;t++){
-                        if(sandmap.players[sandmap.turn].selected_tile == sandmap.players[sandmap.turn].buildings[t].tile){
-                            for(let k = 0;k<sandmap.players[sandmap.turn].buildings[t].tiles.length;k++){
+                    for (let t = 0; t < sandmap.players[sandmap.turn].buildings.length; t++) {
+                        if (sandmap.players[sandmap.turn].selected_tile == sandmap.players[sandmap.turn].buildings[t].tile) {
+                            for (let k = 0; k < sandmap.players[sandmap.turn].buildings[t].tiles.length; k++) {
                                 sandmap.players[sandmap.turn].buildings[t].tiles[k].walkable = true
                                 sandmap.players[sandmap.turn].buildings[t].tiles[k].color = "#AACCFF"
                                 delete sandmap.players[sandmap.turn].buildings[t].tiles[k].wallcolor
                             }
-                            sandmap.players[sandmap.turn].buildings.splice(t,1)
+                            sandmap.players[sandmap.turn].buildings.splice(t, 1)
                             break
                         }
+                    }
+                } else if (keysPressed['n']) {
+                    let structuredpoint = new Point(0, 0)
+                    structuredpoint.x += sandmap.window.guide.x
+                    structuredpoint.y += sandmap.window.guide.y
+                    structuredpoint.x += (TIP_engine.x * .5)
+                    structuredpoint.y += (TIP_engine.y * .5)
+                    structuredpoint.x = Math.floor(structuredpoint.x * .1)
+                    structuredpoint.y = Math.floor(structuredpoint.y * .1)
+                    sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
+
+                    let wet = 0
+                    for (let t = 0; t < sandmap.players[sandmap.turn].buildings.length; t++) {
+                        if (sandmap.players[sandmap.turn].selected_tile == sandmap.players[sandmap.turn].buildings[t].tile) {
+                            wet = 1
+                        }
+                    }
+                    if (sandmap.players[sandmap.turn].hotrock < 70) {
+                        wet = 1
+                    }
+                    if (wet == 0) {
+                        let building = new Building(sandmap.players[sandmap.turn].selected_tile, sandmap.players[sandmap.turn], 0)
+                        building.barracks = 1
+                        building.name = "Barracks"
+                        building.health = 500
+                        building.maxhealth = building.health
                     }
                 } else {
                     let structuredpoint = new Point(0, 0)
@@ -1378,12 +1451,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     structuredpoint.y += (TIP_engine.y * .5)
                     structuredpoint.x = Math.floor(structuredpoint.x * .1)
                     structuredpoint.y = Math.floor(structuredpoint.y * .1)
+                    if(structuredpoint.x<0){
+                        structuredpoint.x = 0
+                    }
+                    if(structuredpoint.y<0){
+                        structuredpoint.y = 0
+                    }
                     sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
-                 
+
                     for (let t = 0; t < sandmap.players[sandmap.turn].buildings.length; t++) {
-                        if(sandmap.players[sandmap.turn].buildings[t].tiles.includes(sandmap.players[sandmap.turn].selected_tile)){
+                        if (sandmap.players[sandmap.turn].buildings[t].tiles.includes(sandmap.players[sandmap.turn].selected_tile)) {
                             sandmap.players[sandmap.turn].buildings[t].selected = 1
-                        }else{
+                        } else {
                             sandmap.players[sandmap.turn].buildings[t].selected = 0
                         }
                     }
@@ -1406,6 +1485,28 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     // }
                 }
             } else {
+                for(let t = 0;t<sandmap.players[sandmap.turn].buildings.length;t++){
+                    if(sandmap.players[sandmap.turn].buildings[t].spawnsmall.isPointInside(TIP_engine)){
+                        sandmap.players[sandmap.turn].buildings[t].makeScout()
+                    }
+                    if(sandmap.players[sandmap.turn].buildings[t].spawnmedium.isPointInside(TIP_engine)){
+                        sandmap.players[sandmap.turn].buildings[t].makeInfantry()
+                    }
+                    if(sandmap.players[sandmap.turn].buildings[t].spawnbig.isPointInside(TIP_engine)){
+                        sandmap.players[sandmap.turn].buildings[t].makeHarvester()
+                    }
+                }
+                for(let t = 0;t<sandmap.players[sandmap.turn].units.length;t++){
+                    if(sandmap.players[sandmap.turn].units[t].spawnsmall.isPointInside(TIP_engine)){
+                        sandmap.players[sandmap.turn].units[t].makeNymph()
+                    }
+                    if(sandmap.players[sandmap.turn].units[t].morph.isPointInside(TIP_engine)){
+                        sandmap.players[sandmap.turn].units[t].metamorph1()
+                    }
+                    if(sandmap.players[sandmap.turn].units[t].morph2.isPointInside(TIP_engine)){
+                        sandmap.players[sandmap.turn].units[t].metamorph2()
+                    }
+                }
                 if (sandmap.window.minibody.isPointInside(TIP_engine)) {
                     let structuredpoint = new Point(0, 0)
                     let inv = 1 / .28125
@@ -1466,8 +1567,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
                     for (let t = 0; t < sandmap.players[sandmap.turn].units.length; t++) {
                         if (sandmap.players[sandmap.turn].units[t].selected == 1) {
-                            if(typeof sandmap.players[sandmap.turn].units[t].realPath[sandmap.players[sandmap.turn].units[t].index+1] != "undefined"){
-                                if(sandmap.players[sandmap.turn].units[t].realPath[sandmap.players[sandmap.turn].units[t].index+1] == sandmap.players[sandmap.turn].selected_tile){
+                            if (typeof sandmap.players[sandmap.turn].units[t].realPath[sandmap.players[sandmap.turn].units[t].index + 1] != "undefined") {
+                                if (sandmap.players[sandmap.turn].units[t].realPath[sandmap.players[sandmap.turn].units[t].index + 1] == sandmap.players[sandmap.turn].selected_tile) {
                                     continue
                                 }
                             }
@@ -1492,9 +1593,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (selectrect.isPointInside(sandmap.players[sandmap.turn].units[t].body)) {
                         sandmap.players[sandmap.turn].units[t].selected = 1
                     } else {
-                        if(sandmap.players[sandmap.turn].units[t].selected == 2){
+                        if (sandmap.players[sandmap.turn].units[t].selected == 2) {
                             sandmap.players[sandmap.turn].units[t].selected = 1
-                        }else{
+                        } else {
                             sandmap.players[sandmap.turn].units[t].selected = 0
                         }
                     }
@@ -1521,20 +1622,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     structuredpoint.x = Math.floor(structuredpoint.x * .1)
                     structuredpoint.y = Math.floor(structuredpoint.y * .1)
                     sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
-                    
+
                     let wet = 0
-                    for(let t = 0;t<sandmap.players[sandmap.turn].buildings.length;t++){
-                        if(sandmap.players[sandmap.turn].selected_tile == sandmap.players[sandmap.turn].buildings[t].tile){
+                    for (let t = 0; t < sandmap.players[sandmap.turn].buildings.length; t++) {
+                        if (sandmap.players[sandmap.turn].selected_tile == sandmap.players[sandmap.turn].buildings[t].tile) {
                             wet = 1
                         }
                     }
-                    if(sandmap.players[sandmap.turn].hotrock < 10){
+                    if (sandmap.players[sandmap.turn].hotrock < 10) {
                         wet = 1
                     }
-                    if(wet == 0){
+                    if (wet == 0) {
                         let building = new Building(sandmap.players[sandmap.turn].selected_tile, sandmap.players[sandmap.turn], 0)
                     }
-                }else{
+                } else {
 
                     let structuredpoint = new Point(0, 0)
                     structuredpoint.x += sandmap.window.guide.x
@@ -1545,7 +1646,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     structuredpoint.y1 = Math.ceil(structuredpoint.y * .1)
                     structuredpoint.x = Math.floor(structuredpoint.x * .1)
                     structuredpoint.y = Math.floor(structuredpoint.y * .1)
-    
+
                     selectrect = new Tile(rectstart.x * 10, rectstart.y * 10, (structuredpoint.x1 - rectstart.x) * 10, (structuredpoint.y1 - rectstart.y) * 10, sandmap.players[sandmap.turn].color + "22")
                     if (selectrect.width < 0) {
                         selectrect.x += selectrect.width
@@ -1555,7 +1656,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         selectrect.y += selectrect.height
                         selectrect.height = Math.abs(selectrect.height)
                     }
-    
+
                     // ////////console.log(selectrect)
                     // selectrect.draw()
                     // sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
@@ -1700,8 +1801,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.posy = posy;
             this.walkable = walkable;
             if (Math.random() < .01) {
-                this.walkable = false
-                this.color = "#AAFFFF"
+                if(this.hotrock != 1 && this.hotrock != 2){
+                    this.walkable = false
+                    this.color = "#AAFFFF"
+                }
             }
 
             this.id = id;
@@ -1793,12 +1896,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         }
         draw() {
-            if(typeof this.wallcolor != "undefined"){
+            if (typeof this.wallcolor != "undefined") {
                 map_context.fillStyle = this.color
                 map_context.fillRect(this.x, this.y, this.width, this.height)
                 map_context.strokeStyle = this.wallcolor
                 map_context.strokeRect(this.x, this.y, this.width, this.height)
-            }else{
+            } else {
                 // if(this.walkable== true || this.drawish == 1){
                 //     map_context.drawImage(snow, ((this.t+this.toffset))%189, (this.k+this.koffset)%189, 10,10, this.x, this.y, 10, 10)
                 // }else{
@@ -1806,22 +1909,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 map_context.fillRect(this.x, this.y, this.width, this.height)
                 // }
             }
-            if(sandmap.winddiry == 1){
-                this.toffset+=sandmap.windspeed
+            if (sandmap.winddiry == 1) {
+                this.toffset += sandmap.windspeed
             }
-            if(sandmap.winddirx == 1){
-                this.koffset+=sandmap.windspeed
+            if (sandmap.winddirx == 1) {
+                this.koffset += sandmap.windspeed
             }
-            if(sandmap.winddiry == -1){
-                this.toffset-=sandmap.windspeed
-                if((this.t+this.toffset) < 0){
-                    this.toffset = 189-this.t
+            if (sandmap.winddiry == -1) {
+                this.toffset -= sandmap.windspeed
+                if ((this.t + this.toffset) < 0) {
+                    this.toffset = 189 - this.t
                 }
             }
-            if(sandmap.winddirx == -1){
-                this.koffset-=sandmap.windspeed
-                if((this.k+this.koffset) < 0){
-                    this.koffset = 189-this.t
+            if (sandmap.winddirx == -1) {
+                this.koffset -= sandmap.windspeed
+                if ((this.k + this.koffset) < 0) {
+                    this.koffset = 189 - this.t
                 }
             }
         }
@@ -1912,7 +2015,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.players = []
             this.players.push(new Player('Earthoids', "#AA00AA"))
             this.players.push(new Player('Cold Itzlerians', "#00FFAA"))
-            for(let g = 0;g<this.players.length+1;g++){
+            for (let g = 0; g < this.players.length + 1; g++) {
                 for (let t = 0; t < 128; t++) {
                     let rects = []
                     let fogs = []
@@ -1921,14 +2024,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         let fogtile = new FogTile(t * 10, k * 10, 10, 10, "#090909", id, 10, t * 10, k * 10, true)
                         // if(t%127 > 7 && t%127 < 14 ){
                         //     if(k%127 > 7 && k%127 < 14 ){
-                                if(Math.random()< .01){
-                                    rect.hotrock = 1
-                                    rect.color = "#DDAA44"
-                                    if(Math.random()< .5){
-                                        rect.hotrock = 2
-                                        rect.color = "#AA8822"
-                                    }
-                                }
+                        if (Math.random() < .01) {
+                            rect.hotrock = 1
+                            rect.walkable = true
+                            rect.color = "#DDAA44"
+                            if (Math.random() < .5) {
+                                rect.hotrock = 2
+                                rect.walkable = true
+                                rect.color = "#AA8822"
+                            }
+                        }
                         //     }
                         // }
                         rect.t = t
@@ -1938,10 +2043,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         id++
                     }
                     ////console.log(g)
-                    if(g == 2){
+                    if (g == 2) {
                         this.blocks.push(rects)
                         this.fog.push(fogs)
-                    }else{
+                    } else {
                         this.players[g].blocks.push(rects)
                         this.players[g].fog.push(fogs)
                     }
@@ -2027,40 +2132,40 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         draw() {
 
-            if(Math.random()<.002){
-                let chooser = Math.floor(Math.random()*2)
-                if(chooser == 0){
-                    if(this.windspeed > .5){
-                        this.windspeed/=1.5
+            if (Math.random() < .002) {
+                let chooser = Math.floor(Math.random() * 2)
+                if (chooser == 0) {
+                    if (this.windspeed > .5) {
+                        this.windspeed /= 1.5
                     }
                 }
-                if(chooser == 1){
-                    if(this.windspeed < 5){
-                        this.windspeed*=1.5
+                if (chooser == 1) {
+                    if (this.windspeed < 5) {
+                        this.windspeed *= 1.5
                     }
                 }
-                if(chooser ==2){
-                    this.winddirx*=-1
+                if (chooser == 2) {
+                    this.winddirx *= -1
                 }
-                if(chooser ==3){
-                    this.winddiry*=-1
+                if (chooser == 3) {
+                    this.winddiry *= -1
                 }
-                if(chooser ==4){
+                if (chooser == 4) {
                     this.winddirx = 0
                 }
-                if(chooser ==5 ){
+                if (chooser == 5) {
                     this.winddirx = 1
                 }
-                if(chooser ==6){
+                if (chooser == 6) {
                     this.winddiry = 0
                 }
-                if(chooser ==7){
+                if (chooser == 7) {
                     this.winddiry = 1
                 }
-                if(chooser ==8){
+                if (chooser == 8) {
                     this.winddirx = -1
                 }
-                if(chooser ==9){
+                if (chooser == 9) {
                     this.winddiry = -1
                 }
             }
@@ -2068,11 +2173,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             canvas_context.fillStyle = this.players[this.turn].color
             canvas_context.font = "20px arial"
-            canvas_context.fillText("Windspeed: " + this.windspeed, this.window.body.x+this.window.body.width+10, 200)
+            canvas_context.fillText("Windspeed: " + this.windspeed, this.window.body.x + this.window.body.width + 10, 200)
 
             for (let t = 0; t < this.players[this.turn].blocks.length; t++) {
                 for (let k = 0; k < this.players[this.turn].blocks[t].length; k++) {
-                    if(this.players[this.turn].blocks[t][k].markdraw == 1){
+                    if (this.players[this.turn].blocks[t][k].markdraw == 1) {
                         this.blocks[t][k].draw()
                     }
                 }
@@ -2084,13 +2189,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             //abstract fog to player teams
             for (let t = 0; t < this.fog.length; t++) {
                 for (let k = 0; k < this.fog[t].length; k++) {
-                    if(this.players[this.turn].blocks[t][k].markdraw == 1){
+                    if (this.players[this.turn].blocks[t][k].markdraw == 1) {
                         this.players[this.turn].fog[t][k].timer--
-                        if( this.players[this.turn].fog[t][k].timer<=0){
+                        if (this.players[this.turn].fog[t][k].timer <= 0) {
                             this.players[this.turn].fog[t][k].color = "#09090922"
                             this.players[this.turn].fog[t][k].draw()
                         }
-                    }else{
+                    } else {
                         this.players[this.turn].fog[t][k].draw()
                     }
                 }
@@ -2142,23 +2247,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
             for (let t = 0; t < this.buildings.length; t++) {
                 this.buildings[t].draw()
             }
-                for (let t = 0; t < this.units.length; t++) {
-                    this.units[t].move()
+            for (let t = 0; t < this.units.length; t++) {
+                this.units[t].move()
+            }
+            for (let t = 0; t < this.units.length; t++) {
+                this.units[t].draw()
+            }
+            for (let t = 0; t < this.units.length; t++) {
+                if (this.units[t].marked == 1) {
+                    this.units[t].tile.walkable = true
+                    this.units.splice(t, 1)
                 }
-                for (let t = 0; t < this.units.length; t++) {
-                    this.units[t].draw()
-                }
-                for (let t = 0; t < this.units.length; t++) {
-                    if(this.units[t].marked == 1){
-                        this.units.splice(t,1)
-                    }
-                }
-                for (let t = 0; t < this.units.length; t++) {
-                    this.units[t].see()
-                }
-                if(sandmap.players.indexOf(this) == sandmap.turn){
-                    canvas_context.fillText("Hotrock: " + Math.round(this.hotrock), sandmap.window.body.x+sandmap.window.body.width+10, 125)
-                }
+            }
+            for (let t = 0; t < this.units.length; t++) {
+                this.units[t].see()
+            }
+            if (sandmap.players.indexOf(this) == sandmap.turn) {
+                canvas_context.fillText("Hotrock: " + Math.round(this.hotrock), sandmap.window.body.x + sandmap.window.body.width + 10, 145)
+            }
         }
     }
 
@@ -2520,269 +2626,574 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.maxhealth = this.health
             this.name = "Wall"
             this.cost = 10
-            this.faction.hotrock-= this.cost
+            this.faction.hotrock -= this.cost
             this.faction.buildings.push(this)
         }
-        dataOutput(){
+        makeScout(){
+            if(this.faction.hotrock >= 100){
+                this.faction.hotrock-=100
+            let agent1 = new Agent(this.tile, sandmap.players[0])
+            agent1.isScout()
+            }
+        }
+        makeInfantry(){
+            if(this.faction.hotrock >= 100){
+                this.faction.hotrock-=100
+            let agent1 = new Agent(this.tile, sandmap.players[0])
+            agent1.isInfantry()
+            }
+        }
+        makeHarvester(){
+            if(this.faction.hotrock >= 100){
+                this.faction.hotrock-=100
+            let agent1 = new Agent(this.tile, sandmap.players[0])   
+            agent1.isHarvester()
+            }
+        }
+        dataOutput() {
+            if(dataflop == 0){
+                dataflop = 1
             canvas_context.fillStyle = this.faction.color
             canvas_context.font = "20px arial"
-            canvas_context.fillText(this.name +" "+ this.health+"/"+this.maxhealth, sandmap.window.body.x+sandmap.window.body.width+10, 25)
+            canvas_context.fillText(this.name + " " + this.health + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
+            if(this.barracks == 1){
+                this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 65, 50,50, "red")
+                this.spawnsmall.draw()
+                this.spawnmedium = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 70, 65, 50,50, "magenta")
+                this.spawnmedium.draw()
+                this.spawnbig = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 130, 65, 50,50, "black")
+                this.spawnbig.draw()
+            }
+        }
         }
         draw() {
             for (let t = 0; t < this.tiles.length; t++) {
                 this.tiles[t].walkable = false
-                this.tiles[t].color =  this.faction.color  // this.faction.color
-                if(this.selected == 1){
+                this.tiles[t].color = this.faction.color  // this.faction.color
+                if (this.selected == 1) {
                     this.tiles[t].wallcolor = "black"
-                }else{
-                    this.tiles[t].wallcolor = this.faction.color 
+                } else {
+                    this.tiles[t].wallcolor = this.faction.color
                 }
             }
-            if(this.selected == 1){
-               this.dataOutput()
+            if (this.selected == 1) {
+                if(sandmap.turn == sandmap.players.indexOf(this.faction)){
+                this.dataOutput()
+                }
+            }else{
+                this.spawnsmall = new UiRectangle(0,0,0,0, "red")
+                this.spawnmedium = new UiRectangle(0,0,0,0, "red")
+                this.spawnbig = new UiRectangle(0,0,0,0, "red")
             }
 
         }
     }
     class Agent {
         constructor(tile, player) {
-            this.selected = 1
+            this.selected = 0
             this.faction = player
             this.tile = tile
             this.movespeedcount = 0
             this.movespeed = Math.floor(Math.random() * 3) + 2
             this.pather = new PathFindingAlg(sandmap.blocks, this.tile, this.tile, this)
-            this.body = new Circle(this.tile.x + (this.tile.width * .5), this.tile.y + (this.tile.height * .5), 5, this.faction.color)
+            this.body = new UnitCircle(this.tile.x + (this.tile.width * .5), this.tile.y + (this.tile.height * .5), 5, this.faction.color)
             this.faction.units.push(this)
             this.index = 0
             this.realPath = [this.tile]
             this.repath = 0
-            this.sight = 1+this.movespeed
-            this.decayRate = (this.sight*this.movespeed)*.05
-            this.health = this.sight*100
+            this.sight = 1 + this.movespeed
+            this.damage = this.body.radius
+            this.firerate = (this.movespeed*5)
+            this.attackrange = this.sight-1
+            this.decayRate = (this.sight * this.movespeed) * .05
+            this.health = this.sight * 100
             this.maxhealth = this.health
-        }
-        pathTo(point) {
-            if (point.walkable == true) {
-                this.pather = new PathFindingAlg(sandmap.blocks, this.tile, point, this)
-                this.pather.agent = this
-                this.obvious = this.realPath[this.index]
-                this.pathsto = []
-                for (let t = 0; t < this.realPath.length; t++) {
-                    this.pathsto.push(this.realPath[t])
+            this.shots = []
+            this.attacktarget = {}
+            this.attacktarget.health = 0
+            this.attackcounter = 0
+            this.projectilespeed = 20
+            this.name = "agent"
+            if(this.faction.name == 'Cold Itzlerians'){
+                this.isNymph()
+            }else{
+                if(this.faction.units.length == 1){
+                    this.isScout()
                 }
-                this.pather.findPath()
-                if (this.obvious == this.realPath[0]) {
-                    this.index = 0
-                } else {
-                    this.realPath = [...this.pathsto]
-                    this.repath = 10
-                    this.snapto = point
+                if(this.faction.units.length == 2){
+                    this.isInfantry()
+                }
+                if(this.faction.units.length == 3){
+                    this.isHarvester()
                 }
             }
         }
-        see(){
-            for(let t = -this.sight;t<=this.sight;t++){
-                for(let k = -this.sight;k<=this.sight;k++){
-                    if( this.tile.t+t >= 0){
-                        if( this.tile.k+k >= 0){
-                            if( this.tile.t+t < 128){
-                                if( this.tile.k+k < 128){
+        isNymph(){
+            this.body.color = "teal"
+            this.body.radius = 4
+            this.movespeed = 1
+            this.firerate = 10
+            this.decayRate = 0
+            this.damage = (this.body.radius*.5)
+            this.name = "Nymph"
+            this.nymph = 1
+            this.sight = 1 + this.movespeed
+            this.firerate = (this.movespeed*5)
+            this.attackrange = this.sight-1
+            this.health = this.sight * 100
+            this.maxhealth = this.health
+            this.shots = []
+            this.attacktarget = {}
+            this.attacktarget.health = 0
+            this.attackcounter = 0
+            this.projectilespeed = 20
+        }
+        isScout(){
+            this.movespeed = 2
+            this.body.color = "red"
+            this.body.radius = 4
+            this.damage = this.body.radius
+            this.name = "Scout Drone"
+            this.sight = 1 + this.movespeed
+            this.damage = this.body.radius
+            this.firerate = (this.movespeed*5)
+            this.attackrange = this.sight-1
+            this.health = this.sight * 100
+            this.maxhealth = this.health
+            this.shots = []
+            this.attacktarget = {}
+            this.attacktarget.health = 0
+            this.attackcounter = 0
+            this.projectilespeed = 20
+            this.decayRate = (this.sight * this.movespeed) * .05
+        }
+        isInfantry(){
+            this.movespeed = 4
+            this.body.color = "magenta"
+            this.body.radius = 4.8
+            this.damage = this.body.radius
+            this.name = "Infantry"
+            this.sight = 1 + this.movespeed
+            this.damage = this.body.radius
+            this.firerate = (this.movespeed*5)
+            this.attackrange = this.sight-1
+            this.health = this.sight * 100
+            this.maxhealth = this.health
+            this.shots = []
+            this.attacktarget = {}
+            this.attacktarget.health = 0
+            this.attackcounter = 0
+            this.projectilespeed = 20
+            this.decayRate = (this.sight * this.movespeed) * .05
+        }
+        isHarvester(){
+            this.movespeed = 5
+            this.body.color = "gray"
+            this.body.radius = 5.5
+            this.damage = this.body.radius
+            this.name = "Harvesting Vehicle"
+            this.sight = 1 + this.movespeed
+            this.damage = this.body.radius
+            this.firerate = (this.movespeed*5)
+            this.attackrange = this.sight-1
+            this.health = this.sight * 100
+            this.maxhealth = this.health
+            this.shots = []
+            this.attacktarget = {}
+            this.attacktarget.health = 0
+            this.attackcounter = 0
+            this.projectilespeed = 20
+            this.decayRate = (this.sight * this.movespeed) * .05
+        }
+        makeNymph(){
+            if(this.faction.hotrock >= 100){
+                this.faction.hotrock-=100
+                let agent1 = new Agent(this.tile, sandmap.players[1])
+                agent1.body.color = "teal"
+                agent1.body.radius = 4
+                agent1.movespeed = 1
+                agent1.firerate = 10
+                agent1.decayRate = 0
+                agent1.damage = (agent1.body.radius*.5)
+                agent1.name = "Nymph"
+                agent1.nymph = 1
+            }
+        }
+        metamorph1(){
+            if(this.faction.hotrock >= 100){
+                this.faction.hotrock-=100
+                this.body.color = "blue"
+                this.body.radius = 4.8
+                this.movespeed = 3
+                this.sight = 1 + this.movespeed
+                this.firerate = 10
+                this.decayRate = 0
+                this.damage =(this.body.radius+1)
+                this.name = "Scurrier"
+                this.nymph = 2
+            }
+        }
+        metamorph2(){
+            if(this.faction.hotrock >= 250){
+                this.faction.hotrock-=250
+                this.body.color = "white"
+                this.body.radius = 6.5
+                this.movespeed = 8
+                this.sight = 1 + this.movespeed
+                this.firerate = 40
+                this.decayRate = 0
+                this.damage = (this.body.radius+2)
+                this.name = "Imago"
+                this.imago = 1
+                this.nymph = 0
+            }
+        }
+        dataOutput() {
+            if(dataflop == 0){
+                dataflop = 1
+                canvas_context.fillStyle = this.faction.color
+                canvas_context.font = "20px arial"
+                canvas_context.fillText(this.name + " " + Math.round(this.health) + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
+                if(this.imago == 1){
+                    this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 65, 50,50, "teal")
+                    this.spawnsmall.draw()
+                }
+               if(this.nymph == 1 || this.nymph == 2){
+                   if(this.nymph==1){
+                    this.morph = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 65, 50,50, "Blue")
+                    this.morph.draw()
+                   }else{
+                    this.morph2 = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 65, 50,50, "white")
+                    this.morph2.draw()
+                   }
+                }
     
-                            if(typeof (sandmap.blocks[this.tile.t+t] != undefined)){
-                                if(typeof (sandmap.blocks[this.tile.t+t][this.tile.k+k] != undefined)){
-                                    this.faction.fog[this.tile.t+t][this.tile.k+k].color = "transparent"
-                                    this.faction.fog[this.tile.t+t][this.tile.k+k].timer = 100
-                                    this.faction.blocks[this.tile.t+t][this.tile.k+k].markdraw = 1
+            }
+        }
+
+        attack() {
+            if(this.attacktarget.health <= 0 || (Math.abs((this.attacktarget.tile.y-this.tile.y))+Math.abs((this.attacktarget.tile.x-this.tile.x))) > (this.attackrange*11)){
+                for (let t = -this.attackrange; t <= this.attackrange; t++) {
+                    for (let k = -this.attackrange; k <= this.attackrange; k++) {
+                        if (this.tile.t + t >= 0) {
+                            if (this.tile.k + k >= 0) {
+                                if (this.tile.t + t < 128) {
+                                    if (this.tile.k + k < 128) {
+                                        if (typeof (sandmap.blocks[this.tile.t + t] != undefined)) {
+                                            if (typeof (sandmap.blocks[this.tile.t + t][this.tile.k + k] != undefined)) {
+                                                for (let g = 0; g < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length; g++) {
+                                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
+                                                        this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
+                                                        break
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
-                            
                         }
                     }
                 }
-            }
+            }else{
+                if(Math.abs(this.attacktarget.tile.x-this.tile.x) + Math.abs((this.attacktarget.tile.y-this.tile.y)) > (this.attackrange*11)){      
+                    this.attacktarget = {}
+                    this.attacktarget.health = 0
+                    return
+                }
+                this.attackcounter++
+                if(this.attackcounter%this.firerate == 0){
+                    let shot = new UnitCircle(this.body.x, this.body.y, 2, this.faction.color)
+                    shot.attacktarget = {}
+                    shot.attacktarget.body = new UnitCircle(this.attacktarget.body.x, this.attacktarget.body.y, 1, "transparent") 
+                    shot.projectilespeed = this.projectilespeed 
+                    shot.refhealth = this.attacktarget
+                    shot.stage = 0
+                    this.shots.push(shot)
                 }
             }
         }
-        heatwallcheck(){
-            this.dirs1 = 0
-            this.dirs2 = 0
-            this.dirs3 = 0
-            this.dirs4 = 0
-            for(let t = 0;t<this.faction.buildings.length;t++){
-                if(this.dirs1 == 0){
-                if(this.faction.buildings[t].tile.x >= this.tile.x){
-                    if(this.faction.buildings[t].tile.y == this.tile.y){
-                        this.dirs1 += 1
-                    }
-                }
-            }
-                if(this.dirs2 == 0){
-                if(this.faction.buildings[t].tile.y >= this.tile.y){
-                    if(this.faction.buildings[t].tile.x == this.tile.x){
-                        this.dirs2 += 1
-                    }
-                }
-            }
-                if(this.dirs3 == 0){
-                if(this.faction.buildings[t].tile.x <= this.tile.x){
-                    if(this.faction.buildings[t].tile.y == this.tile.y){
-                        this.dirs3 += 1
-                    }
-                }
-            }
-                if(this.dirs4 == 0){
-                    if(this.faction.buildings[t].tile.y <= this.tile.y){
-                        if(this.faction.buildings[t].tile.x == this.tile.x){
-                            this.dirs4 += 1
+                pathTo(point) {
+                    if (point.walkable == true) {
+                        this.pather = new PathFindingAlg(sandmap.blocks, this.tile, point, this)
+                        this.pather.agent = this
+                        this.obvious = this.realPath[this.index]
+                        this.pathsto = []
+                        for (let t = 0; t < this.realPath.length; t++) {
+                            this.pathsto.push(this.realPath[t])
                         }
-                    }
-                }
-            }
-            
-            this.decayingInTheWind = 1-((this.dirs1+this.dirs2+this.dirs3+this.dirs4)/4)
-        }
-        move() {
-            this.repath--
-            if (this.repath == 0) {
-                this.pathTo(this.snapto)
-            }
-
-            if (this.index < this.realPath.length - 1) {
-                this.movespeedcount++
-                if (this.movespeedcount % this.movespeed == 0) {
-                    this.movespeedcount = 0
-                    this.index += 1
-                    if (this.realPath[this.index].walkable == false) {
-                        if (this.index == 0) {
-                            let goal = 0
-                            goal += this.tile.id
-                            goal += (Math.sign(Math.random() - .5) * 127)
-                            goal += (Math.sign(Math.random() - .5))
-                            goal = Math.min(goal, sandmap.gridPoints.length)
-                            goal = Math.max(goal, 0)
-                            // let goal = Math.max(Math.min(this.tile.id+(Math.sign(Math.random()-.5)*127)+ Math.sign(Math.random()-.5), sandmap.gridPoints.length),0)
-                            this.pathTo(sandmap.gridPoints[goal])
+                        this.pather.findPath()
+                        if (this.obvious == this.realPath[0]) {
+                            this.index = 0
                         } else {
-                            this.index--
-                            this.movespeedcount = 0
+                            this.realPath = [...this.pathsto]
+                            this.repath = 10
+                            this.snapto = point
                         }
                     }
                 }
-            }else{
-                this.movespeedcount = 0
-            }
-            this.tile.drawish = 0
-            this.tile.walkable = true
-            this.tile = this.realPath[this.index]
-            this.heatwallcheck()
-            //////console.log( (this.decayingInTheWind*sandmap.windspeed))
-            this.health -= (this.decayRate*this.decayingInTheWind*sandmap.windspeed)
-            if(this.decayingInTheWind == 0){
-                this.health += this.decayRate
-                if(this.health > this.maxhealth){
-                    this.health = this.maxhealth
+                see(){
+                    for (let t = -this.sight; t <= this.sight; t++) {
+                        for (let k = -this.sight; k <= this.sight; k++) {
+                            if (this.tile.t + t >= 0) {
+                                if (this.tile.k + k >= 0) {
+                                    if (this.tile.t + t < 128) {
+                                        if (this.tile.k + k < 128) {
+
+                                            if (typeof (sandmap.blocks[this.tile.t + t] != undefined)) {
+                                                if (typeof (sandmap.blocks[this.tile.t + t][this.tile.k + k] != undefined)) {
+                                                    this.faction.fog[this.tile.t + t][this.tile.k + k].color = "transparent"
+                                                    this.faction.fog[this.tile.t + t][this.tile.k + k].timer = 100
+                                                    this.faction.blocks[this.tile.t + t][this.tile.k + k].markdraw = 1
+                                                }
+                                            }
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                heatwallcheck(){
+                    this.dirs1 = 0
+                    this.dirs2 = 0
+                    this.dirs3 = 0
+                    this.dirs4 = 0
+                    for (let t = 0; t < this.faction.buildings.length; t++) {
+                        if (this.dirs1 == 0) {
+                            if (this.faction.buildings[t].tile.x >= this.tile.x) {
+                                if (this.faction.buildings[t].tile.y == this.tile.y) {
+                                    this.dirs1 += 1
+                                }
+                            }
+                        }
+                        if (this.dirs2 == 0) {
+                            if (this.faction.buildings[t].tile.y >= this.tile.y) {
+                                if (this.faction.buildings[t].tile.x == this.tile.x) {
+                                    this.dirs2 += 1
+                                }
+                            }
+                        }
+                        if (this.dirs3 == 0) {
+                            if (this.faction.buildings[t].tile.x <= this.tile.x) {
+                                if (this.faction.buildings[t].tile.y == this.tile.y) {
+                                    this.dirs3 += 1
+                                }
+                            }
+                        }
+                        if (this.dirs4 == 0) {
+                            if (this.faction.buildings[t].tile.y <= this.tile.y) {
+                                if (this.faction.buildings[t].tile.x == this.tile.x) {
+                                    this.dirs4 += 1
+                                }
+                            }
+                        }
+                    }
+
+                    this.decayingInTheWind = 1 - ((this.dirs1 + this.dirs2 + this.dirs3 + this.dirs4) / 4)
+                }
+                move() {
+
+                    this.attack()
+                    this.repath--
+                    if (this.repath == 0) {
+                        this.pathTo(this.snapto)
+                    }
+
+                    if (this.index < this.realPath.length - 1) {
+                        this.movespeedcount++
+                        if (this.movespeedcount % this.movespeed == 0) {
+                            this.movespeedcount = 0
+                            this.index += 1
+                            if (this.realPath[this.index].walkable == false) {
+                                if (this.index == 0) {
+                                    let goal = 0
+                                    goal += this.tile.id
+                                    goal += (Math.sign(Math.random() - .5) * 127)
+                                    goal += (Math.sign(Math.random() - .5))
+                                    goal = Math.min(goal, sandmap.gridPoints.length)
+                                    goal = Math.max(goal, 0)
+                                    // let goal = Math.max(Math.min(this.tile.id+(Math.sign(Math.random()-.5)*127)+ Math.sign(Math.random()-.5), sandmap.gridPoints.length),0)
+                                    this.pathTo(sandmap.gridPoints[goal])
+                                } else {
+                                    this.index--
+                                    this.movespeedcount = 0
+                                }
+                            }
+                        }
+                    } else {
+                        this.movespeedcount = 0
+                    }
+                    this.tile.drawish = 0
+                    this.tile.walkable = true
+                    this.tile = this.realPath[this.index]
+                    this.heatwallcheck()
+                    //////console.log( (this.decayingInTheWind*sandmap.windspeed))
+                    this.health -= (this.decayRate * this.decayingInTheWind * sandmap.windspeed)
+                    if (this.decayingInTheWind == 0) {
+                        this.health += this.decayRate
+                        if (this.health > this.maxhealth) {
+                            this.health = this.maxhealth
+                        }
+                    }
+                    if (this.health <= 0) {
+                        this.marked = 1
+                    }
+                    if (this.tile.hotrock == 1) {
+                        this.faction.hotrock += this.movespeed * .01
+                        if(this.nymph == 1){
+                            this.faction.hotrock += this.movespeed * .02
+                        }
+                    }
+                    if (this.tile.hotrock == 2) {
+                        this.faction.hotrock += this.movespeed * .02
+                        if(this.nymph == 1){
+                            this.faction.hotrock += this.movespeed * .04
+                        }
+                    }
+                    this.tile.walkable = false
+                    this.tile.drawish = 1
+                    // this.tile.draw()
+                }
+                draw() {
+                    if (this.realPath.length - 1 > this.index) {
+                        if (this.realPath[this.index + 1].walkable == true) {
+                            let rat = (this.movespeedcount + 1) / this.movespeed
+                            let invrat = 1 - rat
+
+                            this.body.x = ((this.realPath[this.index].x + (this.tile.width * .5)) * invrat) + ((this.realPath[this.index + 1].x + (this.tile.width * .5)) * rat)
+                            this.body.y = ((this.realPath[this.index].y + (this.tile.height * .5)) * invrat) + ((this.realPath[this.index + 1].y + (this.tile.height * .5)) * rat)
+
+                        } else {
+                            this.body.x =this.tile.x + (this.tile.width * .5)
+                            this.body.y =this.tile.y + (this.tile.height * .5)
+                        }
+
+                    } else {
+
+                        this.body.x =this.tile.x + (this.tile.width * .5)
+                        this.body.y =this.tile.y + (this.tile.height * .5)
+                        // this.body = new UnitCircle(this.tile.x + (this.tile.width * .5), this.tile.y + (this.tile.height * .5), 5, this.faction.color)
+                    }
+                    // if (sandmap.players.indexOf(this.faction) == 0) {
+                    //     if (this.movespeed == 4) {
+                    //         this.body.color = "gray"
+                    //         this.body.radius = 5.5
+                    //         this.damage = this.body.radius
+                    //         this.name = "Harvesting Vehicle"
+                    //     }
+                    //     if (this.movespeed == 2) {
+                    //         this.body.color = "red"
+                    //         this.body.radius = 4
+                    //         this.damage = this.body.radius
+                    //         this.name = "Scout Drone"
+                    //     }
+                    //     if (this.movespeed == 3) {
+                    //         this.body.color = "magenta"
+                    //         this.body.radius = 4.8
+                    //         this.damage = this.body.radius
+                    //         this.name = "Infantry"
+                    //     }
+                    // } else if (sandmap.players.indexOf(this.faction) == 1) {
+
+                    //     if (this.movespeed == 2 || this.movespeed == 1) {
+                    //         this.body.color = "teal"
+                    //         this.body.radius = 4
+                    //         this.movespeed = 1
+                    //         this.firerate = 10
+                    //         this.decayRate = 0
+                    //         this.damage = (this.body.radius*.5)
+                    //         this.name = "Nymph"
+                    //         this.nymph = 1
+                    //     }
+                    //     if (this.movespeed == 3) {
+                    //         this.body.color = "blue"
+                    //         this.body.radius = 4.8
+                    //         this.firerate = 10
+                    //         this.decayRate = 0
+                    //         this.damage = (this.body.radius+1)
+                    //         this.name = "Scurrier"
+                    //         this.nymph = 2
+                    //     }
+                    //     if (this.movespeed == 4 || this.movespeed == 8) {
+                    //         this.body.color = "white"
+                    //         this.body.radius = 6.5
+                    //         this.movespeed = 8
+                    //         this.firerate = 40
+                    //         this.decayRate = 0
+                    //         this.damage = (this.body.radius+3)
+                    //         this.name = "Imago"
+                    //         this.imago = 1
+                    //     }
+                    // }
+
+
+                    this.body.draw()
+                    if (this.selected == 1 || this.selected == 2) {
+                        this.healthbar = new Rectangle(this.body.x - 5.5, this.body.y + 2.5, 11, 3, "black")
+                        this.healthbar.draw()
+                        this.healthbar = new Rectangle(this.body.x - 5, this.body.y + 3, (this.health / this.maxhealth) * 10, 2, `rgb(${255 - ((this.health / this.maxhealth) * 255)},${(this.health / this.maxhealth) * 255},  0)`)
+                        this.healthbar.draw()
+                        if(sandmap.turn == sandmap.players.indexOf(this.faction)){
+                            this.dataOutput()
+                        }
+                    }else{
+                        this.spawnsmall = {}
+                        this.spawnsmall.isPointInside = empty
+                        this.morph = {}
+                        this.morph.isPointInside = empty
+                        this.morph2 = {}
+                        this.morph2.isPointInside = empty
+                    }
+
+                    for(let t = 0;t<this.shots.length;t++){
+                        this.shots[t].stage++
+                        this.shots[t].x = (this.body.x*(1-(this.shots[t].stage/this.projectilespeed))) + (((this.shots[t].stage/this.projectilespeed))*this.shots[t].attacktarget.body.x)
+                        this.shots[t].y = (this.body.y*(1-(this.shots[t].stage/this.projectilespeed))) + (((this.shots[t].stage/this.projectilespeed))*this.shots[t].attacktarget.body.y)
+                        this.shots[t].draw()
+                        if(this.shots[t].stage >= this.projectilespeed){
+                            this.shots[t].refhealth.health-=(this.damage*5)
+                            console.log(this.shots[t].refhealth)
+                            this.shots[t].marked = 1
+                        }
+                    }
+                    for(let t = 0;t<this.shots.length;t++){
+                        if(this.shots[t].marked== 1){
+                            this.shots.splice(t,1)
+                        }
+                    }
                 }
             }
-            if(this.health<=0){
-                this.marked = 1
-            }
-            if(this.tile.hotrock == 1){
-                this.faction.hotrock += this.movespeed*.01
-            }
-            if(this.tile.hotrock == 2){
-                this.faction.hotrock += this.movespeed*.02
-            }
-            this.tile.walkable = false
-            this.tile.drawish = 1
-            // this.tile.draw()
-        }
-        draw() {
-            if(this.realPath.length-1 > this.index){
-                if(this.realPath[this.index+1].walkable== true){
-                    let rat = (this.movespeedcount+1)/this.movespeed
-                    let invrat = 1-rat
-                    this.body = new UnitCircle(((this.realPath[this.index].x + (this.tile.width * .5))*invrat) + ((this.realPath[this.index+1].x + (this.tile.width * .5))*rat), ((this.realPath[this.index].y + (this.tile.height * .5))*invrat) + ((this.realPath[this.index+1].y + (this.tile.height * .5))*rat), 5, this.faction.color)
-                    
-                }else{
-                    this.body = new UnitCircle(this.tile.x + (this.tile.width * .5), this.tile.y + (this.tile.height * .5), 5, this.faction.color)
-                }
 
-            }else{
-                this.body = new UnitCircle(this.tile.x + (this.tile.width * .5), this.tile.y + (this.tile.height * .5), 5, this.faction.color)
+            for (let t = 0; t < 3; t++) {
+                let agent1 = new Agent(sandmap.blocks[0][t], sandmap.players[0])
             }
-            if(sandmap.players.indexOf(this.faction) == 0){
-                if (this.movespeed == 4) {
-                    this.body.color = "gray"
-                    this.body.radius = 5.5
-                }
-                if (this.movespeed == 2) {
-                    this.body.color = "red"
-                    this.body.radius = 4
-                }
-                if (this.movespeed == 3) {
-                    this.body.color = "magenta"
-                    this.body.radius = 4.8
-                }
-            }else   if(sandmap.players.indexOf(this.faction) == 1){
-
-                if (this.movespeed == 2 || this.movespeed == 1) {
-                    this.body.color = "teal"
-                    this.body.radius = 4
-                    this.movespeed = 1
-                    this.decayRate = 0
-                }
-                if (this.movespeed == 3) {
-                    this.body.color = "blue"
-                    this.body.radius = 4.8
-                    this.decayRate = 0
-                }
-                if (this.movespeed == 4 || this.movespeed == 8) {
-                    this.body.color = "white"
-                    this.body.radius = 6.5
-                    this.movespeed = 8
-                    this.decayRate = 0
-                }
+            for (let t = 0; t < 3; t++) {
+                let agent2 = new Agent(sandmap.blocks[127][t], sandmap.players[1])
             }
 
 
-            this.body.draw()
-            if(this.selected == 1 || this.selected == 2){
-                this.healthbar = new Rectangle(this.body.x-5.5, this.body.y+2.5, 11, 3, "black")
-                this.healthbar.draw()
-                this.healthbar = new Rectangle(this.body.x-5, this.body.y+3, (this.health/this.maxhealth)*10, 2, `rgb(${255-((this.health/this.maxhealth)*255)},${(this.health/this.maxhealth)*255},  0)`)
-                this.healthbar.draw()
+            // let pather = new PathFindingAlg(sandmap.blocks, sandmap.blocks[10][10], sandmap.blocks[12][25])
+            // for(let t = 0;t<10;t++){
+            // pather.findPath()
+
+            // }
+
+            function main() {
+                canvas_context.clearRect(0, 0, canvas.width, canvas.height)  // refreshes the image
+                map_context.clearRect(0, 0, map_canvas.width, map_canvas.height)  // refreshes the image
+                // gamepadAPI.update() //checks for button presses/stick movement on the connected controller)
+                // // game code goes here
+                dataflop = 0
+                sandmap.draw()
+                if (keysPressed['h']) {
+                    sandmap.turn = 1
+                }
+                if (keysPressed['k']) {
+                    sandmap.turn = 0
+                }
+                ////////console.log(selectrect)
             }
-        }
-    }
 
-    for (let t = 0; t < 10; t++) {
-        let agent1 = new Agent(sandmap.blocks[0][t], sandmap.players[0])
-    }
-    for (let t = 0; t < 10; t++) {
-        let agent2 = new Agent(sandmap.blocks[127][t], sandmap.players[1])
-    }
-
-
-    // let pather = new PathFindingAlg(sandmap.blocks, sandmap.blocks[10][10], sandmap.blocks[12][25])
-    // for(let t = 0;t<10;t++){
-    // pather.findPath()
-
-    // }
-
-    function main() {
-        canvas_context.clearRect(0, 0, canvas.width, canvas.height)  // refreshes the image
-        map_context.clearRect(0, 0, map_canvas.width, map_canvas.height)  // refreshes the image
-        // gamepadAPI.update() //checks for button presses/stick movement on the connected controller)
-        // // game code goes here
-        sandmap.draw()
-        if(keysPressed['h']){
-            sandmap.turn = 1
-        }
-        if(keysPressed['k']){
-            sandmap.turn = 0
-        }
-        ////////console.log(selectrect)
-    }
-
-})
+        })
