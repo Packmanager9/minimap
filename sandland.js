@@ -79,7 +79,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     //         }
     //         gamepadAPI.axesStatus = axes;// assign received values
     //         gamepadAPI.buttonsStatus = pressed;
-    //         // //////////console.log(pressed); // return buttons for debugging purposes
+    //         // //////////////console.log(pressed); // return buttons for debugging purposes
     //         return pressed;
     //     },
     //     buttonPressed: function (button, hold) {
@@ -388,7 +388,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.fill()
                 canvas_context.stroke();
             } else {
-                //////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                //////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -540,7 +540,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 map_context.strokeStyle = "black"
                 map_context.stroke();
             } else {
-                //////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                //////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -691,7 +691,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.fill()
                 canvas_context.stroke();
             } else {
-                //////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                //////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -1177,7 +1177,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             }
 
-            //////////console.log(this)
+            //////////////console.log(this)
 
             // this.spring = new Spring(x, y, radius, color, this.pin, memberLength, gravity)
             // this.springs.push(this.spring)
@@ -1388,7 +1388,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         }
                     }
 
-                    sandmap.turn++
+                    // sandmap.turn++
                     sandmap.turn %= sandmap.players.length
                     rectstart.x = structuredpoint.x
                     rectstart.y = structuredpoint.y
@@ -1399,9 +1399,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             // sandmap.players[sandmap.turn].units[t].selected = 0
                         }
                     }
-                    // for(let t = 0;t<sandmap.players[0].units.length;t++){
-                    //     if(sandmap.players[0].units[t].selected == 1){
-                    //         sandmap.players[0].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile )
+                    // for(let t = 0;t<sandmap.players[sandmap.turn].units.length;t++){
+                    //     if(sandmap.players[sandmap.turn].units[t].selected == 1){
+                    //         sandmap.players[sandmap.turn].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile )
                     //     }
                     // }
                 }
@@ -1440,12 +1440,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 structuredpoint.x = Math.floor(structuredpoint.x * .1)
                 structuredpoint.y = Math.floor(structuredpoint.y * .1)
                 sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
-                sandmap.turn++
+                // sandmap.turn++
                 sandmap.turn %= sandmap.players.length
 
                 for (let t = 0; t < sandmap.players[sandmap.turn].units.length; t++) {
                     if (sandmap.players[sandmap.turn].units[t].selected == 1) {
                         sandmap.players[sandmap.turn].units[t].selected = 2
+
+                        ////console.log(sandmap.players[sandmap.turn].selected_tile)
                         sandmap.players[sandmap.turn].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile)
                     }
                 }
@@ -1462,14 +1464,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     structuredpoint.x = Math.floor((sandmap.window.guide.x + (sandmap.window.body.width * .25)) * .1)
                     structuredpoint.y = Math.floor(((sandmap.window.guide.y + (sandmap.window.body.height * .25)) * .1))
                     sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
-                    for (let t = 0; t < sandmap.players[0].units.length; t++) {
-                        if (sandmap.players[0].units[t].selected == 1) {
-                            if(typeof sandmap.players[0].units[t].realPath[sandmap.players[0].units[t].index+1] != "undefined"){
-                                if(sandmap.players[0].units[t].realPath[sandmap.players[0].units[t].index+1] == sandmap.players[sandmap.turn].selected_tile){
+                    for (let t = 0; t < sandmap.players[sandmap.turn].units.length; t++) {
+                        if (sandmap.players[sandmap.turn].units[t].selected == 1) {
+                            if(typeof sandmap.players[sandmap.turn].units[t].realPath[sandmap.players[sandmap.turn].units[t].index+1] != "undefined"){
+                                if(sandmap.players[sandmap.turn].units[t].realPath[sandmap.players[sandmap.turn].units[t].index+1] == sandmap.players[sandmap.turn].selected_tile){
                                     continue
                                 }
                             }
-                            sandmap.players[0].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile)
+                            ////console.log(sandmap.players[sandmap.turn].selected_tile)
+                            sandmap.players[sandmap.turn].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile)
                         }
                     }
                 }
@@ -1553,7 +1556,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         selectrect.height = Math.abs(selectrect.height)
                     }
     
-                    // ////console.log(selectrect)
+                    // ////////console.log(selectrect)
                     // selectrect.draw()
                     // sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
                     // sandmap.turn++
@@ -1576,7 +1579,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     }
     //     function gamepad_control(object, speed = 1) { // basic control for objects using the controler
-    // //         //////////console.log(gamepadAPI.axesStatus[1]*gamepadAPI.axesStatus[0]) //debugging
+    // //         //////////////console.log(gamepadAPI.axesStatus[1]*gamepadAPI.axesStatus[0]) //debugging
     //         if (typeof object.body != 'undefined') {
     //             if(typeof (gamepadAPI.axesStatus[1]) != 'undefined'){
     //                 if(typeof (gamepadAPI.axesStatus[0]) != 'undefined'){
@@ -1760,8 +1763,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             // let link = new Line(this.posx, this.posy, bottle.crew[bottle.selectedcrew].body.x-100, bottle.crew[bottle.selectedcrew].body.y-300, "red", 1)
             // if (link.hypotenuse() < 108) {
-            // //////////////console.log(link)
-            // //////////////console.log(bottle)
+            // //////////////////console.log(link)
+            // //////////////////console.log(bottle)
             // }
             let roundedx = (Math.round((startPoint.x) / 10))
             let roundedy = (Math.round((startPoint.y) / 10))
@@ -1774,13 +1777,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (this.inPath === true) {
                 this.drawPath();
             } else if (this.walkable === false) {
-                // //////////////console.log(this)
+                // //////////////////console.log(this)
 
                 this.createWall();
                 return;
                 // }else if (link.hypotenuse() < 11) {
             } else if (this.posx == roundedx && this.posy == roundedy) {
-                //   //////////////console.log("hit the startNode");
+                //   //////////////////console.log("hit the startNode");
                 //   this.createStartNode();
                 return;
             } else if (this.posx == endPoint.x && this.posy == endPoint.y) {
@@ -1906,37 +1909,45 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.blocks = []
             this.fog = []
             let id = 0
-            for (let t = 0; t < 128; t++) {
-                let rects = []
-                let fogs = []
-                for (let k = 0; k < 128; k++) {
-
-                    let rect = new Tile(t * 10, k * 10, 10, 10, "#AACCFF", id, 10, t * 10, k * 10, true)
-                    let fogtile = new FogTile(t * 10, k * 10, 10, 10, "#090909", id, 10, t * 10, k * 10, true)
-                    if(t%127 > 7 && t%127 < 14 ){
-                        if(k%127 > 7 && k%127 < 14 ){
-                            if(Math.random()< .5){
-                                rect.hotrock = 1
-                                rect.color = "#DDAA44"
-                                if(Math.random()< .5){
-                                    rect.hotrock = 2
-                                    rect.color = "#AA8822"
+            this.players = []
+            this.players.push(new Player('Earthoids', "#AA00AA"))
+            this.players.push(new Player('Cold Itzlerians', "#00FFAA"))
+            for(let g = 0;g<this.players.length+1;g++){
+                for (let t = 0; t < 128; t++) {
+                    let rects = []
+                    let fogs = []
+                    for (let k = 0; k < 128; k++) {
+                        let rect = new Tile(t * 10, k * 10, 10, 10, "#AACCFF", id, 10, t * 10, k * 10, true)
+                        let fogtile = new FogTile(t * 10, k * 10, 10, 10, "#090909", id, 10, t * 10, k * 10, true)
+                        // if(t%127 > 7 && t%127 < 14 ){
+                        //     if(k%127 > 7 && k%127 < 14 ){
+                                if(Math.random()< .01){
+                                    rect.hotrock = 1
+                                    rect.color = "#DDAA44"
+                                    if(Math.random()< .5){
+                                        rect.hotrock = 2
+                                        rect.color = "#AA8822"
+                                    }
                                 }
-                            }
-                        }
+                        //     }
+                        // }
+                        rect.t = t
+                        rect.k = k
+                        rects.push(rect)
+                        fogs.push(fogtile)
+                        id++
                     }
-                    rect.t = t
-                    rect.k = k
-                    rects.push(rect)
-                    fogs.push(fogtile)
-                    id++
+                    ////console.log(g)
+                    if(g == 2){
+                        this.blocks.push(rects)
+                        this.fog.push(fogs)
+                    }else{
+                        this.players[g].blocks.push(rects)
+                        this.players[g].fog.push(fogs)
+                    }
                 }
-                this.blocks.push(rects)
-                this.fog.push(fogs)
             }
             this.window = new Window()
-            this.players = []
-            this.players.push(new Player('Blattadar', "#AA00AA"))
             // this.players.push(new Player('Skribulons', "#696969"))
             // this.players.push(new Player('Palletae', "pink"))
             // this.players.push(new Player('Bulbato', "#00ff00"))
@@ -1967,7 +1978,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 for (var j = 0; j < this.height; j += NODESIZE) {
                     gridPointsByPos[i][j] = countNodes;
                     //here's the problem , need to set the walkability of the node without always being true...
-                    //////////////console.log(countNodes)
+                    //////////////////console.log(countNodes)
                     tempNode = new Tile(i, j, 10, 10, "tan", countNodes, NODESIZE, i, j, true);
 
                     // let cutOut = [0,1 ,2, 3, 4, 5,6,7, 8, 9, 10, 11, 12,13, 18, 19,20, 32,33,  26, 31, 39, 44, 45, 46, 52, 57,58,59,99, 112, 108, 95, 197, 198, 199, 205, 203, 204, 236, 237, 238, 242, 243,244, 216, 212, 229, 225, 210, 211, 223, 224, 217, 218, 230, 231]
@@ -1999,7 +2010,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                     // }
                     // if (wallSet.has(countNodes)) {
-                    // //   //////////////console.log("wallSet had countNodes!")
+                    // //   //////////////////console.log("wallSet had countNodes!")
                     //   tempNode.walkable = false;
                     // }
 
@@ -2059,9 +2070,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             canvas_context.font = "20px arial"
             canvas_context.fillText("Windspeed: " + this.windspeed, this.window.body.x+this.window.body.width+10, 200)
 
-            for (let t = 0; t < this.blocks.length; t++) {
-                for (let k = 0; k < this.blocks[t].length; k++) {
-                    if(this.blocks[t][k].markdraw == 1){
+            for (let t = 0; t < this.players[this.turn].blocks.length; t++) {
+                for (let k = 0; k < this.players[this.turn].blocks[t].length; k++) {
+                    if(this.players[this.turn].blocks[t][k].markdraw == 1){
                         this.blocks[t][k].draw()
                     }
                 }
@@ -2073,14 +2084,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
             //abstract fog to player teams
             for (let t = 0; t < this.fog.length; t++) {
                 for (let k = 0; k < this.fog[t].length; k++) {
-                    if(this.blocks[t][k].markdraw == 1){
-                        this.fog[t][k].timer--
-                        if( this.fog[t][k].timer<=0){
-                            this.fog[t][k].color = "#09090922"
-                            this.fog[t][k].draw()
+                    if(this.players[this.turn].blocks[t][k].markdraw == 1){
+                        this.players[this.turn].fog[t][k].timer--
+                        if( this.players[this.turn].fog[t][k].timer<=0){
+                            this.players[this.turn].fog[t][k].color = "#09090922"
+                            this.players[this.turn].fog[t][k].draw()
                         }
                     }else{
-                        this.fog[t][k].draw()
+                        this.players[this.turn].fog[t][k].draw()
                     }
                 }
             }
@@ -2118,6 +2129,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
     class Player {
         constructor(name, color) {
+            this.blocks = []
+            this.fog = []
             this.name = name
             this.selected_tile = {}
             this.color = color
@@ -2143,7 +2156,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 for (let t = 0; t < this.units.length; t++) {
                     this.units[t].see()
                 }
-                canvas_context.fillText("Hotrock: " + Math.round(this.hotrock), sandmap.window.body.x+sandmap.window.body.width+10, 125)
+                if(sandmap.players.indexOf(this) == sandmap.turn){
+                    canvas_context.fillText("Hotrock: " + Math.round(this.hotrock), sandmap.window.body.x+sandmap.window.body.width+10, 125)
+                }
         }
     }
 
@@ -2199,8 +2214,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // this.startNode = gridPointsByPos[startNode.x][startNode.y];
             let roundedx = (Math.round((startNode.x))) * .1
             let roundedy = (Math.round((startNode.y))) * .1
-            //////////console.log(gridPointsByPos, roundedx, roundedy)
-            //////////////console.log(gridPointsByPos[roundedx] [roundedy])
+            //////////////console.log(gridPointsByPos, roundedx, roundedy)
+            //////////////////console.log(gridPointsByPos[roundedx] [roundedy])
             this.startNode = startNode // gridPointsByPos[roundedx] [roundedy]
             this.endNode = endNode //gridPointsByPos[endNode.x][endNode.y];
             this.currentNode = null;
@@ -2220,21 +2235,21 @@ window.addEventListener('DOMContentLoaded', (event) => {
             var grid = this.grid; //the grid we're working with
 
             var currentNode = this.startNode; // the currentNode, defaults to start node for now
-
-            var endNode = sandmap.gridPoints[this.endNode.id]; //the target node
-            var startNode = sandmap.gridPoints[this.startNode.id];
+            ////console.log(this.endNode)
+            var endNode = this.endNode //sandmap.gridPoints[this.endNode.id]; //the target node
+            var startNode = this.startNode
 
             var tempArray;
 
             var newMovementCost; //the new movement cost to neighbor
 
             openSet.add(currentNode);
-            //   ////////console.log(currentNode)
+            //   ////////////console.log(currentNode)
             // currentNode.color = "black"
-            // //////////////console.log('begin');
+            // //////////////////console.log('begin');
             while (openSet.size > 0) {
                 tempArray = Array.from(openSet);
-                ////////console.log(tempArray)
+                ////////////console.log(tempArray)
                 currentNode = tempArray[0];
 
                 for (var i = 1; i < tempArray.length; i++) {
@@ -2264,10 +2279,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 //   currentNode.drawNode();
                 // }
 
-                ////////console.log(currentNode, endNode)
+                ////////////console.log(currentNode, endNode)
                 // currentNode.color = "black"
-                //////////console.log(currentNode, endNode)
+                ////console.log(currentNode, endNode)
                 if (currentNode.id == endNode.id) {
+                    //console.log(startNode, endNode)
                     retracePath(startNode, endNode, this.agent);
                     //hit the last point, exit's the loop.
 
@@ -2275,7 +2291,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
                 getNeighbors(currentNode).forEach(function (neighbor) {
 
-                    var neighborNode = sandmap.gridPoints[neighbor.id];
+                    var neighborNode = neighbor;
                     var neighborH = neighborNode.getHCost();
                     var neighborG = neighborNode.getGCost();
 
@@ -2329,7 +2345,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         var reverseArray;
         while (currentNode != startNode) {
             path.add(currentNode);
+            //console.log(currentNode)
             currentNode = currentNode.parent;
+            //console.log(currentNode)
             currentNode.inPath = true;
             if (currentNode != startNode)
                 currentNode.drawPath();
@@ -2340,19 +2358,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
         reverseArray.reverse();
         path = new Set(reverseArray);
 
-        //   //////////////console.log(path)
+        //   //////////////////console.log(path)
 
         realPath = Array.from(path)
-        //   //////////////console.log(realPath)
+        //   //////////////////console.log(realPath)
 
         if (realPath.length == 1) {
             // realPath[0].walkable = false
-            ////////////console.log("hit")
+            ////////////////console.log("hit")
             // wallSet.add(realPath[0])
-            ////////////console.log(wallSet)
+            ////////////////console.log(wallSet)
         }
 
-        ////////console.log(realPath)
+        ////////////console.log(realPath)
         if (realPath.length > 0) {
             realPath.unshift(agent.tile)
             agent.realPath = [...realPath]
@@ -2367,17 +2385,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // bottle.crew[bottle.selectedcrew].body.x =startPoint.x+4
             // bottle.crew[bottle.selectedcrew].body.y  = startPoint.y+4
             // startPoint = new Vec2(realPath[0].posx, realPath[0].posy);
-            //////////////console.log(startPoint)
+            //////////////////console.log(startPoint)
             // bottle.crew[bottle.selectedcrew].moving = 1
         } else {
-            //   //////////console.log(endPoint)
+            //   //////////////console.log(endPoint)
 
             //     if(bottle.crew[bottle.selectedcrew].moving == 1){
-            //         // //////////console.log(endPoint)
+            //         // //////////////console.log(endPoint)
             //     // bottle.crew[bottle.selectedcrew].body.x =endPoint.x+96
             //     // bottle.crew[bottle.selectedcrew].body.y  = endPoint.y+284
             //     // bottle.crew[bottle.selectedcrew].moving = 0
-            //     // //////////console.log(endPoint)
+            //     // //////////////console.log(endPoint)
             //         reset()
             //   }
         }
@@ -2425,10 +2443,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (checkX >= 0 && checkX <= 127 && checkY >= 0 && checkY <= 127) { //127 mapsize
 
                     if (x == 0 || y == 0 || Math.random() < .25) {  // randomness leads to organic
-
+                        ////console.log(sandmap)
                         if (checkX < sandmap.blocks.length) {
                             if (checkY < sandmap.blocks[0].length) {
-                                if (sandmap.gridPoints[sandmap.blocks[checkX][checkY].id].walkable !== false) {
+                                if (sandmap.blocks[checkX][checkY].walkable !== false) {
                                     tempList.push(sandmap.blocks[checkX][checkY]);
                                 }
 
@@ -2441,7 +2459,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
         neighborList = tempList;
-        ////////console.log(neighborList)
+        ////////////console.log(neighborList)
         return (neighborList);
 
     }
@@ -2540,7 +2558,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.realPath = [this.tile]
             this.repath = 0
             this.sight = 1+this.movespeed
-            this.decayRate = (this.sight*this.movespeed)*.1
+            this.decayRate = (this.sight*this.movespeed)*.05
             this.health = this.sight*100
             this.maxhealth = this.health
         }
@@ -2573,9 +2591,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
     
                             if(typeof (sandmap.blocks[this.tile.t+t] != undefined)){
                                 if(typeof (sandmap.blocks[this.tile.t+t][this.tile.k+k] != undefined)){
-                                    sandmap.fog[this.tile.t+t][this.tile.k+k].color = "transparent"
-                                    sandmap.fog[this.tile.t+t][this.tile.k+k].timer = 100
-                                    sandmap.blocks[this.tile.t+t][this.tile.k+k].markdraw = 1
+                                    this.faction.fog[this.tile.t+t][this.tile.k+k].color = "transparent"
+                                    this.faction.fog[this.tile.t+t][this.tile.k+k].timer = 100
+                                    this.faction.blocks[this.tile.t+t][this.tile.k+k].markdraw = 1
                                 }
                             }
                             
@@ -2658,8 +2676,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.tile.walkable = true
             this.tile = this.realPath[this.index]
             this.heatwallcheck()
-            //console.log( (this.decayingInTheWind*sandmap.windspeed))
+            //////console.log( (this.decayingInTheWind*sandmap.windspeed))
             this.health -= (this.decayRate*this.decayingInTheWind*sandmap.windspeed)
+            if(this.decayingInTheWind == 0){
+                this.health += this.decayRate
+                if(this.health > this.maxhealth){
+                    this.health = this.maxhealth
+                }
+            }
             if(this.health<=0){
                 this.marked = 1
             }
@@ -2687,22 +2711,41 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }else{
                 this.body = new UnitCircle(this.tile.x + (this.tile.width * .5), this.tile.y + (this.tile.height * .5), 5, this.faction.color)
             }
-            if (this.movespeed == 4) {
-                this.body.color = "gray"
-                this.body.radius = 5.5
+            if(sandmap.players.indexOf(this.faction) == 0){
+                if (this.movespeed == 4) {
+                    this.body.color = "gray"
+                    this.body.radius = 5.5
+                }
+                if (this.movespeed == 2) {
+                    this.body.color = "red"
+                    this.body.radius = 4
+                }
+                if (this.movespeed == 3) {
+                    this.body.color = "magenta"
+                    this.body.radius = 4.8
+                }
+            }else   if(sandmap.players.indexOf(this.faction) == 1){
+
+                if (this.movespeed == 2 || this.movespeed == 1) {
+                    this.body.color = "teal"
+                    this.body.radius = 4
+                    this.movespeed = 1
+                    this.decayRate = 0
+                }
+                if (this.movespeed == 3) {
+                    this.body.color = "blue"
+                    this.body.radius = 4.8
+                    this.decayRate = 0
+                }
+                if (this.movespeed == 4 || this.movespeed == 8) {
+                    this.body.color = "white"
+                    this.body.radius = 6.5
+                    this.movespeed = 8
+                    this.decayRate = 0
+                }
             }
-            if (this.movespeed == 2) {
-                this.body.color = "red"
-                this.body.radius = 4
-            }
-            if (this.movespeed == 3) {
-                this.body.color = "magenta"
-                this.body.radius = 4.8
-            }
-            if (this.movespeed == 5) {
-                this.body.color = "black"
-                this.body.radius = 6
-            }
+
+
             this.body.draw()
             if(this.selected == 1 || this.selected == 2){
                 this.healthbar = new Rectangle(this.body.x-5.5, this.body.y+2.5, 11, 3, "black")
@@ -2715,6 +2758,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     for (let t = 0; t < 10; t++) {
         let agent1 = new Agent(sandmap.blocks[0][t], sandmap.players[0])
+    }
+    for (let t = 0; t < 10; t++) {
+        let agent2 = new Agent(sandmap.blocks[127][t], sandmap.players[1])
     }
 
 
@@ -2730,7 +2776,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
         // gamepadAPI.update() //checks for button presses/stick movement on the connected controller)
         // // game code goes here
         sandmap.draw()
-        ////console.log(selectrect)
+        if(keysPressed['h']){
+            sandmap.turn = 1
+        }
+        if(keysPressed['k']){
+            sandmap.turn = 0
+        }
+        ////////console.log(selectrect)
     }
 
 })
