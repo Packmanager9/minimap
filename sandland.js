@@ -2245,6 +2245,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         draw() {
             for (let t = 0; t < this.buildings.length; t++) {
+                this.buildings[t].clean()
+            }
+            for (let t = 0; t < this.buildings.length; t++) {
                 this.buildings[t].draw()
             }
             for (let t = 0; t < this.units.length; t++) {
@@ -2630,6 +2633,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 tile = sandmap.gridPoints[tile.id + 128]
             }
             this.tile = tile
+
             this.faction = faction
             this.tiles = []
             for (let t = -size; t <= size; t++) {
@@ -2643,6 +2647,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.name = "Wall"
             this.cost = 10
             this.faction.hotrock -= this.cost
+            this.body = new UnitCircle(this.tile.x + (this.tile.width * .5), this.tile.y + (this.tile.height * .5), 5, this.faction.color)
             this.faction.buildings.push(this)
         }
         makeScout(){
@@ -2702,6 +2707,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.spawnbig = new UiRectangle(0,0,0,0, "red")
             }
 
+        }
+        clean(){
+            if(this.health <= 0){
+                this.tile.walkable = 1
+                this.tile.color = "#AACCFF"
+                delete this.tile.wallcolor
+                this.faction.buildings.splice(this.faction.buildings.indexOf(this),1)
+            }
         }
     }
     class Agent {
@@ -2906,7 +2919,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
 
         attack() {
-            if(this.attacktarget.health <= 0 || (Math.abs((this.attacktarget.tile.y-this.tile.y))+Math.abs((this.attacktarget.tile.x-this.tile.x))) > (this.attackrange*11)){
+            if(this.attacktarget.health <= 0 || (Math.abs((this.attacktarget.tile.y-this.tile.y))+Math.abs((this.attacktarget.tile.x-this.tile.x))) > (this.attackrange*21)){
                 for (let t = -this.attackrange; t <= this.attackrange; t++) {
                     for (let k = -this.attackrange; k <= this.attackrange; k++) {
                         if (this.tile.t + t >= 0) {
@@ -2921,6 +2934,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                         break
                                                     }
                                                 }
+                                                for (let g = 0; g < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings.length; g++) {
+                                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
+                                                        this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings[g]
+                                                        break
+                                                    }
+                                                }
                                             }
                                         }
                                     }
@@ -2930,7 +2949,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                 }
             }else{
-                if(Math.abs(this.attacktarget.tile.x-this.tile.x) + Math.abs((this.attacktarget.tile.y-this.tile.y)) > (this.attackrange*11)){      
+                if(Math.abs(this.attacktarget.tile.x-this.tile.x) + Math.abs((this.attacktarget.tile.y-this.tile.y)) > (this.attackrange*21)){      
                     this.attacktarget = {}
                     this.attacktarget.health = 0
                     return
@@ -3201,10 +3220,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
 
             for (let t = 0; t < 3; t++) {
-                let agent1 = new Agent(sandmap.blocks[0][t], sandmap.players[0])
+                let agent1 = new Agent(sandmap.blocks[2][t+1], sandmap.players[0])
             }
             for (let t = 0; t < 3; t++) {
-                let agent2 = new Agent(sandmap.blocks[127][t], sandmap.players[1])
+                let agent2 = new Agent(sandmap.blocks[124][t+1], sandmap.players[1])
             }
 
 
