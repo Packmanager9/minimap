@@ -1391,9 +1391,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             wet = 1
                         }
                     }
+                        if (sandmap.players[sandmap.turn].blocks[sandmap.players[sandmap.turn].selected_tile.t][sandmap.players[sandmap.turn].selected_tile.k].markdraw !== 1) {
+                            wet = 1
+                        }
                     if (sandmap.players[sandmap.turn].hotrock < 10) {
                         wet = 1
                     }
+
+                        if (sandmap.players[sandmap.turn].blocks[sandmap.players[sandmap.turn].selected_tile.t][sandmap.players[sandmap.turn].selected_tile.k].markdraw !== 1) {
+                            wet = 1
+                        }
                     if (wet == 0) {
                         let building = new Building(sandmap.players[sandmap.turn].selected_tile, sandmap.players[sandmap.turn], 0)
                     }
@@ -1434,6 +1441,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         }
                     }
                     if (sandmap.players[sandmap.turn].hotrock < 70) {
+                        wet = 1
+                    }
+                    if (sandmap.players[sandmap.turn].blocks[sandmap.players[sandmap.turn].selected_tile.t][sandmap.players[sandmap.turn].selected_tile.k].markdraw !== 1) {
                         wet = 1
                     }
                     if (wet == 0) {
@@ -1630,6 +1640,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         }
                     }
                     if (sandmap.players[sandmap.turn].hotrock < 10) {
+                        wet = 1
+                    }
+
+                    if (sandmap.players[sandmap.turn].blocks[sandmap.players[sandmap.turn].selected_tile.t][sandmap.players[sandmap.turn].selected_tile.k].markdraw !== 1) {
                         wet = 1
                     }
                     if (wet == 0) {
