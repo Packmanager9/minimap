@@ -1792,7 +1792,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             var F;
 
             var parent;
-            this.inPath = false;
+            // this.inPath = false;
             this.getGCost = this.getValueG;
             this.getHCost = this.getValueH;
 
@@ -1869,30 +1869,30 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // //////////////////console.log(link)
             // //////////////////console.log(bottle)
             // }
-            let roundedx = (Math.round((startPoint.x) / 10))
-            let roundedy = (Math.round((startPoint.y) / 10))
-            if (this.walkable !== false) {
-                //gctx.fillRect(this.posx, this.posy, this.size, this.size);
-                //gctx.rect(this.posx, this.posy, this.size, this.size);
-                //gctx.closePath();
-                //gctx.stroke();
-            }
-            if (this.inPath === true) {
-                this.drawPath();
-            } else if (this.walkable === false) {
-                // //////////////////console.log(this)
+            // let roundedx = (Math.round((startPoint.x) / 10))
+            // let roundedy = (Math.round((startPoint.y) / 10))
+            // if (this.walkable !== false) {
+            //     //gctx.fillRect(this.posx, this.posy, this.size, this.size);
+            //     //gctx.rect(this.posx, this.posy, this.size, this.size);
+            //     //gctx.closePath();
+            //     //gctx.stroke();
+            // }
+            // if (this.inPath === true) {
+            //     // this.drawPath();
+            // } else if (this.walkable === false) {
+            //     // //////////////////console.log(this)
 
-                this.createWall();
-                return;
-                // }else if (link.hypotenuse() < 11) {
-            } else if (this.posx == roundedx && this.posy == roundedy) {
-                //   //////////////////console.log("hit the startNode");
-                //   this.createStartNode();
-                return;
-            } else if (this.posx == endPoint.x && this.posy == endPoint.y) {
-                //   this.createEndNode();
+            //     // this.createWall();
+            //     return;
+            //     // }else if (link.hypotenuse() < 11) {
+            // } else if (this.posx == roundedx && this.posy == roundedy) {
+            //     //   //////////////////console.log("hit the startNode");
+            //     //   this.createStartNode();
+            //     return;
+            // } else if (this.posx == endPoint.x && this.posy == endPoint.y) {
+            //     //   this.createEndNode();
 
-            }
+            // }
 
         }
         draw() {
@@ -2353,7 +2353,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
             //   ////////////console.log(currentNode)
             // currentNode.color = "black"
             // //////////////////console.log('begin');
+            
+            let j = 0 
+            let timeout = 0
             while (openSet.size > 0) {
+                j++
+                if(j > 50000){
+                    timeout = 1
+                }
                 tempArray = Array.from(openSet);
                 ////////////console.log(tempArray)
                 currentNode = tempArray[0];
@@ -2362,7 +2369,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     //this if statement is solely to build the starting walls.
                     if (tempArray[i].getValueF() < currentNode.getValueF() || tempArray[i].getValueF() == currentNode.getValueF() && tempArray[i].getValueH() < currentNode.getValueH()) {
                         currentNode = tempArray[i]; //sets the currentNode to openSetI if it has a lower F value, or an = F value with a lower HCost.
-
+                        if(currentNode.walkable == false){
+                            j+=100
+                        }
                     }
                 }
 
@@ -2391,6 +2400,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (currentNode.id == endNode.id) {
                     //console.log(startNode, endNode)
                     retracePath(startNode, endNode, this.agent);
+                    //hit the last point, exit's the loop.
+
+                    return; //exits loop
+                }else if(timeout == 1){
+
+                    //console.log(startNode, endNode)
+                    retracePath(startNode, currentNode, this.agent);
                     //hit the last point, exit's the loop.
 
                     return; //exits loop
@@ -2454,9 +2470,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             //console.log(currentNode)
             currentNode = currentNode.parent;
             //console.log(currentNode)
-            currentNode.inPath = true;
-            if (currentNode != startNode)
-                currentNode.drawPath();
+            // currentNode.inPath = true;
+            // if (currentNode != startNode)
+            //     currentNode.drawPath();
         }
 
         reverseArray = Array.from(path);
@@ -2747,6 +2763,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.attacktarget.health = 0
             this.attackcounter = 0
             this.projectilespeed = 20
+            this.health = 70
+            this.maxhealth = this.health
         }
         isScout(){
             this.movespeed = 2
@@ -2766,6 +2784,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.attackcounter = 0
             this.projectilespeed = 20
             this.decayRate = (this.sight * this.movespeed) * .05
+            this.health = 100
+            this.maxhealth = this.health
         }
         isInfantry(){
             this.movespeed = 4
@@ -2785,6 +2805,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.attackcounter = 0
             this.projectilespeed = 20
             this.decayRate = (this.sight * this.movespeed) * .05
+            this.health = 350
+            this.maxhealth = this.health
         }
         isHarvester(){
             this.movespeed = 5
@@ -2804,6 +2826,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.attackcounter = 0
             this.projectilespeed = 20
             this.decayRate = (this.sight * this.movespeed) * .05
+            this.health = 700
+            this.maxhealth = this.health
         }
         makeNymph(){
             if(this.faction.hotrock >= 100){
@@ -2817,6 +2841,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 agent1.damage = (agent1.body.radius*.5)
                 agent1.name = "Nymph"
                 agent1.nymph = 1
+                agent1.health = 200
+                agent1.maxhealth = agent1.health
             }
         }
         metamorph1(){
@@ -2831,6 +2857,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.damage =(this.body.radius+1)
                 this.name = "Scurrier"
                 this.nymph = 2
+                this.health = 500
+                this.maxhealth = this.health
             }
         }
         metamorph2(){
@@ -2846,6 +2874,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.name = "Imago"
                 this.imago = 1
                 this.nymph = 0
+                this.health = 1000
+                this.maxhealth = this.health
             }
         }
         dataOutput() {
@@ -2862,7 +2892,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
                    if(this.nymph==1){
                     this.morph = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 65, 50,50, "Blue")
                     this.morph.draw()
+                    this.morph2 = {}
+                    this.morph2.isPointInside = empty
                    }else{
+                       this.morph = {}
+                       this.morph.isPointInside = empty
                     this.morph2 = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 65, 50,50, "white")
                     this.morph2.draw()
                    }
@@ -3043,13 +3077,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (this.tile.hotrock == 1) {
                         this.faction.hotrock += this.movespeed * .01
                         if(this.nymph == 1){
-                            this.faction.hotrock += this.movespeed * .02
+                            this.faction.hotrock += this.movespeed * .035
                         }
                     }
                     if (this.tile.hotrock == 2) {
                         this.faction.hotrock += this.movespeed * .02
                         if(this.nymph == 1){
-                            this.faction.hotrock += this.movespeed * .04
+                            this.faction.hotrock += this.movespeed * .07
                         }
                     }
                     this.tile.walkable = false
