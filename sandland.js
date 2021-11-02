@@ -1,12 +1,130 @@
 
 window.addEventListener('DOMContentLoaded', (event) => {
 
+    let start = 0
     function empty() {
 
     }
     let dataflop = 0
     let snow = new Image()
     snow.src = 'smoothsnow2.png'
+
+    let sounds = []
+    
+    let hopeyouknow = new Audio()
+    hopeyouknow.src = "hopeyouknow.mp3"
+    sounds.push(hopeyouknow)
+    let myfuneral = new Audio()
+    myfuneral.src = "myfuneral.mp3"
+    sounds.push(myfuneral)
+    let systems = new Audio()
+    systems.src = "systems.mp3"
+    sounds.push(systems)
+    let redlight = new Audio()
+    redlight.src = "redlight.mp3"
+    sounds.push(redlight)
+    let feelcold = new Audio()
+    feelcold.src = "feelcold.mp3"
+    sounds.push(feelcold)
+    let hitsomething = new Audio()
+    hitsomething.src = "hitsomething.mp3"
+    sounds.push(hitsomething)
+    let rollout = new Audio()
+    rollout.src = "rollout.mp3"
+    sounds.push(rollout)
+    let overtime = new Audio()
+    overtime.src = "overtime.mp3"
+    sounds.push(overtime)
+    let movin = new Audio()
+    movin.src = "movin.mp3"
+    sounds.push(movin)
+
+
+    let donttellme = new Audio()
+    donttellme.src = "onmyway.mp3"
+    sounds.push(donttellme)
+    let reporting = new Audio()
+    reporting.src = "reporting.mp3"
+    sounds.push(reporting)
+    let onmyway = new Audio()
+    onmyway.src = "onmyway.mp3"
+    sounds.push(onmyway)
+    let lesgo = new Audio()
+    lesgo.src = "lesgo.mp3"
+    sounds.push(lesgo)
+    let lightemup = new Audio()
+    lightemup.src = "lightemup.mp3"
+    sounds.push(lightemup)
+    let tellmywife = new Audio()
+    tellmywife.src = "tellmywife.mp3"
+    sounds.push(tellmywife)
+    let deathrattle = new Audio()
+    deathrattle.src = "deathrattle.mp3"
+    sounds.push(deathrattle)
+    let orders = new Audio()
+    orders.src = "orders.mp3"
+    sounds.push(orders)
+    let righton = new Audio()
+    righton.src = "righton.mp3"
+    sounds.push(righton)
+    let freezin = new Audio()
+    freezin.src = "freezin.mp3"
+    sounds.push(freezin)
+
+    
+    let combatinit = new Audio()
+    combatinit.src = "combatinit.mp3"
+    sounds.push(combatinit)
+    let online = new Audio()
+    online.src = "online.mp3"
+    sounds.push(online)
+    let scanning = new Audio()
+    scanning.src = "scanning.mp3"
+    sounds.push(scanning)
+    let hello = new Audio()
+    hello.src = "hello.mp3"
+    sounds.push(hello)
+    let pathfound = new Audio()
+    pathfound.src = "pathfound.mp3"
+    sounds.push(pathfound)
+    let pathing = new Audio()
+    pathing.src = "pathing.mp3"
+    sounds.push(pathing)
+    let signallost = new Audio()
+    signallost.src = "signallost.mp3"
+    sounds.push(signallost)
+    let error = new Audio()
+    error.src = "error.mp3"
+    sounds.push(signallost)
+    let collect = new Audio()
+    collect.src = "collect.mp3"
+    sounds.push(collect)
+
+
+    
+    function soundCancel(){
+        for(let t = 0;t<sounds.length;t++){
+            sounds[t].pause()
+            sounds[t].currentTime = 0
+        }
+    }
+
+    let harvester = new Image()
+    harvester.src = "harvester2.png"
+    let drone = new Image()
+    drone.src = "drone1.png"
+    let infantry = new Image()
+    infantry.src = "infantry.png"
+    let imago = new Image()
+    imago.src = "imago1.png"
+    let scuttler = new Image()
+    scuttler.src = "scuttler.png"
+    let nymph = new Image()
+    nymph.src = "nymph.png"
+    let hotrock1 = new Image()
+    hotrock1.src = "hotrock1.png"
+    let hotrock2 = new Image()
+    hotrock2.src = "hotrock2.png"
     let rectstart = {}
     rectstart.x = 0
     rectstart.y = 0
@@ -80,7 +198,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     //         }
     //         gamepadAPI.axesStatus = axes;// assign received values
     //         gamepadAPI.buttonsStatus = pressed;
-    //         // //////////////console.log(pressed); // return buttons for debugging purposes
+    //         // ////////////////console.log(pressed); // return buttons for debugging purposes
     //         return pressed;
     //     },
     //     buttonPressed: function (button, hold) {
@@ -435,7 +553,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.fill()
                 canvas_context.stroke();
             } else {
-                //////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                ////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -587,7 +705,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 map_context.strokeStyle = "black"
                 map_context.stroke();
             } else {
-                //////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                ////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -738,7 +856,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.fill()
                 canvas_context.stroke();
             } else {
-                //////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                ////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -1224,7 +1342,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             }
 
-            //////////////console.log(this)
+            ////////////////console.log(this)
 
             // this.spring = new Spring(x, y, radius, color, this.pin, memberLength, gravity)
             // this.springs.push(this.spring)
@@ -1394,15 +1512,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (sandmap.players[sandmap.turn].blocks[sandmap.players[sandmap.turn].selected_tile.t][sandmap.players[sandmap.turn].selected_tile.k].markdraw !== 1) {
                         wet = 1
                     }
-                    if (sandmap.players[sandmap.turn].hotrock < 10) {
-                        wet = 1
-                    }
+                    // if (sandmap.players[sandmap.turn].hotrock < 10) {
+                    //     wet = 1
+                    // }
 
                     if (sandmap.players[sandmap.turn].blocks[sandmap.players[sandmap.turn].selected_tile.t][sandmap.players[sandmap.turn].selected_tile.k].markdraw !== 1) {
                         wet = 1
                     }
                     if (wet == 0) {
-                        let building = new Building(sandmap.players[sandmap.turn].selected_tile, sandmap.players[sandmap.turn], 0)
+                        sandmap.players[sandmap.turn].buildWall(sandmap.players[sandmap.turn].selected_tile, 0)
                     }
                 } else if (keysPressed['x']) {
                     let structuredpoint = new Point(0, 0)
@@ -1440,18 +1558,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             wet = 1
                         }
                     }
-                    if (sandmap.players[sandmap.turn].hotrock < 70) {
-                        wet = 1
-                    }
+                    // if (sandmap.players[sandmap.turn].hotrock < 70) {
+                    //     wet = 1
+                    // }
                     if (sandmap.players[sandmap.turn].blocks[sandmap.players[sandmap.turn].selected_tile.t][sandmap.players[sandmap.turn].selected_tile.k].markdraw !== 1) {
                         wet = 1
                     }
                     if (wet == 0) {
-                        let building = new Building(sandmap.players[sandmap.turn].selected_tile, sandmap.players[sandmap.turn], 0)
-                        building.barracks = 1
-                        building.name = "Barracks"
-                        building.health = 500
-                        building.maxhealth = building.health
+                        sandmap.players[sandmap.turn].buildBarracks(sandmap.players[sandmap.turn].selected_tile, 0)
+                        // let building = new Building(sandmap.players[sandmap.turn].selected_tile, sandmap.players[sandmap.turn], 0)
+
                     }
                 } else {
                     let structuredpoint = new Point(0, 0)
@@ -1483,6 +1599,30 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     rectstart.y = structuredpoint.y
                     for (let t = 0; t < sandmap.players[sandmap.turn].units.length; t++) {
                         if (sandmap.players[sandmap.turn].selected_tile == sandmap.players[sandmap.turn].units[t].tile) {
+                            if( sandmap.players[sandmap.turn].units[t].selected == 0){
+                                soundCancel()
+                                if(sandmap.players[sandmap.turn].units[t].drone == 1){
+                                    if(Math.random()<.5){
+                                        hello.play()
+                                    }else{
+                                        scanning.play()
+                                    }
+                                }
+                                if(sandmap.players[sandmap.turn].units[t].infantry == 1){
+                                    if(Math.random()<.8){
+                                        orders.play()
+                                    }else{
+                                        freezin.play()
+                                    }
+                                }
+                                if(sandmap.players[sandmap.turn].units[t].harvester == 1){
+                                    if(Math.random()<.9){
+                                        rollout.play()
+                                    }else{
+                                        hitsomething.play()
+                                    }
+                                }
+                            }
                             sandmap.players[sandmap.turn].units[t].selected = 2
                         } else {
                             // sandmap.players[sandmap.turn].units[t].selected = 0
@@ -1558,8 +1698,46 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (sandmap.players[sandmap.turn].units[t].selected == 1) {
                         sandmap.players[sandmap.turn].units[t].selected = 2
 
-                        ////console.log(sandmap.players[sandmap.turn].selected_tile)
+                        //////console.log(sandmap.players[sandmap.turn].selected_tile)
                         sandmap.players[sandmap.turn].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile)
+                        if(sandmap.players[sandmap.turn].selected_tile.hotrock > 0){
+
+                            soundCancel()
+                            if( sandmap.players[sandmap.turn].units[t].drone == 1){
+                                collect.play()
+                            }
+                            if( sandmap.players[sandmap.turn].units[t].infantry == 1){
+                                righton.play()
+                            }
+                            if( sandmap.players[sandmap.turn].units[t].harvester == 1){
+                                overtime.play()
+                            }
+                        }else{
+
+                            soundCancel()
+                            if( sandmap.players[sandmap.turn].units[t].harvester == 1){
+                                movin.play()
+                            }
+                            if( sandmap.players[sandmap.turn].units[t].drone == 1){
+                                if(Math.random()<.5){
+                                    pathfound.play()
+                                }else{
+                                    pathing.play()
+                                }
+                            }
+
+                            if( sandmap.players[sandmap.turn].units[t].infantry == 1){
+                                if(Math.random()<.3){
+                                    lesgo.play()
+                                }else if(Math.random()<.3){
+                                    onmyway.play()
+                                }else{
+                                    donttellme.play()
+                                }
+                            }
+                        }
+
+
                         for (let k = 0; k < sandmap.players[Math.abs(sandmap.turn - 1)].units.length; k++) {
                             if (sandmap.players[sandmap.turn].selected_tile == sandmap.players[Math.abs(sandmap.turn - 1)].units[k].tile) {
                                 sandmap.players[sandmap.turn].units[t].attacktarget = sandmap.players[Math.abs(sandmap.turn - 1)].units[k]
@@ -1587,8 +1765,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     continue
                                 }
                             }
-                            ////console.log(sandmap.players[sandmap.turn].selected_tile)
+                            //////console.log(sandmap.players[sandmap.turn].selected_tile)
                             sandmap.players[sandmap.turn].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile)
+                            if(sandmap.players[sandmap.turn].selected_tile.hotrock > 0){
+
+                                // soundCancel()
+                                // if( sandmap.players[sandmap.turn].units[t].drone == 1){
+                                //     collect.play()
+                                // }
+                            }
                         }
                     }
                 }
@@ -1606,7 +1791,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (TIP_engine.x <= sandmap.window.body.x + sandmap.window.body.width) {
                 for (let t = 0; t < sandmap.players[sandmap.turn].units.length; t++) {
                     if (selectrect.isPointInside(sandmap.players[sandmap.turn].units[t].body)) {
+     
                         sandmap.players[sandmap.turn].units[t].selected = 1
+                   
+                        
                     } else {
                         if (sandmap.players[sandmap.turn].units[t].selected == 2) {
                             sandmap.players[sandmap.turn].units[t].selected = 1
@@ -1644,15 +1832,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             wet = 1
                         }
                     }
-                    if (sandmap.players[sandmap.turn].hotrock < 10) {
-                        wet = 1
-                    }
+                    // if (sandmap.players[sandmap.turn].hotrock < 10) {
+                    //     wet = 1
+                    // }
 
                     if (sandmap.players[sandmap.turn].blocks[sandmap.players[sandmap.turn].selected_tile.t][sandmap.players[sandmap.turn].selected_tile.k].markdraw !== 1) {
                         wet = 1
                     }
                     if (wet == 0) {
-                        let building = new Building(sandmap.players[sandmap.turn].selected_tile, sandmap.players[sandmap.turn], 0)
+                        // let building = new Building(sandmap.players[sandmap.turn].selected_tile, sandmap.players[sandmap.turn], 0)
+
+                        sandmap.players[sandmap.turn].buildWall(sandmap.players[sandmap.turn].selected_tile, 0)
                     }
                 } else {
 
@@ -1676,7 +1866,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         selectrect.height = Math.abs(selectrect.height)
                     }
 
-                    // ////////console.log(selectrect)
+                    // //////////console.log(selectrect)
                     // selectrect.draw()
                     // sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
                     // sandmap.turn++
@@ -1699,7 +1889,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     }
     //     function gamepad_control(object, speed = 1) { // basic control for objects using the controler
-    // //         //////////////console.log(gamepadAPI.axesStatus[1]*gamepadAPI.axesStatus[0]) //debugging
+    // //         ////////////////console.log(gamepadAPI.axesStatus[1]*gamepadAPI.axesStatus[0]) //debugging
     //         if (typeof object.body != 'undefined') {
     //             if(typeof (gamepadAPI.axesStatus[1]) != 'undefined'){
     //                 if(typeof (gamepadAPI.axesStatus[0]) != 'undefined'){
@@ -1806,7 +1996,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.ymom = 0
             this.koffset = 0
             this.toffset = 0
-
+            // this.markdraw = 1 //remove for fog
 
             var F;
 
@@ -1885,8 +2075,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             // let link = new Line(this.posx, this.posy, bottle.crew[bottle.selectedcrew].body.x-100, bottle.crew[bottle.selectedcrew].body.y-300, "red", 1)
             // if (link.hypotenuse() < 108) {
-            // //////////////////console.log(link)
-            // //////////////////console.log(bottle)
+            // ////////////////////console.log(link)
+            // ////////////////////console.log(bottle)
             // }
             // let roundedx = (Math.round((startPoint.x) / 10))
             // let roundedy = (Math.round((startPoint.y) / 10))
@@ -1899,13 +2089,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // if (this.inPath === true) {
             //     // this.drawPath();
             // } else if (this.walkable === false) {
-            //     // //////////////////console.log(this)
+            //     // ////////////////////console.log(this)
 
             //     // this.createWall();
             //     return;
             //     // }else if (link.hypotenuse() < 11) {
             // } else if (this.posx == roundedx && this.posy == roundedy) {
-            //     //   //////////////////console.log("hit the startNode");
+            //     //   ////////////////////console.log("hit the startNode");
             //     //   this.createStartNode();
             //     return;
             // } else if (this.posx == endPoint.x && this.posy == endPoint.y) {
@@ -1915,6 +2105,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         }
         draw() {
+            if(this.sourcerock <=0 && this.hotrock != 0){
+                this.hotrock = 0
+                this.color = "#AACCFF"
+                sandmap.hotrocks.splice(sandmap.hotrocks.indexOf(this), 1)
+            }
+            if(this.hotrock == 1){
+                map_context.drawImage(hotrock1, this.x, this.y)
+            }else if(this.hotrock == 2){
+                map_context.drawImage(hotrock2, this.x, this.y)
+            }else{
             if (typeof this.wallcolor != "undefined") {
                 map_context.fillStyle = this.color
                 map_context.fillRect(this.x, this.y, this.width, this.height)
@@ -1946,6 +2146,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     this.koffset = 189 - this.t
                 }
             }
+        }
         }
         move() {
             this.x += this.xmom
@@ -2019,7 +2220,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     class Sandmap {
         constructor(width, height, posx, posy, gridPoints) {
-            this.windspeed = .5
+            this.windspeed = 1
             this.winddiry = 1
             this.winddirx = 0
             this.width = width;
@@ -2031,9 +2232,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.blocks = []
             this.fog = []
             let id = 0
+            this.hotrocks = []
             this.players = []
-            this.players.push(new Player('Earthoids', "#AA00AA"))
-            this.players.push(new Player('Cold Itzlerians', "#00FFAA"))
+            this.players.push(new Player('Earthoids', "#AA00AA", 0, 0))
+            this.players.push(new Player('Cold Itzlerians', "#00FFAA", 1, 1))
             for (let g = 0; g < this.players.length + 1; g++) {
                 for (let t = 0; t < 128; t++) {
                     let rects = []
@@ -2041,27 +2243,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     for (let k = 0; k < 128; k++) {
                         let rect = new Tile(t * 10, k * 10, 10, 10, "#AACCFF", id, 10, t * 10, k * 10, true)
                         let fogtile = new FogTile(t * 10, k * 10, 10, 10, "#090909", id, 10, t * 10, k * 10, true)
-                        // if(t%127 > 7 && t%127 < 14 ){
-                        //     if(k%127 > 7 && k%127 < 14 ){
                         if (Math.random() < .01) {
                             rect.hotrock = 1
+                            rect.sourcerock = 300
                             rect.walkable = true
                             rect.color = "#DDAA44"
                             if (Math.random() < .5) {
                                 rect.hotrock = 2
+                                rect.sourcerock = 600
                                 rect.walkable = true
                                 rect.color = "#AA8822"
                             }
                         }
-                        //     }
-                        // }
                         rect.t = t
                         rect.k = k
                         rects.push(rect)
                         fogs.push(fogtile)
                         id++
                     }
-                    ////console.log(g)
                     if (g == 2) {
                         this.blocks.push(rects)
                         this.fog.push(fogs)
@@ -2071,6 +2270,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                 }
             }
+
+
             this.window = new Window()
             // this.players.push(new Player('Skribulons', "#696969"))
             // this.players.push(new Player('Palletae', "pink"))
@@ -2082,8 +2283,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
             for (let t = 0; t < this.blocks.length; t++) {
                 for (let k = 0; k < this.blocks[t].length; k++) {
                     this.gridPoints.push(this.blocks[t][k])
+                    if (this.blocks[t][k].hotrock == 1 || this.blocks[t][k].hotrock == 2) {
+                        this.hotrocks.push(this.blocks[t][k])
+                    }
                 }
             }
+            //console.log(this)
         }
 
         createGrid() {
@@ -2102,7 +2307,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 for (var j = 0; j < this.height; j += NODESIZE) {
                     gridPointsByPos[i][j] = countNodes;
                     //here's the problem , need to set the walkability of the node without always being true...
-                    //////////////////console.log(countNodes)
+                    ////////////////////console.log(countNodes)
                     tempNode = new Tile(i, j, 10, 10, "tan", countNodes, NODESIZE, i, j, true);
 
                     // let cutOut = [0,1 ,2, 3, 4, 5,6,7, 8, 9, 10, 11, 12,13, 18, 19,20, 32,33,  26, 31, 39, 44, 45, 46, 52, 57,58,59,99, 112, 108, 95, 197, 198, 199, 205, 203, 204, 236, 237, 238, 242, 243,244, 216, 212, 229, 225, 210, 211, 223, 224, 217, 218, 230, 231]
@@ -2134,7 +2339,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                     // }
                     // if (wallSet.has(countNodes)) {
-                    // //   //////////////////console.log("wallSet had countNodes!")
+                    // //   ////////////////////console.log("wallSet had countNodes!")
                     //   tempNode.walkable = false;
                     // }
 
@@ -2151,16 +2356,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         draw() {
 
-            if (Math.random() < .002) {
+            if (Math.random() < .01) {
                 let chooser = Math.floor(Math.random() * 2)
                 if (chooser == 0) {
                     if (this.windspeed > .5) {
-                        this.windspeed /= 1.5
+                        this.windspeed /= 1.2
                     }
                 }
                 if (chooser == 1) {
-                    if (this.windspeed < 5) {
-                        this.windspeed *= 1.5
+                    if (this.windspeed < 2) {
+                        this.windspeed *= 1.2
                     }
                 }
                 if (chooser == 2) {
@@ -2192,13 +2397,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             canvas_context.fillStyle = this.players[this.turn].color
             canvas_context.font = "20px arial"
-            canvas_context.fillText("Windspeed: " + this.windspeed, this.window.body.x + this.window.body.width + 10, 200)
+            canvas_context.fillText("Windspeed: " + Math.round(this.windspeed*10)/10, this.window.body.x + this.window.body.width + 10, 200)
 
             for (let t = 0; t < this.players[this.turn].blocks.length; t++) {
                 for (let k = 0; k < this.players[this.turn].blocks[t].length; k++) {
                     if (this.players[this.turn].blocks[t][k].markdraw == 1) {
-                        this.blocks[t][k].draw()
+                
+                            this.blocks[t][k].draw()
+                        
                     }
+                }
+            }
+            for (let t = 0; t < this.players.length; t++) {
+                if (this.players[t].isAI == 1) {
+                    this.players[t].ai()
                 }
             }
             for (let t = 0; t < this.players.length; t++) {
@@ -2252,7 +2464,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     }
     class Player {
-        constructor(name, color) {
+        constructor(name, color, ai, type) {
+            this.attacktimeout = 0 
             this.blocks = []
             this.fog = []
             this.name = name
@@ -2260,7 +2473,140 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.color = color
             this.buildings = []
             this.units = []
-            this.hotrock = 100
+            this.hotrock = 250
+            this.isAI = ai
+            this.type = type
+            this.chunk = 0
+            this.clickrate = 50
+            this.aimode = 0
+        }
+        ai() {
+            let index = 0
+            this.chunk++
+            if(this.aimode == 1){
+                for (let t = 0; t < this.units.length; t++) {
+                    if(this.units[t].imago == 1){
+                        this.units[t].makeNymph()
+                    }
+                }
+                let j = 0
+                if(Math.random() < this.units.length*.075){
+                    for (let t = 0; t < this.units.length; t++) {
+                        if(this.units[t].imago !== 1){
+                            //hardcoding this gid helf mi
+                                if(Math.random() < .3){
+                                    if(typeof sandmap.players[0].units[Math.floor(Math.random() * sandmap.players[0].units.length)].tile !== "undefined"){
+                                        j++
+                                        this.units[t].pathTo(sandmap.players[0].units[Math.floor(Math.random() * sandmap.players[0].units.length)].tile)
+                                        if(j > 8){
+                                            break
+                                        }
+                                    }
+                                }
+                        }
+                    }
+                    this.aimode = 0
+                }
+            }else if(this.aimode == 0){
+                let j = 0
+
+                if (this.chunk % this.clickrate == 1) {
+                    for (let t = 0; t < this.units.length; t++) {
+                        if(this.units[t].realPath.length - 1 == this.units[t].index || this.units[t].realPath[this.units[t].index].walkable !== true){
+                            if (this.units[t].tile.hotrock != 1 && this.units[t].tile.hotrock != 2) {
+                                let max = 999999999
+                                for (let h = 0; h < sandmap.hotrocks.length; h++) {
+                                    if (sandmap.hotrocks[h].walkable == true) {
+                                        let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
+                                        // //console.log(link)
+                                        if (link < max) {
+                                            max = link
+                                            index = h
+                                        }
+                                    }
+                                }
+
+                                if(typeof sandmap.hotrocks[index] !== "undefined"){
+                                    if(this.units[t].attacktarget.health > 0){
+
+                                    }else{
+                                        j++
+                                        this.units[t].pathTo(sandmap.hotrocks[index])
+                                        if(j > 6){
+                                            break
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+    
+
+                if(Math.random() < .1){
+                    for (let t = 0; t < this.units.length; t++) {
+                        if(this.units[t].nymph == 1){
+                            this.units[t].attackmove()
+                        }
+                        if(this.units[t].nymph == 2){
+                            this.units[t].attackmove()
+                        }
+                    }
+                }
+    
+                if(Math.random() < (.3/this.units.length)){
+                    for (let t = 0; t < this.units.length; t++) {
+                        if(this.units[t].imago == 1){
+                            this.units[t].makeNymph()
+                            if(Math.random()<.1){
+                                break
+                            }
+                        }
+                    }
+                }
+                if(Math.random() <(this.units.length*.001)){
+                    for (let t = 0; t < this.units.length; t++) {
+                        if(this.units[t].nymph == 1){
+                        this.units[t].metamorph1()
+                        break
+                        }
+                    }
+                }
+                if(Math.random() < (this.units.length*.0009)){
+                    for (let t = 0; t < this.units.length; t++) {
+                        if(this.units[t].nymph == 2){
+                        this.units[t].metamorph2()
+                        break
+                        }
+                    }
+                }
+
+                if(this.units.length > 20){
+                    if(this.attacktimeout <= 0){
+                        this.aimode = 1
+                        this.attacktimeout = 2000
+                    }
+                    this.attacktimeout--
+                }
+            }
+
+        }
+        buildWall(tile) {
+            if (this.hotrock >= 10) {
+                this.hotrock -= 10
+                let building = new Building(tile, this, 0)
+            }
+        }
+        buildBarracks(tile) {
+
+            if (this.hotrock >= 70) {
+                this.hotrock -= 10
+                let building = new Building(tile, this, 0)
+                building.barracks = 1
+                building.name = "Barracks"
+                building.health = 500
+                building.maxhealth = building.health
+            }
         }
         draw() {
             for (let t = 0; t < this.buildings.length; t++) {
@@ -2278,6 +2624,29 @@ window.addEventListener('DOMContentLoaded', (event) => {
             for (let t = 0; t < this.units.length; t++) {
                 if (this.units[t].marked == 1) {
                     this.units[t].tile.walkable = true
+                    soundCancel()
+                    if(this.units[t].drone == 1){
+                        if(Math.random()<.5){
+                            signallost.play()
+                        }else{
+                            error.play()
+                        }
+                    }
+                    if(this.units[t].infantry == 1){
+                        if(Math.random()<.5){
+                        tellmywife.play()
+                        }else{
+                        deathrattle.play()
+                        }
+                    }
+                    if(this.units[t].harvester == 1){
+                        if(Math.random()<.5){
+                        feelcold.play()
+                        }else{
+                        redlight.play()
+                        }
+                    }
+                    
                     this.units.splice(t, 1)
                 }
             }
@@ -2342,8 +2711,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // this.startNode = gridPointsByPos[startNode.x][startNode.y];
             let roundedx = (Math.round((startNode.x))) * .1
             let roundedy = (Math.round((startNode.y))) * .1
-            //////////////console.log(gridPointsByPos, roundedx, roundedy)
-            //////////////////console.log(gridPointsByPos[roundedx] [roundedy])
+            ////////////////console.log(gridPointsByPos, roundedx, roundedy)
+            ////////////////////console.log(gridPointsByPos[roundedx] [roundedy])
             this.startNode = startNode // gridPointsByPos[roundedx] [roundedy]
             this.endNode = endNode //gridPointsByPos[endNode.x][endNode.y];
             this.currentNode = null;
@@ -2363,7 +2732,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             var grid = this.grid; //the grid we're working with
 
             var currentNode = this.startNode; // the currentNode, defaults to start node for now
-            ////console.log(this.endNode)
+            //////console.log(this.endNode)
             var endNode = this.endNode //sandmap.gridPoints[this.endNode.id]; //the target node
             var startNode = this.startNode
 
@@ -2372,9 +2741,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             var newMovementCost; //the new movement cost to neighbor
 
             openSet.add(currentNode);
-            //   ////////////console.log(currentNode)
+            //   //////////////console.log(currentNode)
             // currentNode.color = "black"
-            // //////////////////console.log('begin');
+            // ////////////////////console.log('begin');
 
             let j = 0
             let timeout = 0
@@ -2384,7 +2753,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     timeout = 1
                 }
                 tempArray = Array.from(openSet);
-                ////////////console.log(tempArray)
+                //////////////console.log(tempArray)
                 currentNode = tempArray[0];
 
                 for (var i = 1; i < tempArray.length; i++) {
@@ -2416,18 +2785,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 //   currentNode.drawNode();
                 // }
 
-                ////////////console.log(currentNode, endNode)
+                //////////////console.log(currentNode, endNode)
                 // currentNode.color = "black"
-                ////console.log(currentNode, endNode)
+                //////console.log(currentNode, endNode)
                 if (currentNode.id == endNode.id) {
-                    //console.log(startNode, endNode)
+                    ////console.log(startNode, endNode)
                     retracePath(startNode, endNode, this.agent);
                     //hit the last point, exit's the loop.
 
                     return; //exits loop
                 } else if (timeout == 1) {
 
-                    //console.log(startNode, endNode)
+                    ////console.log(startNode, endNode)
                     retracePath(startNode, currentNode, this.agent);
                     //hit the last point, exit's the loop.
 
@@ -2489,9 +2858,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         var reverseArray;
         while (currentNode != startNode) {
             path.add(currentNode);
-            //console.log(currentNode)
+            ////console.log(currentNode)
             currentNode = currentNode.parent;
-            //console.log(currentNode)
+            ////console.log(currentNode)
             // currentNode.inPath = true;
             // if (currentNode != startNode)
             //     currentNode.drawPath();
@@ -2502,19 +2871,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
         reverseArray.reverse();
         path = new Set(reverseArray);
 
-        //   //////////////////console.log(path)
+        //   ////////////////////console.log(path)
 
         realPath = Array.from(path)
-        //   //////////////////console.log(realPath)
+        //   ////////////////////console.log(realPath)
 
         if (realPath.length == 1) {
             // realPath[0].walkable = false
-            ////////////////console.log("hit")
+            //////////////////console.log("hit")
             // wallSet.add(realPath[0])
-            ////////////////console.log(wallSet)
+            //////////////////console.log(wallSet)
         }
 
-        ////////////console.log(realPath)
+        //////////////console.log(realPath)
         if (realPath.length > 0) {
             realPath.unshift(agent.tile)
             agent.realPath = [...realPath]
@@ -2529,17 +2898,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // bottle.crew[bottle.selectedcrew].body.x =startPoint.x+4
             // bottle.crew[bottle.selectedcrew].body.y  = startPoint.y+4
             // startPoint = new Vec2(realPath[0].posx, realPath[0].posy);
-            //////////////////console.log(startPoint)
+            ////////////////////console.log(startPoint)
             // bottle.crew[bottle.selectedcrew].moving = 1
         } else {
-            //   //////////////console.log(endPoint)
+            //   ////////////////console.log(endPoint)
 
             //     if(bottle.crew[bottle.selectedcrew].moving == 1){
-            //         // //////////////console.log(endPoint)
+            //         // ////////////////console.log(endPoint)
             //     // bottle.crew[bottle.selectedcrew].body.x =endPoint.x+96
             //     // bottle.crew[bottle.selectedcrew].body.y  = endPoint.y+284
             //     // bottle.crew[bottle.selectedcrew].moving = 0
-            //     // //////////////console.log(endPoint)
+            //     // ////////////////console.log(endPoint)
             //         reset()
             //   }
         }
@@ -2584,10 +2953,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 checkX = node.t + x;
                 checkY = node.k + y;
 
-                if (checkX >= 0 && checkX <= 127 && checkY >= 0 && checkY <= 127) { //127 mapsize
+                if (checkX >= 0 && checkX <= sandmap.blocks.length && checkY >= 0 && checkY <= sandmap.blocks.length) { //127 mapsize
 
                     if (x == 0 || y == 0 || Math.random() < .25) {  // randomness leads to organic
-                        ////console.log(sandmap)
+                        //////console.log(sandmap)
                         if (checkX < sandmap.blocks.length) {
                             if (checkY < sandmap.blocks[0].length) {
                                 if (sandmap.blocks[checkX][checkY].walkable !== false) {
@@ -2603,7 +2972,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
         neighborList = tempList;
-        ////////////console.log(neighborList)
+        //////////////console.log(neighborList)
         return (neighborList);
 
     }
@@ -2664,28 +3033,34 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.health = 100
             this.maxhealth = this.health
             this.name = "Wall"
-            this.cost = 10
-            this.faction.hotrock -= this.cost
+            // this.cost = 10
+            // this.faction.hotrock -= this.cost
             this.body = new UnitCircle(this.tile.x + (this.tile.width * .5), this.tile.y + (this.tile.height * .5), 5, this.faction.color)
             this.faction.buildings.push(this)
         }
         makeScout() {
-            if (this.faction.hotrock >= 100) {
-                this.faction.hotrock -= 100
+            if (this.faction.hotrock >= 30) {
+                soundCancel()
+                online.play()
+                this.faction.hotrock -= 30
                 let agent1 = new Agent(this.tile, sandmap.players[0])
                 agent1.isScout()
             }
         }
         makeInfantry() {
             if (this.faction.hotrock >= 100) {
+                soundCancel()
+                reporting.play()
                 this.faction.hotrock -= 100
                 let agent1 = new Agent(this.tile, sandmap.players[0])
                 agent1.isInfantry()
             }
         }
         makeHarvester() {
-            if (this.faction.hotrock >= 100) {
-                this.faction.hotrock -= 100
+            if (this.faction.hotrock >= 200) {
+                soundCancel()
+                systems.play()
+                this.faction.hotrock -= 200
                 let agent1 = new Agent(this.tile, sandmap.players[0])
                 agent1.isHarvester()
             }
@@ -2738,6 +3113,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
     class Agent {
         constructor(tile, player) {
+            this.swing = 0
+            this.swingout = 3
             this.stepout = 1
             this.selected = 0
             this.faction = player
@@ -2760,20 +3137,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.shots = []
             this.attacktarget = {}
             this.attacktarget.health = 0
+            this.attacktargetmove = {}
+            this.attacktargetmove.health = 0
             this.attackcounter = 0
-            this.projectilespeed = 20
+            this.projectilespeed = 9
             this.name = "agent"
-            if (this.faction.name == 'Cold Itzlerians') {
+            if (this.faction.type == 1) {
                 this.isNymph()
             } else {
-                if (this.faction.units.length == 1) {
-                    this.isScout()
-                }
-                if (this.faction.units.length == 2) {
-                    this.isInfantry()
-                }
-                if (this.faction.units.length == 3) {
-                    this.isHarvester()
+                if(start == 0){
+                    if (this.faction.units.length == 1) {
+                        this.isScout()
+                    }
+                    if (this.faction.units.length == 2) {
+                        this.isInfantry()
+                    }
+                    if (this.faction.units.length == 3) {
+                        this.isHarvester()
+                    }
                 }
             }
         }
@@ -2795,32 +3176,32 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.attacktarget = {}
             this.attacktarget.health = 0
             this.attackcounter = 0
-            this.projectilespeed = 20
             this.health = 70
             this.maxhealth = this.health
         }
         isScout() {
+            this.drone = 1
             this.movespeed = 2
             this.body.color = "red"
             this.body.radius = 4
             this.damage = this.body.radius
             this.name = "Scout Drone"
-            this.sight = 1 + this.movespeed
+            this.sight = 3 + this.movespeed
             this.damage = this.body.radius
-            this.firerate = (this.movespeed * 5)
-            this.attackrange = this.sight - 1
-            this.health = this.sight * 100
+            this.firerate =  9//(this.movespeed * 5)
+            this.attackrange = this.sight - 3
+            this.health = (this.sight - 2) * 100
             this.maxhealth = this.health
             this.shots = []
             this.attacktarget = {}
             this.attacktarget.health = 0
             this.attackcounter = 0
-            this.projectilespeed = 20
-            this.decayRate = (this.sight * this.movespeed) * .05
+            this.decayRate = ((this.sight - 2) * this.movespeed) * .015
             this.health = 100
             this.maxhealth = this.health
         }
         isInfantry() {
+            this.infantry = 1
             this.movespeed = 4
             this.body.color = "magenta"
             this.body.radius = 4.8
@@ -2828,7 +3209,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.name = "Infantry"
             this.sight = 1 + this.movespeed
             this.damage = this.body.radius
-            this.firerate = (this.movespeed * 5)
+            this.firerate =  12 //(this.movespeed * 5)
             this.attackrange = this.sight
             this.health = this.sight * 100
             this.maxhealth = this.health
@@ -2836,12 +3217,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.attacktarget = {}
             this.attacktarget.health = 0
             this.attackcounter = 0
-            this.projectilespeed = 20
-            this.decayRate = (this.sight * this.movespeed) * .05
+            this.decayRate = (this.sight * this.movespeed) * .02
             this.health = 350
             this.maxhealth = this.health
         }
         isHarvester() {
+            this.harvester = 1
             this.movespeed = 5
             this.body.color = "gray"
             this.body.radius = 5.5
@@ -2849,7 +3230,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.name = "Harvesting Vehicle"
             this.sight = 1 + this.movespeed
             this.damage = this.body.radius
-            this.firerate = (this.movespeed * 5)
+            this.firerate = 25 //(this.movespeed * 5)
             this.attackrange = this.sight - 1
             this.health = this.sight * 100
             this.maxhealth = this.health
@@ -2857,52 +3238,72 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.attacktarget = {}
             this.attacktarget.health = 0
             this.attackcounter = 0
-            this.projectilespeed = 20
-            this.decayRate = (this.sight * this.movespeed) * .05
+            this.decayRate = (this.sight * this.movespeed) * .025
             this.health = 700
             this.maxhealth = this.health
         }
         makeNymph() {
-            if (this.faction.hotrock >= 100) {
-                this.faction.hotrock -= 100
-                let agent1 = new Agent(this.tile, sandmap.players[1])
-                agent1.body.color = "teal"
-                agent1.body.radius = 4
-                agent1.movespeed = 1
-                agent1.firerate = 10
-                agent1.decayRate = 0
-                agent1.damage = (agent1.body.radius * .5)
-                agent1.name = "Nymph"
-                agent1.nymph = 1
-                agent1.health = 200
-                agent1.maxhealth = agent1.health
+            if (this.faction.hotrock >= 70) {
+                if(this.imago == 1){
+                    this.faction.hotrock -= 70
+                    let agent1 = new Agent(this.tile, this.faction)
+                    agent1.body.color = "teal"
+                    agent1.body.radius = 4
+                    agent1.movespeed = 1
+                    agent1.firerate = 5
+                    agent1.decayRate = 0
+                    agent1.damage = (agent1.body.radius * .5)
+                    agent1.name = "Nymph"
+                    agent1.nymph = 1
+                    agent1.health = 200
+                    agent1.maxhealth = agent1.health
+                    for (let t = -2; t <= 2; t++) {
+                        for (let k = -2; k <= 2; k++) {
+                            if (this.tile.t + t >= 0) {
+                                if (this.tile.k + k >= 0) {
+                                    if (this.tile.t + t < 128) {
+                                        if (this.tile.k + k < 128) {
+                                            if(sandmap.blocks[this.tile.t+t][this.tile.k+k].walkable == true){
+                                                agent1.pathTo(sandmap.blocks[this.tile.t+t][this.tile.k+k])
+                                                break
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
         metamorph1() {
-            if (this.faction.hotrock >= 100) {
-                this.faction.hotrock -= 100
-                this.body.color = "blue"
-                this.body.radius = 4.8
-                this.movespeed = 3
-                this.sight = 1 + this.movespeed
-                this.firerate = 10
-                this.decayRate = 0
-                this.damage = (this.body.radius + 1)
-                this.name = "Scurrier"
-                this.nymph = 2
-                this.health = 500
-                this.maxhealth = this.health
-                this.attackrange = this.sight - 1
+            if (this.faction.hotrock >= 150) {
+                if(this.nymph == 1){
+                    this.faction.hotrock -= 150
+                    this.body.color = "blue"
+                    this.body.radius = 4.8
+                    this.movespeed = 3
+                    this.sight = 1 + this.movespeed
+                    this.firerate = 5
+                    this.decayRate = 0
+                    this.damage = (this.body.radius + 1)
+                    this.name = "Scurrier"
+                    this.nymph = 2
+                    this.health = 500
+                    this.maxhealth = this.health
+                    this.attackrange = this.sight - 1
+                }
             }
         }
         metamorph2() {
-            if (this.faction.hotrock >= 250) {
-                this.faction.hotrock -= 250
+            if (this.faction.hotrock >= 200) {
+                if(this.nymph == 2){
+                this.faction.hotrock -= 200
                 this.body.color = "white"
                 this.body.radius = 6.5
                 this.movespeed = 8
                 this.sight = 1 + this.movespeed
-                this.firerate = 40
+                this.firerate = 20
                 this.decayRate = 0
                 this.damage = (this.body.radius + 2)
                 this.name = "Imago"
@@ -2911,6 +3312,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.health = 1000
                 this.maxhealth = this.health
                 this.attackrange = this.sight - 1
+                }
             }
         }
         dataOutput() {
@@ -2952,6 +3354,25 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             if (typeof (sandmap.blocks[this.tile.t + t][this.tile.k + k] != undefined)) {
                                                 for (let g = 0; g < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length; g++) {
                                                     if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
+                                                    
+                                                        if(this.drone == 1){
+                                                            soundCancel()
+                                                            combatinit.play()
+                                                        }
+                                                        if(this.infantry == 1){
+                                                            soundCancel()
+                                                            lightemup.play()
+                                                        }
+                                                        if(this.harvester == 1){
+                                                            soundCancel()
+                                                            if(Math.random()<.3){
+                                                                myfuneral.play()
+                                                            }else{
+                                                                hopeyouknow.play()
+                                                            }
+                                                        }
+                                                        
+                                                        
                                                         this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
                                                         break
                                                     }
@@ -2988,6 +3409,46 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             }
         }
+        attackmove() {
+            if (this.attacktargetmove.health <= 0 || (Math.abs((this.attacktargetmove.tile.y - this.tile.y)) + Math.abs((this.attacktargetmove.tile.x - this.tile.x))) > (this.sight * 21)) {
+                for (let t = -this.sight; t <= this.sight; t++) {
+                    for (let k = -this.sight; k <= this.sight; k++) {
+                        if (this.tile.t + t >= 0) {
+                            if (this.tile.k + k >= 0) {
+                                if (this.tile.t + t < 128) {
+                                    if (this.tile.k + k < 128) {
+                                        if (typeof (sandmap.blocks[this.tile.t + t] != undefined)) {
+                                            if (typeof (sandmap.blocks[this.tile.t + t][this.tile.k + k] != undefined)) {
+                                                for (let g = 0; g < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length; g++) {
+                                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
+                                                        this.attacktargetmove = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
+                                                        this.pathTo(this.attacktargetmove.tile)
+                                                        break
+                                                    }
+                                                }
+                                                for (let g = 0; g < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings.length; g++) {
+                                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
+                                                        this.attacktargetmove = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings[g]
+                                                        this.pathTo(this.attacktargetmove.tile)
+                                                        break
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            } else {
+                if (Math.abs(this.attacktargetmove.tile.x - this.tile.x) + Math.abs((this.attacktargetmove.tile.y - this.tile.y)) > (this.sight * 21)) {
+                    this.attacktargetmove = {}
+                    this.attacktargetmove.health = 0
+                    return
+                }
+            }
+        }
         pathTo(point) {
             if (point.walkable == true) {
                 this.stepout = 1
@@ -3003,7 +3464,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     this.index = 0
                 } else {
                     this.realPath = [...this.pathsto]
-                    this.repath = 10
+                    this.repath = 5+Math.floor(Math.random()*10)
                     this.snapto = point
                 }
             } else {
@@ -3016,7 +3477,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             if (t < 128) {
                                 if (k > 0) {
                                     if (k < 128) {
-                                        if(sandmap.blocks[t][k].walkable == true){
+                                        if (sandmap.blocks[t][k].walkable == true) {
                                             this.tempcheck.push(sandmap.blocks[t][k])
                                             wet = 1
                                             // break
@@ -3028,21 +3489,21 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                 }
 
-                if(wet == 0){
+                if (wet == 0) {
                     this.stepout++
                     this.pathsto = []
                     for (let t = 0; t < this.realPath.length; t++) {
                         this.pathsto.push(this.realPath[t])
                     }
                     this.realPath = [...this.pathsto]
-                    this.repath = 10
+                    this.repath = 40+Math.floor(Math.random()*40)
                     this.snapto = point
-                }else{
+                } else {
                     let max = 9999999999
-                    for(let t = 0;t<this.tempcheck.length;t++){
+                    for (let t = 0; t < this.tempcheck.length; t++) {
                         let link = (new LineOP(this.tile, this.tempcheck[t])).hypotenuse()
-                        console.log(link)
-                        if(link<max){
+                        // //console.log(link)
+                        if (link < max) {
                             max = link
                             index = t
                         }
@@ -3114,8 +3575,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.decayingInTheWind = 1 - ((this.dirs1 + this.dirs2 + this.dirs3 + this.dirs4) / 4)
         }
         move() {
-
-            this.attack()
+            this.swing++
+            if(this.swing%this.swingout == 0){
+                this.attack()
+            }
             this.repath--
             if (this.repath == 0) {
                 this.pathTo(this.snapto)
@@ -3148,8 +3611,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.tile.drawish = 0
             this.tile.walkable = true
             this.tile = this.realPath[this.index]
+            if(this.index == this.realPath.length-1){
+                this.realPath = [this.tile]
+                this.index = 0
+            }
             this.heatwallcheck()
-            //////console.log( (this.decayingInTheWind*sandmap.windspeed))
+            ////////console.log( (this.decayingInTheWind*sandmap.windspeed))
             this.health -= (this.decayRate * this.decayingInTheWind * sandmap.windspeed)
             if (this.decayingInTheWind == 0) {
                 this.health += this.decayRate
@@ -3162,14 +3629,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
             if (this.tile.hotrock == 1) {
                 this.faction.hotrock += this.movespeed * .01
+                this.tile.sourcerock -= this.movespeed * .01
                 if (this.nymph == 1) {
                     this.faction.hotrock += this.movespeed * .035
+                    this.tile.sourcerock -= this.movespeed * .035
                 }
             }
             if (this.tile.hotrock == 2) {
                 this.faction.hotrock += this.movespeed * .02
+                this.tile.sourcerock -= this.movespeed * .02
                 if (this.nymph == 1) {
                     this.faction.hotrock += this.movespeed * .07
+                    this.tile.sourcerock += this.movespeed * .07
                 }
             }
             this.tile.walkable = false
@@ -3196,60 +3667,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.body.y = this.tile.y + (this.tile.height * .5)
                 // this.body = new UnitCircle(this.tile.x + (this.tile.width * .5), this.tile.y + (this.tile.height * .5), 5, this.faction.color)
             }
-            // if (sandmap.players.indexOf(this.faction) == 0) {
-            //     if (this.movespeed == 4) {
-            //         this.body.color = "gray"
-            //         this.body.radius = 5.5
-            //         this.damage = this.body.radius
-            //         this.name = "Harvesting Vehicle"
-            //     }
-            //     if (this.movespeed == 2) {
-            //         this.body.color = "red"
-            //         this.body.radius = 4
-            //         this.damage = this.body.radius
-            //         this.name = "Scout Drone"
-            //     }
-            //     if (this.movespeed == 3) {
-            //         this.body.color = "magenta"
-            //         this.body.radius = 4.8
-            //         this.damage = this.body.radius
-            //         this.name = "Infantry"
-            //     }
-            // } else if (sandmap.players.indexOf(this.faction) == 1) {
+          
+            if(this.drone == 1){
+                map_context.drawImage(drone, this.body.x-5, this.body.y-5)
+            }else if(this.infantry == 1){
+                map_context.drawImage(infantry, this.body.x-5, this.body.y-5)
+            }else if(this.harvester == 1){
+                map_context.drawImage(harvester, this.body.x-5, this.body.y-5)
+            }else if(this.nymph == 1){
+                map_context.drawImage(nymph, this.body.x-5, this.body.y-5)
+            }else if(this.nymph == 2){
+                map_context.drawImage(scuttler, this.body.x-5, this.body.y-5)
+            }else if(this.imago == 1){
+                map_context.drawImage(imago, this.body.x-5, this.body.y-5)
+            }else{
+                this.body.draw()
+            }
 
-            //     if (this.movespeed == 2 || this.movespeed == 1) {
-            //         this.body.color = "teal"
-            //         this.body.radius = 4
-            //         this.movespeed = 1
-            //         this.firerate = 10
-            //         this.decayRate = 0
-            //         this.damage = (this.body.radius*.5)
-            //         this.name = "Nymph"
-            //         this.nymph = 1
-            //     }
-            //     if (this.movespeed == 3) {
-            //         this.body.color = "blue"
-            //         this.body.radius = 4.8
-            //         this.firerate = 10
-            //         this.decayRate = 0
-            //         this.damage = (this.body.radius+1)
-            //         this.name = "Scurrier"
-            //         this.nymph = 2
-            //     }
-            //     if (this.movespeed == 4 || this.movespeed == 8) {
-            //         this.body.color = "white"
-            //         this.body.radius = 6.5
-            //         this.movespeed = 8
-            //         this.firerate = 40
-            //         this.decayRate = 0
-            //         this.damage = (this.body.radius+3)
-            //         this.name = "Imago"
-            //         this.imago = 1
-            //     }
-            // }
-
-
-            this.body.draw()
             if (this.selected == 1 || this.selected == 2) {
                 this.healthbar = new Rectangle(this.body.x - 5.5, this.body.y + 2.5, 11, 3, "black")
                 this.healthbar.draw()
@@ -3274,7 +3708,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.shots[t].draw()
                 if (this.shots[t].stage >= this.projectilespeed) {
                     this.shots[t].refhealth.health -= (this.damage * 5)
-                    console.log(this.shots[t].refhealth)
+                    //console.log(this.shots[t].refhealth)
                     this.shots[t].marked = 1
                 }
             }
@@ -3299,7 +3733,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     // pather.findPath()
 
     // }
-
+    start = 1
     function main() {
         canvas_context.clearRect(0, 0, canvas.width, canvas.height)  // refreshes the image
         map_context.clearRect(0, 0, map_canvas.width, map_canvas.height)  // refreshes the image
@@ -3313,7 +3747,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
         if (keysPressed['k']) {
             sandmap.turn = 0
         }
-        ////////console.log(selectrect)
+        if (keysPressed['q']) {
+            console.log(sandmap)
+        }
+        //////////console.log(selectrect)
     }
 
 })
