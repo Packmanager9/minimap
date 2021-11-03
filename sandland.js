@@ -4192,19 +4192,32 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.marked = 1
             }
             if (this.tile.hotrock == 1) {
+                if(this.drone == 1){
+
+                    this.faction.hotrock += this.movespeed * .005
+                    this.tile.sourcerock -= this.movespeed * .005
+                }else{
+
                 this.faction.hotrock += this.movespeed * .01
                 this.tile.sourcerock -= this.movespeed * .01
                 if (this.nymph == 1) {
                     this.faction.hotrock += this.movespeed * .035
                     this.tile.sourcerock -= this.movespeed * .035
                 }
+                }
             }
             if (this.tile.hotrock == 2) {
-                this.faction.hotrock += this.movespeed * .02
-                this.tile.sourcerock -= this.movespeed * .02
-                if (this.nymph == 1) {
-                    this.faction.hotrock += this.movespeed * .07
-                    this.tile.sourcerock += this.movespeed * .07
+
+                if(this.drone == 1){
+                    this.faction.hotrock += this.movespeed * .01
+                    this.tile.sourcerock -= this.movespeed * .01
+                }else{
+                    this.faction.hotrock += this.movespeed * .02
+                    this.tile.sourcerock -= this.movespeed * .02
+                    if (this.nymph == 1) {
+                        this.faction.hotrock += this.movespeed * .07
+                        this.tile.sourcerock += this.movespeed * .07
+                    }
                 }
             }
             this.tile.walkable = false
