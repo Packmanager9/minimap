@@ -2237,7 +2237,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             let id = 0
             this.hotrocks = []
             this.players = []
-            this.players.push(new Player('Earthoids', "#AA00AA",1, 0))
+            this.players.push(new Player('Earthoids', "#AA00AA", 1, 0))
             this.players.push(new Player('Cold Itzlerians', "#00FFAA", 1, 1))
             for (let g = 0; g < this.players.length + 1; g++) {
                 for (let t = 0; t < 128; t++) {
@@ -2246,21 +2246,21 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     for (let k = 0; k < 128; k++) {
                         let rect = new Tile(t * 10, k * 10, 10, 10, "#AACCFF", id, 10, t * 10, k * 10, true)
                         let fogtile = new FogTile(t * 10, k * 10, 10, 10, "#090909", id, 10, t * 10, k * 10, true)
-                        if(t > 10 && k > 10){
-                            if(t < 118 && k < 118){
+                        if (t > 10 && k > 10) {
+                            if (t < 118 && k < 118) {
 
-                            if (Math.random() < .01) {
-                                rect.hotrock = 1
-                                rect.sourcerock = 300
-                                rect.walkable = true
-                                rect.color = "#DDAA44"
-                                if (Math.random() < .5) {
-                                    rect.hotrock = 2
-                                    rect.sourcerock = 600
+                                if (Math.random() < .01) {
+                                    rect.hotrock = 1
+                                    rect.sourcerock = 300
                                     rect.walkable = true
-                                    rect.color = "#AA8822"
+                                    rect.color = "#DDAA44"
+                                    if (Math.random() < .5) {
+                                        rect.hotrock = 2
+                                        rect.sourcerock = 600
+                                        rect.walkable = true
+                                        rect.color = "#AA8822"
+                                    }
                                 }
-                            }
                             }
                         }
                         rect.t = t
@@ -2406,8 +2406,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             canvas_context.strokeStyle = sandmap.players[sandmap.turn].color
             canvas_context.lineWidth = 1.5
             canvas_context.font = "18px arial"
-            canvas_context.strokeText("Windspeed: " + Math.round(this.windspeed * 2000) +"cm/s", this.window.minibody.x, this.window.minibody.y - 20,)
-            canvas_context.fillText("Windspeed: " + Math.round(this.windspeed * 2000) +"cm/s", this.window.minibody.x, this.window.minibody.y - 20,)
+            canvas_context.strokeText("Windspeed: " + Math.round(this.windspeed * 2000) + "cm/s", this.window.minibody.x, this.window.minibody.y - 20,)
+            canvas_context.fillText("Windspeed: " + Math.round(this.windspeed * 2000) + "cm/s", this.window.minibody.x, this.window.minibody.y - 20,)
             canvas_context.drawImage(windmeter, 0, 10 * (Math.round(this.windspeed * 10)), windmeter.width, 10, this.window.minibody.x, this.window.minibody.y - 12, 250, 10)
 
             for (let t = 0; t < this.players[this.turn].blocks.length; t++) {
@@ -2644,7 +2644,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
             } else {
-                if(Math.random()<.0001){
+                if (Math.random() < .0001) {
                     this.faction.racks = 0
                 }
                 let index = 0
@@ -2770,17 +2770,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             }
                         }
                     }
-                    if((Math.random()*.13)){
+                    if ((Math.random() * .13)) {
 
                         for (let t = 0; t < this.units.length; t++) {
-                            if(this.units[t].tile.sourcerock >= 1 || ((Math.random()*.03) && this.units[t].index < this.units[t].realPath.length-1)){
-    
-                            }else{
+                            if (this.units[t].tile.sourcerock >= 1 || ((Math.random() * .03) && this.units[t].index < this.units[t].realPath.length - 1)) {
+
+                            } else {
                                 continue
                             }
-    
-    
-    
+
+
+
                             if (this.units[t].decayingInTheWind == 1) {
                                 if (this.units[t].dirs1 == 1) {
                                 } else {
@@ -2791,7 +2791,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             }
                                             if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1) {
                                                 this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
-                                            }else if(x == 127){
+                                            } else if (x == 127) {
                                                 this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
                                             }
                                             if (debreak == 0) {
@@ -2809,7 +2809,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             }
                                             if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1) {
                                                 this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
-                                            }else if(x == 2){
+                                            } else if (x == 2) {
                                                 this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
                                             }
                                             if (debreak == 0) {
@@ -2827,7 +2827,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             }
                                             if (this.blocks[x - 1][this.units[t].tile.k].markdraw != 1) {
                                                 this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
-                                            }else if(x == 2){
+                                            } else if (x == 2) {
                                                 this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
                                             }
                                             if (debreak == 0) {
@@ -2845,7 +2845,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             }
                                             if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1) {
                                                 this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
-                                            }else if(x == 127){
+                                            } else if (x == 127) {
                                                 this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
                                             }
                                             if (debreak == 0) {
@@ -2854,8 +2854,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         }
                                     }
                                 }
-    
-    
+
+
                             } else if (this.units[t].decayingInTheWind > .51 && this.units[t].decayingInTheWind < .8) {
                                 if (this.units[t].dirs1 == 1) {
                                 } else {
@@ -2866,7 +2866,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             }
                                             if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1) {
                                                 this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
-                                            }else if(x == 127){
+                                            } else if (x == 127) {
                                                 this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
                                             }
                                             if (debreak == 0) {
@@ -2884,7 +2884,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             }
                                             if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1) {
                                                 this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
-                                            }else if(x == 2){
+                                            } else if (x == 2) {
                                                 this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
                                             }
                                             if (debreak == 0) {
@@ -2902,7 +2902,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             }
                                             if (this.blocks[x - 1][this.units[t].tile.k].markdraw != 1) {
                                                 this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
-                                            }else if(x == 2){
+                                            } else if (x == 2) {
                                                 this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
                                             }
                                             if (debreak == 0) {
@@ -2920,7 +2920,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             }
                                             if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1) {
                                                 this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
-                                            }else if(x == 127){
+                                            } else if (x == 127) {
                                                 this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
                                             }
                                             if (debreak == 0) {
@@ -2939,7 +2939,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             }
                                             if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1) {
                                                 this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
-                                            }else if(x == 127){
+                                            } else if (x == 127) {
                                                 this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
                                             }
                                             if (debreak == 0) {
@@ -2957,7 +2957,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             }
                                             if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1) {
                                                 this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
-                                            }else if(x == 2){
+                                            } else if (x == 2) {
                                                 this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
                                             }
                                             if (debreak == 0) {
@@ -2975,7 +2975,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             }
                                             if (this.blocks[x - 1][this.units[t].tile.k].markdraw != 1) {
                                                 this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
-                                            }else if(x == 2){
+                                            } else if (x == 2) {
                                                 this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
                                             }
                                             if (debreak == 0) {
@@ -2993,7 +2993,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             }
                                             if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1) {
                                                 this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
-                                            }else if(x == 127){
+                                            } else if (x == 127) {
                                                 this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
                                             }
                                             if (debreak == 0) {
@@ -3002,8 +3002,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         }
                                     }
                                 }
-    
-    
+
+
                             } else if (this.units[t].decayingInTheWind >= .01 && this.units[t].decayingInTheWind < .3) {
                                 if (this.units[t].dirs1 == 1) {
                                 } else {
@@ -3014,7 +3014,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             }
                                             if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1) {
                                                 this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
-                                            }else if(x == 127){
+                                            } else if (x == 127) {
                                                 this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
                                             }
                                             if (debreak == 0) {
@@ -3032,7 +3032,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             }
                                             if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1) {
                                                 this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
-                                            }else if(x == 2){
+                                            } else if (x == 2) {
                                                 this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
                                             }
                                             if (debreak == 0) {
@@ -3050,7 +3050,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             }
                                             if (this.blocks[x - 1][this.units[t].tile.k].markdraw != 1) {
                                                 this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
-                                            }else if(x == 2){
+                                            } else if (x == 2) {
                                                 this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
                                             }
                                             if (debreak == 0) {
@@ -3068,7 +3068,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             }
                                             if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1) {
                                                 this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
-                                            }else if(x == 2){
+                                            } else if (x == 2) {
                                                 this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
                                             }
                                             if (debreak == 0) {
@@ -3077,11 +3077,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         }
                                     }
                                 }
-    
-    
+
+
                             } else {
-    
-    
+
+
                             }
                         }
 
@@ -3110,13 +3110,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
         }
         buildWall(tile) {
-            if(this.faction.type == 1){
+            if (this.type == 1) {
                 return
             }
-            if(this.racks == 0 && this.isAI == 1){
+            if (this.racks == 0 && this.isAI == 1) {
                 this.buildBarracks(tile)
                 this.racks = 1
-            }else{
+            } else {
                 let wet = 0
                 for (let t = 0; t < this.buildings.length; t++) {
                     if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
@@ -3136,11 +3136,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         buildBarracks(tile) {
 
-            if(this.faction.type == 1){
+            if (this.type == 1) {
                 return
             }
             if (this.hotrock >= 70) {
-                this.hotrock -= 10
+                this.hotrock -= 70
                 let building = new Building(tile, this, 0)
                 building.barracks = 1
                 building.name = "Barracks"
@@ -3658,7 +3658,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.tile.walkable = 1
                 this.tile.color = "#AACCFF"
                 delete this.tile.wallcolor
-                if(this.barracks == 1){
+                if (this.barracks == 1) {
                     this.faction.racks = 0
                 }
                 this.faction.buildings.splice(this.faction.buildings.indexOf(this), 1)
@@ -3880,9 +3880,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.lineWidth = 1.5
                 canvas_context.font = "18px arial"
                 canvas_context.strokeText(this.name + " " + Math.round(this.health) + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
-                if(this.faction.type == 0){
-                    canvas_context.strokeText(((1-this.decayingInTheWind)*100)+"% Cover", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
-                    canvas_context.fillText(((1-this.decayingInTheWind)*100)+"% Cover", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                if (this.faction.type == 0) {
+                    canvas_context.strokeText(((1 - this.decayingInTheWind) * 100) + "% Cover", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                    canvas_context.fillText(((1 - this.decayingInTheWind) * 100) + "% Cover", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
                 }
                 canvas_context.fillText(this.name + " " + Math.round(this.health) + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
                 if (this.imago == 1) {
