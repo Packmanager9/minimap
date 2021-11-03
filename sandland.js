@@ -2645,7 +2645,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             } else {
                 if (Math.random() < .0001) {
-                    this.faction.racks = 0
+                    this.racks = 0
                 }
                 let index = 0
                 this.chunk++
