@@ -1,6 +1,7 @@
 
 window.addEventListener('DOMContentLoaded', (event) => {
 
+    let debreak = 1
     let start = 0
     function empty() {
 
@@ -10,7 +11,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     snow.src = 'smoothsnow2.png'
 
     let sounds = []
-    
+
     let hopeyouknow = new Audio()
     hopeyouknow.src = "hopeyouknow.mp3"
     sounds.push(hopeyouknow)
@@ -71,7 +72,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     freezin.src = "freezin.mp3"
     sounds.push(freezin)
 
-    
+
     let combatinit = new Audio()
     combatinit.src = "combatinit.mp3"
     sounds.push(combatinit)
@@ -101,14 +102,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
     sounds.push(collect)
 
 
-    
-    function soundCancel(){
-        for(let t = 0;t<sounds.length;t++){
+
+    function soundCancel() {
+        for (let t = 0; t < sounds.length; t++) {
             sounds[t].pause()
             sounds[t].currentTime = 0
         }
     }
 
+    let windmeter = new Image()
+    windmeter.src = "windmeter.png"
     let harvester = new Image()
     harvester.src = "harvester2.png"
     let drone = new Image()
@@ -1599,26 +1602,26 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     rectstart.y = structuredpoint.y
                     for (let t = 0; t < sandmap.players[sandmap.turn].units.length; t++) {
                         if (sandmap.players[sandmap.turn].selected_tile == sandmap.players[sandmap.turn].units[t].tile) {
-                            if( sandmap.players[sandmap.turn].units[t].selected == 0){
+                            if (sandmap.players[sandmap.turn].units[t].selected == 0) {
                                 soundCancel()
-                                if(sandmap.players[sandmap.turn].units[t].drone == 1){
-                                    if(Math.random()<.5){
+                                if (sandmap.players[sandmap.turn].units[t].drone == 1) {
+                                    if (Math.random() < .5) {
                                         hello.play()
-                                    }else{
+                                    } else {
                                         scanning.play()
                                     }
                                 }
-                                if(sandmap.players[sandmap.turn].units[t].infantry == 1){
-                                    if(Math.random()<.8){
+                                if (sandmap.players[sandmap.turn].units[t].infantry == 1) {
+                                    if (Math.random() < .8) {
                                         orders.play()
-                                    }else{
+                                    } else {
                                         freezin.play()
                                     }
                                 }
-                                if(sandmap.players[sandmap.turn].units[t].harvester == 1){
-                                    if(Math.random()<.9){
+                                if (sandmap.players[sandmap.turn].units[t].harvester == 1) {
+                                    if (Math.random() < .9) {
                                         rollout.play()
-                                    }else{
+                                    } else {
                                         hitsomething.play()
                                     }
                                 }
@@ -1700,38 +1703,38 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                         //////console.log(sandmap.players[sandmap.turn].selected_tile)
                         sandmap.players[sandmap.turn].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile)
-                        if(sandmap.players[sandmap.turn].selected_tile.hotrock > 0){
+                        if (sandmap.players[sandmap.turn].selected_tile.hotrock > 0) {
 
                             soundCancel()
-                            if( sandmap.players[sandmap.turn].units[t].drone == 1){
+                            if (sandmap.players[sandmap.turn].units[t].drone == 1) {
                                 collect.play()
                             }
-                            if( sandmap.players[sandmap.turn].units[t].infantry == 1){
+                            if (sandmap.players[sandmap.turn].units[t].infantry == 1) {
                                 righton.play()
                             }
-                            if( sandmap.players[sandmap.turn].units[t].harvester == 1){
+                            if (sandmap.players[sandmap.turn].units[t].harvester == 1) {
                                 overtime.play()
                             }
-                        }else{
+                        } else {
 
                             soundCancel()
-                            if( sandmap.players[sandmap.turn].units[t].harvester == 1){
+                            if (sandmap.players[sandmap.turn].units[t].harvester == 1) {
                                 movin.play()
                             }
-                            if( sandmap.players[sandmap.turn].units[t].drone == 1){
-                                if(Math.random()<.5){
+                            if (sandmap.players[sandmap.turn].units[t].drone == 1) {
+                                if (Math.random() < .5) {
                                     pathfound.play()
-                                }else{
+                                } else {
                                     pathing.play()
                                 }
                             }
 
-                            if( sandmap.players[sandmap.turn].units[t].infantry == 1){
-                                if(Math.random()<.3){
+                            if (sandmap.players[sandmap.turn].units[t].infantry == 1) {
+                                if (Math.random() < .3) {
                                     lesgo.play()
-                                }else if(Math.random()<.3){
+                                } else if (Math.random() < .3) {
                                     onmyway.play()
-                                }else{
+                                } else {
                                     donttellme.play()
                                 }
                             }
@@ -1767,7 +1770,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             }
                             //////console.log(sandmap.players[sandmap.turn].selected_tile)
                             sandmap.players[sandmap.turn].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile)
-                            if(sandmap.players[sandmap.turn].selected_tile.hotrock > 0){
+                            if (sandmap.players[sandmap.turn].selected_tile.hotrock > 0) {
 
                                 // soundCancel()
                                 // if( sandmap.players[sandmap.turn].units[t].drone == 1){
@@ -1791,10 +1794,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (TIP_engine.x <= sandmap.window.body.x + sandmap.window.body.width) {
                 for (let t = 0; t < sandmap.players[sandmap.turn].units.length; t++) {
                     if (selectrect.isPointInside(sandmap.players[sandmap.turn].units[t].body)) {
-     
+
                         sandmap.players[sandmap.turn].units[t].selected = 1
-                   
-                        
+
+
                     } else {
                         if (sandmap.players[sandmap.turn].units[t].selected == 2) {
                             sandmap.players[sandmap.turn].units[t].selected = 1
@@ -2105,48 +2108,48 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         }
         draw() {
-            if(this.sourcerock <=0 && this.hotrock != 0){
+            if (this.sourcerock <= 0 && this.hotrock != 0) {
                 this.hotrock = 0
                 this.color = "#AACCFF"
                 sandmap.hotrocks.splice(sandmap.hotrocks.indexOf(this), 1)
             }
-            if(this.hotrock == 1){
+            if (this.hotrock == 1) {
                 map_context.drawImage(hotrock1, this.x, this.y)
-            }else if(this.hotrock == 2){
+            } else if (this.hotrock == 2) {
                 map_context.drawImage(hotrock2, this.x, this.y)
-            }else{
-            if (typeof this.wallcolor != "undefined") {
-                map_context.fillStyle = this.color
-                map_context.fillRect(this.x, this.y, this.width, this.height)
-                map_context.strokeStyle = this.wallcolor
-                map_context.strokeRect(this.x, this.y, this.width, this.height)
             } else {
-                // if(this.walkable== true || this.drawish == 1){
-                //     map_context.drawImage(snow, ((this.t+this.toffset))%189, (this.k+this.koffset)%189, 10,10, this.x, this.y, 10, 10)
-                // }else{
-                map_context.fillStyle = this.color
-                map_context.fillRect(this.x, this.y, this.width, this.height)
-                // }
-            }
-            if (sandmap.winddiry == 1) {
-                this.toffset += sandmap.windspeed
-            }
-            if (sandmap.winddirx == 1) {
-                this.koffset += sandmap.windspeed
-            }
-            if (sandmap.winddiry == -1) {
-                this.toffset -= sandmap.windspeed
-                if ((this.t + this.toffset) < 0) {
-                    this.toffset = 189 - this.t
+                if (typeof this.wallcolor != "undefined") {
+                    map_context.fillStyle = this.color
+                    map_context.fillRect(this.x, this.y, this.width, this.height)
+                    map_context.strokeStyle = this.wallcolor
+                    map_context.strokeRect(this.x, this.y, this.width, this.height)
+                } else {
+                    // if(this.walkable== true || this.drawish == 1){
+                    //     map_context.drawImage(snow, ((this.t+this.toffset))%189, (this.k+this.koffset)%189, 10,10, this.x, this.y, 10, 10)
+                    // }else{
+                    map_context.fillStyle = this.color
+                    map_context.fillRect(this.x, this.y, this.width, this.height)
+                    // }
+                }
+                if (sandmap.winddiry == 1) {
+                    this.toffset += sandmap.windspeed
+                }
+                if (sandmap.winddirx == 1) {
+                    this.koffset += sandmap.windspeed
+                }
+                if (sandmap.winddiry == -1) {
+                    this.toffset -= sandmap.windspeed
+                    if ((this.t + this.toffset) < 0) {
+                        this.toffset = 189 - this.t
+                    }
+                }
+                if (sandmap.winddirx == -1) {
+                    this.koffset -= sandmap.windspeed
+                    if ((this.k + this.koffset) < 0) {
+                        this.koffset = 189 - this.t
+                    }
                 }
             }
-            if (sandmap.winddirx == -1) {
-                this.koffset -= sandmap.windspeed
-                if ((this.k + this.koffset) < 0) {
-                    this.koffset = 189 - this.t
-                }
-            }
-        }
         }
         move() {
             this.x += this.xmom
@@ -2234,7 +2237,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             let id = 0
             this.hotrocks = []
             this.players = []
-            this.players.push(new Player('Earthoids', "#AA00AA", 0, 0))
+            this.players.push(new Player('Earthoids', "#AA00AA",1, 0))
             this.players.push(new Player('Cold Itzlerians', "#00FFAA", 1, 1))
             for (let g = 0; g < this.players.length + 1; g++) {
                 for (let t = 0; t < 128; t++) {
@@ -2243,16 +2246,21 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     for (let k = 0; k < 128; k++) {
                         let rect = new Tile(t * 10, k * 10, 10, 10, "#AACCFF", id, 10, t * 10, k * 10, true)
                         let fogtile = new FogTile(t * 10, k * 10, 10, 10, "#090909", id, 10, t * 10, k * 10, true)
-                        if (Math.random() < .01) {
-                            rect.hotrock = 1
-                            rect.sourcerock = 300
-                            rect.walkable = true
-                            rect.color = "#DDAA44"
-                            if (Math.random() < .5) {
-                                rect.hotrock = 2
-                                rect.sourcerock = 600
+                        if(t > 10 && k > 10){
+                            if(t < 118 && k < 118){
+
+                            if (Math.random() < .01) {
+                                rect.hotrock = 1
+                                rect.sourcerock = 300
                                 rect.walkable = true
-                                rect.color = "#AA8822"
+                                rect.color = "#DDAA44"
+                                if (Math.random() < .5) {
+                                    rect.hotrock = 2
+                                    rect.sourcerock = 600
+                                    rect.walkable = true
+                                    rect.color = "#AA8822"
+                                }
+                            }
                             }
                         }
                         rect.t = t
@@ -2356,16 +2364,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         draw() {
 
-            if (Math.random() < .01) {
+            if (Math.random() < .05) {
                 let chooser = Math.floor(Math.random() * 2)
                 if (chooser == 0) {
-                    if (this.windspeed > .5) {
-                        this.windspeed /= 1.2
+                    if (this.windspeed > .1051) {
+                        this.windspeed /= 1.05
                     }
                 }
                 if (chooser == 1) {
-                    if (this.windspeed < 2) {
-                        this.windspeed *= 1.2
+                    if (this.windspeed < 2.37) {
+                        this.windspeed *= 1.05
                     }
                 }
                 if (chooser == 2) {
@@ -2394,17 +2402,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             }
 
-
-            canvas_context.fillStyle = this.players[this.turn].color
-            canvas_context.font = "20px arial"
-            canvas_context.fillText("Windspeed: " + Math.round(this.windspeed*10)/10, this.window.body.x + this.window.body.width + 10, 200)
+            canvas_context.fillStyle = "black"
+            canvas_context.strokeStyle = sandmap.players[sandmap.turn].color
+            canvas_context.lineWidth = 1.5
+            canvas_context.font = "18px arial"
+            canvas_context.strokeText("Windspeed: " + Math.round(this.windspeed * 2000) +"cm/s", this.window.minibody.x, this.window.minibody.y - 20,)
+            canvas_context.fillText("Windspeed: " + Math.round(this.windspeed * 2000) +"cm/s", this.window.minibody.x, this.window.minibody.y - 20,)
+            canvas_context.drawImage(windmeter, 0, 10 * (Math.round(this.windspeed * 10)), windmeter.width, 10, this.window.minibody.x, this.window.minibody.y - 12, 250, 10)
 
             for (let t = 0; t < this.players[this.turn].blocks.length; t++) {
                 for (let k = 0; k < this.players[this.turn].blocks[t].length; k++) {
                     if (this.players[this.turn].blocks[t][k].markdraw == 1) {
-                
-                            this.blocks[t][k].draw()
-                        
+
+                        this.blocks[t][k].draw()
+
                     }
                 }
             }
@@ -2458,14 +2469,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
             selectrect.draw()
             canvas_context.drawImage(map_canvas, this.guide.x, this.guide.y, this.body.width * .5, this.body.height * .5, this.body.x, this.body.y, this.body.width, this.body.height)
             canvas_context.drawImage(map_canvas, 0, 0, map_canvas.width, map_canvas.height, this.minibody.x, this.minibody.y, this.minibody.width, this.minibody.height)
-            canvas_context.strokeStyle = "white"
+            canvas_context.strokeStyle = "#FFFFFF"
             canvas_context.lineWidth = 1
             canvas_context.strokeRect(this.minibody.x + (this.guide.x * .28125), this.minibody.y + (this.guide.y * .28125), (this.body.width * .5) * .28125, (this.body.height * .5) * .28125)
         }
     }
     class Player {
         constructor(name, color, ai, type) {
-            this.attacktimeout = 0 
+            this.attacktimeout = 0
             this.blocks = []
             this.fog = []
             this.name = name
@@ -2477,128 +2488,657 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.isAI = ai
             this.type = type
             this.chunk = 0
-            this.clickrate = 50
+            this.clickrate = 2
             this.aimode = 0
+            this.racks = 0
         }
         ai() {
-            let index = 0
-            this.chunk++
-            if(this.aimode == 1){
-                for (let t = 0; t < this.units.length; t++) {
-                    if(this.units[t].imago == 1){
-                        this.units[t].makeNymph()
-                    }
-                }
-                let j = 0
-                if(Math.random() < this.units.length*.075){
+            if (this.type == 1) {
+
+                let index = 0
+                this.chunk++
+                if (this.aimode == 1) {
                     for (let t = 0; t < this.units.length; t++) {
-                        if(this.units[t].imago !== 1){
-                            //hardcoding this gid helf mi
-                                if(Math.random() < .3){
-                                    if(typeof sandmap.players[0].units[Math.floor(Math.random() * sandmap.players[0].units.length)].tile !== "undefined"){
-                                        j++
-                                        this.units[t].pathTo(sandmap.players[0].units[Math.floor(Math.random() * sandmap.players[0].units.length)].tile)
-                                        if(j > 8){
-                                            break
-                                        }
-                                    }
-                                }
+                        if (this.units[t].imago == 1) {
+                            this.units[t].makeNymph()
                         }
                     }
-                    this.aimode = 0
-                }
-            }else if(this.aimode == 0){
-                let j = 0
-
-                if (this.chunk % this.clickrate == 1) {
-                    for (let t = 0; t < this.units.length; t++) {
-                        if(this.units[t].realPath.length - 1 == this.units[t].index || this.units[t].realPath[this.units[t].index].walkable !== true){
-                            if (this.units[t].tile.hotrock != 1 && this.units[t].tile.hotrock != 2) {
-                                let max = 999999999
-                                for (let h = 0; h < sandmap.hotrocks.length; h++) {
-                                    if (sandmap.hotrocks[h].walkable == true) {
-                                        let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                        // //console.log(link)
-                                        if (link < max) {
-                                            max = link
-                                            index = h
+                    let j = 0
+                    if (Math.random() < this.units.length * .075) {
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (this.units[t].imago !== 1) {
+                                //hardcoding this gid helf mi
+                                if (Math.random() < .3) {
+                                    if (sandmap.players[0].units.length > 0) {
+                                        if (typeof sandmap.players[0].units[Math.floor(Math.random() * sandmap.players[0].units.length)].tile !== "undefined") {
+                                            j++
+                                            this.units[t].pathTo(sandmap.players[0].units[Math.floor(Math.random() * sandmap.players[0].units.length)].tile)
+                                            if (j > 6) {
+                                                break
+                                            }
                                         }
                                     }
                                 }
+                            }
+                        }
+                        this.aimode = 0
+                    }
+                } else if (this.aimode == 0) {
+                    let j = 0
 
-                                if(typeof sandmap.hotrocks[index] !== "undefined"){
-                                    if(this.units[t].attacktarget.health > 0){
+                    if (this.chunk % this.clickrate == 1) {
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (this.units[t].realPath.length - 1 == this.units[t].index) { //} || this.units[t].realPath[this.units[t].index].walkable !== true) {
+                                if (this.units[t].tile.hotrock != 1 && this.units[t].tile.hotrock != 2) {
+                                    let max = 999999999
+                                    for (let h = 0; h < sandmap.hotrocks.length; h++) {
+                                        if (sandmap.hotrocks[h].walkable == true) {
+                                            let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
+                                            // //console.log(link)
+                                            if (link < max) {
+                                                max = link
+                                                index = h
+                                            }
+                                        }
+                                    }
 
-                                    }else{
-                                        j++
-                                        this.units[t].pathTo(sandmap.hotrocks[index])
-                                        if(j > 6){
-                                            break
+                                    if (typeof sandmap.hotrocks[index] !== "undefined") {
+                                        if (this.units[t].attacktarget.health > 0) {
+
+                                        } else {
+                                            j++
+                                            this.units[t].pathTo(sandmap.hotrocks[index])
+                                            if (j > 6) {
+                                                break
+                                            }
+                                        }
+                                    }
+                                }
+                            } else if (typeof this.units[t].realPath[this.units[t].index + 1] !== "undefined") {
+                                if (this.units[t].realPath[this.units[t].index + 1].walkable !== true) {
+                                    if (this.units[t].tile.hotrock != 1 && this.units[t].tile.hotrock != 2) {
+                                        let max = 999999999
+                                        for (let h = 0; h < sandmap.hotrocks.length; h++) {
+                                            if (sandmap.hotrocks[h].walkable == true) {
+                                                let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
+                                                // //console.log(link)
+                                                if (link < max) {
+                                                    max = link
+                                                    index = h
+                                                }
+                                            }
+                                        }
+
+                                        if (typeof sandmap.hotrocks[index] !== "undefined") {
+                                            if (this.units[t].attacktarget.health > 0) {
+
+                                            } else {
+                                                j++
+                                                this.units[t].pathTo(sandmap.hotrocks[index])
+                                                if (j > 6) {
+                                                    break
+                                                }
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
                     }
-                }
-    
 
-                if(Math.random() < .1){
-                    for (let t = 0; t < this.units.length; t++) {
-                        if(this.units[t].nymph == 1){
-                            this.units[t].attackmove()
-                        }
-                        if(this.units[t].nymph == 2){
-                            this.units[t].attackmove()
+                    if (Math.random() < .1) {
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (this.units[t].nymph == 1) {
+                                this.units[t].attackmove()
+                            }
+                            if (this.units[t].nymph == 2) {
+                                this.units[t].attackmove()
+                            }
                         }
                     }
-                }
-    
-                if(Math.random() < (.3/this.units.length)){
-                    for (let t = 0; t < this.units.length; t++) {
-                        if(this.units[t].imago == 1){
-                            this.units[t].makeNymph()
-                            if(Math.random()<.1){
+
+                    if (Math.random() < (.3 / this.units.length)) {
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (this.units[t].imago == 1) {
+                                this.units[t].makeNymph()
+                                if (Math.random() < .1) {
+                                    break
+                                }
+                            }
+                        }
+                    }
+                    if (Math.random() < (this.units.length * .001)) {
+                        let n = 0
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (this.units[t].nymph == 1) {
+                                n++
+                            }
+                        }
+                        if (n > 2) {
+                            for (let t = 0; t < this.units.length; t++) {
+                                if (this.units[t].nymph == 1) {
+                                    this.units[t].metamorph1()
+                                    break
+                                }
+                            }
+                        }
+                    }
+                    if (Math.random() < (this.units.length * .0009)) {
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (this.units[t].nymph == 2) {
+                                this.units[t].metamorph2()
                                 break
                             }
                         }
                     }
-                }
-                if(Math.random() <(this.units.length*.001)){
-                    for (let t = 0; t < this.units.length; t++) {
-                        if(this.units[t].nymph == 1){
-                        this.units[t].metamorph1()
-                        break
+
+                    if (this.units.length > 25) {
+                        if (this.attacktimeout <= 0) {
+                            this.aimode = 1
+                            this.attacktimeout = 3000
                         }
-                    }
-                }
-                if(Math.random() < (this.units.length*.0009)){
-                    for (let t = 0; t < this.units.length; t++) {
-                        if(this.units[t].nymph == 2){
-                        this.units[t].metamorph2()
-                        break
-                        }
+                        this.attacktimeout--
                     }
                 }
 
-                if(this.units.length > 20){
-                    if(this.attacktimeout <= 0){
-                        this.aimode = 1
-                        this.attacktimeout = 2000
-                    }
-                    this.attacktimeout--
+
+
+            } else {
+                if(Math.random()<.0001){
+                    this.faction.racks = 0
                 }
+                let index = 0
+                this.chunk++
+                if (this.aimode == 1) {
+                    for (let t = 0; t < this.units.length; t++) {
+                        if (this.units[t].imago == 1) {
+                            this.units[t].makeNymph()
+                        }
+                    }
+                    let j = 0
+                    if (Math.random() < this.units.length * .075) {
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (this.units[t].imago !== 1) {
+                                //hardcoding this gid helf mi
+                                if (Math.random() < .3) {
+                                    if (sandmap.players[0].units.length > 0) {
+                                        if (typeof sandmap.players[0].units[Math.floor(Math.random() * sandmap.players[0].units.length)].tile !== "undefined") {
+                                            j++
+                                            this.units[t].pathTo(sandmap.players[0].units[Math.floor(Math.random() * sandmap.players[0].units.length)].tile)
+                                            if (j > 6) {
+                                                break
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        this.aimode = 0
+                    }
+                } else if (this.aimode == 0) {
+                    let j = 0
+
+                    if (this.chunk % this.clickrate == 1) {
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (this.units[t].realPath.length - 1 == this.units[t].index) { //} || this.units[t].realPath[this.units[t].index].walkable !== true) {
+                                if (this.units[t].tile.hotrock != 1 && this.units[t].tile.hotrock != 2) {
+                                    let max = 999999999
+                                    for (let h = 0; h < sandmap.hotrocks.length; h++) {
+                                        if (sandmap.hotrocks[h].walkable == true) {
+                                            let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
+                                            // //console.log(link)
+                                            if (link < max) {
+                                                max = link
+                                                index = h
+                                            }
+                                        }
+                                    }
+
+                                    if (typeof sandmap.hotrocks[index] !== "undefined") {
+                                        if (this.units[t].attacktarget.health > 0) {
+
+                                        } else {
+                                            j++
+                                            this.units[t].pathTo(sandmap.hotrocks[index])
+                                            if (j > 6) {
+                                                break
+                                            }
+                                        }
+                                    }
+                                }
+                            } else if (typeof this.units[t].realPath[this.units[t].index + 1] !== "undefined") {
+                                if (this.units[t].realPath[this.units[t].index + 1].walkable !== true) {
+                                    if (this.units[t].tile.hotrock != 1 && this.units[t].tile.hotrock != 2) {
+                                        let max = 999999999
+                                        for (let h = 0; h < sandmap.hotrocks.length; h++) {
+                                            if (sandmap.hotrocks[h].walkable == true) {
+                                                let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
+                                                // //console.log(link)
+                                                if (link < max) {
+                                                    max = link
+                                                    index = h
+                                                }
+                                            }
+                                        }
+
+                                        if (typeof sandmap.hotrocks[index] !== "undefined") {
+                                            if (this.units[t].attacktarget.health > 0) {
+
+                                            } else {
+                                                j++
+                                                this.units[t].pathTo(sandmap.hotrocks[index])
+                                                if (j > 6) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if (Math.random() < .1) {
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (this.units[t].infantry == 1) {
+                                this.units[t].attackmove()
+                            }
+                        }
+                    }
+
+                    if (Math.random() < (.3 / this.units.length)) {
+                        for (let t = 0; t < this.buildings.length; t++) {
+                            if (this.buildings[t].barracks == 1) {
+                                if (Math.random() < .1 - (this.units.length * .002)) {
+                                    if (this.hotrock > 200) {
+                                        this.buildings[t].makeScout()
+                                    }
+                                }
+                                if (Math.random() < .1) {
+                                    if (this.hotrock > 300) {
+                                        this.buildings[t].makeInfantry()
+                                    }
+                                }
+                                if (Math.random() < .1 - (this.units.length * .002)) {
+                                    if (this.hotrock > 300) {
+                                        this.buildings[t].makeHarvester()
+                                    }
+                                }
+                                if (Math.random() < .3) {
+                                    break
+                                }
+                            }
+                        }
+                    }
+                    if((Math.random()*.13)){
+
+                        for (let t = 0; t < this.units.length; t++) {
+                            if(this.units[t].tile.sourcerock >= 1 || ((Math.random()*.03) && this.units[t].index < this.units[t].realPath.length-1)){
+    
+                            }else{
+                                continue
+                            }
+    
+    
+    
+                            if (this.units[t].decayingInTheWind == 1) {
+                                if (this.units[t].dirs1 == 1) {
+                                } else {
+                                    if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                        for (let x = this.units[t].tile.k; x < 126; x++) {
+                                            if (x < 0 || x > 126) {
+                                                continue
+                                            }
+                                            if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1) {
+                                                this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                            }else if(x == 127){
+                                                this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                            }
+                                            if (debreak == 0) {
+                                                break
+                                            }
+                                        }
+                                    }
+                                }
+                                if (this.units[t].dirs4 == 1) {
+                                } else {
+                                    if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                        for (let x = this.units[t].tile.k; x > 1; x--) {
+                                            if (x < 0 || x > 126) {
+                                                continue
+                                            }
+                                            if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1) {
+                                                this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                            }else if(x == 2){
+                                                this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                            }
+                                            if (debreak == 0) {
+                                                break
+                                            }
+                                        }
+                                    }
+                                }
+                                if (this.units[t].dirs3 == 1) {
+                                } else {
+                                    if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                        for (let x = this.units[t].tile.t; x > 1; x--) {
+                                            if (x < 0 || x > 126) {
+                                                continue
+                                            }
+                                            if (this.blocks[x - 1][this.units[t].tile.k].markdraw != 1) {
+                                                this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                            }else if(x == 2){
+                                                this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                            }
+                                            if (debreak == 0) {
+                                                break
+                                            }
+                                        }
+                                    }
+                                }
+                                if (this.units[t].dirs2 == 1) {
+                                } else {
+                                    if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                        for (let x = this.units[t].tile.t; x < 126; x++) {
+                                            if (x < 0 || x > 126) {
+                                                continue
+                                            }
+                                            if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1) {
+                                                this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                            }else if(x == 127){
+                                                this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                            }
+                                            if (debreak == 0) {
+                                                break
+                                            }
+                                        }
+                                    }
+                                }
+    
+    
+                            } else if (this.units[t].decayingInTheWind > .51 && this.units[t].decayingInTheWind < .8) {
+                                if (this.units[t].dirs1 == 1) {
+                                } else {
+                                    if (this.units[t].health < (this.units[t].maxhealth * .725)) {
+                                        for (let x = this.units[t].tile.k; x < 126; x++) {
+                                            if (x < 0 || x > 126) {
+                                                continue
+                                            }
+                                            if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1) {
+                                                this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                            }else if(x == 127){
+                                                this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                            }
+                                            if (debreak == 0) {
+                                                break
+                                            }
+                                        }
+                                    }
+                                }
+                                if (this.units[t].dirs4 == 1) {
+                                } else {
+                                    if (this.units[t].health < (this.units[t].maxhealth * .725)) {
+                                        for (let x = this.units[t].tile.k; x > 1; x--) {
+                                            if (x < 0 || x > 126) {
+                                                continue
+                                            }
+                                            if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1) {
+                                                this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                            }else if(x == 2){
+                                                this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                            }
+                                            if (debreak == 0) {
+                                                break
+                                            }
+                                        }
+                                    }
+                                }
+                                if (this.units[t].dirs3 == 1) {
+                                } else {
+                                    if (this.units[t].health < (this.units[t].maxhealth * .725)) {
+                                        for (let x = this.units[t].tile.t; x > 1; x--) {
+                                            if (x < 0 || x > 126) {
+                                                continue
+                                            }
+                                            if (this.blocks[x - 1][this.units[t].tile.k].markdraw != 1) {
+                                                this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                            }else if(x == 2){
+                                                this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                            }
+                                            if (debreak == 0) {
+                                                break
+                                            }
+                                        }
+                                    }
+                                }
+                                if (this.units[t].dirs2 == 1) {
+                                } else {
+                                    if (this.units[t].health < (this.units[t].maxhealth * .725)) {
+                                        for (let x = this.units[t].tile.k; x < 126; x++) {
+                                            if (x < 0 || x > 126) {
+                                                continue
+                                            }
+                                            if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1) {
+                                                this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                            }else if(x == 127){
+                                                this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                            }
+                                            if (debreak == 0) {
+                                                break
+                                            }
+                                        }
+                                    }
+                                }
+                            } else if (this.units[t].decayingInTheWind > .27 && this.units[t].decayingInTheWind < .55) {
+                                if (this.units[t].dirs1 == 1) {
+                                } else {
+                                    if (this.units[t].health < (this.units[t].maxhealth * .5)) {
+                                        for (let x = this.units[t].tile.k; x < 126; x++) {
+                                            if (x < 0 || x > 126) {
+                                                continue
+                                            }
+                                            if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1) {
+                                                this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                            }else if(x == 127){
+                                                this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                            }
+                                            if (debreak == 0) {
+                                                break
+                                            }
+                                        }
+                                    }
+                                }
+                                if (this.units[t].dirs4 == 1) {
+                                } else {
+                                    if (this.units[t].health < (this.units[t].maxhealth * .5)) {
+                                        for (let x = this.units[t].tile.k; x > 1; x--) {
+                                            if (x < 0 || x > 126) {
+                                                continue
+                                            }
+                                            if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1) {
+                                                this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                            }else if(x == 2){
+                                                this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                            }
+                                            if (debreak == 0) {
+                                                break
+                                            }
+                                        }
+                                    }
+                                }
+                                if (this.units[t].dirs3 == 1) {
+                                } else {
+                                    if (this.units[t].health < (this.units[t].maxhealth * .5)) {
+                                        for (let x = this.units[t].tile.t; x > 1; x--) {
+                                            if (x < 0 || x > 126) {
+                                                continue
+                                            }
+                                            if (this.blocks[x - 1][this.units[t].tile.k].markdraw != 1) {
+                                                this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                            }else if(x == 2){
+                                                this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                            }
+                                            if (debreak == 0) {
+                                                break
+                                            }
+                                        }
+                                    }
+                                }
+                                if (this.units[t].dirs2 == 1) {
+                                } else {
+                                    if (this.units[t].health < (this.units[t].maxhealth * .5)) {
+                                        for (let x = this.units[t].tile.k; x < 126; x++) {
+                                            if (x < 0 || x > 126) {
+                                                continue
+                                            }
+                                            if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1) {
+                                                this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                            }else if(x == 127){
+                                                this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                            }
+                                            if (debreak == 0) {
+                                                break
+                                            }
+                                        }
+                                    }
+                                }
+    
+    
+                            } else if (this.units[t].decayingInTheWind >= .01 && this.units[t].decayingInTheWind < .3) {
+                                if (this.units[t].dirs1 == 1) {
+                                } else {
+                                    if (this.units[t].health < (this.units[t].maxhealth * .275)) {
+                                        for (let x = this.units[t].tile.t; x < 126; x++) {
+                                            if (x < 0 || x > 126) {
+                                                continue
+                                            }
+                                            if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1) {
+                                                this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                            }else if(x == 127){
+                                                this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                            }
+                                            if (debreak == 0) {
+                                                break
+                                            }
+                                        }
+                                    }
+                                }
+                                if (this.units[t].dirs4 == 1) {
+                                } else {
+                                    if (this.units[t].health < (this.units[t].maxhealth * .275)) {
+                                        for (let x = this.units[t].tile.k; x > 1; x--) {
+                                            if (x < 0 || x > 126) {
+                                                continue
+                                            }
+                                            if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1) {
+                                                this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                            }else if(x == 2){
+                                                this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                            }
+                                            if (debreak == 0) {
+                                                break
+                                            }
+                                        }
+                                    }
+                                }
+                                if (this.units[t].dirs3 == 1) {
+                                } else {
+                                    if (this.units[t].health < (this.units[t].maxhealth * .275)) {
+                                        for (let x = this.units[t].tile.t; x > 1; x--) {
+                                            if (x < 0 || x > 126) {
+                                                continue
+                                            }
+                                            if (this.blocks[x - 1][this.units[t].tile.k].markdraw != 1) {
+                                                this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                            }else if(x == 2){
+                                                this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                            }
+                                            if (debreak == 0) {
+                                                break
+                                            }
+                                        }
+                                    }
+                                }
+                                if (this.units[t].dirs2 == 1) {
+                                } else {
+                                    if (this.units[t].health < (this.units[t].maxhealth * .275)) {
+                                        for (let x = this.units[t].tile.k; x < 126; x++) {
+                                            if (x < 0 || x > 126) {
+                                                continue
+                                            }
+                                            if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1) {
+                                                this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                            }else if(x == 2){
+                                                this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                            }
+                                            if (debreak == 0) {
+                                                break
+                                            }
+                                        }
+                                    }
+                                }
+    
+    
+                            } else {
+    
+    
+                            }
+                        }
+
+                    }
+
+                    if (Math.random() < (this.units.length * .0009)) {
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (this.units[t].nymph == 2) {
+                                this.units[t].metamorph2()
+                                break
+                            }
+                        }
+                    }
+
+                    if (this.units.length > 25) {
+                        if (this.attacktimeout <= 0) {
+                            this.aimode = 1
+                            this.attacktimeout = 3000
+                        }
+                        this.attacktimeout--
+                    }
+                }
+
+
+
             }
-
         }
         buildWall(tile) {
-            if (this.hotrock >= 10) {
-                this.hotrock -= 10
-                let building = new Building(tile, this, 0)
+            if(this.faction.type == 1){
+                return
             }
+            if(this.racks == 0 && this.isAI == 1){
+                this.buildBarracks(tile)
+                this.racks = 1
+            }else{
+                let wet = 0
+                for (let t = 0; t < this.buildings.length; t++) {
+                    if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
+                        wet = 1
+                        debreak = 1
+                        // console.log(tile)
+                    }
+                }
+                if (wet == 0) {
+                    if (this.hotrock >= 10) {
+                        this.hotrock -= 10
+                        let building = new Building(tile, this, 0)
+                    }
+                }
+            }
+
         }
         buildBarracks(tile) {
 
+            if(this.faction.type == 1){
+                return
+            }
             if (this.hotrock >= 70) {
                 this.hotrock -= 10
                 let building = new Building(tile, this, 0)
@@ -2625,28 +3165,28 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (this.units[t].marked == 1) {
                     this.units[t].tile.walkable = true
                     soundCancel()
-                    if(this.units[t].drone == 1){
-                        if(Math.random()<.5){
+                    if (this.units[t].drone == 1) {
+                        if (Math.random() < .5) {
                             signallost.play()
-                        }else{
+                        } else {
                             error.play()
                         }
                     }
-                    if(this.units[t].infantry == 1){
-                        if(Math.random()<.5){
-                        tellmywife.play()
-                        }else{
-                        deathrattle.play()
+                    if (this.units[t].infantry == 1) {
+                        if (Math.random() < .5) {
+                            tellmywife.play()
+                        } else {
+                            deathrattle.play()
                         }
                     }
-                    if(this.units[t].harvester == 1){
-                        if(Math.random()<.5){
-                        feelcold.play()
-                        }else{
-                        redlight.play()
+                    if (this.units[t].harvester == 1) {
+                        if (Math.random() < .5) {
+                            feelcold.play()
+                        } else {
+                            redlight.play()
                         }
                     }
-                    
+
                     this.units.splice(t, 1)
                 }
             }
@@ -2654,7 +3194,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.units[t].see()
             }
             if (sandmap.players.indexOf(this) == sandmap.turn) {
-                canvas_context.fillText("Hotrock: " + Math.round(this.hotrock), sandmap.window.body.x + sandmap.window.body.width + 10, 145)
+                canvas_context.fillStyle = "black"
+                canvas_context.strokeStyle = sandmap.players[sandmap.turn].color
+                canvas_context.lineWidth = 1.5
+                canvas_context.font = "18px arial"
+                canvas_context.strokeText("Hotrock: " + Math.round(this.hotrock), sandmap.window.body.x + sandmap.window.body.width + 10, 315)
+                canvas_context.fillText("Hotrock: " + Math.round(this.hotrock), sandmap.window.body.x + sandmap.window.body.width + 10, 315)
             }
         }
     }
@@ -3070,6 +3615,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 dataflop = 1
                 canvas_context.fillStyle = this.faction.color
                 canvas_context.font = "20px arial"
+
+                canvas_context.fillStyle = "black"
+                canvas_context.strokeStyle = sandmap.players[sandmap.turn].color
+                canvas_context.lineWidth = 1.5
+                canvas_context.font = "18px arial"
+                canvas_context.strokeText(this.name + " " + this.health + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
                 canvas_context.fillText(this.name + " " + this.health + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
                 if (this.barracks == 1) {
                     this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 65, 50, 50, "red")
@@ -3107,6 +3658,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.tile.walkable = 1
                 this.tile.color = "#AACCFF"
                 delete this.tile.wallcolor
+                if(this.barracks == 1){
+                    this.faction.racks = 0
+                }
                 this.faction.buildings.splice(this.faction.buildings.indexOf(this), 1)
             }
         }
@@ -3145,7 +3699,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (this.faction.type == 1) {
                 this.isNymph()
             } else {
-                if(start == 0){
+                if (start == 0) {
                     if (this.faction.units.length == 1) {
                         this.isScout()
                     }
@@ -3188,7 +3742,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.name = "Scout Drone"
             this.sight = 3 + this.movespeed
             this.damage = this.body.radius
-            this.firerate =  9//(this.movespeed * 5)
+            this.firerate = 9//(this.movespeed * 5)
             this.attackrange = this.sight - 3
             this.health = (this.sight - 2) * 100
             this.maxhealth = this.health
@@ -3209,7 +3763,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.name = "Infantry"
             this.sight = 1 + this.movespeed
             this.damage = this.body.radius
-            this.firerate =  12 //(this.movespeed * 5)
+            this.firerate = 12 //(this.movespeed * 5)
             this.attackrange = this.sight
             this.health = this.sight * 100
             this.maxhealth = this.health
@@ -3243,9 +3797,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.maxhealth = this.health
         }
         makeNymph() {
-            if (this.faction.hotrock >= 70) {
-                if(this.imago == 1){
-                    this.faction.hotrock -= 70
+            if (this.faction.hotrock >= 110) {
+                if (this.imago == 1) {
+                    this.faction.hotrock -= 110
                     let agent1 = new Agent(this.tile, this.faction)
                     agent1.body.color = "teal"
                     agent1.body.radius = 4
@@ -3255,7 +3809,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     agent1.damage = (agent1.body.radius * .5)
                     agent1.name = "Nymph"
                     agent1.nymph = 1
-                    agent1.health = 200
+                    agent1.health = 70
                     agent1.maxhealth = agent1.health
                     for (let t = -2; t <= 2; t++) {
                         for (let k = -2; k <= 2; k++) {
@@ -3263,8 +3817,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 if (this.tile.k + k >= 0) {
                                     if (this.tile.t + t < 128) {
                                         if (this.tile.k + k < 128) {
-                                            if(sandmap.blocks[this.tile.t+t][this.tile.k+k].walkable == true){
-                                                agent1.pathTo(sandmap.blocks[this.tile.t+t][this.tile.k+k])
+                                            if (sandmap.blocks[this.tile.t + t][this.tile.k + k].walkable == true) {
+                                                agent1.pathTo(sandmap.blocks[this.tile.t + t][this.tile.k + k])
                                                 break
                                             }
                                         }
@@ -3278,7 +3832,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         metamorph1() {
             if (this.faction.hotrock >= 150) {
-                if(this.nymph == 1){
+                if (this.nymph == 1) {
                     this.faction.hotrock -= 150
                     this.body.color = "blue"
                     this.body.radius = 4.8
@@ -3289,7 +3843,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     this.damage = (this.body.radius + 1)
                     this.name = "Scurrier"
                     this.nymph = 2
-                    this.health = 500
+                    this.health = 400
                     this.maxhealth = this.health
                     this.attackrange = this.sight - 1
                 }
@@ -3297,21 +3851,21 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         metamorph2() {
             if (this.faction.hotrock >= 200) {
-                if(this.nymph == 2){
-                this.faction.hotrock -= 200
-                this.body.color = "white"
-                this.body.radius = 6.5
-                this.movespeed = 8
-                this.sight = 1 + this.movespeed
-                this.firerate = 20
-                this.decayRate = 0
-                this.damage = (this.body.radius + 2)
-                this.name = "Imago"
-                this.imago = 1
-                this.nymph = 0
-                this.health = 1000
-                this.maxhealth = this.health
-                this.attackrange = this.sight - 1
+                if (this.nymph == 2) {
+                    this.faction.hotrock -= 200
+                    this.body.color = "white"
+                    this.body.radius = 6.5
+                    this.movespeed = 8
+                    this.sight = 1 + this.movespeed
+                    this.firerate = 20
+                    this.decayRate = 0
+                    this.damage = (this.body.radius + 2)
+                    this.name = "Imago"
+                    this.imago = 1
+                    this.nymph = 0
+                    this.health = 900
+                    this.maxhealth = this.health
+                    this.attackrange = this.sight - 1
                 }
             }
         }
@@ -3319,7 +3873,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (dataflop == 0) {
                 dataflop = 1
                 canvas_context.fillStyle = this.faction.color
-                canvas_context.font = "20px arial"
+                // canvas_context.font = "20px arial"
+
+                canvas_context.fillStyle = "black"
+                canvas_context.strokeStyle = sandmap.players[sandmap.turn].color
+                canvas_context.lineWidth = 1.5
+                canvas_context.font = "18px arial"
+                canvas_context.strokeText(this.name + " " + Math.round(this.health) + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
+                if(this.faction.type == 0){
+                    canvas_context.strokeText(((1-this.decayingInTheWind)*100)+"% Cover", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                    canvas_context.fillText(((1-this.decayingInTheWind)*100)+"% Cover", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                }
                 canvas_context.fillText(this.name + " " + Math.round(this.health) + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
                 if (this.imago == 1) {
                     this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 65, 50, 50, "teal")
@@ -3354,25 +3918,25 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             if (typeof (sandmap.blocks[this.tile.t + t][this.tile.k + k] != undefined)) {
                                                 for (let g = 0; g < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length; g++) {
                                                     if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
-                                                    
-                                                        if(this.drone == 1){
+
+                                                        if (this.drone == 1) {
                                                             soundCancel()
                                                             combatinit.play()
                                                         }
-                                                        if(this.infantry == 1){
+                                                        if (this.infantry == 1) {
                                                             soundCancel()
                                                             lightemup.play()
                                                         }
-                                                        if(this.harvester == 1){
+                                                        if (this.harvester == 1) {
                                                             soundCancel()
-                                                            if(Math.random()<.3){
+                                                            if (Math.random() < .3) {
                                                                 myfuneral.play()
-                                                            }else{
+                                                            } else {
                                                                 hopeyouknow.play()
                                                             }
                                                         }
-                                                        
-                                                        
+
+
                                                         this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
                                                         break
                                                     }
@@ -3464,7 +4028,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     this.index = 0
                 } else {
                     this.realPath = [...this.pathsto]
-                    this.repath = 5+Math.floor(Math.random()*10)
+                    this.repath = 5 + Math.floor(Math.random() * 10)
                     this.snapto = point
                 }
             } else {
@@ -3496,7 +4060,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         this.pathsto.push(this.realPath[t])
                     }
                     this.realPath = [...this.pathsto]
-                    this.repath = 40+Math.floor(Math.random()*40)
+                    this.repath = 40 + Math.floor(Math.random() * 40)
                     this.snapto = point
                 } else {
                     let max = 9999999999
@@ -3542,28 +4106,28 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.dirs3 = 0
             this.dirs4 = 0
             for (let t = 0; t < this.faction.buildings.length; t++) {
-                if (this.dirs1 == 0) {
+                if (this.dirs1 == 0) {// right
                     if (this.faction.buildings[t].tile.x >= this.tile.x) {
                         if (this.faction.buildings[t].tile.y == this.tile.y) {
                             this.dirs1 += 1
                         }
                     }
                 }
-                if (this.dirs2 == 0) {
+                if (this.dirs2 == 0) {// down
                     if (this.faction.buildings[t].tile.y >= this.tile.y) {
                         if (this.faction.buildings[t].tile.x == this.tile.x) {
                             this.dirs2 += 1
                         }
                     }
                 }
-                if (this.dirs3 == 0) {
+                if (this.dirs3 == 0) { // left
                     if (this.faction.buildings[t].tile.x <= this.tile.x) {
                         if (this.faction.buildings[t].tile.y == this.tile.y) {
                             this.dirs3 += 1
                         }
                     }
                 }
-                if (this.dirs4 == 0) {
+                if (this.dirs4 == 0) {  // up
                     if (this.faction.buildings[t].tile.y <= this.tile.y) {
                         if (this.faction.buildings[t].tile.x == this.tile.x) {
                             this.dirs4 += 1
@@ -3576,7 +4140,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         move() {
             this.swing++
-            if(this.swing%this.swingout == 0){
+            if (this.swing % this.swingout == 0) {
                 this.attack()
             }
             this.repath--
@@ -3611,13 +4175,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.tile.drawish = 0
             this.tile.walkable = true
             this.tile = this.realPath[this.index]
-            if(this.index == this.realPath.length-1){
+            if (this.index == this.realPath.length - 1) {
                 this.realPath = [this.tile]
                 this.index = 0
             }
             this.heatwallcheck()
             ////////console.log( (this.decayingInTheWind*sandmap.windspeed))
-            this.health -= (this.decayRate * this.decayingInTheWind * sandmap.windspeed)
+            this.health -= ((this.decayRate * this.decayingInTheWind * sandmap.windspeed))
             if (this.decayingInTheWind == 0) {
                 this.health += this.decayRate
                 if (this.health > this.maxhealth) {
@@ -3667,20 +4231,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.body.y = this.tile.y + (this.tile.height * .5)
                 // this.body = new UnitCircle(this.tile.x + (this.tile.width * .5), this.tile.y + (this.tile.height * .5), 5, this.faction.color)
             }
-          
-            if(this.drone == 1){
-                map_context.drawImage(drone, this.body.x-5, this.body.y-5)
-            }else if(this.infantry == 1){
-                map_context.drawImage(infantry, this.body.x-5, this.body.y-5)
-            }else if(this.harvester == 1){
-                map_context.drawImage(harvester, this.body.x-5, this.body.y-5)
-            }else if(this.nymph == 1){
-                map_context.drawImage(nymph, this.body.x-5, this.body.y-5)
-            }else if(this.nymph == 2){
-                map_context.drawImage(scuttler, this.body.x-5, this.body.y-5)
-            }else if(this.imago == 1){
-                map_context.drawImage(imago, this.body.x-5, this.body.y-5)
-            }else{
+
+            if (this.drone == 1) {
+                map_context.drawImage(drone, this.body.x - 5, this.body.y - 5)
+            } else if (this.infantry == 1) {
+                map_context.drawImage(infantry, this.body.x - 5, this.body.y - 5)
+            } else if (this.harvester == 1) {
+                map_context.drawImage(harvester, this.body.x - 5, this.body.y - 5)
+            } else if (this.nymph == 1) {
+                map_context.drawImage(nymph, this.body.x - 5, this.body.y - 5)
+            } else if (this.nymph == 2) {
+                map_context.drawImage(scuttler, this.body.x - 5, this.body.y - 5)
+            } else if (this.imago == 1) {
+                map_context.drawImage(imago, this.body.x - 5, this.body.y - 5)
+            } else {
                 this.body.draw()
             }
 
@@ -3721,10 +4285,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
 
     for (let t = 0; t < 3; t++) {
-        let agent1 = new Agent(sandmap.blocks[2][t + 1], sandmap.players[0])
+        let agent1 = new Agent(sandmap.blocks[10][t + 10], sandmap.players[0])
     }
     for (let t = 0; t < 3; t++) {
-        let agent2 = new Agent(sandmap.blocks[124][t + 1], sandmap.players[1])
+        let agent2 = new Agent(sandmap.blocks[117][117 - t], sandmap.players[1])
     }
 
 
@@ -3735,6 +4299,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
     // }
     start = 1
     function main() {
+        // if(Math.random()<.2){
+        //     debreak = 0
+        // }
         canvas_context.clearRect(0, 0, canvas.width, canvas.height)  // refreshes the image
         map_context.clearRect(0, 0, map_canvas.width, map_canvas.height)  // refreshes the image
         // gamepadAPI.update() //checks for button presses/stick movement on the connected controller)
