@@ -12,6 +12,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     let sounds = []
 
+    let postwind = new Audio()
+    postwind.src = "postwind.mp3"
+    // sounds.push(postwind)
+    postwind.volume = .4
+
     let hopeyouknow = new Audio()
     hopeyouknow.src = "hopeyouknow.mp3"
     sounds.push(hopeyouknow)
@@ -4312,6 +4317,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     // }
     start = 1
     function main() {
+        postwind.play()
         // if(Math.random()<.2){
         //     debreak = 0
         // }
