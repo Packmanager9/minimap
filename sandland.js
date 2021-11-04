@@ -2822,6 +2822,33 @@ window.addEventListener('DOMContentLoaded', (event) => {
         ai() {
             if (this.type == 1) {
 
+                if (this.defending == 1) {
+                    this.defending = 0
+                    this.defenseforce = 0
+                    for (let t = 0; t < this.units.length; t++) {
+                        if (this.units[t].nymph == 2) {
+                            this.defenseforce++
+                        }
+                    }
+                    if (this.defenseforce > 0) {
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (this.units[t].nymph == 2) {
+                                if (Math.random() < 2 / this.defenseforce) {
+                                    this.units[t].pathTo(this.attackedAt)
+                                }
+                            }
+                        }
+                    } else {
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (Math.random() < 2 / this.defenseforce) {
+                            if (this.units[t].nymph !== 1) {
+                                this.units[t].pathTo(this.attackedAt)
+                            }
+                            }
+                        }
+
+                    }
+                }
                 let index = sandmap.hotrocks.length + 1
                 this.chunk++
                 if (this.aimode == 1) {
@@ -2992,6 +3019,32 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
             } else { // human below, itzler above
+
+                if (this.defending == 1) {
+                    this.defending = 0
+                    this.defenseforce = 0
+                    for (let t = 0; t < this.units.length; t++) {
+                        if (this.units[t].infantry == 1) {
+                            this.defenseforce++
+                        }
+                    }
+                    if (this.defenseforce > 0) {
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (this.units[t].infantry == 1) {
+                                if (Math.random() < 2 / this.defenseforce) {
+                                    this.units[t].pathTo(this.attackedAt)
+                                }
+                            }
+                        }
+                    } else {
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (Math.random() < 2 / this.defenseforce) {
+                                this.units[t].pathTo(this.attackedAt)
+                            }
+                        }
+
+                    }
+                }
 
                 if (Math.random() < .0001) {
                     this.racks = 0
@@ -4186,8 +4239,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.strokeStyle = sandmap.players[sandmap.turn].color
                 canvas_context.lineWidth = 1.5
                 canvas_context.font = "18px arial"
-                canvas_context.strokeText(this.name + " " + this.health + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
-                canvas_context.fillText(this.name + " " + this.health + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
+                canvas_context.strokeText(this.name + " " + Math.ceil(this.health) + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
+                canvas_context.fillText(this.name + " " + Math.ceil(this.health) + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
                 if (this.barracks == 1) {
                     canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
                     canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
@@ -4580,52 +4633,57 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                 for (let g = 0; g < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length; g++) {
                                                     if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
 
-                                                    if(sandmap.players.indexOf(this.faction) == sandmap.turn){
-                                                        if (this.nymph == 1) {
-                                                            if (Math.random() < soundspamdrop) {
-                                                                soundCancel()
-                                                                if (Math.random() < .5) {
-                                                                    itstheedgeofusfight.play()
-                                                                } else {
-                                                                    seethemseetheme.play()
+                                                        if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
+                                                            if (this.nymph == 1) {
+                                                                if (Math.random() < soundspamdrop) {
+                                                                    soundCancel()
+                                                                    if (Math.random() < .5) {
+                                                                        itstheedgeofusfight.play()
+                                                                    } else {
+                                                                        seethemseetheme.play()
+                                                                    }
+                                                                }
+                                                            }
+                                                            if (this.imago == 1) {
+                                                                if (Math.random() < soundspamdrop) {
+                                                                    soundCancel()
+                                                                    if (Math.random() < .5) {
+                                                                        ahhbarber.play()
+                                                                    } else[
+                                                                        slamdownmustard.play()
+                                                                    ]
+                                                                }
+                                                            }
+                                                            if (this.drone == 1) {
+                                                                if (Math.random() < soundspamdrop) {
+                                                                    soundCancel()
+                                                                    combatinit.play()
+                                                                }
+                                                            }
+                                                            if (this.infantry == 1) {
+                                                                if (Math.random() < soundspamdrop) {
+                                                                    soundCancel()
+                                                                    lightemup.play()
+                                                                }
+                                                            }
+                                                            if (this.harvester == 1) {
+                                                                if (Math.random() < soundspamdrop) {
+                                                                    soundCancel()
+                                                                    if (Math.random() < .3) {
+                                                                        myfuneral.play()
+                                                                    } else {
+                                                                        hopeyouknow.play()
+                                                                    }
                                                                 }
                                                             }
                                                         }
-                                                        if (this.imago == 1) {
-                                                            if (Math.random() < soundspamdrop) {
-                                                                soundCancel()
-                                                                if (Math.random() < .5) {
-                                                                    ahhbarber.play()
-                                                                } else[
-                                                                    slamdownmustard.play()
-                                                                ]
-                                                            }
-                                                        }
-                                                        if (this.drone == 1) {
-                                                            if (Math.random() < soundspamdrop) {
-                                                                soundCancel()
-                                                                combatinit.play()
-                                                            }
-                                                        }
-                                                        if (this.infantry == 1) {
-                                                            if (Math.random() < soundspamdrop) {
-                                                                soundCancel()
-                                                                lightemup.play()
-                                                            }
-                                                        }
-                                                        if (this.harvester == 1) {
-                                                            if (Math.random() < soundspamdrop) {
-                                                                soundCancel()
-                                                                if (Math.random() < .3) {
-                                                                    myfuneral.play()
-                                                                } else {
-                                                                    hopeyouknow.play()
-                                                                }
-                                                            }
-                                                        }
-                                                    }
 
                                                         this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
+                                                        if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].isAI == 1) {
+                                                            sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].pathTo(this.tile)
+                                                            sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].attackedAt = this.tile
+                                                            sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending = 1
+                                                        }
                                                         break
                                                     }
                                                 }
@@ -4633,6 +4691,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
                                                         this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings[g]
                                                         this.attacktarget.isABuilding = 1
+
+                                                        if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].isAI == 1) {
+                                                            sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].attackedAt = this.tile
+                                                            sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending = 1
+                                                        }
                                                         break
                                                     }
                                                 }
@@ -4972,17 +5035,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
 
             if (this.drone == 1) {
-                map_context.drawImage(drone, this.body.x - 5, this.body.y - 5)
+                map_context.drawImage(drone, Math.floor(this.body.x) - 5, Math.floor(this.body.y) - 5)
             } else if (this.infantry == 1) {
-                map_context.drawImage(infantry, this.body.x - 5, this.body.y - 5)
+                map_context.drawImage(infantry, Math.floor(this.body.x) - 5, Math.floor(this.body.y) - 5)
             } else if (this.harvester == 1) {
-                map_context.drawImage(harvester, this.body.x - 5, this.body.y - 5)
+                map_context.drawImage(harvester, Math.floor(this.body.x) - 5, Math.floor(this.body.y) - 5)
             } else if (this.nymph == 1) {
-                map_context.drawImage(nymph, this.body.x - 5, this.body.y - 5)
+                map_context.drawImage(nymph, Math.floor(this.body.x) - 5, Math.floor(this.body.y) - 5)
             } else if (this.nymph == 2) {
-                map_context.drawImage(scuttler, this.body.x - 5, this.body.y - 5)
+                map_context.drawImage(scuttler, Math.floor(this.body.x) - 5, Math.floor(this.body.y) - 5)
             } else if (this.imago == 1) {
-                map_context.drawImage(imago, this.body.x - 5, this.body.y - 5)
+                map_context.drawImage(imago, Math.floor(this.body.x) - 5, Math.floor(this.body.y) - 5)
             } else {
                 this.body.draw()
             }
