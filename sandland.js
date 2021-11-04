@@ -2259,8 +2259,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             let id = 0
             this.hotrocks = []
             this.players = []
-            this.players.push(new Player('Earthoids', "#AA00AA", 1, 0))
-            this.players.push(new Player('Cold Itzlerians', "#00FFAA", 1, 1))
+            this.players.push(new Player('Earthoids', "#AA00AA", 0, 0))
+            this.players.push(new Player('Cold Itzlerians', "#00FFAA", 0, 1))
             this.players[1].units = []
             for (let g = 0; g < this.players.length + 1; g++) {
                 for (let t = 0; t < 128; t++) {
@@ -2589,10 +2589,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             if (this.units[t].imago !== 1) {
                                 //hardcoding this gid helf mi
                                 if (Math.random() < .3) {
-                                    if (sandmap.players[0].units.length > 0) {
-                                        if (typeof sandmap.players[0].units[Math.floor(Math.random() * sandmap.players[0].units.length)].tile !== "undefined") {
+                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this)-1)].units.length > 0) {
+                                        if (typeof sandmap.players[Math.abs(sandmap.players.indexOf(this)-1)].units[Math.floor(Math.random() * sandmap.players[Math.abs(sandmap.players.indexOf(this)-1)].units.length)].tile !== "undefined") {
                                             j++
-                                            this.units[t].pathTo(sandmap.players[0].units[Math.floor(Math.random() * sandmap.players[0].units.length)].tile)
+                                            this.units[t].pathTo(sandmap.players[Math.abs(sandmap.players.indexOf(this)-1)].units[Math.floor(Math.random() * sandmap.players[Math.abs(sandmap.players.indexOf(this)-1)].units.length)].tile)
                                             if (j > 6) {
                                                 break
                                             }
@@ -3039,7 +3039,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                             let calcdeath = this.units[t].health / (((this.units[t].decayRate * this.units[t].decayingInTheWind * sandmap.windspeed)))
 
-                            if (Math.abs(this.units[t].realPath.length - this.units[t].index) < 3 || Math.abs(this.units[t].realPath.length - this.units[t].index) < calcdeath) {
+                            if (Math.abs(this.units[t].realPath.length - this.units[t].index) < 3 || Math.abs(this.units[t].realPath.length - this.units[t].index) > (calcdeath-(this.units[t].movespeed*10))) {
 
                                 // console.log(this.units[t])
 
@@ -3868,7 +3868,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         finishScout() {
             soundCancel()
             online.play()
-            let agent1 = new Agent(this.tile, sandmap.players[0])
+            let agent1 = new Agent(this.tile,this.faction)
             agent1.isScout()
         }
         makeInfantry() {
@@ -3885,7 +3885,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         finishInfantry() {
             soundCancel()
             reporting.play()
-            let agent1 = new Agent(this.tile, sandmap.players[0])
+            let agent1 = new Agent(this.tile, this.faction)
             agent1.isInfantry()
         }
         makeHarvester() {
@@ -3903,7 +3903,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         finishHarvester() {
             soundCancel()
             systems.play()
-            let agent1 = new Agent(this.tile, sandmap.players[0])
+            let agent1 = new Agent(this.tile, this.faction)
             agent1.isHarvester()
         }
 
@@ -4056,13 +4056,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.body.color = "teal"
             this.body.radius = 4
             this.movespeed = 1
-            this.firerate = 10
+            this.firerate = 3
             this.decayRate = 0
             this.damage = (this.body.radius * .5)
             this.name = "Nymph"
             this.nymph = 1
             this.sight = 2 + this.movespeed
-            this.firerate = (this.movespeed * 5)
+            // this.firerate = (this.movespeed * 5)
             this.attackrange = this.sight - 1
             // this.health = this.sight * 100
             this.maxhealth = this.health
@@ -4082,7 +4082,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.name = "Scout Drone"
             this.sight = 3 + this.movespeed
             this.damage = this.body.radius
-            this.firerate = 9//(this.movespeed * 5)
+            this.firerate = 4  // 9//(this.movespeed * 5)
             this.attackrange = this.sight - 1
             this.health = (this.sight - 2) * 100
             this.maxhealth = this.health
@@ -4103,7 +4103,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.name = "Infantry"
             this.sight = 1 + this.movespeed
             this.damage = (this.body.radius * 2)
-            this.firerate = 12 //(this.movespeed * 5)
+            this.firerate = 5 //12 //(this.movespeed * 5)
             this.attackrange = this.sight
             this.health = this.sight * 100
             this.maxhealth = this.health
@@ -4122,7 +4122,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.body.radius = 5.5
             this.name = "Harvesting Vehicle"
             this.sight = 1 + this.movespeed
-            this.damage = (this.body.radius * 1.4)
+            this.damage = (this.body.radius * 5.4)
             this.firerate = 25 //(this.movespeed * 5)
             this.attackrange = this.sight - 1
             this.health = this.sight * 100
@@ -4140,7 +4140,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             agent1.body.color = "teal"
             agent1.body.radius = 4
             agent1.movespeed = 1
-            agent1.firerate = 5
+            agent1.firerate = 3
             agent1.decayRate = 0
             agent1.damage = (agent1.body.radius * .5)
             agent1.name = "Nymph"
