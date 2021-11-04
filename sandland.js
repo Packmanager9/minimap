@@ -2764,6 +2764,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.racks = 0
             this.averageSpace = {}
             this.baseMoveFlag = 0
+            this.defending = 0
         }
         findBase() {
             this.averageSpace.dirs1 = 0
@@ -2820,9 +2821,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
         }
         ai() {
+            this.defending--
             if (this.type == 1) {
 
-                if (this.defending == 1) {
+                if (this.defending >= 12) {
                     this.defending = 0
                     this.defenseforce = 0
                     for (let t = 0; t < this.units.length; t++) {
@@ -2841,9 +2843,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     } else {
                         for (let t = 0; t < this.units.length; t++) {
                             if (Math.random() < 2 / this.defenseforce) {
-                            if (this.units[t].nymph !== 1) {
-                                this.units[t].pathTo(this.attackedAt)
-                            }
+                                if (this.units[t].nymph !== 1) {
+                                    if (this.units[t].imago == 1 && Math.random() < .9) {
+                                        continue
+                                    }
+                                    this.units[t].pathTo(this.attackedAt)
+                                }
                             }
                         }
 
@@ -3020,7 +3025,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             } else { // human below, itzler above
 
-                if (this.defending == 1) {
+                if (this.defending >= 12) {
                     this.defending = 0
                     this.defenseforce = 0
                     for (let t = 0; t < this.units.length; t++) {
@@ -3039,6 +3044,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     } else {
                         for (let t = 0; t < this.units.length; t++) {
                             if (Math.random() < 2 / this.defenseforce) {
+                                if (this.units[t].harvester == 1 && Math.random() < .9) {
+                                    continue
+                                }
                                 this.units[t].pathTo(this.attackedAt)
                             }
                         }
@@ -4682,7 +4690,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                         if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].isAI == 1) {
                                                             sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].pathTo(this.tile)
                                                             sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].attackedAt = this.tile
-                                                            sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending = 1
+
+                                                            if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending < 0) {
+                                                                sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending = 1
+                                                            } else {
+                                                                sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending += sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length
+                                                            }
+
+
+
                                                         }
                                                         break
                                                     }
@@ -4694,7 +4710,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                                                         if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].isAI == 1) {
                                                             sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].attackedAt = this.tile
-                                                            sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending = 1
+
+                                                            if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending < 0) {
+                                                                sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending = 1
+                                                            } else {
+                                                                sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending += sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length
+                                                            }
+
                                                         }
                                                         break
                                                     }
