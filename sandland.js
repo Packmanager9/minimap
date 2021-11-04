@@ -68,6 +68,65 @@ window.addEventListener('DOMContentLoaded', (event) => {
     whoarewetomolt.src = "whoarewetomolt.mp3"
     sounds.push(whoarewetomolt)
 
+    //scuttler audio
+    let scuttlerdeath = new Audio()
+    scuttlerdeath.src = "scuttlerdeath.mp3"
+    sounds.push(scuttlerdeath)
+    let whoelsezagtheoystergush = new Audio()
+    whoelsezagtheoystergush.src = "whoelsezagtheoystergush.mp3"
+    sounds.push(whoelsezagtheoystergush)
+    let sureiwillstandup = new Audio()
+    sureiwillstandup.src = "sureiwillstandup.mp3"
+    sounds.push(sureiwillstandup)
+    let suresawwithvenom = new Audio()
+    suresawwithvenom.src = "suresawwithvenom.mp3"
+    sounds.push(suresawwithvenom)
+    let suresauna = new Audio()
+    suresauna.src = "suresauna.mp3"
+    sounds.push(suresauna)
+    let stallusyourworth = new Audio()
+    stallusyourworth.src = "stallusyourworth.mp3"
+    sounds.push(stallusyourworth)
+    let getinthebathsootheyourson = new Audio()
+    getinthebathsootheyourson.src = "getinthebathsootheyourson.mp3"
+    sounds.push(getinthebathsootheyourson)
+    let illness = new Audio()
+    illness.src = "illness.mp3"
+    sounds.push(illness)
+    let whatareyoufreesievingoutput = new Audio()
+    whatareyoufreesievingoutput.src = "whatareyoufreesievingoutput.mp3"
+    sounds.push(whatareyoufreesievingoutput)
+    let icannamethevillans = new Audio()
+    icannamethevillans.src = "icannamethevillans.mp3"
+    sounds.push(icannamethevillans)
+    let mylifesmine = new Audio()
+    mylifesmine.src = "mylifesmine.mp3"
+    sounds.push(mylifesmine)
+    let iknowcomeon = new Audio()
+    iknowcomeon.src = "iknowcomeon.mp3"
+    sounds.push(iknowcomeon)
+    let guessillgothen = new Audio()
+    guessillgothen.src = "guessillgothen.mp3"
+    sounds.push(guessillgothen)
+    let yeahimfamiliarsee = new Audio()
+    yeahimfamiliarsee.src = "yeahimfamiliarsee.mp3"
+    sounds.push(yeahimfamiliarsee)
+    let amiaringer = new Audio()
+    amiaringer.src = "amiaringer.mp3"
+    sounds.push(amiaringer)
+    let ohisthattheeyeofthesnake = new Audio()
+    ohisthattheeyeofthesnake.src = "ohisthattheeyeofthesnake.mp3"
+    sounds.push(ohisthattheeyeofthesnake)
+    let snazzyrim = new Audio()
+    snazzyrim.src = "snazzyrim.mp3"
+    sounds.push(snazzyrim)
+    let hangintheremanlol = new Audio()
+    hangintheremanlol.src = "hangintheremanlol.mp3"
+    sounds.push(hangintheremanlol)
+    let slowworkingsite = new Audio()
+    slowworkingsite.src = "slowworkingsite.mp3"
+    sounds.push(slowworkingsite)
+
     //imago audio
     let boh = new Audio()
     boh.src = "boh.mp3"
@@ -161,6 +220,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
     function soundCancel() {
+        soundspamdrop = .55
         for (let t = 0; t < sounds.length; t++) {
             sounds[t].pause()
             sounds[t].currentTime = 0
@@ -1682,6 +1742,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         scanning.play()
                                     }
                                 }
+                                if (sandmap.players[sandmap.turn].units[t].nymph == 2) {
+                                    if (Math.random() < .3) {
+                                        sureiwillstandup.play()
+                                    } else if (Math.random() < .3) {
+                                        suresauna.play()
+                                    } else {
+                                        getinthebathsootheyourson.play()
+                                    }
+                                }
                                 if (sandmap.players[sandmap.turn].units[t].nymph == 1) {
                                     seeasvillaneh.play()
                                 }
@@ -1742,6 +1811,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                     if (sandmap.players[sandmap.turn].units[t].morph2.isPointInside(TIP_engine)) {
                         sandmap.players[sandmap.turn].units[t].metamorph2()
+                        if (sandmap.players[sandmap.turn].units[t].nymph == 2) {
+                            if (Math.random() < soundspamdrop) {
+                                soundCancel()
+                                if (Math.random() < .5) {
+                                    whoelsezagtheoystergush.play()
+                                } else {
+                                    stallusyourworth.play()
+                                }
+
+                            }
+                        }
                     }
                 }
                 if (sandmap.window.minibody.isPointInside(TIP_engine)) {
@@ -1800,6 +1880,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         sieveceaselessly.play()
                                     }
                                 }
+                                if (sandmap.players[sandmap.turn].units[t].nymph == 2) {
+                                    if (Math.random() < .5) {
+                                        whatareyoufreesievingoutput.play()
+                                    } else {
+                                        slowworkingsite.play()
+                                    }
+                                }
                                 if (sandmap.players[sandmap.turn].units[t].drone == 1) {
                                     collect.play()
                                 }
@@ -1830,6 +1917,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 }
                                 if (sandmap.players[sandmap.turn].units[t].nymph == 1) {
                                     spreadoutseemult.play()
+                                }
+
+                                if (sandmap.players[sandmap.turn].units[t].nymph == 2) {
+                                    if(Math.random()<.3){
+                                        amiaringer.play()  //scuttaud
+                                    }else  if(Math.random()<.3){
+                                        yeahimfamiliarsee.play()  //scuttaud
+                                    }else{
+                                        hangintheremanlol.play()
+                                    }
                                 }
 
                                 if (sandmap.players[sandmap.turn].units[t].infantry == 1) {
@@ -3043,7 +3140,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                     for (let t = 0; t < this.buildings.length; t++) {
                         if (this.buildings[t].barracks == 1) {
-                            if(this.hotrock > 40){
+                            if (this.hotrock > 40) {
                                 this.buildings[t].makeInfantry()
                             }
                         }
@@ -3789,6 +3886,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     die.play()
                                 }
                             }
+                            if (this.units[t].nymph == 2) {
+                                if (Math.random() < .3) {
+                                    scuttlerdeath.play()
+                                } else if (Math.random() < .3) {
+                                    guessillgothen.play()
+                                } else {
+                                    illness.play()
+                                }
+                            }
                         }
                     }
                     this.units.splice(t, 1)
@@ -4269,10 +4375,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.strokeText(this.name + " " + Math.ceil(this.health) + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
                 canvas_context.fillText(this.name + " " + Math.ceil(this.health) + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
 
-                canvas_context.strokeText("Attack " + Math.ceil(this.damage) , sandmap.window.body.x + sandmap.window.body.width + 10, 85)
-                canvas_context.fillText("Attack " + Math.ceil(this.damage) , sandmap.window.body.x + sandmap.window.body.width + 10, 85)
-                canvas_context.strokeText("Defense " + Math.ceil(this.defense) , sandmap.window.body.x + sandmap.window.body.width + 10, 115)
-                canvas_context.fillText("Defense " + Math.ceil(this.defense) , sandmap.window.body.x + sandmap.window.body.width + 10, 115)
+                canvas_context.strokeText("Attack " + Math.ceil(this.damage), sandmap.window.body.x + sandmap.window.body.width + 10, 85)
+                canvas_context.fillText("Attack " + Math.ceil(this.damage), sandmap.window.body.x + sandmap.window.body.width + 10, 85)
+                canvas_context.strokeText("Defense " + Math.ceil(this.defense), sandmap.window.body.x + sandmap.window.body.width + 10, 115)
+                canvas_context.fillText("Defense " + Math.ceil(this.defense), sandmap.window.body.x + sandmap.window.body.width + 10, 115)
                 if (this.barracks == 1) {
                     canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
                     canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
@@ -4285,7 +4391,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     this.spawnbig = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 210, 125, 90, 50, "black")
                     this.spawnbig.draw()
                     canvas_context.drawImage(harvester, 0, 0, 10, 10, this.spawnbig.x + 10, this.spawnbig.y + 5, 30, 30)
-                    
+
 
                     canvas_context.fillStyle = "white"
                     canvas_context.font = "13px arial"
@@ -4414,7 +4520,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.movespeed = 1
             this.firerate = 3
             this.decayRate = 0
-            this.damage = (this.body.radius * 2.5)+1
+            this.damage = (this.body.radius * 2.5) + 1
             this.name = "Nymph"
             this.nymph = 1
             this.defense = 0
@@ -4558,6 +4664,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.defense = 3
             this.maxhealth = this.health
             this.attackrange = this.sight - 1
+            if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
+                if (Math.random() < soundspamdrop) {
+                    soundCancel()
+                    if(Math.random()<.3){
+                        iknowcomeon.play()
+                    }else  if(Math.random()<.3){
+                        mylifesmine.play()
+                    }else{
+                        snazzyrim.play()
+                    }
+                }
+            }
         }
         finishMorph2() {
             this.body.color = "white"
@@ -4623,10 +4741,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.fillText(this.name + " " + Math.round(this.health) + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
 
 
-                canvas_context.strokeText("Attack " + Math.ceil(this.damage*3) , sandmap.window.body.x + sandmap.window.body.width + 10, 85)
-                canvas_context.fillText("Attack " + Math.ceil(this.damage*3) , sandmap.window.body.x + sandmap.window.body.width + 10, 85)
-                canvas_context.strokeText("Defense " + Math.ceil(this.defense) , sandmap.window.body.x + sandmap.window.body.width + 10, 115)
-                canvas_context.fillText("Defense " + Math.ceil(this.defense) , sandmap.window.body.x + sandmap.window.body.width + 10, 115)
+                canvas_context.strokeText("Attack " + Math.ceil(this.damage * 3), sandmap.window.body.x + sandmap.window.body.width + 10, 85)
+                canvas_context.fillText("Attack " + Math.ceil(this.damage * 3), sandmap.window.body.x + sandmap.window.body.width + 10, 85)
+                canvas_context.strokeText("Defense " + Math.ceil(this.defense), sandmap.window.body.x + sandmap.window.body.width + 10, 115)
+                canvas_context.fillText("Defense " + Math.ceil(this.defense), sandmap.window.body.x + sandmap.window.body.width + 10, 115)
                 if (this.imago == 1) {
                     this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
                     this.spawnsmall.draw()
@@ -4697,6 +4815,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                     } else[
                                                                         slamdownmustard.play()
                                                                     ]
+                                                                }
+                                                            }
+                                                            if (this.nymph == 2) {
+                                                                if (Math.random() < soundspamdrop) {
+                                                                    soundCancel()
+                                                                    if (Math.random() < .3) {
+                                                                        icannamethevillans.play()
+                                                                    } else  if (Math.random() < .3) {
+                                                                        suresawwithvenom.play()
+                                                                    }else{
+                                                                        ohisthattheeyeofthesnake.play()
+                                                                    }
                                                                 }
                                                             }
                                                             if (this.drone == 1) {
@@ -4996,9 +5126,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.realPath = [this.tile]
                 this.index = 0
             }
-            if(this.faction.type == 0){
+            if (this.faction.type == 0) {
                 this.heatwallcheck()
-            }else{
+            } else {
                 this.decayingInTheWind = 0
             }
             //////////console.log( (this.decayingInTheWind*sandmap.windspeed))
@@ -5137,7 +5267,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.shots[t].y = (this.body.y * (1 - (this.shots[t].stage / this.projectilespeed))) + (((this.shots[t].stage / this.projectilespeed)) * this.shots[t].attacktarget.body.y)
                 this.shots[t].draw()
                 if (this.shots[t].stage >= this.projectilespeed) {
-                    this.shots[t].refhealth.health -= Math.max((this.damage * 3)-this.shots[t].attacktarget.defense, 0) //5?
+                    this.shots[t].refhealth.health -= Math.max((this.damage * 3) - this.shots[t].attacktarget.defense, 0) //5?
                     ////console.log(this.shots[t].refhealth)
                     this.shots[t].marked = 1
                 }
@@ -5165,6 +5295,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     // }
     start = 1
     function main() {
+        soundspamdrop *= 1.009
+
         if (keysPressed[' ']) {
             sandmap.players[sandmap.turn].isAI = 0
         }
