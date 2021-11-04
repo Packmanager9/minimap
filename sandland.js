@@ -8,7 +8,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
     let dataflop = 0
     let snow = new Image()
-    snow.src = 'smoothsnow2.png'
+    snow.src = 'smoothsnow4.png'
+    let nowalk = new Image()
+    nowalk.src = 'nowalk.png'
 
     let sounds = []
     let soundspamdrop = .55
@@ -45,6 +47,55 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let movin = new Audio()
     movin.src = "movin.mp3"
     sounds.push(movin)
+
+    //nymph audio
+    let itstheedgeofusfight = new Audio()
+    itstheedgeofusfight.src = "itstheedgeofusfight.mp3"
+    sounds.push(itstheedgeofusfight)
+    let sureilike = new Audio()
+    sureilike.src = "sureilike.mp3"
+    sounds.push(sureilike)
+    let seethemseetheme = new Audio()
+    seethemseetheme.src = "seethemseetheme.mp3"
+    sounds.push(seethemseetheme)
+    let seeasvillaneh = new Audio()
+    seeasvillaneh.src = "seeasvillaneh.mp3"
+    sounds.push(seeasvillaneh)
+    let spreadoutseemult = new Audio()
+    spreadoutseemult.src = "spreadoutseemult.mp3"
+    sounds.push(spreadoutseemult)
+    let whoarewetomolt = new Audio()
+    whoarewetomolt.src = "whoarewetomolt.mp3"
+    sounds.push(whoarewetomolt)
+
+    //imago audio
+    let boh = new Audio()
+    boh.src = "boh.mp3"
+    sounds.push(boh)
+    let sieveceaselessly = new Audio()
+    sieveceaselessly.src = "sieveceaselessly.mp3"
+    sounds.push(sieveceaselessly)
+    let sieveseejunior = new Audio()
+    sieveseejunior.src = "sieveseejunior.mp3"
+    sounds.push(sieveceaselessly)
+    let ahhbarber = new Audio()
+    ahhbarber.src = "sieveceaselessly.mp3"
+    sounds.push(ahhbarber)
+    let go = new Audio()
+    go.src = "go.mp3"
+    sounds.push(go)
+    let die = new Audio()
+    die.src = "die.mp3"
+    sounds.push(die)
+    let youneedmyassagain = new Audio()
+    youneedmyassagain.src = "youneedmyassagain.mp3"
+    sounds.push(youneedmyassagain)
+    let yeahiminthisroom = new Audio()
+    yeahiminthisroom.src = "yeahiminthisroom.mp3"
+    sounds.push(yeahiminthisroom)
+    let slamdownmustard = new Audio()
+    slamdownmustard.src = "slamdownmustard.mp3"
+    sounds.push(slamdownmustard)
 
 
     let donttellme = new Audio()
@@ -117,7 +168,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
 
     let icewall = new Image()
-    icewall.src = "icewall.png"
+    icewall.src = "icewall2.png"
     let barracks = new Image()
     barracks.src = "barracks.png"
 
@@ -132,11 +183,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let infantry = new Image()
     infantry.src = "infantry.png"
     let imago = new Image()
-    imago.src = "imago1.png"
+    imago.src = "imagobl3.png"
     let scuttler = new Image()
-    scuttler.src = "scuttler.png"
+    scuttler.src = "scuttler3.png"
     let nymph = new Image()
-    nymph.src = "nymph.png"
+    nymph.src = "nymph2.png"
     let hotrock1 = new Image()
     hotrock1.src = "hotrock1.png"
     let hotrock2 = new Image()
@@ -214,7 +265,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     //         }
     //         gamepadAPI.axesStatus = axes;// assign received values
     //         gamepadAPI.buttonsStatus = pressed;
-    //         // ////////////////console.log(pressed); // return buttons for debugging purposes
+    //         // //////////////////console.log(pressed); // return buttons for debugging purposes
     //         return pressed;
     //     },
     //     buttonPressed: function (button, hold) {
@@ -569,7 +620,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.fill()
                 canvas_context.stroke();
             } else {
-                ////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                //////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -721,7 +772,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 map_context.strokeStyle = "black"
                 map_context.stroke();
             } else {
-                ////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                //////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -872,7 +923,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.fill()
                 canvas_context.stroke();
             } else {
-                ////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                //////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -1358,7 +1409,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             }
 
-            ////////////////console.log(this)
+            //////////////////console.log(this)
 
             // this.spring = new Spring(x, y, radius, color, this.pin, memberLength, gravity)
             // this.springs.push(this.spring)
@@ -1626,6 +1677,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         scanning.play()
                                     }
                                 }
+                                if (sandmap.players[sandmap.turn].units[t].nymph == 1) {
+                                    seeasvillaneh.play()
+                                }
+                                if (sandmap.players[sandmap.turn].units[t].imago == 1) {
+                                    yeahiminthisroom.play()
+                                }
                                 if (sandmap.players[sandmap.turn].units[t].infantry == 1) {
                                     if (Math.random() < .8) {
                                         orders.play()
@@ -1665,15 +1722,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         sandmap.players[sandmap.turn].buildings[t].makeHarvester()
                     }
                 }
-                console.log("where aim I ")
                 for (let t = 0; t < sandmap.players[sandmap.turn].units.length; t++) {
-                    console.log("there aim I ")
                     if (sandmap.players[sandmap.turn].units[t].spawnsmall.isPointInside(TIP_engine)) {
                         sandmap.players[sandmap.turn].units[t].makeNymph()
                     }
                     if (sandmap.players[sandmap.turn].units[t].morph.isPointInside(TIP_engine)) {
-                        console.log("here aim I ")
                         sandmap.players[sandmap.turn].units[t].metamorph1()
+                        if (sandmap.players[sandmap.turn].units[t].nymph == 1) {
+                            if (Math.random() < soundspamdrop) {
+                                soundCancel()
+                                whoarewetomolt.play()
+                            }
+                        }
                     }
                     if (sandmap.players[sandmap.turn].units[t].morph2.isPointInside(TIP_engine)) {
                         sandmap.players[sandmap.turn].units[t].metamorph2()
@@ -1720,7 +1780,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (sandmap.players[sandmap.turn].units[t].selected == 1) {
                         sandmap.players[sandmap.turn].units[t].selected = 2
 
-                        //////console.log(sandmap.players[sandmap.turn].selected_tile)
+                        ////////console.log(sandmap.players[sandmap.turn].selected_tile)
                         sandmap.players[sandmap.turn].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile)
 
 
@@ -1728,8 +1788,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             if (sandmap.players[sandmap.turn].selected_tile.hotrock > 0) {
 
                                 soundCancel()
+                                if (sandmap.players[sandmap.turn].units[t].imago == 1) {
+                                    if (Math.random() < .5) {
+                                        sieveseejunior.play()
+                                    } else {
+                                        sieveceaselessly.play()
+                                    }
+                                }
                                 if (sandmap.players[sandmap.turn].units[t].drone == 1) {
                                     collect.play()
+                                }
+                                if (sandmap.players[sandmap.turn].units[t].nymph == 1) {
+                                    sureilike.play()
                                 }
                                 if (sandmap.players[sandmap.turn].units[t].infantry == 1) {
                                     righton.play()
@@ -1740,6 +1810,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             } else {
 
                                 soundCancel()
+                                if (sandmap.players[sandmap.turn].units[t].imago == 1) {
+                                    go.play()
+                                }
                                 if (sandmap.players[sandmap.turn].units[t].harvester == 1) {
                                     movin.play()
                                 }
@@ -1749,6 +1822,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     } else {
                                         pathing.play()
                                     }
+                                }
+                                if (sandmap.players[sandmap.turn].units[t].nymph == 1) {
+                                    spreadoutseemult.play()
                                 }
 
                                 if (sandmap.players[sandmap.turn].units[t].infantry == 1) {
@@ -1790,7 +1866,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     continue
                                 }
                             }
-                            //////console.log(sandmap.players[sandmap.turn].selected_tile)
+                            ////////console.log(sandmap.players[sandmap.turn].selected_tile)
                             sandmap.players[sandmap.turn].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile)
                             if (sandmap.players[sandmap.turn].selected_tile.hotrock > 0) {
 
@@ -1881,7 +1957,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     structuredpoint.x = Math.floor(structuredpoint.x * .1)
                     structuredpoint.y = Math.floor(structuredpoint.y * .1)
 
-                    selectrect = new Tile(rectstart.x * 10, rectstart.y * 10, (structuredpoint.x1 - rectstart.x) * 10, (structuredpoint.y1 - rectstart.y) * 10, sandmap.players[sandmap.turn].color + "22")
+                    selectrect = new Tilex(rectstart.x * 10, rectstart.y * 10, (structuredpoint.x1 - rectstart.x) * 10, (structuredpoint.y1 - rectstart.y) * 10, sandmap.players[sandmap.turn].color + "22")
                     if (selectrect.width < 0) {
                         selectrect.x += selectrect.width
                         selectrect.width = Math.abs(selectrect.width)
@@ -1891,7 +1967,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         selectrect.height = Math.abs(selectrect.height)
                     }
 
-                    // //////////console.log(selectrect)
+                    // ////////////console.log(selectrect)
                     // selectrect.draw()
                     // sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
                     // sandmap.turn++
@@ -1914,7 +1990,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     }
     //     function gamepad_control(object, speed = 1) { // basic control for objects using the controler
-    // //         ////////////////console.log(gamepadAPI.axesStatus[1]*gamepadAPI.axesStatus[0]) //debugging
+    // //         //////////////////console.log(gamepadAPI.axesStatus[1]*gamepadAPI.axesStatus[0]) //debugging
     //         if (typeof object.body != 'undefined') {
     //             if(typeof (gamepadAPI.axesStatus[1]) != 'undefined'){
     //                 if(typeof (gamepadAPI.axesStatus[0]) != 'undefined'){
@@ -2037,6 +2113,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (Math.random() < .01) {
                 if (this.hotrock != 1 && this.hotrock != 2) {
                     this.walkable = false
+                    this.ice = 1
                     this.color = "#AAFFFF"
                 }
             }
@@ -2100,8 +2177,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             // let link = new Line(this.posx, this.posy, bottle.crew[bottle.selectedcrew].body.x-100, bottle.crew[bottle.selectedcrew].body.y-300, "red", 1)
             // if (link.hypotenuse() < 108) {
-            // ////////////////////console.log(link)
-            // ////////////////////console.log(bottle)
+            // //////////////////////console.log(link)
+            // //////////////////////console.log(bottle)
             // }
             // let roundedx = (Math.round((startPoint.x) / 10))
             // let roundedy = (Math.round((startPoint.y) / 10))
@@ -2114,13 +2191,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // if (this.inPath === true) {
             //     // this.drawPath();
             // } else if (this.walkable === false) {
-            //     // ////////////////////console.log(this)
+            //     // //////////////////////console.log(this)
 
             //     // this.createWall();
             //     return;
             //     // }else if (link.hypotenuse() < 11) {
             // } else if (this.posx == roundedx && this.posy == roundedy) {
-            //     //   ////////////////////console.log("hit the startNode");
+            //     //   //////////////////////console.log("hit the startNode");
             //     //   this.createStartNode();
             //     return;
             // } else if (this.posx == endPoint.x && this.posy == endPoint.y) {
@@ -2132,10 +2209,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
         draw() {
             if (this.sourcerock <= 0 && this.hotrock != 0) {
                 this.hotrock = 0
-                this.color = "#AACCFF"
+                // this.color = "#AACCFF"
                 sandmap.hotrocks.splice(sandmap.hotrocks.indexOf(this), 1)
             }
-            if (this.hotrock == 1) {
+
+            if (this.walkable == false && this.builtOn == 1) {
+                if (typeof this.wallcolor != "undefined") {
+                    map_context.fillStyle = this.color
+                    map_context.fillRect(this.x, this.y, this.width, this.height)
+                    map_context.strokeStyle = this.wallcolor
+                    map_context.strokeRect(this.x, this.y, this.width, this.height)
+                }
+                map_context.fillStyle = this.color
+                map_context.fillRect(this.x, this.y, this.width, this.height)
+
+            } else if (this.walkable == false && this.ice == 1) {
+                map_context.drawImage(nowalk, this.x, this.y)
+            } else if (this.hotrock == 1) {
                 map_context.drawImage(hotrock1, this.x, this.y)
             } else if (this.hotrock == 2) {
                 map_context.drawImage(hotrock2, this.x, this.y)
@@ -2149,29 +2239,186 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     // if(this.walkable== true || this.drawish == 1){
                     //     map_context.drawImage(snow, ((this.t+this.toffset))%189, (this.k+this.koffset)%189, 10,10, this.x, this.y, 10, 10)
                     // }else{
-                    map_context.fillStyle = this.color
-                    map_context.fillRect(this.x, this.y, this.width, this.height)
+                    // if(this.walkable == false){
+                    //     map_context.fillStyle = this.color
+                    //     map_context.fillRect(this.x, this.y, this.width, this.height)
+                    // }
                     // }
                 }
-                if (sandmap.winddiry == 1) {
-                    this.toffset += sandmap.windspeed
-                }
-                if (sandmap.winddirx == 1) {
-                    this.koffset += sandmap.windspeed
-                }
-                if (sandmap.winddiry == -1) {
-                    this.toffset -= sandmap.windspeed
-                    if ((this.t + this.toffset) < 0) {
-                        this.toffset = 189 - this.t
-                    }
-                }
-                if (sandmap.winddirx == -1) {
-                    this.koffset -= sandmap.windspeed
-                    if ((this.k + this.koffset) < 0) {
-                        this.koffset = 189 - this.t
+                // if (sandmap.winddiry == 1) {
+                //     this.toffset += sandmap.windspeed
+                // }
+                // if (sandmap.winddirx == 1) {
+                //     this.koffset += sandmap.windspeed
+                // }
+                // if (sandmap.winddiry == -1) {
+                //     this.toffset -= sandmap.windspeed
+                //     if ((this.t + this.toffset) < 0) {
+                //         this.toffset = 189 - this.t
+                //     }
+                // }
+                // if (sandmap.winddirx == -1) {
+                //     this.koffset -= sandmap.windspeed
+                //     if ((this.k + this.koffset) < 0) {
+                //         this.koffset = 189 - this.t
+                //     }
+                // }
+            }
+        }
+        move() {
+            this.x += this.xmom
+            this.y += this.ymom
+        }
+        isPointInside(point) {
+            if (point.x >= this.x) {
+                if (point.y >= this.y) {
+                    if (point.x <= this.x + this.width) {
+                        if (point.y <= this.y + this.height) {
+                            return true
+                        }
                     }
                 }
             }
+            return false
+        }
+        doesPerimeterTouch(point) {
+            if (point.x + point.radius >= this.x) {
+                if (point.y + point.radius >= this.y) {
+                    if (point.x - point.radius <= this.x + this.width) {
+                        if (point.y - point.radius <= this.y + this.height) {
+                            return true
+                        }
+                    }
+                }
+            }
+            return false
+        }
+    }
+
+    class Tilex {
+        constructor(x, y, width, height, color, id, size, posx, posy, walkable) {
+            this.x = x
+            this.y = y
+            this.height = height
+            this.width = width
+            this.color = color
+            this.xmom = 0
+            this.ymom = 0
+            this.koffset = 0
+            this.toffset = 0
+            this.markdraw = 1 //remove for fog
+
+            var F;
+
+            var parent;
+            // this.inPath = false;
+            this.getGCost = this.getValueG;
+            this.getHCost = this.getValueH;
+
+            this.size = size;
+            this.posx = posx;
+            this.posy = posy;
+            this.walkable = walkable;
+            if (Math.random() < .01) {
+                if (this.hotrock != 1 && this.hotrock != 2) {
+                    this.walkable = false
+                    this.ice = 1
+                    this.color = "#AAFFFF"
+                }
+            }
+
+            this.id = id;
+        }
+
+        createStartNode() {
+            // nodeDrawer(gctx, this, 2, "black", "#00FFFF88");
+
+        }
+        createEndNode() {
+            // nodeDrawer(gctx, this, 2, "black", "#FFFF0088");
+
+        }
+        toggleWalkable() {
+            this.walkable = !this.walkable;
+        }
+        getValueF() {
+            //this is a problem
+            var fValue = (this.getValueH()) + (this.getValueG());
+
+            return (fValue);
+        }
+        getValueH() {
+            var endNodePosition = {
+                posx: endPoint.x,
+                posy: endPoint.y
+            };
+
+            return (getDistance(this, endNodePosition));
+
+        }
+        getValueG() {
+            var startPointPosition = {
+                posx: endPoint.x,
+                posy: endPoint.y
+            };
+            return (getDistance(this, startPointPosition));
+        }
+        createWall() {
+            // nodeDrawer(gctx, this, 2, "transparent", "black");
+
+        }
+        drawOpenNode() {
+            // nodeDrawer(gctx, this, 2, "transparent", "transparent");
+
+        }
+        drawClosedNode() {
+            // nodeDrawer(gctx, this, 2, "transparent", "transparent");
+        }
+        drawPath() {
+            // nodeDrawer(gctx, this, 2, "transparent", "#FF000033");
+        }
+        drawNode() {
+
+            //gctx.beginPath();
+            //gctx.lineWidth = ".1";
+            //gctx.strokeStyle = "black";
+            //gctx.fillStyle = "transparent";
+
+            // let link = new Line(this.posx, this.posy, bottle.crew[bottle.selectedcrew].body.x-100, bottle.crew[bottle.selectedcrew].body.y-300, "red", 1)
+            // if (link.hypotenuse() < 108) {
+            // //////////////////////console.log(link)
+            // //////////////////////console.log(bottle)
+            // }
+            // let roundedx = (Math.round((startPoint.x) / 10))
+            // let roundedy = (Math.round((startPoint.y) / 10))
+            // if (this.walkable !== false) {
+            //     //gctx.fillRect(this.posx, this.posy, this.size, this.size);
+            //     //gctx.rect(this.posx, this.posy, this.size, this.size);
+            //     //gctx.closePath();
+            //     //gctx.stroke();
+            // }
+            // if (this.inPath === true) {
+            //     // this.drawPath();
+            // } else if (this.walkable === false) {
+            //     // //////////////////////console.log(this)
+
+            //     // this.createWall();
+            //     return;
+            //     // }else if (link.hypotenuse() < 11) {
+            // } else if (this.posx == roundedx && this.posy == roundedy) {
+            //     //   //////////////////////console.log("hit the startNode");
+            //     //   this.createStartNode();
+            //     return;
+            // } else if (this.posx == endPoint.x && this.posy == endPoint.y) {
+            //     //   this.createEndNode();
+
+            // }
+
+        }
+        draw() {
+            map_context.fillStyle = this.color
+            map_context.fillRect(this.x, this.y, this.width, this.height)
+
         }
         move() {
             this.x += this.xmom
@@ -2259,8 +2506,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             let id = 0
             this.hotrocks = []
             this.players = []
-            this.players.push(new Player('Earthoids', "#AA00AA", 0, 0))
-            this.players.push(new Player('Cold Itzlerians', "#00FFAA", 0, 1))
+            this.players.push(new Player('Earthoids', "#AA00AA", 1, Math.floor(Math.random() * 2)))
+            this.players.push(new Player('Cold Itzlerians', "#09DD99", 1, Math.floor(Math.random() * 2)))
             this.players[1].units = []
             for (let g = 0; g < this.players.length + 1; g++) {
                 for (let t = 0; t < 128; t++) {
@@ -2319,7 +2566,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                 }
             }
-            //console.log(this)
+            ////console.log(this)
         }
 
         createGrid() {
@@ -2338,7 +2585,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 for (var j = 0; j < this.height; j += NODESIZE) {
                     gridPointsByPos[i][j] = countNodes;
                     //here's the problem , need to set the walkability of the node without always being true...
-                    ////////////////////console.log(countNodes)
+                    //////////////////////console.log(countNodes)
                     tempNode = new Tile(i, j, 10, 10, "tan", countNodes, NODESIZE, i, j, true);
 
                     // let cutOut = [0,1 ,2, 3, 4, 5,6,7, 8, 9, 10, 11, 12,13, 18, 19,20, 32,33,  26, 31, 39, 44, 45, 46, 52, 57,58,59,99, 112, 108, 95, 197, 198, 199, 205, 203, 204, 236, 237, 238, 242, 243,244, 216, 212, 229, 225, 210, 211, 223, 224, 217, 218, 230, 231]
@@ -2370,7 +2617,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                     // }
                     // if (wallSet.has(countNodes)) {
-                    // //   ////////////////////console.log("wallSet had countNodes!")
+                    // //   //////////////////////console.log("wallSet had countNodes!")
                     //   tempNode.walkable = false;
                     // }
 
@@ -2589,10 +2836,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             if (this.units[t].imago !== 1) {
                                 //hardcoding this gid helf mi
                                 if (Math.random() < .3) {
-                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this)-1)].units.length > 0) {
-                                        if (typeof sandmap.players[Math.abs(sandmap.players.indexOf(this)-1)].units[Math.floor(Math.random() * sandmap.players[Math.abs(sandmap.players.indexOf(this)-1)].units.length)].tile !== "undefined") {
+                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this) - 1)].units.length > 0) {
+                                        if (typeof sandmap.players[Math.abs(sandmap.players.indexOf(this) - 1)].units[Math.floor(Math.random() * sandmap.players[Math.abs(sandmap.players.indexOf(this) - 1)].units.length)].tile !== "undefined") {
                                             j++
-                                            this.units[t].pathTo(sandmap.players[Math.abs(sandmap.players.indexOf(this)-1)].units[Math.floor(Math.random() * sandmap.players[Math.abs(sandmap.players.indexOf(this)-1)].units.length)].tile)
+                                            this.units[t].pathTo(sandmap.players[Math.abs(sandmap.players.indexOf(this) - 1)].units[Math.floor(Math.random() * sandmap.players[Math.abs(sandmap.players.indexOf(this) - 1)].units.length)].tile)
                                             if (j > 6) {
                                                 break
                                             }
@@ -2614,7 +2861,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                         if (sandmap.hotrocks[h].walkable == true && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                             let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                            // //console.log(link)
+                                            // ////console.log(link)
                                             if (link < max) {
                                                 max = link
                                                 index = h
@@ -2648,7 +2895,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                             if (sandmap.hotrocks[h].walkable == true && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                                 let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                                // //console.log(link)
+                                                // ////console.log(link)
                                                 if (link < max) {
                                                     max = link
                                                     index = h
@@ -2795,7 +3042,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             if (this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                                 if (sandmap.hotrocks[h].walkable == true) {
                                                     let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                                    // //console.log(link)
+                                                    // ////console.log(link)
                                                     if (link < max) {
                                                         max = link
                                                         index = h
@@ -2865,7 +3112,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                 if (this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                                     if (sandmap.hotrocks[h].walkable == true) {
                                                         let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                                        // //console.log(link)
+                                                        // ////console.log(link)
                                                         if (link < max) {
                                                             max = link
                                                             index = h
@@ -3027,7 +3274,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
 
-                    if ((Math.random() * .13)) {
+                    if ((Math.random() * .13) && this.hotrock >= 10) {
 
                         for (let t = 0; t < this.units.length; t++) {
                             if (this.units[t].tile.sourcerock >= 1 || ((Math.random() * .03) && this.units[t].index < this.units[t].realPath.length - 1)) {
@@ -3039,9 +3286,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                             let calcdeath = this.units[t].health / (((this.units[t].decayRate * this.units[t].decayingInTheWind * sandmap.windspeed)))
 
-                            if (Math.abs(this.units[t].realPath.length - this.units[t].index) < 3 || Math.abs(this.units[t].realPath.length - this.units[t].index) > (calcdeath-(this.units[t].movespeed*10))) {
+                            if (Math.abs(this.units[t].realPath.length - this.units[t].index) < 3 || Math.abs(this.units[t].realPath.length - this.units[t].index) > (calcdeath - (this.units[t].movespeed * 10))) {
 
-                                // console.log(this.units[t])
+                                // //console.log(this.units[t])
 
                             } else {
                                 continue
@@ -3388,7 +3635,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
                         wet = 1
                         debreak = 1
-                        // console.log(tile)
+                        // //console.log(tile)
                     }
                 }
                 if (wet == 0) {
@@ -3431,27 +3678,36 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (this.units[t].marked == 1) {
                     this.units[t].tile.walkable = true
 
-                    if (Math.random() < soundspamdrop) {
-                        soundCancel()
-                        if (this.units[t].drone == 1) {
-                            if (Math.random() < .5) {
-                                signallost.play()
-                            } else {
-                                error.play()
+                    if (sandmap.players.indexOf(this) == sandmap.turn) {
+                        if (Math.random() < soundspamdrop) {
+                            soundCancel()
+                            if (this.units[t].drone == 1) {
+                                if (Math.random() < .5) {
+                                    signallost.play()
+                                } else {
+                                    error.play()
+                                }
                             }
-                        }
-                        if (this.units[t].infantry == 1) {
-                            if (Math.random() < .5) {
-                                tellmywife.play()
-                            } else {
-                                deathrattle.play()
+                            if (this.units[t].infantry == 1) {
+                                if (Math.random() < .5) {
+                                    tellmywife.play()
+                                } else {
+                                    deathrattle.play()
+                                }
                             }
-                        }
-                        if (this.units[t].harvester == 1) {
-                            if (Math.random() < .5) {
-                                feelcold.play()
-                            } else {
-                                redlight.play()
+                            if (this.units[t].harvester == 1) {
+                                if (Math.random() < .5) {
+                                    feelcold.play()
+                                } else {
+                                    redlight.play()
+                                }
+                            }
+                            if (this.units[t].imago == 1) {
+                                if (Math.random() < .5) {
+                                    boh.play()
+                                } else {
+                                    die.play()
+                                }
                             }
                         }
                     }
@@ -3526,8 +3782,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // this.startNode = gridPointsByPos[startNode.x][startNode.y];
             let roundedx = (Math.round((startNode.x))) * .1
             let roundedy = (Math.round((startNode.y))) * .1
-            ////////////////console.log(gridPointsByPos, roundedx, roundedy)
-            ////////////////////console.log(gridPointsByPos[roundedx] [roundedy])
+            //////////////////console.log(gridPointsByPos, roundedx, roundedy)
+            //////////////////////console.log(gridPointsByPos[roundedx] [roundedy])
             this.startNode = startNode // gridPointsByPos[roundedx] [roundedy]
             this.endNode = endNode //gridPointsByPos[endNode.x][endNode.y];
             this.currentNode = null;
@@ -3547,7 +3803,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             var grid = this.grid; //the grid we're working with
 
             var currentNode = this.startNode; // the currentNode, defaults to start node for now
-            //////console.log(this.endNode)
+            ////////console.log(this.endNode)
             var endNode = this.endNode //sandmap.gridPoints[this.endNode.id]; //the target node
             var startNode = this.startNode
 
@@ -3556,9 +3812,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             var newMovementCost; //the new movement cost to neighbor
 
             openSet.add(currentNode);
-            //   //////////////console.log(currentNode)
+            //   ////////////////console.log(currentNode)
             // currentNode.color = "black"
-            // ////////////////////console.log('begin');
+            // //////////////////////console.log('begin');
 
             let j = 0
             let timeout = 0
@@ -3568,7 +3824,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     timeout = 1
                 }
                 tempArray = Array.from(openSet);
-                //////////////console.log(tempArray)
+                ////////////////console.log(tempArray)
                 currentNode = tempArray[0];
 
                 for (var i = 1; i < tempArray.length; i++) {
@@ -3600,18 +3856,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 //   currentNode.drawNode();
                 // }
 
-                //////////////console.log(currentNode, endNode)
+                ////////////////console.log(currentNode, endNode)
                 // currentNode.color = "black"
-                //////console.log(currentNode, endNode)
+                ////////console.log(currentNode, endNode)
                 if (currentNode.id == endNode.id) {
-                    ////console.log(startNode, endNode)
+                    //////console.log(startNode, endNode)
                     retracePath(startNode, endNode, this.agent);
                     //hit the last point, exit's the loop.
 
                     return; //exits loop
                 } else if (timeout == 1) {
 
-                    ////console.log(startNode, endNode)
+                    //////console.log(startNode, endNode)
                     retracePath(startNode, currentNode, this.agent);
                     //hit the last point, exit's the loop.
 
@@ -3673,9 +3929,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         var reverseArray;
         while (currentNode != startNode) {
             path.add(currentNode);
-            ////console.log(currentNode)
+            //////console.log(currentNode)
             currentNode = currentNode.parent;
-            ////console.log(currentNode)
+            //////console.log(currentNode)
             // currentNode.inPath = true;
             // if (currentNode != startNode)
             //     currentNode.drawPath();
@@ -3686,19 +3942,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
         reverseArray.reverse();
         path = new Set(reverseArray);
 
-        //   ////////////////////console.log(path)
+        //   //////////////////////console.log(path)
 
         realPath = Array.from(path)
-        //   ////////////////////console.log(realPath)
+        //   //////////////////////console.log(realPath)
 
         if (realPath.length == 1) {
             // realPath[0].walkable = false
-            //////////////////console.log("hit")
+            ////////////////////console.log("hit")
             // wallSet.add(realPath[0])
-            //////////////////console.log(wallSet)
+            ////////////////////console.log(wallSet)
         }
 
-        //////////////console.log(realPath)
+        ////////////////console.log(realPath)
         if (realPath.length > 0) {
             realPath.unshift(agent.tile)
             agent.realPath = [...realPath]
@@ -3713,17 +3969,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // bottle.crew[bottle.selectedcrew].body.x =startPoint.x+4
             // bottle.crew[bottle.selectedcrew].body.y  = startPoint.y+4
             // startPoint = new Vec2(realPath[0].posx, realPath[0].posy);
-            ////////////////////console.log(startPoint)
+            //////////////////////console.log(startPoint)
             // bottle.crew[bottle.selectedcrew].moving = 1
         } else {
-            //   ////////////////console.log(endPoint)
+            //   //////////////////console.log(endPoint)
 
             //     if(bottle.crew[bottle.selectedcrew].moving == 1){
-            //         // ////////////////console.log(endPoint)
+            //         // //////////////////console.log(endPoint)
             //     // bottle.crew[bottle.selectedcrew].body.x =endPoint.x+96
             //     // bottle.crew[bottle.selectedcrew].body.y  = endPoint.y+284
             //     // bottle.crew[bottle.selectedcrew].moving = 0
-            //     // ////////////////console.log(endPoint)
+            //     // //////////////////console.log(endPoint)
             //         reset()
             //   }
         }
@@ -3771,7 +4027,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (checkX >= 0 && checkX <= sandmap.blocks.length && checkY >= 0 && checkY <= sandmap.blocks.length) { //127 mapsize
 
                     if (x == 0 || y == 0 || Math.random() < .25) {  // randomness leads to organic
-                        //////console.log(sandmap)
+                        ////////console.log(sandmap)
                         if (checkX < sandmap.blocks.length) {
                             if (checkY < sandmap.blocks[0].length) {
                                 if (sandmap.blocks[checkX][checkY].walkable !== false) {
@@ -3787,7 +4043,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
         neighborList = tempList;
-        //////////////console.log(neighborList)
+        ////////////////console.log(neighborList)
         return (neighborList);
 
     }
@@ -3836,6 +4092,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 tile = sandmap.gridPoints[tile.id + 128]
             }
             this.tile = tile
+            this.tile.builtOn == 1
             this.timer = -1
 
             this.faction = faction
@@ -3866,9 +4123,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
         }
         finishScout() {
-            soundCancel()
-            online.play()
-            let agent1 = new Agent(this.tile,this.faction)
+            if (Math.random() < soundspamdrop) {
+                if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
+                    soundCancel()
+                    online.play()
+                }
+            }
+            let agent1 = new Agent(this.tile, this.faction)
             agent1.isScout()
         }
         makeInfantry() {
@@ -3883,8 +4144,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
         }
         finishInfantry() {
-            soundCancel()
-            reporting.play()
+            if (Math.random() < soundspamdrop) {
+                if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
+                    soundCancel()
+                    reporting.play()
+                }
+            }
             let agent1 = new Agent(this.tile, this.faction)
             agent1.isInfantry()
         }
@@ -3901,8 +4166,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
         }
         finishHarvester() {
-            soundCancel()
-            systems.play()
+            if (Math.random() < soundspamdrop) {
+                if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
+                    soundCancel()
+                    systems.play()
+                }
+            }
             let agent1 = new Agent(this.tile, this.faction)
             agent1.isHarvester()
         }
@@ -4001,6 +4270,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (this.barracks == 1) {
                     this.faction.racks = 0
                 }
+
+                this.tile.builtOn == 0
                 this.faction.buildings.splice(this.faction.buildings.indexOf(this), 1)
             }
         }
@@ -4034,7 +4305,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.attacktargetmove = {}
             this.attacktargetmove.health = 0
             this.attackcounter = 0
-            this.projectilespeed = 9
+            this.projectilespeed = 7 // 9
             this.name = "agent"
             if (this.faction.type == 1) {
                 this.isNymph()
@@ -4171,8 +4442,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         this.faction.hotrock -= 125
                         this.spawn = 1
                         this.que = 1
-                        this.timer = 25
+                        this.timer = 55
                         this.maxtimer = this.timer
+                        if (Math.random() < soundspamdrop * 3) {
+                            if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
+                                soundCancel()
+                                youneedmyassagain.play()
+                            }
+                        }
                     }
                 }
             }
@@ -4184,7 +4461,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.sight = 1 + this.movespeed
             this.firerate = 5
             this.decayRate = 0
-            this.damage = (this.body.radius + 1)
+            this.damage = (this.body.radius * 2) + 1
             this.name = "Scurrier"
             this.nymph = 2
             this.health = 400
@@ -4196,22 +4473,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.body.radius = 6.5
             this.movespeed = 8
             this.sight = 1 + this.movespeed
-            this.firerate = 20
+            this.firerate = 10
             this.decayRate = 0
-            this.damage = (this.body.radius + 2)
+            this.damage = (this.body.radius * 3) + 1.5
             this.name = "Imago"
             this.imago = 1
             this.nymph = 0
-            this.health = 900
+            this.health = 2100
             this.maxhealth = this.health
             this.attackrange = this.sight - 1
         }
         metamorph1() {
-            console.log(this.que, 1)
+            //console.log(this.que, 1)
             if (this.que != 1) {
-                console.log(this.hotrock, 2)
+                //console.log(this.hotrock, 2)
                 if (this.faction.hotrock >= 200) {
-                    console.log(this.nymph, 3)
+                    //console.log(this.nymph, 3)
                     if (this.nymph == 1) {
                         this.faction.hotrock -= 200
                         this.morphing = 1
@@ -4221,7 +4498,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                 }
             }
-            console.log(this.timer, 4)
+            //console.log(this.timer, 4)
         }
         metamorph2() {
             if (this.que != 1) {
@@ -4303,6 +4580,27 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                 for (let g = 0; g < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length; g++) {
                                                     if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
 
+                                                    if(sandmap.players.indexOf(this.faction) == sandmap.turn){
+                                                        if (this.nymph == 1) {
+                                                            if (Math.random() < soundspamdrop) {
+                                                                soundCancel()
+                                                                if (Math.random() < .5) {
+                                                                    itstheedgeofusfight.play()
+                                                                } else {
+                                                                    seethemseetheme.play()
+                                                                }
+                                                            }
+                                                        }
+                                                        if (this.imago == 1) {
+                                                            if (Math.random() < soundspamdrop) {
+                                                                soundCancel()
+                                                                if (Math.random() < .5) {
+                                                                    ahhbarber.play()
+                                                                } else[
+                                                                    slamdownmustard.play()
+                                                                ]
+                                                            }
+                                                        }
                                                         if (this.drone == 1) {
                                                             if (Math.random() < soundspamdrop) {
                                                                 soundCancel()
@@ -4316,7 +4614,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                             }
                                                         }
                                                         if (this.harvester == 1) {
-
                                                             if (Math.random() < soundspamdrop) {
                                                                 soundCancel()
                                                                 if (Math.random() < .3) {
@@ -4326,7 +4623,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 }
                                                             }
                                                         }
-
+                                                    }
 
                                                         this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
                                                         break
@@ -4458,7 +4755,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     let max = 9999999999
                     for (let t = 0; t < this.tempcheck.length; t++) {
                         let link = (new LineOP(this.tile, this.tempcheck[t])).hypotenuse()
-                        // //console.log(link)
+                        // ////console.log(link)
                         if (link < max) {
                             max = link
                             index = t
@@ -4577,7 +4874,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.index = 0
             }
             this.heatwallcheck()
-            ////////console.log( (this.decayingInTheWind*sandmap.windspeed))
+            //////////console.log( (this.decayingInTheWind*sandmap.windspeed))
             this.health -= ((this.decayRate * this.decayingInTheWind * sandmap.windspeed))
             if (this.decayingInTheWind == 0) {
                 this.health += this.decayRate
@@ -4601,6 +4898,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         this.faction.hotrock += this.movespeed * .025
                         this.tile.sourcerock -= this.movespeed * .025
                     }
+                    if (this.nymph == 1) {
+                        this.faction.hotrock += this.movespeed * .025
+                        this.tile.sourcerock -= this.movespeed * .025
+                    }
                 }
             }
             if (this.tile.hotrock == 2) {
@@ -4612,6 +4913,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     this.faction.hotrock += this.movespeed * .02
                     this.tile.sourcerock -= this.movespeed * .02
                     if (this.nymph == 1 || this.harvester == 1) {
+                        this.faction.hotrock += this.movespeed * .05
+                        this.tile.sourcerock += this.movespeed * .05
+                    }
+                    if (this.nymph == 1) {
                         this.faction.hotrock += this.movespeed * .05
                         this.tile.sourcerock += this.movespeed * .05
                     }
@@ -4705,8 +5010,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.shots[t].y = (this.body.y * (1 - (this.shots[t].stage / this.projectilespeed))) + (((this.shots[t].stage / this.projectilespeed)) * this.shots[t].attacktarget.body.y)
                 this.shots[t].draw()
                 if (this.shots[t].stage >= this.projectilespeed) {
-                    this.shots[t].refhealth.health -= (this.damage * 5)
-                    //console.log(this.shots[t].refhealth)
+                    this.shots[t].refhealth.health -= (this.damage * 3) //5?
+                    ////console.log(this.shots[t].refhealth)
                     this.shots[t].marked = 1
                 }
             }
@@ -4733,6 +5038,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
     // }
     start = 1
     function main() {
+        if (keysPressed[' ']) {
+            sandmap.players[sandmap.turn].isAI = 0
+        }
 
         // sandmap.players[1].units = []
         postwind.play()
@@ -4741,6 +5049,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         // }
         canvas_context.clearRect(0, 0, canvas.width, canvas.height)  // refreshes the image
         map_context.clearRect(0, 0, map_canvas.width, map_canvas.height)  // refreshes the image
+        map_context.drawImage(snow, 0, 0, snow.width, snow.height, 0, 0, 1280, 1280)
         // gamepadAPI.update() //checks for button presses/stick movement on the connected controller)
         // // game code goes here
         dataflop = 0
@@ -4752,9 +5061,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             sandmap.turn = 0
         }
         if (keysPressed['q']) {
-            console.log(sandmap)
+            //console.log(sandmap)
         }
-        //////////console.log(selectrect)
+        ////////////console.log(selectrect)
     }
 
 })
