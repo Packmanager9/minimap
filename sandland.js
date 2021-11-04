@@ -2859,22 +2859,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                     let j = 0
                     if (Math.random() < this.units.length * .075) {
-                        for (let t = 0; t < this.units.length; t++) {
-                            if (this.units[t].imago !== 1) {
-                                //hardcoding this gid helf mi
-                                if (Math.random() < .3) {
-                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this) - 1)].units.length > 0) {
-                                        if (typeof sandmap.players[Math.abs(sandmap.players.indexOf(this) - 1)].units[Math.floor(Math.random() * sandmap.players[Math.abs(sandmap.players.indexOf(this) - 1)].units.length)].tile !== "undefined") {
-                                            j++
-                                            this.units[t].pathTo(sandmap.players[Math.abs(sandmap.players.indexOf(this) - 1)].units[Math.floor(Math.random() * sandmap.players[Math.abs(sandmap.players.indexOf(this) - 1)].units.length)].tile)
-                                            if (j > 6) {
-                                                break
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                        // for (let t = 0; t < this.units.length; t++) {
+                        //     if (this.units[t].imago !== 1) {
+                        //         //hardcoding this gid helf mi
+                        //         if (Math.random() < .3) {
+                        //             if (sandmap.players[Math.abs(sandmap.players.indexOf(this) - 1)].units.length > 0) {
+                        //                 if (typeof sandmap.players[Math.abs(sandmap.players.indexOf(this) - 1)].units[Math.floor(Math.random() * sandmap.players[Math.abs(sandmap.players.indexOf(this) - 1)].units.length)].tile !== "undefined") {
+                        //                     j++
+                        //                     this.units[t].pathTo(sandmap.players[Math.abs(sandmap.players.indexOf(this) - 1)].units[Math.floor(Math.random() * sandmap.players[Math.abs(sandmap.players.indexOf(this) - 1)].units.length)].tile)
+                        //                     if (j > 6) {
+                        //                         break
+                        //                     }
+                        //                 }
+                        //             }
+                        //         }
+                        //     }
+                        // }
                         this.aimode = 0
                     }
                 } else if (this.aimode == 0) {
@@ -3054,22 +3054,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (this.aimode == 1) {
                     let j = 0
                     if (Math.random() < this.units.length * .075) {
-                        for (let t = 0; t < this.units.length; t++) {
-                            if (this.units[t].imago !== 1) {
-                                //hardcoding this gid helf mi
-                                if (Math.random() < .3) {
-                                    if (sandmap.players[0].units.length > 0) {
-                                        if (typeof sandmap.players[0].units[Math.floor(Math.random() * sandmap.players[0].units.length)].tile !== "undefined") {
-                                            j++
-                                            this.units[t].pathTo(sandmap.players[0].units[Math.floor(Math.random() * sandmap.players[0].units.length)].tile)
-                                            if (j > 6) {
-                                                break
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                        // for (let t = 0; t < this.units.length; t++) {
+                        //     if (this.units[t].imago !== 1) {
+                        //         //hardcoding this gid helf mi
+                        //         if (Math.random() < .3) {
+                        //             if (sandmap.players[0].units.length > 0) {
+                        //                 if (typeof sandmap.players[0].units[Math.floor(Math.random() * sandmap.players[0].units.length)].tile !== "undefined") {
+                        //                     j++
+                        //                     this.units[t].pathTo(sandmap.players[0].units[Math.floor(Math.random() * sandmap.players[0].units.length)].tile)
+                        //                     if (j > 6) {
+                        //                         break
+                        //                     }
+                        //                 }
+                        //             }
+                        //         }
+                        //     }
+                        // }
                         this.aimode = 0
                     }
                 } else if (this.aimode == 0) {
