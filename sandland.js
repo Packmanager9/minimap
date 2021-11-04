@@ -167,6 +167,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 
+    let defenseicon = new Image()
+    defenseicon.src = "defenseicon.png"
+    let attackicon = new Image()
+    attackicon.src = "attackicon.png"
+
     let icewall = new Image()
     icewall.src = "icewall2.png"
     let barracks = new Image()
@@ -2824,7 +2829,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.defending--
             if (this.type == 1) {
 
-                if (this.defending >= 12) {
+                if (this.defending >= 32) {
                     this.defending = 0
                     this.defenseforce = 0
                     for (let t = 0; t < this.units.length; t++) {
@@ -3025,7 +3030,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             } else { // human below, itzler above
 
-                if (this.defending >= 12) {
+                if (this.defending >= 32) {
                     this.defending = 0
                     this.defenseforce = 0
                     for (let t = 0; t < this.units.length; t++) {
@@ -3703,6 +3708,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (this.hotrock >= 10) {
                         this.hotrock -= 10
                         let building = new Building(tile, this, 0)
+                        building.defense = 3
+                        building.damage = 0
                     }
                 }
             }
@@ -3720,6 +3727,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 building.name = "Barracks"
                 building.health = 500
                 building.maxhealth = building.health
+                building.defense = 6
+                building.damage = 0
             }
         }
         draw() {
@@ -4241,7 +4250,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (dataflop == 0) {
                 dataflop = 1
                 canvas_context.fillStyle = this.faction.color
-                canvas_context.font = "20px arial"
+                canvas_context.font = "18px arial"
 
                 canvas_context.fillStyle = "black"
                 canvas_context.strokeStyle = sandmap.players[sandmap.turn].color
@@ -4249,19 +4258,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.font = "18px arial"
                 canvas_context.strokeText(this.name + " " + Math.ceil(this.health) + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
                 canvas_context.fillText(this.name + " " + Math.ceil(this.health) + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
+
+                canvas_context.strokeText("Attack " + Math.ceil(this.damage) , sandmap.window.body.x + sandmap.window.body.width + 10, 85)
+                canvas_context.fillText("Attack " + Math.ceil(this.damage) , sandmap.window.body.x + sandmap.window.body.width + 10, 85)
+                canvas_context.strokeText("Defense " + Math.ceil(this.defense) , sandmap.window.body.x + sandmap.window.body.width + 10, 115)
+                canvas_context.fillText("Defense " + Math.ceil(this.defense) , sandmap.window.body.x + sandmap.window.body.width + 10, 115)
                 if (this.barracks == 1) {
                     canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
                     canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
-                    this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 65, 90, 50, "black")
+                    this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
                     this.spawnsmall.draw()
                     canvas_context.drawImage(drone, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
-                    this.spawnmedium = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 110, 65, 90, 50, "black")
+                    this.spawnmedium = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 110, 125, 90, 50, "black")
                     this.spawnmedium.draw()
                     canvas_context.drawImage(infantry, 0, 0, 10, 10, this.spawnmedium.x + 10, this.spawnmedium.y + 5, 30, 30)
-                    this.spawnbig = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 210, 65, 90, 50, "black")
+                    this.spawnbig = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 210, 125, 90, 50, "black")
                     this.spawnbig.draw()
                     canvas_context.drawImage(harvester, 0, 0, 10, 10, this.spawnbig.x + 10, this.spawnbig.y + 5, 30, 30)
-
+                    
 
                     canvas_context.fillStyle = "white"
                     canvas_context.font = "13px arial"
@@ -4271,7 +4285,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     // canvas_context.fillText("Drone: 30")
                     // canvas_context.fillText("Drone: 30")
                     if (this.timer > 0) {
-                        canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 125, 250, 10)
+                        canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
                     }
                 }
             }
@@ -4390,9 +4404,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.movespeed = 1
             this.firerate = 3
             this.decayRate = 0
-            this.damage = (this.body.radius * .5)
+            this.damage = (this.body.radius * 2.5)+1
             this.name = "Nymph"
             this.nymph = 1
+            this.defense = 0
             this.sight = 2 + this.movespeed
             // this.firerate = (this.movespeed * 5)
             this.attackrange = this.sight - 1
@@ -4410,6 +4425,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.movespeed = 2
             this.body.color = "red"
             this.body.radius = 4
+            this.defense = 1
             this.damage = this.body.radius
             this.name = "Scout Drone"
             this.sight = 3 + this.movespeed
@@ -4431,6 +4447,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.movespeed = 3 //4
             this.body.color = "magenta"
             this.body.radius = 4.8
+            this.defense = 4
             this.damage = this.body.radius
             this.name = "Infantry"
             this.sight = 1 + this.movespeed
@@ -4452,6 +4469,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.movespeed = 5 //5 // 4
             this.body.color = "gray"
             this.body.radius = 5.5
+            this.defense = 10
             this.name = "Harvesting Vehicle"
             this.sight = 1 + this.movespeed
             this.damage = (this.body.radius * 5.4)
@@ -4469,16 +4487,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         spawnNymph() {
             let agent1 = new Agent(this.tile, this.faction)
-            agent1.body.color = "teal"
-            agent1.body.radius = 4
-            agent1.movespeed = 1
-            agent1.firerate = 3
-            agent1.decayRate = 0
-            agent1.damage = (agent1.body.radius * .5)
-            agent1.name = "Nymph"
-            agent1.nymph = 1
-            agent1.health = 70
-            agent1.maxhealth = agent1.health
+            agent1.isNymph()
+            // agent1.body.color = "teal"
+            // agent1.body.radius = 4
+            // agent1.movespeed = 1
+            // agent1.firerate = 3
+            // agent1.decayRate = 0
+            // agent1.damage = (agent1.body.radius * .5)
+            // agent1.name = "Nymph"
+            // agent1.nymph = 1
+            // agent1.health = 70
+            // agent1.maxhealth = agent1.health
             for (let t = -2; t <= 2; t++) {
                 for (let k = -2; k <= 2; k++) {
                     if (this.tile.t + t >= 0) {
@@ -4498,9 +4517,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         makeNymph() {
             if (this.que != 1) {
-                if (this.faction.hotrock >= 125 && this.faction.units.length < 51) {
+                if (this.faction.hotrock >= 120 && this.faction.units.length < 51) {
                     if (this.imago == 1) {
-                        this.faction.hotrock -= 125
+                        this.faction.hotrock -= 120
                         this.spawn = 1
                         this.que = 1
                         this.timer = 55
@@ -4522,10 +4541,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.sight = 1 + this.movespeed
             this.firerate = 5
             this.decayRate = 0
-            this.damage = (this.body.radius * 2) + 1
+            this.damage = (this.body.radius * 3) + 1
             this.name = "Scurrier"
             this.nymph = 2
             this.health = 400
+            this.defense = 3
             this.maxhealth = this.health
             this.attackrange = this.sight - 1
         }
@@ -4534,9 +4554,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.body.radius = 6.5
             this.movespeed = 8
             this.sight = 1 + this.movespeed
-            this.firerate = 10
+            this.firerate = 9
             this.decayRate = 0
-            this.damage = (this.body.radius * 3) + 1.5
+            this.defense = 8
+            this.damage = (this.body.radius * 4) + 1.5
             this.name = "Imago"
             this.imago = 1
             this.nymph = 0
@@ -4578,7 +4599,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (dataflop == 0) {
                 dataflop = 1
                 canvas_context.fillStyle = this.faction.color
-                // canvas_context.font = "20px arial"
+                // canvas_context.font = "18px arial"
 
                 canvas_context.fillStyle = "black"
                 canvas_context.strokeStyle = sandmap.players[sandmap.turn].color
@@ -4590,18 +4611,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     canvas_context.fillText(((1 - this.decayingInTheWind) * 100) + "% Cover", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
                 }
                 canvas_context.fillText(this.name + " " + Math.round(this.health) + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
+
+
+                canvas_context.strokeText("Attack " + Math.ceil(this.damage) , sandmap.window.body.x + sandmap.window.body.width + 10, 85)
+                canvas_context.fillText("Attack " + Math.ceil(this.damage) , sandmap.window.body.x + sandmap.window.body.width + 10, 85)
+                canvas_context.strokeText("Defense " + Math.ceil(this.defense) , sandmap.window.body.x + sandmap.window.body.width + 10, 115)
+                canvas_context.fillText("Defense " + Math.ceil(this.defense) , sandmap.window.body.x + sandmap.window.body.width + 10, 115)
                 if (this.imago == 1) {
-                    this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 65, 90, 50, "black")
+                    this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
                     this.spawnsmall.draw()
                     canvas_context.drawImage(nymph, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
                     canvas_context.fillStyle = "white"
                     canvas_context.font = "13px arial"
-                    canvas_context.fillText("Nymph: 125", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                    canvas_context.fillText("Nymph: 120", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
 
                 }
                 if (this.nymph == 1 || this.nymph == 2) {
                     if (this.nymph == 1) {
-                        this.morph = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 65, 90, 50, "black")
+                        this.morph = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
                         this.morph.draw()
                         canvas_context.drawImage(scuttler, 0, 0, 10, 10, this.morph.x + 10, this.morph.y + 5, 30, 30)
                         canvas_context.fillStyle = "white"
@@ -4612,7 +4639,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     } else {
                         // this.morph = {}
                         // this.morph.isPointInside = empty
-                        this.morph2 = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 65, 90, 50, "black")
+                        this.morph2 = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
                         this.morph2.draw()
                         canvas_context.drawImage(imago, 0, 0, 10, 10, this.morph2.x + 10, this.morph2.y + 5, 30, 30)
                         canvas_context.fillStyle = "white"
@@ -4624,7 +4651,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
 
             if (this.timer > 0) {
-                canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 125, 250, 10)
+                canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
             }
         }
 
@@ -4742,6 +4769,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     shot.attacktarget.body = new UnitCircle(this.attacktarget.body.x, this.attacktarget.body.y, 1, "transparent")
                     shot.projectilespeed = this.projectilespeed
                     shot.refhealth = this.attacktarget
+                    shot.attacktarget.defense = this.attacktarget.defense
                     shot.stage = 0
                     this.shots.push(shot)
                 }
@@ -5095,7 +5123,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.shots[t].y = (this.body.y * (1 - (this.shots[t].stage / this.projectilespeed))) + (((this.shots[t].stage / this.projectilespeed)) * this.shots[t].attacktarget.body.y)
                 this.shots[t].draw()
                 if (this.shots[t].stage >= this.projectilespeed) {
-                    this.shots[t].refhealth.health -= (this.damage * 3) //5?
+                    this.shots[t].refhealth.health -= Math.max((this.damage * 3)-this.shots[t].attacktarget.defense, 0) //5?
                     ////console.log(this.shots[t].refhealth)
                     this.shots[t].marked = 1
                 }
