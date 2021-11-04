@@ -4613,8 +4613,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.fillText(this.name + " " + Math.round(this.health) + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
 
 
-                canvas_context.strokeText("Attack " + Math.ceil(this.damage) , sandmap.window.body.x + sandmap.window.body.width + 10, 85)
-                canvas_context.fillText("Attack " + Math.ceil(this.damage) , sandmap.window.body.x + sandmap.window.body.width + 10, 85)
+                canvas_context.strokeText("Attack " + Math.ceil(this.damage*3) , sandmap.window.body.x + sandmap.window.body.width + 10, 85)
+                canvas_context.fillText("Attack " + Math.ceil(this.damage*3) , sandmap.window.body.x + sandmap.window.body.width + 10, 85)
                 canvas_context.strokeText("Defense " + Math.ceil(this.defense) , sandmap.window.body.x + sandmap.window.body.width + 10, 115)
                 canvas_context.fillText("Defense " + Math.ceil(this.defense) , sandmap.window.body.x + sandmap.window.body.width + 10, 115)
                 if (this.imago == 1) {
@@ -4986,7 +4986,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.realPath = [this.tile]
                 this.index = 0
             }
-            this.heatwallcheck()
+            if(this.faction.type == 0){
+                this.heatwallcheck()
+            }else{
+                this.decayingInTheWind = 0
+            }
             //////////console.log( (this.decayingInTheWind*sandmap.windspeed))
             this.health -= ((this.decayRate * this.decayingInTheWind * sandmap.windspeed))
             if (this.decayingInTheWind == 0) {
