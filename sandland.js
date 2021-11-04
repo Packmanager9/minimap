@@ -2836,6 +2836,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         if (this.units[t].nymph == 2) {
                             this.defenseforce++
                         }
+                        if (this.units[t].nymph == 1) {
+                            this.units[t].metamorph1()
+                        }
                     }
                     if (this.defenseforce > 0) {
                         for (let t = 0; t < this.units.length; t++) {
@@ -3036,6 +3039,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     for (let t = 0; t < this.units.length; t++) {
                         if (this.units[t].infantry == 1) {
                             this.defenseforce++
+                        }
+                    }
+                    for (let t = 0; t < this.buildings.length; t++) {
+                        if (this.buildings[t].barracks == 1) {
+                            if(this.hotrock > 40){
+                                this.buildings[t].makeInfantry()
+                            }
                         }
                     }
                     if (this.defenseforce > 0) {
