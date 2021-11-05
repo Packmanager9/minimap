@@ -1840,7 +1840,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             window.addEventListener('pointermove', continued_stimuli);
 
         });
-        window.addEventListener('contextmenu', e => {
+        canvas.addEventListener('contextmenu', e => {
             e.preventDefault()
             FLEX_engine = canvas.getBoundingClientRect();
             XS_engine = e.clientX - FLEX_engine.left;
@@ -3348,12 +3348,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     }
                                 }
                                 if (Math.random() < .1 - (this.units.length * .005)) {
-                                    if (this.hotrock > 140) {
+                                    if (this.hotrock > 130) {
                                         this.buildings[t].makeInfantry()
                                     }
                                 }
-                                if (Math.random() < .1 - (this.units.length * .005)) {
-                                    if (this.hotrock > 240) {
+                                if (Math.random() < .1 - (this.units.length * .003)) {
+                                    if (this.hotrock > 200) {
                                         this.buildings[t].makeHarvester()
                                     }
                                 }
@@ -3381,7 +3381,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         if (this.averageSpace.dirs2 == 1) {
                         } else {
                             for (let x = this.averageSpace.tile.k; x < 126; x++) {
-                                if (x < 0 || x > 126) {
+                                if (x < 0 || x > 127) {
                                     continue
                                 }
                                 if (this.blocks[this.averageSpace.tile.t][x + 1].markdraw != 1) {
@@ -3397,7 +3397,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         if (this.averageSpace.dirs4 == 1) {
                         } else {
                             for (let x = this.averageSpace.tile.k; x > 1; x--) {
-                                if (x < 0 || x > 126) {
+                                if (x < 0 || x > 127) {
                                     continue
                                 }
                                 if (this.blocks[this.averageSpace.tile.t][x - 1].markdraw != 1) {
@@ -3413,7 +3413,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         if (this.averageSpace.dirs3 == 1) {
                         } else {
                             for (let x = this.averageSpace.tile.t; x > 1; x--) {
-                                if (x < 0 || x > 126) {
+                                if (x < 0 || x > 127) {
                                     continue
                                 }
                                 if (this.blocks[x - 1][this.averageSpace.tile.k].markdraw != 1) {
@@ -3429,7 +3429,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         if (this.averageSpace.dirs1 == 1) {
                         } else {
                             for (let x = this.averageSpace.tile.t; x < 126; x++) {
-                                if (x < 0 || x > 126) {
+                                if (x < 0 || x > 127) {
                                     continue
                                 }
                                 if (this.blocks[x + 1][this.averageSpace.tile.k].markdraw != 1) {
@@ -3473,7 +3473,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 } else {
                                     if (this.units[t].health < (this.units[t].maxhealth * .9)) {
                                         for (let x = this.units[t].tile.k; x < 126; x++) {
-                                            if (x < 0 || x > 126) {
+                                            if (x < 0 || x > 127) {
                                                 continue
                                             }
                                             if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1) {
@@ -3491,7 +3491,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 } else {
                                     if (this.units[t].health < (this.units[t].maxhealth * .9)) {
                                         for (let x = this.units[t].tile.k; x > 1; x--) {
-                                            if (x < 0 || x > 126) {
+                                            if (x < 0 || x > 127) {
                                                 continue
                                             }
                                             if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1) {
@@ -3509,7 +3509,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 } else {
                                     if (this.units[t].health < (this.units[t].maxhealth * .9)) {
                                         for (let x = this.units[t].tile.t; x > 1; x--) {
-                                            if (x < 0 || x > 126) {
+                                            if (x < 0 || x > 127) {
                                                 continue
                                             }
                                             if (this.blocks[x - 1][this.units[t].tile.k].markdraw != 1) {
@@ -3527,7 +3527,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 } else {
                                     if (this.units[t].health < (this.units[t].maxhealth * .9)) {
                                         for (let x = this.units[t].tile.t; x < 126; x++) {
-                                            if (x < 0 || x > 126) {
+                                            if (x < 0 || x > 127) {
                                                 continue
                                             }
                                             if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1) {
@@ -3548,7 +3548,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 } else {
                                     if (this.units[t].health < (this.units[t].maxhealth * .9)) {
                                         for (let x = this.units[t].tile.k; x < 126; x++) {
-                                            if (x < 0 || x > 126) {
+                                            if (x < 0 || x > 127) {
                                                 continue
                                             }
                                             if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1) {
@@ -3566,7 +3566,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 } else {
                                     if (this.units[t].health < (this.units[t].maxhealth * .9)) {
                                         for (let x = this.units[t].tile.k; x > 1; x--) {
-                                            if (x < 0 || x > 126) {
+                                            if (x < 0 || x > 127) {
                                                 continue
                                             }
                                             if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1) {
@@ -3584,7 +3584,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 } else {
                                     if (this.units[t].health < (this.units[t].maxhealth * .9)) {
                                         for (let x = this.units[t].tile.t; x > 1; x--) {
-                                            if (x < 0 || x > 126) {
+                                            if (x < 0 || x > 127) {
                                                 continue
                                             }
                                             if (this.blocks[x - 1][this.units[t].tile.k].markdraw != 1) {
@@ -3602,7 +3602,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 } else {
                                     if (this.units[t].health < (this.units[t].maxhealth * .9)) {
                                         for (let x = this.units[t].tile.t; x < 126; x++) {
-                                            if (x < 0 || x > 126) {
+                                            if (x < 0 || x > 127) {
                                                 continue
                                             }
                                             if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1) {
@@ -3622,7 +3622,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 } else {
                                     if (this.units[t].health < (this.units[t].maxhealth * .9)) {
                                         for (let x = this.units[t].tile.k; x < 126; x++) {
-                                            if (x < 0 || x > 126) {
+                                            if (x < 0 || x > 127) {
                                                 continue
                                             }
                                             if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1) {
@@ -3640,7 +3640,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 } else {
                                     if (this.units[t].health < (this.units[t].maxhealth * .9)) {
                                         for (let x = this.units[t].tile.k; x > 1; x--) {
-                                            if (x < 0 || x > 126) {
+                                            if (x < 0 || x > 127) {
                                                 continue
                                             }
                                             if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1) {
@@ -3658,7 +3658,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 } else {
                                     if (this.units[t].health < (this.units[t].maxhealth * .9)) {
                                         for (let x = this.units[t].tile.t; x > 1; x--) {
-                                            if (x < 0 || x > 126) {
+                                            if (x < 0 || x > 127) {
                                                 continue
                                             }
                                             if (this.blocks[x - 1][this.units[t].tile.k].markdraw != 1) {
@@ -3676,7 +3676,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 } else {
                                     if (this.units[t].health < (this.units[t].maxhealth * .9)) {
                                         for (let x = this.units[t].tile.t; x < 126; x++) {
-                                            if (x < 0 || x > 126) {
+                                            if (x < 0 || x > 127) {
                                                 continue
                                             }
                                             if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1) {
@@ -3696,7 +3696,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 } else {
                                     if (this.units[t].health < (this.units[t].maxhealth * .9)) {
                                         for (let x = this.units[t].tile.k; x < 126; x++) {
-                                            if (x < 0 || x > 126) {
+                                            if (x < 0 || x > 127) {
                                                 continue
                                             }
                                             if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1) {
@@ -3714,7 +3714,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 } else {
                                     if (this.units[t].health < (this.units[t].maxhealth * .9)) {
                                         for (let x = this.units[t].tile.k; x > 1; x--) {
-                                            if (x < 0 || x > 126) {
+                                            if (x < 0 || x > 127) {
                                                 continue
                                             }
                                             if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1) {
@@ -3732,7 +3732,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 } else {
                                     if (this.units[t].health < (this.units[t].maxhealth * .9)) {
                                         for (let x = this.units[t].tile.t; x > 1; x--) {
-                                            if (x < 0 || x > 126) {
+                                            if (x < 0 || x > 127) {
                                                 continue
                                             }
                                             if (this.blocks[x - 1][this.units[t].tile.k].markdraw != 1) {
@@ -3750,7 +3750,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 } else {
                                     if (this.units[t].health < (this.units[t].maxhealth * .9)) {
                                         for (let x = this.units[t].tile.t; x < 126; x++) {
-                                            if (x < 0 || x > 126) {
+                                            if (x < 0 || x > 127) {
                                                 continue
                                             }
                                             if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1) {
@@ -4589,16 +4589,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.name = "Harvesting Vehicle"
             this.sight = 1 + this.movespeed
             this.damage = (this.body.radius * 5.4)
-            this.firerate = 25 //(this.movespeed * 5)
+            this.firerate = 6 //(this.movespeed * 5)
             this.attackrange = this.sight - 1
-            this.health = this.sight * 100
-            this.maxhealth = this.health
             this.shots = []
             this.attacktarget = {}
             this.attacktarget.health = 0
             this.attackcounter = 0
-            this.decayRate = (this.sight * this.movespeed) * .025
-            this.health = 700
+            this.decayRate = (this.sight * this.movespeed) * .01
+            this.health = 1200
             this.maxhealth = this.health
         }
         spawnNymph() {
