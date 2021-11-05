@@ -2,13 +2,18 @@
 window.addEventListener('DOMContentLoaded', (event) => {
 
     let debreak = 1
-    let start = 0
+    let start = 0 // whether it's okay to draw the game into the canvas element.
     function empty() {
 
     }
-    let dataflop = 0
+    let dataflop = 0 // enforces only 1 
+    // preferential towards buildings
+    // elite units
+
+    // background
     let snow = new Image()
     snow.src = 'smoothsnow4.png'
+    // barriers
     let nowalk = new Image()
     nowalk.src = 'nowalk.png'
 
@@ -94,7 +99,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     illness.src = "illness.mp3"
     sounds.push(illness)
     let whatareyoufreesievingoutput = new Audio()
-    whatareyoufreesievingoutput.src = "whatareyoufreesievingoutput.mp3"
+    whatareyoufreesievingoutput.src = "whatreyoufreesievingoutput.mp3"
     sounds.push(whatareyoufreesievingoutput)
     let icannamethevillans = new Audio()
     icannamethevillans.src = "icannamethevillans.mp3"
@@ -220,7 +225,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
     function soundCancel() {
-        soundspamdrop = .55
+        /* sets chance of audio playback  */
+        soundspamdrop = .15
         for (let t = 0; t < sounds.length; t++) {
             sounds[t].pause()
             sounds[t].currentTime = 0
@@ -257,6 +263,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     hotrock1.src = "hotrock1.png"
     let hotrock2 = new Image()
     hotrock2.src = "hotrock2.png"
+
     let rectstart = {}
     rectstart.x = 0
     rectstart.y = 0
@@ -1618,6 +1625,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             delete keysPressed[event.key];
         });
         window.addEventListener('pointerdown', e => {
+            // if(e.button == 0){
             FLEX_engine = canvas.getBoundingClientRect();
             XS_engine = e.clientX - FLEX_engine.left;
             YS_engine = e.clientY - FLEX_engine.top;
@@ -1838,7 +1846,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             // example usage: if(object.isPointInside(TIP_engine)){ take action }
             window.addEventListener('pointermove', continued_stimuli);
-
+        // }
         });
         canvas.addEventListener('contextmenu', e => {
             e.preventDefault()
@@ -1920,11 +1928,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 }
 
                                 if (sandmap.players[sandmap.turn].units[t].nymph == 2) {
-                                    if(Math.random()<.3){
+                                    if (Math.random() < .3) {
                                         amiaringer.play()  //scuttaud
-                                    }else  if(Math.random()<.3){
+                                    } else if (Math.random() < .3) {
                                         yeahimfamiliarsee.play()  //scuttaud
-                                    }else{
+                                    } else {
                                         hangintheremanlol.play()
                                     }
                                 }
@@ -1985,31 +1993,34 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
             // example usage: if(object.isPointInside(TIP_engine)){ take action }
-            window.addEventListener('pointermove', continued_stimuli);
+            // window.addEventListener('pointermove', continued_stimuli);
 
         });
 
         window.addEventListener('pointerup', e => {
-            window.removeEventListener("pointermove", continued_stimuli);
-            if (TIP_engine.x <= sandmap.window.body.x + sandmap.window.body.width) {
-                for (let t = 0; t < sandmap.players[sandmap.turn].units.length; t++) {
-                    if (selectrect.isPointInside(sandmap.players[sandmap.turn].units[t].body)) {
-
-                        sandmap.players[sandmap.turn].units[t].selected = 1
-
-
-                    } else {
-                        if (sandmap.players[sandmap.turn].units[t].selected == 2) {
+            if(e.button == 0){
+                window.removeEventListener("pointermove", continued_stimuli);
+                if (TIP_engine.x <= sandmap.window.body.x + sandmap.window.body.width) {
+                    for (let t = 0; t < sandmap.players[sandmap.turn].units.length; t++) {
+                        if (selectrect.isPointInside(sandmap.players[sandmap.turn].units[t].body)) {
+    
                             sandmap.players[sandmap.turn].units[t].selected = 1
+    
+    
                         } else {
-                            sandmap.players[sandmap.turn].units[t].selected = 0
+                            if (sandmap.players[sandmap.turn].units[t].selected == 2) {
+                                sandmap.players[sandmap.turn].units[t].selected = 1
+                            } else {
+                                sandmap.players[sandmap.turn].units[t].selected = 0
+                            }
                         }
                     }
                 }
+                selectrect = new Tile(0, 0, 0, 0, "transparent")
             }
-            selectrect = new Tile(0, 0, 0, 0, "transparent")
         })
         function continued_stimuli(e) {
+            // if(e.button == 0){
             FLEX_engine = canvas.getBoundingClientRect();
             XS_engine = e.clientX - FLEX_engine.left;
             YS_engine = e.clientY - FLEX_engine.top;
@@ -2089,7 +2100,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     sandmap.window.guide.y = structuredpoint.y - (sandmap.window.body.height * .25)
                 }
             }
-        }
+        // }
+    }
     }
     //     function gamepad_control(object, speed = 1) { // basic control for objects using the controler
     // //         //////////////////console.log(gamepadAPI.axesStatus[1]*gamepadAPI.axesStatus[0]) //debugging
@@ -4665,11 +4677,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
                 if (Math.random() < soundspamdrop) {
                     soundCancel()
-                    if(Math.random()<.3){
+                    if (Math.random() < .3) {
                         iknowcomeon.play()
-                    }else  if(Math.random()<.3){
+                    } else if (Math.random() < .3) {
                         mylifesmine.play()
-                    }else{
+                    } else {
                         snazzyrim.play()
                     }
                 }
@@ -4820,9 +4832,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                     soundCancel()
                                                                     if (Math.random() < .3) {
                                                                         icannamethevillans.play()
-                                                                    } else  if (Math.random() < .3) {
+                                                                    } else if (Math.random() < .3) {
                                                                         suresawwithvenom.play()
-                                                                    }else{
+                                                                    } else {
                                                                         ohisthattheeyeofthesnake.play()
                                                                     }
                                                                 }
@@ -5278,14 +5290,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 
-    for (let t = 0; t < 3; t++) {
-        let agent1 = new Agent(sandmap.blocks[10][t + 10], sandmap.players[0])
-    }
-    for (let t = 0; t < 3; t++) {
-        let agent2 = new Agent(sandmap.blocks[117][117 - t], sandmap.players[1])
+    function startGame() {
+        for (let t = 0; t < 3; t++) {
+            let agent1 = new Agent(sandmap.blocks[10][t + 10], sandmap.players[0])
+        }
+        for (let t = 0; t < 3; t++) {
+            let agent2 = new Agent(sandmap.blocks[117][117 - t], sandmap.players[1])
+        }
     }
 
-
+    startGame()
     // let pather = new PathFindingAlg(sandmap.blocks, sandmap.blocks[10][10], sandmap.blocks[12][25])
     // for(let t = 0;t<10;t++){
     // pather.findPath()
