@@ -674,8 +674,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let playbutton = new UiRectangle(1000, 620, 200, 75, "black")
     let aitoggle1 = new UiRectangle(200, 200, 300, 75, "black")
     let chartoggle1 = new UiRectangle(200, 400, 300, 75, "black")
-    let aitoggle2 = new UiRectangle(780, 200, 300, 75, "black")
-    let chartoggle2 = new UiRectangle(780, 400, 300, 75, "black")
+    let aitoggle2 = new UiRectangle(680, 200, 300, 75, "black")
+    let chartoggle2 = new UiRectangle(680, 400, 300, 75, "black")
     class Circle {
         constructor(x, y, radius, color, xmom = 0, ymom = 0, friction = 1, reflect = 0, strokeWidth = 0, strokeColor = "transparent") {
             this.x = x
@@ -1718,6 +1718,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     canvas_context.fillStyle = "#FFFFFF"
                     canvas_context.fillText(sandmap.players[0].name, chartoggle1.x+15, chartoggle1.y+50)
                     canvas_context.fillText(sandmap.players[1].name, chartoggle2.x+15, chartoggle2.y+50)
+                    canvas_context.font = "40px Arial";
+                    canvas_context.fillStyle = "#000000"
+                    canvas_context.fillText("(You)", chartoggle1.x-150, chartoggle1.y+50)
+                    canvas_context.font = "40px Arial";
+                    canvas_context.fillStyle = "#000000"
+                    canvas_context.fillText("(Enemy)", chartoggle2.x+350, chartoggle2.y+50)
+                    canvas_context.font = "40px Arial";
+                    canvas_context.fillStyle = "#FFFFFF"
                     if(sandmap.players[0].isAI == 1){
                         canvas_context.fillText("CPU control", aitoggle1.x+15, aitoggle1.y+50)
                     }else{
@@ -4805,7 +4813,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.name = "Harvesting Vehicle"
             this.sight = 1 + this.movespeed
             this.damage = (this.body.radius * 5.4)
-            this.firerate = 6 //(this.movespeed * 5)
+            this.firerate = 7 //(this.movespeed * 5) // 6
             this.attackrange = this.sight - 1
             this.shots = []
             this.attacktarget = {}
@@ -4896,7 +4904,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.body.radius = 6.5
             this.movespeed = 8
             this.sight = 1 + this.movespeed
-            this.firerate = 9
+            this.firerate = 8 // 9
             this.decayRate = 0
             this.defense = 8
             this.damage = (this.body.radius * 4) + 1.5
@@ -4955,10 +4963,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.fillText(this.name + " " + Math.round(this.health) + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
 
 
-                canvas_context.strokeText("Attack " + Math.ceil(this.damage * 3), sandmap.window.body.x + sandmap.window.body.width + 10, 85)
-                canvas_context.fillText("Attack " + Math.ceil(this.damage * 3), sandmap.window.body.x + sandmap.window.body.width + 10, 85)
-                canvas_context.strokeText("Defense " + Math.ceil(this.defense), sandmap.window.body.x + sandmap.window.body.width + 10, 115)
-                canvas_context.fillText("Defense " + Math.ceil(this.defense), sandmap.window.body.x + sandmap.window.body.width + 10, 115)
+                canvas_context.strokeText("Attack " + Math.ceil(this.damage * 3)+ ", " + "Defense " + Math.ceil(this.defense), sandmap.window.body.x + sandmap.window.body.width + 10, 85)
+                canvas_context.fillText("Attack " + Math.ceil(this.damage * 3) + ", " + "Defense " + Math.ceil(this.defense), sandmap.window.body.x + sandmap.window.body.width + 10, 85)
+                canvas_context.strokeText("Speed "+ Math.floor((1/this.movespeed)*120) + ", Vision "+ this.sight + ", Range "+ this.attackrange+ ", Fire rate "+ Math.floor((1/this.firerate)*120), sandmap.window.body.x + sandmap.window.body.width + 10, 115)
+                canvas_context.fillText("Speed "+ Math.floor((1/this.movespeed)*120) + ", Vision "+ this.sight + ", Range "+ this.attackrange+ ", Fire rate "+ Math.floor((1/this.firerate)*120), sandmap.window.body.x + sandmap.window.body.width + 10, 115)
                 if (this.imago == 1) {
                     this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
                     this.spawnsmall.draw()
