@@ -143,9 +143,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
     sounds.push(sieveceaselessly)
     let sieveseejunior = new Audio()
     sieveseejunior.src = "sieveseejunior.mp3"
-    sounds.push(sieveceaselessly)
+    sounds.push(sieveseejunior)
     let ahhbarber = new Audio()
-    ahhbarber.src = "sieveceaselessly.mp3"
+    ahhbarber.src = "ahhbarber.mp3"
     sounds.push(ahhbarber)
     let go = new Audio()
     go.src = "go.mp3"
