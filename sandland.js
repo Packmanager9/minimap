@@ -1626,9 +1626,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (playstart == 1) {
                 main()
             } else {
-                
+
                 canvas_context.clearRect(0, 0, canvas.width, canvas.height)  // refreshes the image
-    
+
                 playbutton.draw()
                 if (playstart == 0) {
                     let invscale = 1
@@ -1654,7 +1654,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                     canvas_context.font = "40px Arial";
                     canvas_context.fillStyle = "#FFFFFF"
-                    canvas_context.fillText("Continue", playbutton.x+15, playbutton.y+50)
+                    canvas_context.fillText("Continue", playbutton.x + 15, playbutton.y + 50)
                 }
                 if (playstart == 2) {
                     let invscale = 1
@@ -1681,7 +1681,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                     canvas_context.font = "40px Arial";
                     canvas_context.fillStyle = "#FFFFFF"
-                    canvas_context.fillText("Continue", playbutton.x+15, playbutton.y+50)
+                    canvas_context.fillText("Continue", playbutton.x + 15, playbutton.y + 50)
 
                 }
                 if (playstart == 3) {
@@ -1708,7 +1708,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                     canvas_context.font = "40px Arial";
                     canvas_context.fillStyle = "#FFFFFF"
-                    canvas_context.fillText("Start", playbutton.x+35, playbutton.y+50)
+                    canvas_context.fillText("Start", playbutton.x + 35, playbutton.y + 50)
                     aitoggle1.draw()
                     aitoggle2.draw()
                     chartoggle1.draw()
@@ -1716,25 +1716,25 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                     canvas_context.font = "40px Arial";
                     canvas_context.fillStyle = "#FFFFFF"
-                    canvas_context.fillText(sandmap.players[0].name, chartoggle1.x+15, chartoggle1.y+50)
-                    canvas_context.fillText(sandmap.players[1].name, chartoggle2.x+15, chartoggle2.y+50)
+                    canvas_context.fillText(sandmap.players[0].name, chartoggle1.x + 15, chartoggle1.y + 50)
+                    canvas_context.fillText(sandmap.players[1].name, chartoggle2.x + 15, chartoggle2.y + 50)
                     canvas_context.font = "40px Arial";
                     canvas_context.fillStyle = "#000000"
-                    canvas_context.fillText("(You)", chartoggle1.x-150, chartoggle1.y+50)
+                    canvas_context.fillText("(You)", chartoggle1.x - 150, chartoggle1.y + 50)
                     canvas_context.font = "40px Arial";
                     canvas_context.fillStyle = "#000000"
-                    canvas_context.fillText("(Enemy)", chartoggle2.x+350, chartoggle2.y+50)
+                    canvas_context.fillText("(Enemy)", chartoggle2.x + 350, chartoggle2.y + 50)
                     canvas_context.font = "40px Arial";
                     canvas_context.fillStyle = "#FFFFFF"
-                    if(sandmap.players[0].isAI == 1){
-                        canvas_context.fillText("CPU control", aitoggle1.x+15, aitoggle1.y+50)
-                    }else{
-                        canvas_context.fillText("Manual control", aitoggle1.x+15, aitoggle1.y+50)
+                    if (sandmap.players[0].isAI == 1) {
+                        canvas_context.fillText("CPU control", aitoggle1.x + 15, aitoggle1.y + 50)
+                    } else {
+                        canvas_context.fillText("Manual control", aitoggle1.x + 15, aitoggle1.y + 50)
                     }
-                    if(sandmap.players[1].isAI == 1){
-                        canvas_context.fillText("CPU control", aitoggle2.x+15, aitoggle1.y+50)
-                    }else{
-                        canvas_context.fillText("Manual control", aitoggle2.x+15, aitoggle2.y+50)
+                    if (sandmap.players[1].isAI == 1) {
+                        canvas_context.fillText("CPU control", aitoggle2.x + 15, aitoggle1.y + 50)
+                    } else {
+                        canvas_context.fillText("Manual control", aitoggle2.x + 15, aitoggle2.y + 50)
                     }
                 }
             }
@@ -1746,318 +1746,318 @@ window.addEventListener('DOMContentLoaded', (event) => {
             delete keysPressed[event.key];
         });
         window.addEventListener('pointerdown', e => {
-            // if(e.button == 0){
-            FLEX_engine = canvas.getBoundingClientRect();
-            XS_engine = e.clientX - FLEX_engine.left;
-            YS_engine = e.clientY - FLEX_engine.top;
-            TIP_engine.x = XS_engine
-            TIP_engine.y = YS_engine
-            TIP_engine.body = TIP_engine
+            if (e.button == 0) {
+                FLEX_engine = canvas.getBoundingClientRect();
+                XS_engine = e.clientX - FLEX_engine.left;
+                YS_engine = e.clientY - FLEX_engine.top;
+                TIP_engine.x = XS_engine
+                TIP_engine.y = YS_engine
+                TIP_engine.body = TIP_engine
 
-            if(playstart != 1){
-                if(playbutton.isPointInside(TIP_engine)){
-                    if(playstart == 3){
-                        playstart = 1
-                    }
-                    if(playstart == 2){
-                        playstart = 3
-                    }
-                    if(playstart == 0){
-                        playstart = 2
-                    }
-                }
-                if(chartoggle2.isPointInside(TIP_engine)){
-                    if(sandmap.players[1].type == 0){
-                        sandmap.players[1].type = 1
-                        sandmap.players[1].name = "Cold Itzlerians"
-                        sandmap.players[0].units = []
-                        sandmap.players[1].units = []
-                        start = 0
-                        for (let t = 0; t < 3; t++) {
-                            let agent1 = new Agent(sandmap.blocks[10][t + 10], sandmap.players[0])
+                if (playstart != 1) {
+                    if (playbutton.isPointInside(TIP_engine)) {
+                        if (playstart == 3) {
+                            playstart = 1
                         }
-                        for (let t = 0; t < 3; t++) {
-                            let agent2 = new Agent(sandmap.blocks[117][117 - t], sandmap.players[1])
+                        if (playstart == 2) {
+                            playstart = 3
                         }
-                        start = 1
+                        if (playstart == 0) {
+                            playstart = 2
+                        }
+                    }
+                    if (chartoggle2.isPointInside(TIP_engine)) {
+                        if (sandmap.players[1].type == 0) {
+                            sandmap.players[1].type = 1
+                            sandmap.players[1].name = "Cold Itzlerians"
+                            sandmap.players[0].units = []
+                            sandmap.players[1].units = []
+                            start = 0
+                            for (let t = 0; t < 3; t++) {
+                                let agent1 = new Agent(sandmap.blocks[10][t + 10], sandmap.players[0])
+                            }
+                            for (let t = 0; t < 3; t++) {
+                                let agent2 = new Agent(sandmap.blocks[117][117 - t], sandmap.players[1])
+                            }
+                            start = 1
 
-                    }else{
-                        sandmap.players[1].type = 0
-                        sandmap.players[1].name = "Earthoids"
-                        sandmap.players[0].units = []
-                        sandmap.players[1].units = []
-                        start = 0
-                        for (let t = 0; t < 3; t++) {
-                            let agent1 = new Agent(sandmap.blocks[10][t + 10], sandmap.players[0])
+                        } else {
+                            sandmap.players[1].type = 0
+                            sandmap.players[1].name = "Earthoids"
+                            sandmap.players[0].units = []
+                            sandmap.players[1].units = []
+                            start = 0
+                            for (let t = 0; t < 3; t++) {
+                                let agent1 = new Agent(sandmap.blocks[10][t + 10], sandmap.players[0])
+                            }
+                            for (let t = 0; t < 3; t++) {
+                                let agent2 = new Agent(sandmap.blocks[117][117 - t], sandmap.players[1])
+                            }
+                            start = 1
                         }
-                        for (let t = 0; t < 3; t++) {
-                            let agent2 = new Agent(sandmap.blocks[117][117 - t], sandmap.players[1])
-                        }
-                        start = 1
                     }
-                }
-                if(chartoggle1.isPointInside(TIP_engine)){
-                    if(sandmap.players[0].type == 0){
-                        sandmap.players[0].type = 1
-                        sandmap.players[0].name = "Cold Itzlerians"
-                        sandmap.players[0].units = []
-                        sandmap.players[1].units = []
-                        start = 0
-                        for (let t = 0; t < 3; t++) {
-                            let agent1 = new Agent(sandmap.blocks[10][t + 10], sandmap.players[0])
-                        }
-                        for (let t = 0; t < 3; t++) {
-                            let agent2 = new Agent(sandmap.blocks[117][117 - t], sandmap.players[1])
-                        }
-                        start = 1
+                    if (chartoggle1.isPointInside(TIP_engine)) {
+                        if (sandmap.players[0].type == 0) {
+                            sandmap.players[0].type = 1
+                            sandmap.players[0].name = "Cold Itzlerians"
+                            sandmap.players[0].units = []
+                            sandmap.players[1].units = []
+                            start = 0
+                            for (let t = 0; t < 3; t++) {
+                                let agent1 = new Agent(sandmap.blocks[10][t + 10], sandmap.players[0])
+                            }
+                            for (let t = 0; t < 3; t++) {
+                                let agent2 = new Agent(sandmap.blocks[117][117 - t], sandmap.players[1])
+                            }
+                            start = 1
 
-                    }else{
-                        sandmap.players[0].type = 0
-                        sandmap.players[0].name = "Earthoids"
-                        sandmap.players[0].units = []
-                        sandmap.players[1].units = []
-                        start = 0
-                        for (let t = 0; t < 3; t++) {
-                            let agent1 = new Agent(sandmap.blocks[10][t + 10], sandmap.players[0])
+                        } else {
+                            sandmap.players[0].type = 0
+                            sandmap.players[0].name = "Earthoids"
+                            sandmap.players[0].units = []
+                            sandmap.players[1].units = []
+                            start = 0
+                            for (let t = 0; t < 3; t++) {
+                                let agent1 = new Agent(sandmap.blocks[10][t + 10], sandmap.players[0])
+                            }
+                            for (let t = 0; t < 3; t++) {
+                                let agent2 = new Agent(sandmap.blocks[117][117 - t], sandmap.players[1])
+                            }
+                            start = 1
                         }
-                        for (let t = 0; t < 3; t++) {
-                            let agent2 = new Agent(sandmap.blocks[117][117 - t], sandmap.players[1])
-                        }
-                        start = 1
                     }
-                }
-                if(aitoggle1.isPointInside(TIP_engine)){
-                    if(sandmap.players[0].isAI == 0){
-                        sandmap.players[0].isAI = 1
-                    }else{
-                        sandmap.players[0].isAI = 0
+                    if (aitoggle1.isPointInside(TIP_engine)) {
+                        if (sandmap.players[0].isAI == 0) {
+                            sandmap.players[0].isAI = 1
+                        } else {
+                            sandmap.players[0].isAI = 0
+                        }
                     }
-                }
-                if(aitoggle2.isPointInside(TIP_engine)){
-                    if(sandmap.players[1].isAI == 0){
-                        sandmap.players[1].isAI = 1
-                    }else{
-                        sandmap.players[1].isAI = 0
-                    }
-                }
-            }else{
-
-                if (TIP_engine.x <= sandmap.window.body.x + sandmap.window.body.width) {
-                    if (keysPressed['b']) {
-                        let structuredpoint = new Point(0, 0)
-                        structuredpoint.x += sandmap.window.guide.x
-                        structuredpoint.y += sandmap.window.guide.y
-                        structuredpoint.x += (TIP_engine.x * .5)
-                        structuredpoint.y += (TIP_engine.y * .5)
-                        structuredpoint.x = Math.floor(structuredpoint.x * .1)
-                        structuredpoint.y = Math.floor(structuredpoint.y * .1)
-                        sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
-    
-                        let wet = 0
-                        for (let t = 0; t < sandmap.players[sandmap.turn].buildings.length; t++) {
-                            if (sandmap.players[sandmap.turn].selected_tile == sandmap.players[sandmap.turn].buildings[t].tile) {
-                                wet = 1
-                            }
+                    if (aitoggle2.isPointInside(TIP_engine)) {
+                        if (sandmap.players[1].isAI == 0) {
+                            sandmap.players[1].isAI = 1
+                        } else {
+                            sandmap.players[1].isAI = 0
                         }
-                        if (sandmap.players[sandmap.turn].blocks[sandmap.players[sandmap.turn].selected_tile.t][sandmap.players[sandmap.turn].selected_tile.k].markdraw !== 1) {
-                            wet = 1
-                        }
-                        // if (sandmap.players[sandmap.turn].hotrock < 10) {
-                        //     wet = 1
-                        // }
-    
-                        if (sandmap.players[sandmap.turn].blocks[sandmap.players[sandmap.turn].selected_tile.t][sandmap.players[sandmap.turn].selected_tile.k].markdraw !== 1) {
-                            wet = 1
-                        }
-                        if (wet == 0) {
-                            sandmap.players[sandmap.turn].buildWall(sandmap.players[sandmap.turn].selected_tile, 0)
-                        }
-                    } else if (keysPressed['x']) {
-                        let structuredpoint = new Point(0, 0)
-                        structuredpoint.x += sandmap.window.guide.x
-                        structuredpoint.y += sandmap.window.guide.y
-                        structuredpoint.x += (TIP_engine.x * .5)
-                        structuredpoint.y += (TIP_engine.y * .5)
-                        structuredpoint.x = Math.floor(structuredpoint.x * .1)
-                        structuredpoint.y = Math.floor(structuredpoint.y * .1)
-                        sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
-                        for (let t = 0; t < sandmap.players[sandmap.turn].buildings.length; t++) {
-                            if (sandmap.players[sandmap.turn].selected_tile == sandmap.players[sandmap.turn].buildings[t].tile) {
-                                for (let k = 0; k < sandmap.players[sandmap.turn].buildings[t].tiles.length; k++) {
-                                    sandmap.players[sandmap.turn].buildings[t].tiles[k].walkable = true
-                                    sandmap.players[sandmap.turn].buildings[t].tiles[k].color = "#AACCFF"
-                                    delete sandmap.players[sandmap.turn].buildings[t].tiles[k].wallcolor
-                                }
-                                sandmap.players[sandmap.turn].buildings.splice(t, 1)
-                                break
-                            }
-                        }
-                    } else if (keysPressed['n']) {
-                        let structuredpoint = new Point(0, 0)
-                        structuredpoint.x += sandmap.window.guide.x
-                        structuredpoint.y += sandmap.window.guide.y
-                        structuredpoint.x += (TIP_engine.x * .5)
-                        structuredpoint.y += (TIP_engine.y * .5)
-                        structuredpoint.x = Math.floor(structuredpoint.x * .1)
-                        structuredpoint.y = Math.floor(structuredpoint.y * .1)
-                        sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
-    
-                        let wet = 0
-                        for (let t = 0; t < sandmap.players[sandmap.turn].buildings.length; t++) {
-                            if (sandmap.players[sandmap.turn].selected_tile == sandmap.players[sandmap.turn].buildings[t].tile) {
-                                wet = 1
-                            }
-                        }
-                        // if (sandmap.players[sandmap.turn].hotrock < 70) {
-                        //     wet = 1
-                        // }
-                        if (sandmap.players[sandmap.turn].blocks[sandmap.players[sandmap.turn].selected_tile.t][sandmap.players[sandmap.turn].selected_tile.k].markdraw !== 1) {
-                            wet = 1
-                        }
-                        if (wet == 0) {
-                            sandmap.players[sandmap.turn].buildBarracks(sandmap.players[sandmap.turn].selected_tile, 0)
-                            // let building = new Building(sandmap.players[sandmap.turn].selected_tile, sandmap.players[sandmap.turn], 0)
-    
-                        }
-                    } else {
-                        let structuredpoint = new Point(0, 0)
-                        structuredpoint.x += sandmap.window.guide.x
-                        structuredpoint.y += sandmap.window.guide.y
-                        structuredpoint.x += (TIP_engine.x * .5)
-                        structuredpoint.y += (TIP_engine.y * .5)
-                        structuredpoint.x = Math.floor(structuredpoint.x * .1)
-                        structuredpoint.y = Math.floor(structuredpoint.y * .1)
-                        if (structuredpoint.x < 0) {
-                            structuredpoint.x = 0
-                        }
-                        if (structuredpoint.y < 0) {
-                            structuredpoint.y = 0
-                        }
-                        sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
-    
-                        for (let t = 0; t < sandmap.players[sandmap.turn].buildings.length; t++) {
-                            if (sandmap.players[sandmap.turn].buildings[t].tiles.includes(sandmap.players[sandmap.turn].selected_tile)) {
-                                sandmap.players[sandmap.turn].buildings[t].selected = 1
-                            } else {
-                                sandmap.players[sandmap.turn].buildings[t].selected = 0
-                            }
-                        }
-    
-                        // sandmap.turn++
-                        sandmap.turn %= sandmap.players.length
-                        rectstart.x = structuredpoint.x
-                        rectstart.y = structuredpoint.y
-                        for (let t = 0; t < sandmap.players[sandmap.turn].units.length; t++) {
-                            if (sandmap.players[sandmap.turn].selected_tile == sandmap.players[sandmap.turn].units[t].tile) {
-                                if (sandmap.players[sandmap.turn].units[t].selected == 0) {
-    
-                                    // if(Math.random()<soundspamdrop){
-                                    soundCancel()
-                                    if (sandmap.players[sandmap.turn].units[t].drone == 1) {
-                                        if (Math.random() < .5) {
-                                            hello.play()
-                                        } else {
-                                            scanning.play()
-                                        }
-                                    }
-                                    if (sandmap.players[sandmap.turn].units[t].nymph == 2) {
-                                        if (Math.random() < .3) {
-                                            sureiwillstandup.play()
-                                        } else if (Math.random() < .3) {
-                                            suresauna.play()
-                                        } else {
-                                            getinthebathsootheyourson.play()
-                                        }
-                                    }
-                                    if (sandmap.players[sandmap.turn].units[t].nymph == 1) {
-                                        seeasvillaneh.play()
-                                    }
-                                    if (sandmap.players[sandmap.turn].units[t].imago == 1) {
-                                        yeahiminthisroom.play()
-                                    }
-                                    if (sandmap.players[sandmap.turn].units[t].infantry == 1) {
-                                        if (Math.random() < .8) {
-                                            orders.play()
-                                        } else {
-                                            freezin.play()
-                                        }
-                                    }
-                                    if (sandmap.players[sandmap.turn].units[t].harvester == 1) {
-                                        if (Math.random() < .9) {
-                                            rollout.play()
-                                        } else {
-                                            hitsomething.play()
-                                        }
-                                    }
-                                    // }
-                                }
-                                sandmap.players[sandmap.turn].units[t].selected = 2
-                            } else {
-                                // sandmap.players[sandmap.turn].units[t].selected = 0
-                            }
-                        }
-                        // for(let t = 0;t<sandmap.players[sandmap.turn].units.length;t++){
-                        //     if(sandmap.players[sandmap.turn].units[t].selected == 1){
-                        //         sandmap.players[sandmap.turn].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile )
-                        //     }
-                        // }
                     }
                 } else {
-                    for (let t = 0; t < sandmap.players[sandmap.turn].buildings.length; t++) {
-                        if (sandmap.players[sandmap.turn].buildings[t].spawnsmall.isPointInside(TIP_engine)) {
-                            sandmap.players[sandmap.turn].buildings[t].makeScout()
-                        }
-                        if (sandmap.players[sandmap.turn].buildings[t].spawnmedium.isPointInside(TIP_engine)) {
-                            sandmap.players[sandmap.turn].buildings[t].makeInfantry()
-                        }
-                        if (sandmap.players[sandmap.turn].buildings[t].spawnbig.isPointInside(TIP_engine)) {
-                            sandmap.players[sandmap.turn].buildings[t].makeHarvester()
-                        }
-                    }
-                    for (let t = 0; t < sandmap.players[sandmap.turn].units.length; t++) {
-                        if (sandmap.players[sandmap.turn].units[t].spawnsmall.isPointInside(TIP_engine)) {
-                            sandmap.players[sandmap.turn].units[t].makeNymph()
-                        }
-                        if (sandmap.players[sandmap.turn].units[t].morph.isPointInside(TIP_engine)) {
-                            sandmap.players[sandmap.turn].units[t].metamorph1()
-                            if (sandmap.players[sandmap.turn].units[t].nymph == 1) {
-                                if (Math.random() < soundspamdrop) {
-                                    soundCancel()
-                                    whoarewetomolt.play()
-                                }
-                            }
-                        }
-                        if (sandmap.players[sandmap.turn].units[t].morph2.isPointInside(TIP_engine)) {
-                            sandmap.players[sandmap.turn].units[t].metamorph2()
-                            if (sandmap.players[sandmap.turn].units[t].nymph == 2) {
-                                if (Math.random() < soundspamdrop) {
-                                    soundCancel()
-                                    if (Math.random() < .5) {
-                                        whoelsezagtheoystergush.play()
-                                    } else {
-                                        stallusyourworth.play()
-                                    }
-    
-                                }
-                            }
-                        }
-                    }
-                    if (sandmap.window.minibody.isPointInside(TIP_engine)) {
-                        let structuredpoint = new Point(0, 0)
-                        let inv = 1 / .28125
-                        structuredpoint.x += (TIP_engine.x - sandmap.window.minibody.x) * inv
-                        structuredpoint.y += (TIP_engine.y - sandmap.window.minibody.y) * inv
-                        sandmap.window.guide.x = structuredpoint.x - (sandmap.window.body.width * .25)
-                        sandmap.window.guide.y = structuredpoint.y - (sandmap.window.body.height * .25)
-                    }
-                }
-    
-    
-    
-                // example usage: if(object.isPointInside(TIP_engine)){ take action }
-                window.addEventListener('pointermove', continued_stimuli);
-                // }
 
+                    if (TIP_engine.x <= sandmap.window.body.x + sandmap.window.body.width) {
+                        if (keysPressed['b']) {
+                            let structuredpoint = new Point(0, 0)
+                            structuredpoint.x += sandmap.window.guide.x
+                            structuredpoint.y += sandmap.window.guide.y
+                            structuredpoint.x += (TIP_engine.x * .5)
+                            structuredpoint.y += (TIP_engine.y * .5)
+                            structuredpoint.x = Math.floor(structuredpoint.x * .1)
+                            structuredpoint.y = Math.floor(structuredpoint.y * .1)
+                            sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
+
+                            let wet = 0
+                            for (let t = 0; t < sandmap.players[sandmap.turn].buildings.length; t++) {
+                                if (sandmap.players[sandmap.turn].selected_tile == sandmap.players[sandmap.turn].buildings[t].tile) {
+                                    wet = 1
+                                }
+                            }
+                            if (sandmap.players[sandmap.turn].blocks[sandmap.players[sandmap.turn].selected_tile.t][sandmap.players[sandmap.turn].selected_tile.k].markdraw !== 1) {
+                                wet = 1
+                            }
+                            // if (sandmap.players[sandmap.turn].hotrock < 10) {
+                            //     wet = 1
+                            // }
+
+                            if (sandmap.players[sandmap.turn].blocks[sandmap.players[sandmap.turn].selected_tile.t][sandmap.players[sandmap.turn].selected_tile.k].markdraw !== 1) {
+                                wet = 1
+                            }
+                            if (wet == 0) {
+                                sandmap.players[sandmap.turn].buildWall(sandmap.players[sandmap.turn].selected_tile, 0)
+                            }
+                        } else if (keysPressed['x']) {
+                            let structuredpoint = new Point(0, 0)
+                            structuredpoint.x += sandmap.window.guide.x
+                            structuredpoint.y += sandmap.window.guide.y
+                            structuredpoint.x += (TIP_engine.x * .5)
+                            structuredpoint.y += (TIP_engine.y * .5)
+                            structuredpoint.x = Math.floor(structuredpoint.x * .1)
+                            structuredpoint.y = Math.floor(structuredpoint.y * .1)
+                            sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
+                            for (let t = 0; t < sandmap.players[sandmap.turn].buildings.length; t++) {
+                                if (sandmap.players[sandmap.turn].selected_tile == sandmap.players[sandmap.turn].buildings[t].tile) {
+                                    for (let k = 0; k < sandmap.players[sandmap.turn].buildings[t].tiles.length; k++) {
+                                        sandmap.players[sandmap.turn].buildings[t].tiles[k].walkable = true
+                                        sandmap.players[sandmap.turn].buildings[t].tiles[k].color = "#AACCFF"
+                                        delete sandmap.players[sandmap.turn].buildings[t].tiles[k].wallcolor
+                                    }
+                                    sandmap.players[sandmap.turn].buildings.splice(t, 1)
+                                    break
+                                }
+                            }
+                        } else if (keysPressed['n']) {
+                            let structuredpoint = new Point(0, 0)
+                            structuredpoint.x += sandmap.window.guide.x
+                            structuredpoint.y += sandmap.window.guide.y
+                            structuredpoint.x += (TIP_engine.x * .5)
+                            structuredpoint.y += (TIP_engine.y * .5)
+                            structuredpoint.x = Math.floor(structuredpoint.x * .1)
+                            structuredpoint.y = Math.floor(structuredpoint.y * .1)
+                            sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
+
+                            let wet = 0
+                            for (let t = 0; t < sandmap.players[sandmap.turn].buildings.length; t++) {
+                                if (sandmap.players[sandmap.turn].selected_tile == sandmap.players[sandmap.turn].buildings[t].tile) {
+                                    wet = 1
+                                }
+                            }
+                            // if (sandmap.players[sandmap.turn].hotrock < 70) {
+                            //     wet = 1
+                            // }
+                            if (sandmap.players[sandmap.turn].blocks[sandmap.players[sandmap.turn].selected_tile.t][sandmap.players[sandmap.turn].selected_tile.k].markdraw !== 1) {
+                                wet = 1
+                            }
+                            if (wet == 0) {
+                                sandmap.players[sandmap.turn].buildBarracks(sandmap.players[sandmap.turn].selected_tile, 0)
+                                // let building = new Building(sandmap.players[sandmap.turn].selected_tile, sandmap.players[sandmap.turn], 0)
+
+                            }
+                        } else {
+                            let structuredpoint = new Point(0, 0)
+                            structuredpoint.x += sandmap.window.guide.x
+                            structuredpoint.y += sandmap.window.guide.y
+                            structuredpoint.x += (TIP_engine.x * .5)
+                            structuredpoint.y += (TIP_engine.y * .5)
+                            structuredpoint.x = Math.floor(structuredpoint.x * .1)
+                            structuredpoint.y = Math.floor(structuredpoint.y * .1)
+                            if (structuredpoint.x < 0) {
+                                structuredpoint.x = 0
+                            }
+                            if (structuredpoint.y < 0) {
+                                structuredpoint.y = 0
+                            }
+                            sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
+
+                            for (let t = 0; t < sandmap.players[sandmap.turn].buildings.length; t++) {
+                                if (sandmap.players[sandmap.turn].buildings[t].tiles.includes(sandmap.players[sandmap.turn].selected_tile)) {
+                                    sandmap.players[sandmap.turn].buildings[t].selected = 1
+                                } else {
+                                    sandmap.players[sandmap.turn].buildings[t].selected = 0
+                                }
+                            }
+
+                            // sandmap.turn++
+                            sandmap.turn %= sandmap.players.length
+                            rectstart.x = structuredpoint.x
+                            rectstart.y = structuredpoint.y
+                            for (let t = 0; t < sandmap.players[sandmap.turn].units.length; t++) {
+                                if (sandmap.players[sandmap.turn].selected_tile == sandmap.players[sandmap.turn].units[t].tile) {
+                                    if (sandmap.players[sandmap.turn].units[t].selected == 0) {
+
+                                        // if(Math.random()<soundspamdrop){
+                                        soundCancel()
+                                        if (sandmap.players[sandmap.turn].units[t].drone == 1) {
+                                            if (Math.random() < .5) {
+                                                hello.play()
+                                            } else {
+                                                scanning.play()
+                                            }
+                                        }
+                                        if (sandmap.players[sandmap.turn].units[t].nymph == 2) {
+                                            if (Math.random() < .3) {
+                                                sureiwillstandup.play()
+                                            } else if (Math.random() < .3) {
+                                                suresauna.play()
+                                            } else {
+                                                getinthebathsootheyourson.play()
+                                            }
+                                        }
+                                        if (sandmap.players[sandmap.turn].units[t].nymph == 1) {
+                                            seeasvillaneh.play()
+                                        }
+                                        if (sandmap.players[sandmap.turn].units[t].imago == 1) {
+                                            yeahiminthisroom.play()
+                                        }
+                                        if (sandmap.players[sandmap.turn].units[t].infantry == 1) {
+                                            if (Math.random() < .8) {
+                                                orders.play()
+                                            } else {
+                                                freezin.play()
+                                            }
+                                        }
+                                        if (sandmap.players[sandmap.turn].units[t].harvester == 1) {
+                                            if (Math.random() < .9) {
+                                                rollout.play()
+                                            } else {
+                                                hitsomething.play()
+                                            }
+                                        }
+                                        // }
+                                    }
+                                    sandmap.players[sandmap.turn].units[t].selected = 2
+                                } else {
+                                    // sandmap.players[sandmap.turn].units[t].selected = 0
+                                }
+                            }
+                            // for(let t = 0;t<sandmap.players[sandmap.turn].units.length;t++){
+                            //     if(sandmap.players[sandmap.turn].units[t].selected == 1){
+                            //         sandmap.players[sandmap.turn].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile )
+                            //     }
+                            // }
+                        }
+                    } else {
+                        for (let t = 0; t < sandmap.players[sandmap.turn].buildings.length; t++) {
+                            if (sandmap.players[sandmap.turn].buildings[t].spawnsmall.isPointInside(TIP_engine)) {
+                                sandmap.players[sandmap.turn].buildings[t].makeScout()
+                            }
+                            if (sandmap.players[sandmap.turn].buildings[t].spawnmedium.isPointInside(TIP_engine)) {
+                                sandmap.players[sandmap.turn].buildings[t].makeInfantry()
+                            }
+                            if (sandmap.players[sandmap.turn].buildings[t].spawnbig.isPointInside(TIP_engine)) {
+                                sandmap.players[sandmap.turn].buildings[t].makeHarvester()
+                            }
+                        }
+                        for (let t = 0; t < sandmap.players[sandmap.turn].units.length; t++) {
+                            if (sandmap.players[sandmap.turn].units[t].spawnsmall.isPointInside(TIP_engine)) {
+                                sandmap.players[sandmap.turn].units[t].makeNymph()
+                            }
+                            if (sandmap.players[sandmap.turn].units[t].morph.isPointInside(TIP_engine)) {
+                                sandmap.players[sandmap.turn].units[t].metamorph1()
+                                if (sandmap.players[sandmap.turn].units[t].nymph == 1) {
+                                    if (Math.random() < soundspamdrop) {
+                                        soundCancel()
+                                        whoarewetomolt.play()
+                                    }
+                                }
+                            }
+                            if (sandmap.players[sandmap.turn].units[t].morph2.isPointInside(TIP_engine)) {
+                                sandmap.players[sandmap.turn].units[t].metamorph2()
+                                if (sandmap.players[sandmap.turn].units[t].nymph == 2) {
+                                    if (Math.random() < soundspamdrop) {
+                                        soundCancel()
+                                        if (Math.random() < .5) {
+                                            whoelsezagtheoystergush.play()
+                                        } else {
+                                            stallusyourworth.play()
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                        if (sandmap.window.minibody.isPointInside(TIP_engine)) {
+                            let structuredpoint = new Point(0, 0)
+                            let inv = 1 / .28125
+                            structuredpoint.x += (TIP_engine.x - sandmap.window.minibody.x) * inv
+                            structuredpoint.y += (TIP_engine.y - sandmap.window.minibody.y) * inv
+                            sandmap.window.guide.x = structuredpoint.x - (sandmap.window.body.width * .25)
+                            sandmap.window.guide.y = structuredpoint.y - (sandmap.window.body.height * .25)
+                        }
+                    }
+
+
+
+                    // example usage: if(object.isPointInside(TIP_engine)){ take action }
+                    window.addEventListener('pointermove', continued_stimuli);
+                    // }
+                }
             }
         });
         canvas.addEventListener('contextmenu', e => {
@@ -2210,26 +2210,36 @@ window.addEventListener('DOMContentLoaded', (event) => {
         });
 
         window.addEventListener('pointerup', e => {
-            if (e.button == 0) {
-                window.removeEventListener("pointermove", continued_stimuli);
-                if (TIP_engine.x <= sandmap.window.body.x + sandmap.window.body.width) {
-                    for (let t = 0; t < sandmap.players[sandmap.turn].units.length; t++) {
-                        if (selectrect.isPointInside(sandmap.players[sandmap.turn].units[t].body)) {
 
+            FLEX_engine = canvas.getBoundingClientRect();
+            XS_engine = e.clientX - FLEX_engine.left;
+            YS_engine = e.clientY - FLEX_engine.top;
+            TIP_engine.x = XS_engine
+            TIP_engine.y = YS_engine
+            TIP_engine.body = TIP_engine
+            // if (e.button == 0) {
+            window.removeEventListener("pointermove", continued_stimuli);
+            if (TIP_engine.x <= sandmap.window.body.x + sandmap.window.body.width) {
+                for (let t = 0; t < sandmap.players[sandmap.turn].units.length; t++) {
+                    if (selectrect.isPointInside(sandmap.players[sandmap.turn].units[t].body)) {
+
+                        sandmap.players[sandmap.turn].units[t].selected = 1
+
+
+                    } else {
+                        if (sandmap.players[sandmap.turn].units[t].selected == 2) {
                             sandmap.players[sandmap.turn].units[t].selected = 1
-
-
                         } else {
-                            if (sandmap.players[sandmap.turn].units[t].selected == 2) {
-                                sandmap.players[sandmap.turn].units[t].selected = 1
-                            } else {
+
+                            if (e.button == 0) {
                                 sandmap.players[sandmap.turn].units[t].selected = 0
                             }
                         }
                     }
                 }
-                selectrect = new Tile(0, 0, 0, 0, "transparent")
             }
+            selectrect = new Tile(0, 0, 0, 0, "transparent")
+            // }
         })
         function continued_stimuli(e) {
             // if(e.button == 0){
@@ -4963,10 +4973,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.fillText(this.name + " " + Math.round(this.health) + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
 
 
-                canvas_context.strokeText("Attack " + Math.ceil(this.damage * 3)+ ", " + "Defense " + Math.ceil(this.defense), sandmap.window.body.x + sandmap.window.body.width + 10, 85)
+                canvas_context.strokeText("Attack " + Math.ceil(this.damage * 3) + ", " + "Defense " + Math.ceil(this.defense), sandmap.window.body.x + sandmap.window.body.width + 10, 85)
                 canvas_context.fillText("Attack " + Math.ceil(this.damage * 3) + ", " + "Defense " + Math.ceil(this.defense), sandmap.window.body.x + sandmap.window.body.width + 10, 85)
-                canvas_context.strokeText("Speed "+ Math.floor((1/this.movespeed)*120) + ", Vision "+ this.sight + ", Range "+ this.attackrange+ ", Fire rate "+ Math.floor((1/this.firerate)*120), sandmap.window.body.x + sandmap.window.body.width + 10, 115)
-                canvas_context.fillText("Speed "+ Math.floor((1/this.movespeed)*120) + ", Vision "+ this.sight + ", Range "+ this.attackrange+ ", Fire rate "+ Math.floor((1/this.firerate)*120), sandmap.window.body.x + sandmap.window.body.width + 10, 115)
+                canvas_context.strokeText("Speed " + Math.floor((1 / this.movespeed) * 120) + ", Vision " + this.sight + ", Range " + this.attackrange + ", Fire rate " + Math.floor((1 / this.firerate) * 120), sandmap.window.body.x + sandmap.window.body.width + 10, 115)
+                canvas_context.fillText("Speed " + Math.floor((1 / this.movespeed) * 120) + ", Vision " + this.sight + ", Range " + this.attackrange + ", Fire rate " + Math.floor((1 / this.firerate) * 120), sandmap.window.body.x + sandmap.window.body.width + 10, 115)
                 if (this.imago == 1) {
                     this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
                     this.spawnsmall.draw()
