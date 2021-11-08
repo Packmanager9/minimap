@@ -19,6 +19,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let nowalk = new Image()
     nowalk.src = 'nowalk.png'
 
+    let closedgate = new Image()
+    closedgate.src = 'closedgate.png'
+
+    let opengate = new Image()
+    opengate.src = 'opengate.png'
+
     let sounds = []
     let soundspamdrop = .55
 
@@ -54,6 +60,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let movin = new Audio()
     movin.src = "movin.mp3"
     sounds.push(movin)
+
+    //gate audio
+
+    let closing1 = new Audio()
+    closing1.src = "closing1.mp3"
+    sounds.push(closing1)
+    let closing2 = new Audio()
+    closing2.src = "closing2.mp3"
+    sounds.push(closing2)
+    let closing3 = new Audio()
+    closing3.src = "closing3.mp3"
+    sounds.push(closing3)
+    let opening1 = new Audio()
+    opening1.src = "opening1.mp3"
+    sounds.push(opening1)
+    let opening2 = new Audio()
+    opening2.src = "opening2.mp3"
+    sounds.push(opening2)
 
 
     //sniper audio
@@ -1994,6 +2018,35 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             if (wet == 0) {
                                 sandmap.players[sandmap.turn].buildWall(sandmap.players[sandmap.turn].selected_tile, 0)
                             }
+                        }else  if (keysPressed['g']) {
+                            let structuredpoint = new Point(0, 0)
+                            structuredpoint.x += sandmap.window.guide.x
+                            structuredpoint.y += sandmap.window.guide.y
+                            structuredpoint.x += (TIP_engine.x * .5)
+                            structuredpoint.y += (TIP_engine.y * .5)
+                            structuredpoint.x = Math.floor(structuredpoint.x * .1)
+                            structuredpoint.y = Math.floor(structuredpoint.y * .1)
+                            sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
+
+                            let wet = 0
+                            for (let t = 0; t < sandmap.players[sandmap.turn].buildings.length; t++) {
+                                if (sandmap.players[sandmap.turn].selected_tile == sandmap.players[sandmap.turn].buildings[t].tile) {
+                                    wet = 1
+                                }
+                            }
+                            if (sandmap.players[sandmap.turn].blocks[sandmap.players[sandmap.turn].selected_tile.t][sandmap.players[sandmap.turn].selected_tile.k].markdraw !== 1) {
+                                wet = 1
+                            }
+                            // if (sandmap.players[sandmap.turn].hotrock < 10) {
+                            //     wet = 1
+                            // }
+
+                            if (sandmap.players[sandmap.turn].blocks[sandmap.players[sandmap.turn].selected_tile.t][sandmap.players[sandmap.turn].selected_tile.k].markdraw !== 1) {
+                                wet = 1
+                            }
+                            if (wet == 0) {
+                                sandmap.players[sandmap.turn].buildGate(sandmap.players[sandmap.turn].selected_tile, 0)
+                            }
                         } else if (keysPressed['x']) {
                             let structuredpoint = new Point(0, 0)
                             structuredpoint.x += sandmap.window.guide.x
@@ -2041,7 +2094,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 // let building = new Building(sandmap.players[sandmap.turn].selected_tile, sandmap.players[sandmap.turn], 0)
 
                             }
-                        }else if (keysPressed['m']) {
+                        } else if (keysPressed['m']) {
                             let structuredpoint = new Point(0, 0)
                             structuredpoint.x += sandmap.window.guide.x
                             structuredpoint.y += sandmap.window.guide.y
@@ -2146,7 +2199,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                 veryprecise.play()
                                             } else {
                                                 veryprecise2.play()
-                                            } 
+                                            }
                                         }
                                         if (sandmap.players[sandmap.turn].units[t].harvester == 1) {
                                             if (Math.random() < .9) {
@@ -2170,7 +2223,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         }
                     } else {
                         for (let t = 0; t < sandmap.players[sandmap.turn].buildings.length; t++) {
-                            if(sandmap.players[sandmap.turn].buildings[t].barracks == 1){
+                            if (sandmap.players[sandmap.turn].buildings[t].barracks == 1) {
                                 if (sandmap.players[sandmap.turn].buildings[t].spawnsmall.isPointInside(TIP_engine)) {
                                     sandmap.players[sandmap.turn].buildings[t].makeInfantry()
                                 }
@@ -2178,7 +2231,37 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     sandmap.players[sandmap.turn].buildings[t].makeSniper()
                                 }
                             }
-                            if(sandmap.players[sandmap.turn].buildings[t].barracks == 2){
+
+                            if (sandmap.players[sandmap.turn].buildings[t].gate == 1) {
+                                if (sandmap.players[sandmap.turn].buildings[t].spawnsmall.isPointInside(TIP_engine)) {
+                                    if(sandmap.players[sandmap.turn].buildings[t].tile.occupied !== true){
+                                        sandmap.players[sandmap.turn].buildings[t].open *= -1
+                                        if(sandmap.players[sandmap.turn].buildings[t].open == 1){
+                                            if (Math.random() < soundspamdrop*2) {
+                                                soundCancel()
+                                                if(Math.random()<.5){
+                                                    opening1.play()
+                                                }else{
+                                                    opening2.play()
+                                                }
+                                            }
+                                        }
+                                        if(sandmap.players[sandmap.turn].buildings[t].open == -1){
+                                            if (Math.random() < soundspamdrop*2) {
+                                                soundCancel()
+                                                if(Math.random()<.3){
+                                                    closing1.play()
+                                                }else if(Math.random()<.3){
+                                                    closing2.play()
+                                                }else{
+                                                    closing3.play()
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            if (sandmap.players[sandmap.turn].buildings[t].barracks == 2) {
                                 if (sandmap.players[sandmap.turn].buildings[t].spawnsmall.isPointInside(TIP_engine)) {
                                     sandmap.players[sandmap.turn].buildings[t].makeScout()
                                 }
@@ -2192,7 +2275,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                                 for (let k = 0; k < sandmap.players[sandmap.turn].units.length; k++) {
                                     if (sandmap.players[sandmap.turn].units[k].imago == 1 || sandmap.players[sandmap.turn].units[k].imago == 2) {
-                                        if (sandmap.players[sandmap.turn].units[k].selected == 1  ||sandmap.players[sandmap.turn].units[k].selected == 2) {
+                                        if (sandmap.players[sandmap.turn].units[k].selected == 1 || sandmap.players[sandmap.turn].units[k].selected == 2) {
                                             sandmap.players[sandmap.turn].units[k].makeNymph()
                                         }
                                     }
@@ -2203,8 +2286,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                                     for (let k = 0; k < sandmap.players[sandmap.turn].units.length; k++) {
                                         if (sandmap.players[sandmap.turn].units[k].nymph == 1) {
-                                            if (sandmap.players[sandmap.turn].units[k].selected == 1  ||sandmap.players[sandmap.turn].units[k].selected == 2) {
-                                            sandmap.players[sandmap.turn].units[k].metamorph1()
+                                            if (sandmap.players[sandmap.turn].units[k].selected == 1 || sandmap.players[sandmap.turn].units[k].selected == 2) {
+                                                sandmap.players[sandmap.turn].units[k].metamorph1()
                                             }
                                         }
                                     }
@@ -2224,8 +2307,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     }
                                     for (let k = 0; k < sandmap.players[sandmap.turn].units.length; k++) {
                                         if (sandmap.players[sandmap.turn].units[k].nymph == 2) {
-                                            if (sandmap.players[sandmap.turn].units[k].selected == 1  ||sandmap.players[sandmap.turn].units[k].selected == 2) {
-                                            sandmap.players[sandmap.turn].units[k].metamorph2()
+                                            if (sandmap.players[sandmap.turn].units[k].selected == 1 || sandmap.players[sandmap.turn].units[k].selected == 2) {
+                                                sandmap.players[sandmap.turn].units[k].metamorph2()
                                             }
                                         }
                                     }
@@ -2242,8 +2325,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                                     for (let k = 0; k < sandmap.players[sandmap.turn].units.length; k++) {
                                         if (sandmap.players[sandmap.turn].units[k].nymph == 2) {
-                                            if (sandmap.players[sandmap.turn].units[k].selected == 1  ||sandmap.players[sandmap.turn].units[k].selected == 2) {
-                                            sandmap.players[sandmap.turn].units[k].metamorph3()
+                                            if (sandmap.players[sandmap.turn].units[k].selected == 1 || sandmap.players[sandmap.turn].units[k].selected == 2) {
+                                                sandmap.players[sandmap.turn].units[k].metamorph3()
                                             }
                                         }
                                     }
@@ -2255,7 +2338,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         }
                                         for (let k = 0; k < sandmap.players[sandmap.turn].units.length; k++) {
                                             if (sandmap.players[sandmap.turn].units[k].imago == 2) {
-                                                if (sandmap.players[sandmap.turn].units[k].selected == 1 ||sandmap.players[sandmap.turn].units[k].selected == 2) {
+                                                if (sandmap.players[sandmap.turn].units[k].selected == 1 || sandmap.players[sandmap.turn].units[k].selected == 2) {
                                                     sandmap.players[sandmap.turn].units[k].submerged = 1
                                                 }
                                             }
@@ -2267,10 +2350,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         }
                                         for (let k = 0; k < sandmap.players[sandmap.turn].units.length; k++) {
                                             if (sandmap.players[sandmap.turn].units[k].imago == 2) {
-                                                if (sandmap.players[sandmap.turn].units[k].selected == 1 ||sandmap.players[sandmap.turn].units[k].selected == 2) {
+                                                if (sandmap.players[sandmap.turn].units[k].selected == 1 || sandmap.players[sandmap.turn].units[k].selected == 2) {
 
-                                                     if(sandmap.players[sandmap.turn].units[k].tile.walkable == false ||sandmap.players[sandmap.turn].units[k].tile.ice == 1 || sandmap.players[sandmap.turn].units[k].tile.builtOn == 1){
-                                                    }else{
+                                                    if (sandmap.players[sandmap.turn].units[k].tile.walkable == false || sandmap.players[sandmap.turn].units[k].tile.ice == 1 || sandmap.players[sandmap.turn].units[k].tile.builtOn == 1) {
+                                                    } else {
                                                         sandmap.players[sandmap.turn].units[k].submerged = 0
                                                     }
                                                 }
@@ -2324,7 +2407,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (sandmap.players[sandmap.turn].units[t].selected == 1) {
 
                         if (e.button == 0) {
-                        sandmap.players[sandmap.turn].units[t].selected = 2
+                            sandmap.players[sandmap.turn].units[t].selected = 2
                         }
 
                         ////////////console.log(sandmap.players[sandmap.turn].selected_tile)
@@ -2365,9 +2448,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 if (sandmap.players[sandmap.turn].units[t].infantry == 2) {
                                     if (Math.random() < .5) {
                                         wealthstatusandpower.play()
-                                    } else  if (Math.random() < .5) {
+                                    } else if (Math.random() < .5) {
                                         oratleastone.play()
-                                    }else{
+                                    } else {
                                         jobsthejob.play()
                                     }
                                 }
@@ -2402,9 +2485,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     }
                                 }
                                 if (sandmap.players[sandmap.turn].units[t].infantry == 2) {
-                                    if(sandmap.players[sandmap.turn].selected_tile.builtOn == 1){
+                                    if (sandmap.players[sandmap.turn].selected_tile.builtOn == 1) {
                                         ivoryeh.play()
-                                    }else{
+                                    } else {
                                         ivegotanhour.play()
                                     }
                                 }
@@ -2497,13 +2580,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (selectrect.isPointInside(sandmap.players[sandmap.turn].units[t].body)) {
 
                         if (e.button == 0) {
-                        sandmap.players[sandmap.turn].units[t].selected = 1
+                            sandmap.players[sandmap.turn].units[t].selected = 1
                         }
 
                     } else {
                         if (sandmap.players[sandmap.turn].units[t].selected == 2) {
                             if (e.button == 0) {
-                            sandmap.players[sandmap.turn].units[t].selected = 1
+                                sandmap.players[sandmap.turn].units[t].selected = 1
                             }
                         } else {
 
@@ -2555,6 +2638,34 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         // let building = new Building(sandmap.players[sandmap.turn].selected_tile, sandmap.players[sandmap.turn], 0)
 
                         sandmap.players[sandmap.turn].buildWall(sandmap.players[sandmap.turn].selected_tile, 0)
+                    }
+                }else  if (keysPressed['g']) {
+                    let structuredpoint = new Point(0, 0)
+                    structuredpoint.x += sandmap.window.guide.x
+                    structuredpoint.y += sandmap.window.guide.y
+                    structuredpoint.x += (TIP_engine.x * .5)
+                    structuredpoint.y += (TIP_engine.y * .5)
+                    structuredpoint.x = Math.floor(structuredpoint.x * .1)
+                    structuredpoint.y = Math.floor(structuredpoint.y * .1)
+                    sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
+
+                    let wet = 0
+                    for (let t = 0; t < sandmap.players[sandmap.turn].buildings.length; t++) {
+                        if (sandmap.players[sandmap.turn].selected_tile == sandmap.players[sandmap.turn].buildings[t].tile) {
+                            wet = 1
+                        }
+                    }
+                    // if (sandmap.players[sandmap.turn].hotrock < 10) {
+                    //     wet = 1
+                    // }
+
+                    if (sandmap.players[sandmap.turn].blocks[sandmap.players[sandmap.turn].selected_tile.t][sandmap.players[sandmap.turn].selected_tile.k].markdraw !== 1) {
+                        wet = 1
+                    }
+                    if (wet == 0) {
+                        // let building = new Building(sandmap.players[sandmap.turn].selected_tile, sandmap.players[sandmap.turn], 0)
+
+                        sandmap.players[sandmap.turn].buildGate(sandmap.players[sandmap.turn].selected_tile, 0)
                     }
                 } else {
 
@@ -2827,20 +2938,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 // this.color = "#AACCFF"
                 sandmap.hotrocks.splice(sandmap.hotrocks.indexOf(this), 1)
             }
-
-            if (this.walkable == false && this.builtOn == 1) {
-                if (typeof this.wallcolor != "undefined") {
+             if ((this.walkable == false ) && this.builtOn == 1 && !(this.hotrock >= 1)) {
+                    if (typeof this.wallcolor != "undefined") {
+                        map_context.fillStyle = this.color
+                        map_context.fillRect(this.x, this.y, this.width, this.height)
+                        map_context.strokeStyle = this.wallcolor
+                        map_context.strokeRect(this.x, this.y, this.width, this.height)
+                    }
                     map_context.fillStyle = this.color
                     map_context.fillRect(this.x, this.y, this.width, this.height)
-                    map_context.strokeStyle = this.wallcolor
-                    map_context.strokeRect(this.x, this.y, this.width, this.height)
-                }
-                map_context.fillStyle = this.color
-                map_context.fillRect(this.x, this.y, this.width, this.height)
-
             } else if (this.walkable == false && this.ice == 1) {
                 map_context.drawImage(nowalk, this.x, this.y)
-            } else if ( this.ice == 1) {
+            } else if (this.ice == 1) {
                 this.walkable = false
                 map_context.drawImage(nowalk, this.x, this.y)
             } else if (this.hotrock == 1) {
@@ -2848,40 +2957,40 @@ window.addEventListener('DOMContentLoaded', (event) => {
             } else if (this.hotrock == 2) {
                 map_context.drawImage(hotrock2, this.x, this.y)
             } else {
-                if (typeof this.wallcolor != "undefined") {
-                    map_context.fillStyle = this.color
-                    map_context.fillRect(this.x, this.y, this.width, this.height)
-                    map_context.strokeStyle = this.wallcolor
-                    map_context.strokeRect(this.x, this.y, this.width, this.height)
-                } else {
-                    // if(this.walkable== true || this.drawish == 1){
-            // map_context.drawImage(snow, ((this.t+this.toffset))%189, (this.k+this.koffset)%189, 10,10, this.x, this.y, 10, 10)
+                // if (typeof this.wallcolor != "undefined") {
+                //     map_context.fillStyle = this.color
+                //     map_context.fillRect(this.x, this.y, this.width, this.height)
+                //     map_context.strokeStyle = this.wallcolor
+                //     map_context.strokeRect(this.x, this.y, this.width, this.height)
+                // } else {
+                //     // if(this.walkable== true || this.drawish == 1){
+                //     // map_context.drawImage(snow, ((this.t+this.toffset))%189, (this.k+this.koffset)%189, 10,10, this.x, this.y, 10, 10)
 
-                    // }else{
-                    // if(this.walkable == false){
-                    //     map_context.fillStyle = this.color
-                    //     map_context.fillRect(this.x, this.y, this.width, this.height)
-                    // }
-                    // }
-                }
-                if (sandmap.winddiry == 1) {
-                    this.toffset += sandmap.windspeed
-                }
-                if (sandmap.winddirx == 1) {
-                    this.koffset += sandmap.windspeed
-                }
-                if (sandmap.winddiry == -1) {
-                    this.toffset -= sandmap.windspeed
-                    if ((this.t + this.toffset) < 0) {
-                        this.toffset = 189 - this.t
-                    }
-                }
-                if (sandmap.winddirx == -1) {
-                    this.koffset -= sandmap.windspeed
-                    if ((this.k + this.koffset) < 0) {
-                        this.koffset = 189 - this.t
-                    }
-                }
+                //     // }else{
+                //     // if(this.walkable == false){
+                //     //     map_context.fillStyle = this.color
+                //     //     map_context.fillRect(this.x, this.y, this.width, this.height)
+                //     // }
+                //     // }
+                // }
+                // if (sandmap.winddiry == 1) {
+                //     this.toffset += sandmap.windspeed
+                // }
+                // if (sandmap.winddirx == 1) {
+                //     this.koffset += sandmap.windspeed
+                // }
+                // if (sandmap.winddiry == -1) {
+                //     this.toffset -= sandmap.windspeed
+                //     if ((this.t + this.toffset) < 0) {
+                //         this.toffset = 189 - this.t
+                //     }
+                // }
+                // if (sandmap.winddirx == -1) {
+                //     this.koffset -= sandmap.windspeed
+                //     if ((this.k + this.koffset) < 0) {
+                //         this.koffset = 189 - this.t
+                //     }
+                // }
             }
         }
         move() {
@@ -3373,7 +3482,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.color = color
             this.buildings = []
             this.units = []
-            this.hotrock = 25000
+            this.hotrock = 250
             this.isAI = ai
             this.type = type
             this.chunk = 0
@@ -3600,7 +3709,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 this.units[t].attackmove()
                             }
                             if (this.units[t].imago == 2) {
-                                if(this.units[t].tile.sourcerock >= 1){
+                                if (this.units[t].tile.sourcerock >= 1) {
                                     this.units[t].submerged = 1
                                 }
                                 this.units[t].attackmove()
@@ -3634,19 +3743,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             }
                         }
                     }
-                    
+
                     if (Math.random() < (this.units.length * .0009)) {
                         for (let t = 0; t < this.units.length; t++) {
-                            if(Math.random()<.5){
+                            if (Math.random() < .5) {
                                 if (this.units[t].nymph == 2) {
                                     this.units[t].metamorph2()
                                     break
                                 }
-                            }else{
-                            if (this.units[t].nymph == 2) {
-                                this.units[t].metamorph3()
-                                break
-                            }
+                            } else {
+                                if (this.units[t].nymph == 2) {
+                                    this.units[t].metamorph3()
+                                    break
+                                }
                             }
                         }
                     }
@@ -3883,7 +3992,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         this.buildings[t].makeInfantry()
                                     }
                                 }
-                                if (Math.random() < (.13 - (this.units.length * .0045)) + (this.hotrock*.0001)) {
+                                if (Math.random() < (.13 - (this.units.length * .0045)) + (this.hotrock * .0001)) {
                                     if (this.hotrock > 370) {
                                         this.buildings[t].makeSniper()
                                     }
@@ -3894,13 +4003,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             }
                         }
                         for (let t = 0; t < this.buildings.length; t++) {
-                          if (this.buildings[t].barracks == 2) {
+                            if (this.buildings[t].barracks == 2) {
                                 if (Math.random() < .1 - (this.units.length * .008)) {
                                     if (this.hotrock > 70) {
                                         this.buildings[t].makeScout()
                                     }
                                 }
-                                if (Math.random() < (.1 - (this.units.length * .003)) + (this.hotrock*.0001)) {
+                                if (Math.random() < (.1 - (this.units.length * .003)) + (this.hotrock * .0001)) {
                                     if (this.hotrock > 200) {
                                         this.buildings[t].makeHarvester()
                                     }
@@ -4352,15 +4461,50 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         // //////console.log(tile)
                     }
                 }
-                    if (tile.walkable == false) {
-                        wet = 1
-                    }
+                if (tile.walkable == false) {
+                    wet = 1
+                }
                 if (wet == 0) {
                     if (this.hotrock >= 10) {
                         this.hotrock -= 10
                         let building = new Building(tile, this, 0)
                         building.defense = 3
                         building.damage = 0
+                    }
+                }
+            }
+
+        }
+        buildGate(tile) {
+            if (this.type == 1) {
+                return
+            }
+            if (this.racks == 0 && this.isAI == 1) {
+                this.buildBarracks(tile)
+            } else if (this.lab == 0 && this.isAI == 1 && this.hotrock > 150) {
+                this.buildMachineLab(tile)
+            } else {
+                let wet = 0
+                for (let t = 0; t < this.buildings.length; t++) {
+                    if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
+                        wet = 1
+                        debreak = 1
+                        // //////console.log(tile)
+                    }
+                }
+                if (tile.walkable == false) {
+                    wet = 1
+                }
+                if (wet == 0) {
+                    if (this.hotrock >= 25) {
+                        this.hotrock -= 25
+                        let building = new Building(tile, this, 0)
+                        building.health = 300
+                        building.defense = 15
+                        building.damage = 0
+                        building.gate = 1
+                        building.name = "Blast Door"
+                        building.open = -1
                     }
                 }
             }
@@ -4380,22 +4524,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     wet = 1
                 }
             }
-            if(wet == 0){
+            if (wet == 0) {
 
-            if (this.hotrock >= 70) {
-                this.racks = 1
-                this.hotrock -= 70
-                let building = new Building(tile, this, 0)
-                building.barracks = 1
-                building.name = "Barracks"
-                building.health = 500
-                building.maxhealth = building.health
-                building.defense = 6
-                building.damage = 0
+                if (this.hotrock >= 70) {
+                    this.racks = 1
+                    this.hotrock -= 70
+                    let building = new Building(tile, this, 0)
+                    building.barracks = 1
+                    building.name = "Barracks"
+                    building.health = 500
+                    building.maxhealth = building.health
+                    building.defense = 6
+                    building.damage = 0
+                }
             }
         }
-        }
-        buildMachineLab(tile){
+        buildMachineLab(tile) {
             if (this.type == 1) {
                 return
             }
@@ -4408,19 +4552,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     wet = 1
                 }
             }
-            if(wet == 0){
+            if (wet == 0) {
 
-            if (this.hotrock >= 110) {
-                this.lab = 1
-                this.hotrock -= 110
-                let building = new Building(tile, this, 0)
-                building.barracks = 2
-                building.name = "Machine Lab"
-                building.health = 1000
-                building.maxhealth = building.health
-                building.defense = 20
-                building.damage = 0
-            }
+                if (this.hotrock >= 110) {
+                    this.lab = 1
+                    this.hotrock -= 110
+                    let building = new Building(tile, this, 0)
+                    building.barracks = 2
+                    building.name = "Machine Lab"
+                    building.health = 1000
+                    building.maxhealth = building.health
+                    building.defense = 20
+                    building.damage = 0
+                }
             }
         }
         draw() {
@@ -4668,7 +4812,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                     var currentG = currentNode.getGCost();
                     var currentH = currentNode.getHCost();
-                    if (neighborNode.occupied == true || ((!neighborNode.walkable &&  neighbor.agent.submerged !== 1) && (!neighborNode.walkable &&  (neighbor.agent.mounted !== 0))) || closedSet.has(neighborNode)) {
+                    if (neighborNode.occupied == true || ((!neighborNode.walkable && neighbor.agent.submerged !== 1) && (!neighborNode.walkable && (neighbor.agent.mounted !== 0))) || closedSet.has(neighborNode)) {
 
                         return; //acts as a continue, no need to continue if the wall was already checked.
 
@@ -4817,7 +4961,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         ////////////console.log(sandmap)
                         if (checkX < sandmap.blocks.length) {
                             if (checkY < sandmap.blocks[0].length) {
-                                if ((sandmap.blocks[checkX][checkY].walkable !== false || agent.submerged == 1 || agent.mounted == 0) || sandmap.blocks[checkX][checkY].occupied == true ) {
+                                if ((sandmap.blocks[checkX][checkY].walkable !== false || agent.submerged == 1 || agent.mounted == 0) || sandmap.blocks[checkX][checkY].occupied == true) {
                                     sandmap.blocks[checkX][checkY].agent = agent
                                     tempList.push(sandmap.blocks[checkX][checkY]);
                                 }
@@ -4957,9 +5101,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (Math.random() < soundspamdrop) {
                 if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
                     soundCancel()
-                    if(Math.random()<.5){
+                    if (Math.random() < .5) {
                         youunderstandany.play()
-                    }else{
+                    } else {
                         idontunderstand.play()
                     }
                 }
@@ -5031,8 +5175,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (this.timer > 0) {
                         canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
                     }
-                }           
-                 if (this.barracks == 2) {
+                }
+                if (this.barracks == 2) {
                     canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
                     canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
                     this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
@@ -5056,6 +5200,33 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (this.timer > 0) {
                         canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
                     }
+                }
+                if (this.gate == 1) {
+                    if(this.open== 1){
+                        canvas_context.strokeText("Status: Open", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                        canvas_context.fillText("Status: Open", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                    }else{
+                        canvas_context.strokeText("Status: Closed", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                        canvas_context.fillText("Status: Closed", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                    }
+                    this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
+                    this.spawnsmall.draw()
+                    // this.spawnmedium = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 110, 125, 90, 50, "black")
+                    // this.spawnmedium.draw()
+                    // canvas_context.drawImage(infantry, 0, 0, 10, 10, this.spawnmedium.x + 10, this.spawnmedium.y + 5, 30, 30)
+                    this.spawnbig = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 210, 125, 90, 50, "black")
+                    // this.spawnbig.draw()
+                    // canvas_context.drawImage(harvester, 0, 0, 10, 10, this.spawnbig.x + 10, this.spawnbig.y + 5, 30, 30)
+
+                    canvas_context.fillStyle = "white"
+                    canvas_context.font = "22px arial"
+
+                    if(this.open== 1){
+                        canvas_context.fillText("Close", this.spawnsmall.x + 5, this.spawnsmall.y + 32)
+                    }else{
+                        canvas_context.fillText("Open", this.spawnsmall.x + 15, this.spawnsmall.y + 32)
+                    }
+              
                 }
             }
         }
@@ -5085,13 +5256,45 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                 }
             }
+
+
+
+
+
+
+
+           
+
+
+
+
+
+
+
             for (let t = 0; t < this.tiles.length; t++) {
                 this.tiles[t].walkable = false
+
+            if(this.open == 1){
+                this.tiles[t].builtOn = 0
+                this.tiles[t].walkable = true
+            }
+            if(this.open == -1){
+                this.tiles[t].builtOn = 1
+                this.tiles[t].walkable = false
+            }
+
+
                 this.tiles[t].color = this.faction.color  // this.faction.color
                 if (this.barracks == 1) {
                     map_context.drawImage(barracks, this.tiles[t].x, this.tiles[t].y)
-                }else if (this.barracks == 2) {
+                } else if (this.barracks == 2) {
                     map_context.drawImage(machinelab, this.tiles[t].x, this.tiles[t].y)
+                } else if(this.gate == 1) {
+                    if (this.open == -1) {
+                        map_context.drawImage(closedgate, this.tiles[t].x, this.tiles[t].y)
+                    }else{
+                        map_context.drawImage(opengate, this.tiles[t].x, this.tiles[t].y)
+                    }
                 } else {
                     map_context.drawImage(icewall, this.tiles[t].x, this.tiles[t].y)
                 }
@@ -5251,7 +5454,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.defense = 7
             this.name = "Sniper"
             this.sight = 1 + this.movespeed
-            this.damage =  20
+            this.damage = 20
             this.firerate = 3 //12 //(this.movespeed * 5)
             this.attackrange = this.sight
             this.maxhealth = this.health
@@ -5523,7 +5726,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         if (this.submerged == 0) {
                             canvas_context.fillText("Tunnel", this.morph3.x + 10, this.morph3.y + 32)
                         } else {
-                            if(this.tile.walkable == false ||this.tile.ice == 1 || this.tile.builtOn == 1){
+                            if (this.tile.walkable == false || this.tile.ice == 1 || this.tile.builtOn == 1) {
                                 canvas_context.fillStyle = "red"
                             }
 
@@ -5568,7 +5771,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                     soundCancel()
                                                                     if (Math.random() < .5) {
                                                                         ahhbarber.play()
-                                                                    } else{
+                                                                    } else {
                                                                         slamdownmustard.play()
                                                                     }
                                                                 }
@@ -5590,7 +5793,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                         theresone.play()
                                                                     } else if (Math.random() < .3) {
                                                                         bossaroundhere.play()
-                                                                    }else if (Math.random() < .3) {
+                                                                    } else if (Math.random() < .3) {
                                                                         bossaroundhere2.play()
                                                                     } else {
                                                                         adjustingforwindspeed.play()
@@ -5748,8 +5951,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
                                                         this.attacktargetmove = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
                                                         this.pathTo(this.attacktargetmove.tile)
-                                                        if(this.tile.walkable == false ||this.tile.ice == 1 || this.tile.builtOn == 1){
-                                                        }else{
+                                                        if (this.tile.walkable == false || this.tile.ice == 1 || this.tile.builtOn == 1) {
+                                                        } else {
                                                             this.submerged = 0
                                                         }
                                                         break
@@ -5759,8 +5962,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
                                                         this.attacktargetmove = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings[g]
                                                         this.pathTo(this.attacktargetmove.tile)
-                                                        if(this.tile.walkable == false ||this.tile.ice == 1 || this.tile.builtOn == 1){
-                                                        }else{
+                                                        if (this.tile.walkable == false || this.tile.ice == 1 || this.tile.builtOn == 1) {
+                                                        } else {
                                                             this.submerged = 0
                                                         }
                                                         break
@@ -5927,7 +6130,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (this.movespeedcount % this.movespeed == 0) {
                     this.movespeedcount = 0
                     this.index += 1
-                    if ((this.realPath[this.index].walkable == false && this.realPath[this.index].walkable == false &&   this.submerged !== 1&&   this.mounted !== 0) || this.realPath[this.index].occupied == true) {
+                    if ((this.realPath[this.index].walkable == false && this.realPath[this.index].walkable == false && this.submerged !== 1 && this.mounted !== 0) || this.realPath[this.index].occupied == true) {
                         if (this.index == 0) {
                             let goal = 0
                             goal += this.tile.id
@@ -6009,7 +6212,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
 
             this.tile.occupied = true
-            if(this.submerged != 1){
+            if (this.submerged != 1) {
                 this.tile.walkable = false
             }
             this.tile.drawish = 1
@@ -6017,27 +6220,27 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         draw() {
 
-            if(this.tile.builtOn == 1 || this.tile.ice == 1){
-                if(this.mounted == 0){
+            if (this.tile.builtOn == 1 || this.tile.ice == 1) {
+                if (this.mounted == 0) {
                     this.sight = 4 + this.movespeed
                     this.attackrange = this.sight
                 }
-            }else{
-                if(this.mounted == 0){
+            } else {
+                if (this.mounted == 0) {
                     this.sight = this.movespeed
                     this.attackrange = this.sight
                 }
             }
 
 
-            if(this.submerged == 1){
-                if(this.imago == 2){
+            if (this.submerged == 1) {
+                if (this.imago == 2) {
                     this.movespeed = 10
                     this.sight = 3
                     this.attackrange = 0
                 }
-            }else{
-                if(this.imago == 2){
+            } else {
+                if (this.imago == 2) {
                     this.movespeed = 6
                     this.sight = 7
                     this.attackrange = 6
@@ -6140,10 +6343,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     this.dataOutput()
                     this.healthbar = new Rectangle(this.body.x - 5.5, this.body.y + 2.5, 11, 3, "black")
                     this.healthbar.draw()
-                    if(this.health/this.maxhealth > .5){
+                    if (this.health / this.maxhealth > .5) {
                         this.healthbar = new Rectangle(this.body.x - 5, this.body.y + 3, (this.health / this.maxhealth) * 10, 2, `rgb(${(1 - ((this.health / this.maxhealth))) * 512},${255},  0)`)
-                    }else{
-                        this.healthbar = new Rectangle(this.body.x - 5, this.body.y + 3, (this.health / this.maxhealth) * 10, 2, `rgb(${255},${(((this.health / this.maxhealth)*1)) * 512},  0)`)
+                    } else {
+                        this.healthbar = new Rectangle(this.body.x - 5, this.body.y + 3, (this.health / this.maxhealth) * 10, 2, `rgb(${255},${(((this.health / this.maxhealth) * 1)) * 512},  0)`)
                     }
                     this.healthbar.draw()
                 }
@@ -6164,9 +6367,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.shots[t].y = (this.body.y * (1 - (this.shots[t].stage / this.projectilespeed))) + (((this.shots[t].stage / this.projectilespeed)) * this.shots[t].attacktarget.body.y)
                 this.shots[t].draw()
                 if (this.shots[t].stage >= this.projectilespeed) {
-                    if(this.shots[t].refhealth.submerged == 1){
+                    if (this.shots[t].refhealth.submerged == 1) {
                         this.attacktarget = {}
-                        this.attacktarget.tile = {} 
+                        this.attacktarget.tile = {}
 
                         //new
                         this.attacktarget.tile.x = -100000
@@ -6175,7 +6378,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         this.attacktarget.tile.k = 0
                         this.shots[t].marked = 1
                         continue
-                    }else{
+                    } else {
                         this.shots[t].refhealth.health -= Math.max((this.damage * 3) - this.shots[t].attacktarget.defense, 0) //5?
                         ////////console.log(this.shots[t].refhealth)
                         this.shots[t].marked = 1
