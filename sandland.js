@@ -2709,6 +2709,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.ymom = 0
             this.koffset = 0
             this.toffset = 0
+            this.occupied = false
             // this.markdraw = 1 //remove for fog
 
             var F;
@@ -3372,7 +3373,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.color = color
             this.buildings = []
             this.units = []
-            this.hotrock = 250
+            this.hotrock = 25000
             this.isAI = ai
             this.type = type
             this.chunk = 0
@@ -5782,7 +5783,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
         }
         pathTo(point) {
-            if (point.walkable == true || this.submerged == 1 || this.mounted == 0) {
+            if (point.walkable == true || this.submerged == 1 || (this.mounted == 0 && point.occupied == false)) {
                 this.stepout = 1
                 this.pather = new PathFindingAlg(sandmap.blocks, this.tile, point, this)
                 this.pather.agent = this
@@ -5926,7 +5927,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (this.movespeedcount % this.movespeed == 0) {
                     this.movespeedcount = 0
                     this.index += 1
-                    if (this.realPath[this.index].walkable == false &&   this.submerged !== 1&&   this.mounted !== 0) {
+                    if ((this.realPath[this.index].walkable == false && this.realPath[this.index].walkable == false &&   this.submerged !== 1&&   this.mounted !== 0) || this.realPath[this.index].occupied == true) {
                         if (this.index == 0) {
                             let goal = 0
                             goal += this.tile.id
@@ -6016,7 +6017,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         draw() {
 
-            if(this.tile.builtOn == 1){
+            if(this.tile.builtOn == 1 || this.tile.ice == 1){
                 if(this.mounted == 0){
                     this.sight = 4 + this.movespeed
                     this.attackrange = this.sight
