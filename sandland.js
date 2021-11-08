@@ -55,6 +55,117 @@ window.addEventListener('DOMContentLoaded', (event) => {
     movin.src = "movin.mp3"
     sounds.push(movin)
 
+
+    //sniper audio
+    let adjustingforwindspeed = new Audio()
+    adjustingforwindspeed.src = "adjustingforwindspeed.mp3"
+    sounds.push(adjustingforwindspeed)
+    let bossaroundhere = new Audio()
+    bossaroundhere.src = "bossaroundhere.mp3"
+    sounds.push(bossaroundhere)
+    let bossaroundhere2 = new Audio()
+    bossaroundhere2.src = "bossaroundhere2.mp3"
+    sounds.push(bossaroundhere2)
+    let doyouunderstand = new Audio()
+    doyouunderstand.src = "doyouunderstand.mp3"
+    sounds.push(doyouunderstand)
+    let goingdown = new Audio()
+    goingdown.src = "doyouunderstand.mp3"
+    sounds.push(goingdown)
+    let idontunderstand = new Audio()
+    idontunderstand.src = "idontunderstand.mp3"
+    sounds.push(idontunderstand)
+    let isnipedyouaweekago = new Audio()
+    isnipedyouaweekago.src = "isnipedyouaweekago.mp3"
+    sounds.push(isnipedyouaweekago)
+    let isnipedyouaweekago2 = new Audio()
+    isnipedyouaweekago2.src = "isnipedyouaweekago2.mp3"
+    sounds.push(isnipedyouaweekago2)
+    let ivegotanhour = new Audio()
+    ivegotanhour.src = "ivegotanhour.mp3"
+    sounds.push(ivegotanhour)
+    let ivoryeh = new Audio()
+    ivoryeh.src = "ivegotanhour.mp3"
+    sounds.push(ivoryeh)
+    let jobsthejob = new Audio()
+    jobsthejob.src = "jobsthejob.mp3"
+    sounds.push(jobsthejob)
+    let likecontrolling = new Audio()
+    likecontrolling.src = "likecontrolling.mp3"
+    sounds.push(likecontrolling)
+    let oratleastone = new Audio()
+    oratleastone.src = "oratleastone.mp3"
+    sounds.push(oratleastone)
+    let theresone = new Audio()
+    theresone.src = "theresone.mp3"
+    sounds.push(theresone)
+    let timber = new Audio()
+    timber.src = "timber.mp3"
+    sounds.push(timber)
+    let veryprecise = new Audio()
+    veryprecise.src = "veryprecise.mp3"
+    sounds.push(veryprecise)
+    let veryprecise2 = new Audio()
+    veryprecise2.src = "veryprecise2.mp3"
+    sounds.push(veryprecise2)
+    let wealthstatusandpower = new Audio()
+    wealthstatusandpower.src = "wealthstatusandpower.mp3"
+    sounds.push(wealthstatusandpower)
+    let wontbesolucky = new Audio()
+    wontbesolucky.src = "wontbesolucky.mp3"
+    sounds.push(wontbesolucky)
+    let youunderstandany = new Audio()
+    youunderstandany.src = "youunderstandany.mp3"
+    sounds.push(youunderstandany)
+    let ahgeez = new Audio()
+    ahgeez.src = "ahgeez.mp3"
+    sounds.push(ahgeez)
+
+    //gamergate audio
+    let hovness = new Audio()
+    hovness.src = "hovness.mp3"
+    sounds.push(hovness)
+    let dontstopeating = new Audio()
+    dontstopeating.src = "dontstopeating.mp3"
+    sounds.push(dontstopeating)
+    let solutionnotobey = new Audio()
+    solutionnotobey.src = "solutionnotobey.mp3"
+    sounds.push(solutionnotobey)
+    let youhurtme = new Audio()
+    youhurtme.src = "youhurtme.mp3"
+    sounds.push(youhurtme)
+    let slurpslurp = new Audio()
+    slurpslurp.src = "slurpslurp.mp3"
+    sounds.push(slurpslurp)
+    let buyburbon = new Audio()
+    buyburbon.src = "buyburbon.mp3"
+    sounds.push(buyburbon)
+    let whatisthis = new Audio()
+    whatisthis.src = "whatisthis.mp3"
+    sounds.push(whatisthis)
+    let doyouwantsome = new Audio()
+    doyouwantsome.src = "doyouwantsome.mp3"
+    sounds.push(doyouwantsome)
+    let hoppe = new Audio()
+    hoppe.src = "hoppe.mp3"
+    sounds.push(hoppe)
+    let letemseeit = new Audio()
+    letemseeit.src = "letemseeit.mp3"
+    sounds.push(letemseeit)
+    let gooutside = new Audio()
+    gooutside.src = "gooutside.mp3"
+    sounds.push(gooutside)
+    let ggd1 = new Audio()
+    ggd1.src = "ggd1.mp3"
+    sounds.push(ggd1)
+    let ggd2 = new Audio()
+    ggd2.src = "ggd2.mp3"
+    sounds.push(ggd2)
+    let ggd3 = new Audio()
+    ggd3.src = "ggd3.mp3"
+    sounds.push(ggd3)
+
+
     //nymph audio
     let itstheedgeofusfight = new Audio()
     itstheedgeofusfight.src = "itstheedgeofusfight.mp3"
@@ -244,6 +355,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     icewall.src = "icewall2.png"
     let barracks = new Image()
     barracks.src = "barracks.png"
+    let machinelab = new Image()
+    machinelab.src = "machinelab.png"
 
     let windmeter = new Image()
     windmeter.src = "windmeter.png"
@@ -257,6 +370,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
     infantry.src = "infantry.png"
     let imago = new Image()
     imago.src = "imagobl3.png"
+    let gamergate = new Image()
+    gamergate.src = "gamergate.png"
+    let gamergatedug = new Image()
+    gamergatedug.src = "gamergatedug.png"
     let scuttler = new Image()
     scuttler.src = "scuttler3.png"
     let nymph = new Image()
@@ -265,6 +382,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
     hotrock1.src = "hotrock1.png"
     let hotrock2 = new Image()
     hotrock2.src = "hotrock2.png"
+
+    let sniper1 = new Image()
+    sniper1.src = "sniper5.png"
+    // let sniper2 = new Image()
+    // sniper2.src = "sniper2.png"
 
     let rectstart = {}
     rectstart.x = 0
@@ -339,7 +461,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     //         }
     //         gamepadAPI.axesStatus = axes;// assign received values
     //         gamepadAPI.buttonsStatus = pressed;
-    //         // //////////////////console.log(pressed); // return buttons for debugging purposes
+    //         // //////////////////////console.log(pressed); // return buttons for debugging purposes
     //         return pressed;
     //     },
     //     buttonPressed: function (button, hold) {
@@ -699,7 +821,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.fill()
                 canvas_context.stroke();
             } else {
-                //////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                //////////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -851,7 +973,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 map_context.strokeStyle = "black"
                 map_context.stroke();
             } else {
-                //////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                //////////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -1002,7 +1124,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.fill()
                 canvas_context.stroke();
             } else {
-                //////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                //////////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -1488,7 +1610,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             }
 
-            //////////////////console.log(this)
+            //////////////////////console.log(this)
 
             // this.spring = new Spring(x, y, radius, color, this.pin, memberLength, gravity)
             // this.springs.push(this.spring)
@@ -1919,6 +2041,33 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 // let building = new Building(sandmap.players[sandmap.turn].selected_tile, sandmap.players[sandmap.turn], 0)
 
                             }
+                        }else if (keysPressed['m']) {
+                            let structuredpoint = new Point(0, 0)
+                            structuredpoint.x += sandmap.window.guide.x
+                            structuredpoint.y += sandmap.window.guide.y
+                            structuredpoint.x += (TIP_engine.x * .5)
+                            structuredpoint.y += (TIP_engine.y * .5)
+                            structuredpoint.x = Math.floor(structuredpoint.x * .1)
+                            structuredpoint.y = Math.floor(structuredpoint.y * .1)
+                            sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
+
+                            let wet = 0
+                            for (let t = 0; t < sandmap.players[sandmap.turn].buildings.length; t++) {
+                                if (sandmap.players[sandmap.turn].selected_tile == sandmap.players[sandmap.turn].buildings[t].tile) {
+                                    wet = 1
+                                }
+                            }
+                            // if (sandmap.players[sandmap.turn].hotrock < 70) {
+                            //     wet = 1
+                            // }
+                            if (sandmap.players[sandmap.turn].blocks[sandmap.players[sandmap.turn].selected_tile.t][sandmap.players[sandmap.turn].selected_tile.k].markdraw !== 1) {
+                                wet = 1
+                            }
+                            if (wet == 0) {
+                                sandmap.players[sandmap.turn].buildMachineLab(sandmap.players[sandmap.turn].selected_tile, 0)
+                                // let building = new Building(sandmap.players[sandmap.turn].selected_tile, sandmap.players[sandmap.turn], 0)
+
+                            }
                         } else {
                             let structuredpoint = new Point(0, 0)
                             structuredpoint.x += sandmap.window.guide.x
@@ -1950,7 +2099,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             for (let t = 0; t < sandmap.players[sandmap.turn].units.length; t++) {
                                 if (sandmap.players[sandmap.turn].selected_tile == sandmap.players[sandmap.turn].units[t].tile) {
                                     if (sandmap.players[sandmap.turn].units[t].selected == 0) {
-
                                         // if(Math.random()<soundspamdrop){
                                         soundCancel()
                                         if (sandmap.players[sandmap.turn].units[t].drone == 1) {
@@ -1958,6 +2106,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                 hello.play()
                                             } else {
                                                 scanning.play()
+                                            }
+                                        }
+                                        if (sandmap.players[sandmap.turn].units[t].gamergate == 1) {
+                                            if (Math.random() < .5) {
+                                                solutionnotobey.play()
+                                            } else {
+                                                whatisthis.play()
                                             }
                                         }
                                         if (sandmap.players[sandmap.turn].units[t].nymph == 2) {
@@ -1982,6 +2137,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                 freezin.play()
                                             }
                                         }
+                                        if (sandmap.players[sandmap.turn].units[t].infantry == 2) {
+                                            if (Math.random() < .3) {
+                                                jobsthejob.play()
+                                            } else if (Math.random() < .3) {
+                                                likecontrolling.play()
+                                            } else if (Math.random() < .3) {
+                                                veryprecise.play()
+                                            } else {
+                                                veryprecise2.play()
+                                            } 
+                                        }
                                         if (sandmap.players[sandmap.turn].units[t].harvester == 1) {
                                             if (Math.random() < .9) {
                                                 rollout.play()
@@ -2004,38 +2170,111 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         }
                     } else {
                         for (let t = 0; t < sandmap.players[sandmap.turn].buildings.length; t++) {
-                            if (sandmap.players[sandmap.turn].buildings[t].spawnsmall.isPointInside(TIP_engine)) {
-                                sandmap.players[sandmap.turn].buildings[t].makeScout()
+                            if(sandmap.players[sandmap.turn].buildings[t].barracks == 1){
+                                if (sandmap.players[sandmap.turn].buildings[t].spawnsmall.isPointInside(TIP_engine)) {
+                                    sandmap.players[sandmap.turn].buildings[t].makeInfantry()
+                                }
+                                if (sandmap.players[sandmap.turn].buildings[t].spawnbig.isPointInside(TIP_engine)) {
+                                    sandmap.players[sandmap.turn].buildings[t].makeSniper()
+                                }
                             }
-                            if (sandmap.players[sandmap.turn].buildings[t].spawnmedium.isPointInside(TIP_engine)) {
-                                sandmap.players[sandmap.turn].buildings[t].makeInfantry()
-                            }
-                            if (sandmap.players[sandmap.turn].buildings[t].spawnbig.isPointInside(TIP_engine)) {
-                                sandmap.players[sandmap.turn].buildings[t].makeHarvester()
+                            if(sandmap.players[sandmap.turn].buildings[t].barracks == 2){
+                                if (sandmap.players[sandmap.turn].buildings[t].spawnsmall.isPointInside(TIP_engine)) {
+                                    sandmap.players[sandmap.turn].buildings[t].makeScout()
+                                }
+                                if (sandmap.players[sandmap.turn].buildings[t].spawnbig.isPointInside(TIP_engine)) {
+                                    sandmap.players[sandmap.turn].buildings[t].makeHarvester()
+                                }
                             }
                         }
                         for (let t = 0; t < sandmap.players[sandmap.turn].units.length; t++) {
                             if (sandmap.players[sandmap.turn].units[t].spawnsmall.isPointInside(TIP_engine)) {
-                                sandmap.players[sandmap.turn].units[t].makeNymph()
+
+                                for (let k = 0; k < sandmap.players[sandmap.turn].units.length; k++) {
+                                    if (sandmap.players[sandmap.turn].units[k].imago == 1 || sandmap.players[sandmap.turn].units[k].imago == 2) {
+                                        if (sandmap.players[sandmap.turn].units[k].selected == 1  ||sandmap.players[sandmap.turn].units[k].selected == 2) {
+                                            sandmap.players[sandmap.turn].units[k].makeNymph()
+                                        }
+                                    }
+                                }
                             }
                             if (sandmap.players[sandmap.turn].units[t].morph.isPointInside(TIP_engine)) {
-                                sandmap.players[sandmap.turn].units[t].metamorph1()
                                 if (sandmap.players[sandmap.turn].units[t].nymph == 1) {
+
+                                    for (let k = 0; k < sandmap.players[sandmap.turn].units.length; k++) {
+                                        if (sandmap.players[sandmap.turn].units[k].nymph == 1) {
+                                            if (sandmap.players[sandmap.turn].units[k].selected == 1  ||sandmap.players[sandmap.turn].units[k].selected == 2) {
+                                            sandmap.players[sandmap.turn].units[k].metamorph1()
+                                            }
+                                        }
+                                    }
                                     if (Math.random() < soundspamdrop) {
                                         soundCancel()
                                         whoarewetomolt.play()
                                     }
                                 }
+
                             }
                             if (sandmap.players[sandmap.turn].units[t].morph2.isPointInside(TIP_engine)) {
-                                sandmap.players[sandmap.turn].units[t].metamorph2()
+                                // sandmap.players[sandmap.turn].units[t].metamorph2()
                                 if (sandmap.players[sandmap.turn].units[t].nymph == 2) {
                                     if (Math.random() < soundspamdrop) {
                                         soundCancel()
-                                        if (Math.random() < .5) {
-                                            whoelsezagtheoystergush.play()
-                                        } else {
-                                            stallusyourworth.play()
+                                        whoelsezagtheoystergush.play()
+                                    }
+                                    for (let k = 0; k < sandmap.players[sandmap.turn].units.length; k++) {
+                                        if (sandmap.players[sandmap.turn].units[k].nymph == 2) {
+                                            if (sandmap.players[sandmap.turn].units[k].selected == 1  ||sandmap.players[sandmap.turn].units[k].selected == 2) {
+                                            sandmap.players[sandmap.turn].units[k].metamorph2()
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            if (sandmap.players[sandmap.turn].units[t].morph3.isPointInside(TIP_engine)) {
+                                if (sandmap.players[sandmap.turn].units[t].nymph == 2) {
+                                    // sandmap.players[sandmap.turn].units[t].metamorph3()
+                                    if (Math.random() < soundspamdrop) {
+                                        soundCancel()
+                                        stallusyourworth.play()
+
+                                    }
+
+                                    for (let k = 0; k < sandmap.players[sandmap.turn].units.length; k++) {
+                                        if (sandmap.players[sandmap.turn].units[k].nymph == 2) {
+                                            if (sandmap.players[sandmap.turn].units[k].selected == 1  ||sandmap.players[sandmap.turn].units[k].selected == 2) {
+                                            sandmap.players[sandmap.turn].units[k].metamorph3()
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    if (sandmap.players[sandmap.turn].units[t].submerged == 0) {
+                                        if (Math.random() < soundspamdrop) {
+                                            soundCancel()
+                                            slurpslurp.play()
+                                        }
+                                        for (let k = 0; k < sandmap.players[sandmap.turn].units.length; k++) {
+                                            if (sandmap.players[sandmap.turn].units[k].imago == 2) {
+                                                if (sandmap.players[sandmap.turn].units[k].selected == 1 ||sandmap.players[sandmap.turn].units[k].selected == 2) {
+                                                    sandmap.players[sandmap.turn].units[k].submerged = 1
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        if (Math.random() < soundspamdrop) {
+                                            soundCancel()
+                                            gooutside.play()
+                                        }
+                                        for (let k = 0; k < sandmap.players[sandmap.turn].units.length; k++) {
+                                            if (sandmap.players[sandmap.turn].units[k].imago == 2) {
+                                                if (sandmap.players[sandmap.turn].units[k].selected == 1 ||sandmap.players[sandmap.turn].units[k].selected == 2) {
+
+                                                     if(sandmap.players[sandmap.turn].units[k].tile.walkable == false ||sandmap.players[sandmap.turn].units[k].tile.ice == 1 || sandmap.players[sandmap.turn].units[k].tile.builtOn == 1){
+                                                    }else{
+                                                        sandmap.players[sandmap.turn].units[k].submerged = 0
+                                                    }
+                                                }
+                                            }
                                         }
 
                                     }
@@ -2083,9 +2322,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                 for (let t = 0; t < sandmap.players[sandmap.turn].units.length; t++) {
                     if (sandmap.players[sandmap.turn].units[t].selected == 1) {
-                        sandmap.players[sandmap.turn].units[t].selected = 2
 
-                        ////////console.log(sandmap.players[sandmap.turn].selected_tile)
+                        if (e.button == 0) {
+                        sandmap.players[sandmap.turn].units[t].selected = 2
+                        }
+
+                        ////////////console.log(sandmap.players[sandmap.turn].selected_tile)
                         sandmap.players[sandmap.turn].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile)
 
 
@@ -2098,6 +2340,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         sieveseejunior.play()
                                     } else {
                                         sieveceaselessly.play()
+                                    }
+                                }
+                                if (sandmap.players[sandmap.turn].units[t].imago == 2) {
+                                    if (Math.random() < .5) {
+                                        dontstopeating.play()
+                                    } else {
+                                        buyburbon.play()
                                     }
                                 }
                                 if (sandmap.players[sandmap.turn].units[t].nymph == 2) {
@@ -2113,6 +2362,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 if (sandmap.players[sandmap.turn].units[t].nymph == 1) {
                                     sureilike.play()
                                 }
+                                if (sandmap.players[sandmap.turn].units[t].infantry == 2) {
+                                    if (Math.random() < .5) {
+                                        wealthstatusandpower.play()
+                                    } else  if (Math.random() < .5) {
+                                        oratleastone.play()
+                                    }else{
+                                        jobsthejob.play()
+                                    }
+                                }
                                 if (sandmap.players[sandmap.turn].units[t].infantry == 1) {
                                     righton.play()
                                 }
@@ -2125,6 +2383,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 if (sandmap.players[sandmap.turn].units[t].imago == 1) {
                                     go.play()
                                 }
+                                if (sandmap.players[sandmap.turn].units[t].imago == 2) {
+                                    if (Math.random() < .5) {
+                                        letemseeit.play()
+                                    } else {
+                                        hovness.play()
+                                    }
+                                }
+
                                 if (sandmap.players[sandmap.turn].units[t].harvester == 1) {
                                     movin.play()
                                 }
@@ -2133,6 +2399,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         pathfound.play()
                                     } else {
                                         pathing.play()
+                                    }
+                                }
+                                if (sandmap.players[sandmap.turn].units[t].infantry == 2) {
+                                    if(sandmap.players[sandmap.turn].selected_tile.builtOn == 1){
+                                        ivoryeh.play()
+                                    }else{
+                                        ivegotanhour.play()
                                     }
                                 }
                                 if (sandmap.players[sandmap.turn].units[t].nymph == 1) {
@@ -2188,7 +2461,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     continue
                                 }
                             }
-                            ////////console.log(sandmap.players[sandmap.turn].selected_tile)
+                            ////////////console.log(sandmap.players[sandmap.turn].selected_tile)
                             sandmap.players[sandmap.turn].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile)
                             if (sandmap.players[sandmap.turn].selected_tile.hotrock > 0) {
 
@@ -2223,12 +2496,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 for (let t = 0; t < sandmap.players[sandmap.turn].units.length; t++) {
                     if (selectrect.isPointInside(sandmap.players[sandmap.turn].units[t].body)) {
 
+                        if (e.button == 0) {
                         sandmap.players[sandmap.turn].units[t].selected = 1
-
+                        }
 
                     } else {
                         if (sandmap.players[sandmap.turn].units[t].selected == 2) {
+                            if (e.button == 0) {
                             sandmap.players[sandmap.turn].units[t].selected = 1
+                            }
                         } else {
 
                             if (e.button == 0) {
@@ -2302,7 +2578,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         selectrect.height = Math.abs(selectrect.height)
                     }
 
-                    // ////////////console.log(selectrect)
+                    // ////////////////console.log(selectrect)
                     // selectrect.draw()
                     // sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
                     // sandmap.turn++
@@ -2326,7 +2602,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     }
     //     function gamepad_control(object, speed = 1) { // basic control for objects using the controler
-    // //         //////////////////console.log(gamepadAPI.axesStatus[1]*gamepadAPI.axesStatus[0]) //debugging
+    // //         //////////////////////console.log(gamepadAPI.axesStatus[1]*gamepadAPI.axesStatus[0]) //debugging
     //         if (typeof object.body != 'undefined') {
     //             if(typeof (gamepadAPI.axesStatus[1]) != 'undefined'){
     //                 if(typeof (gamepadAPI.axesStatus[0]) != 'undefined'){
@@ -2513,8 +2789,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             // let link = new Line(this.posx, this.posy, bottle.crew[bottle.selectedcrew].body.x-100, bottle.crew[bottle.selectedcrew].body.y-300, "red", 1)
             // if (link.hypotenuse() < 108) {
-            // //////////////////////console.log(link)
-            // //////////////////////console.log(bottle)
+            // //////////////////////////console.log(link)
+            // //////////////////////////console.log(bottle)
             // }
             // let roundedx = (Math.round((startPoint.x) / 10))
             // let roundedy = (Math.round((startPoint.y) / 10))
@@ -2527,13 +2803,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // if (this.inPath === true) {
             //     // this.drawPath();
             // } else if (this.walkable === false) {
-            //     // //////////////////////console.log(this)
+            //     // //////////////////////////console.log(this)
 
             //     // this.createWall();
             //     return;
             //     // }else if (link.hypotenuse() < 11) {
             // } else if (this.posx == roundedx && this.posy == roundedy) {
-            //     //   //////////////////////console.log("hit the startNode");
+            //     //   //////////////////////////console.log("hit the startNode");
             //     //   this.createStartNode();
             //     return;
             // } else if (this.posx == endPoint.x && this.posy == endPoint.y) {
@@ -2543,6 +2819,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         }
         draw() {
+
+
             if (this.sourcerock <= 0 && this.hotrock != 0) {
                 this.hotrock = 0
                 // this.color = "#AACCFF"
@@ -2561,6 +2839,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             } else if (this.walkable == false && this.ice == 1) {
                 map_context.drawImage(nowalk, this.x, this.y)
+            } else if ( this.ice == 1) {
+                this.walkable = false
+                map_context.drawImage(nowalk, this.x, this.y)
             } else if (this.hotrock == 1) {
                 map_context.drawImage(hotrock1, this.x, this.y)
             } else if (this.hotrock == 2) {
@@ -2573,7 +2854,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     map_context.strokeRect(this.x, this.y, this.width, this.height)
                 } else {
                     // if(this.walkable== true || this.drawish == 1){
-                    //     map_context.drawImage(snow, ((this.t+this.toffset))%189, (this.k+this.koffset)%189, 10,10, this.x, this.y, 10, 10)
+            // map_context.drawImage(snow, ((this.t+this.toffset))%189, (this.k+this.koffset)%189, 10,10, this.x, this.y, 10, 10)
+
                     // }else{
                     // if(this.walkable == false){
                     //     map_context.fillStyle = this.color
@@ -2581,24 +2863,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     // }
                     // }
                 }
-                // if (sandmap.winddiry == 1) {
-                //     this.toffset += sandmap.windspeed
-                // }
-                // if (sandmap.winddirx == 1) {
-                //     this.koffset += sandmap.windspeed
-                // }
-                // if (sandmap.winddiry == -1) {
-                //     this.toffset -= sandmap.windspeed
-                //     if ((this.t + this.toffset) < 0) {
-                //         this.toffset = 189 - this.t
-                //     }
-                // }
-                // if (sandmap.winddirx == -1) {
-                //     this.koffset -= sandmap.windspeed
-                //     if ((this.k + this.koffset) < 0) {
-                //         this.koffset = 189 - this.t
-                //     }
-                // }
+                if (sandmap.winddiry == 1) {
+                    this.toffset += sandmap.windspeed
+                }
+                if (sandmap.winddirx == 1) {
+                    this.koffset += sandmap.windspeed
+                }
+                if (sandmap.winddiry == -1) {
+                    this.toffset -= sandmap.windspeed
+                    if ((this.t + this.toffset) < 0) {
+                        this.toffset = 189 - this.t
+                    }
+                }
+                if (sandmap.winddirx == -1) {
+                    this.koffset -= sandmap.windspeed
+                    if ((this.k + this.koffset) < 0) {
+                        this.koffset = 189 - this.t
+                    }
+                }
             }
         }
         move() {
@@ -2642,7 +2924,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.ymom = 0
             this.koffset = 0
             this.toffset = 0
-            this.markdraw = 1 //remove for fog
 
             var F;
 
@@ -2722,8 +3003,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             // let link = new Line(this.posx, this.posy, bottle.crew[bottle.selectedcrew].body.x-100, bottle.crew[bottle.selectedcrew].body.y-300, "red", 1)
             // if (link.hypotenuse() < 108) {
-            // //////////////////////console.log(link)
-            // //////////////////////console.log(bottle)
+            // //////////////////////////console.log(link)
+            // //////////////////////////console.log(bottle)
             // }
             // let roundedx = (Math.round((startPoint.x) / 10))
             // let roundedy = (Math.round((startPoint.y) / 10))
@@ -2736,13 +3017,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // if (this.inPath === true) {
             //     // this.drawPath();
             // } else if (this.walkable === false) {
-            //     // //////////////////////console.log(this)
+            //     // //////////////////////////console.log(this)
 
             //     // this.createWall();
             //     return;
             //     // }else if (link.hypotenuse() < 11) {
             // } else if (this.posx == roundedx && this.posy == roundedy) {
-            //     //   //////////////////////console.log("hit the startNode");
+            //     //   //////////////////////////console.log("hit the startNode");
             //     //   this.createStartNode();
             //     return;
             // } else if (this.posx == endPoint.x && this.posy == endPoint.y) {
@@ -2902,7 +3183,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                 }
             }
-            ////console.log(this)
+            ////////console.log(this)
         }
 
         createGrid() {
@@ -2921,7 +3202,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 for (var j = 0; j < this.height; j += NODESIZE) {
                     gridPointsByPos[i][j] = countNodes;
                     //here's the problem , need to set the walkability of the node without always being true...
-                    //////////////////////console.log(countNodes)
+                    //////////////////////////console.log(countNodes)
                     tempNode = new Tile(i, j, 10, 10, "tan", countNodes, NODESIZE, i, j, true);
 
                     // let cutOut = [0,1 ,2, 3, 4, 5,6,7, 8, 9, 10, 11, 12,13, 18, 19,20, 32,33,  26, 31, 39, 44, 45, 46, 52, 57,58,59,99, 112, 108, 95, 197, 198, 199, 205, 203, 204, 236, 237, 238, 242, 243,244, 216, 212, 229, 225, 210, 211, 223, 224, 217, 218, 230, 231]
@@ -2953,7 +3234,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                     // }
                     // if (wallSet.has(countNodes)) {
-                    // //   //////////////////////console.log("wallSet had countNodes!")
+                    // //   //////////////////////////console.log("wallSet had countNodes!")
                     //   tempNode.walkable = false;
                     // }
 
@@ -3098,6 +3379,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.clickrate = 2
             this.aimode = 0
             this.racks = 0
+            this.lab = 0
             this.averageSpace = {}
             this.baseMoveFlag = 0
             this.defending = 0
@@ -3170,6 +3452,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         if (this.units[t].nymph == 1) {
                             this.units[t].metamorph1()
                         }
+                        if (this.units[t].imago == 2) {
+                            this.units[t].submerged = 1
+                        }
                     }
                     if (this.defenseforce > 0) {
                         for (let t = 0; t < this.units.length; t++) {
@@ -3183,7 +3468,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         for (let t = 0; t < this.units.length; t++) {
                             if (Math.random() < 2 / this.defenseforce) {
                                 if (this.units[t].nymph !== 1) {
-                                    if (this.units[t].imago == 1 && Math.random() < .9) {
+                                    if ((this.units[t].imago == 1) && Math.random() < .9) {
                                         continue
                                     }
                                     this.units[t].pathTo(this.attackedAt)
@@ -3197,7 +3482,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.chunk++
                 if (this.aimode == 1) {
                     for (let t = 0; t < this.units.length; t++) {
-                        if (this.units[t].imago == 1) {
+                        if (this.units[t].imago == 1 || this.units[t].imago == 2) {
                             this.units[t].makeNymph()
                         }
                     }
@@ -3232,7 +3517,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                         if (sandmap.hotrocks[h].walkable == true && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                             let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                            // ////console.log(link)
+                                            // ////////console.log(link)
                                             if (link < max) {
                                                 max = link
                                                 index = h
@@ -3266,7 +3551,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                             if (sandmap.hotrocks[h].walkable == true && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                                 let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                                // ////console.log(link)
+                                                // ////////console.log(link)
                                                 if (link < max) {
                                                     max = link
                                                     index = h
@@ -3313,12 +3598,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             if (this.units[t].nymph == 2) {
                                 this.units[t].attackmove()
                             }
+                            if (this.units[t].imago == 2) {
+                                if(this.units[t].tile.sourcerock >= 1){
+                                    this.units[t].submerged = 1
+                                }
+                                this.units[t].attackmove()
+                            }
                         }
                     }
 
                     if (Math.random() < (.3 / this.units.length)) {
                         for (let t = 0; t < this.units.length; t++) {
-                            if (this.units[t].imago == 1) {
+                            if (this.units[t].imago == 1 || this.units[t].imago == 2) {
                                 this.units[t].makeNymph()
                                 if (Math.random() < .1) {
                                     break
@@ -3342,14 +3633,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             }
                         }
                     }
+                    
                     if (Math.random() < (this.units.length * .0009)) {
                         for (let t = 0; t < this.units.length; t++) {
+                            if(Math.random()<.5){
+                                if (this.units[t].nymph == 2) {
+                                    this.units[t].metamorph2()
+                                    break
+                                }
+                            }else{
                             if (this.units[t].nymph == 2) {
-                                this.units[t].metamorph2()
+                                this.units[t].metamorph3()
                                 break
+                            }
                             }
                         }
                     }
+
 
                     if (this.units.length > 25) {
                         if (this.attacktimeout <= 0) {
@@ -3402,6 +3702,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                 if (Math.random() < .0001) {
                     this.racks = 0
+                    this.lab = 0
                 }
                 let index = 0
                 this.chunk++
@@ -3449,7 +3750,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             if (this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                                 if (sandmap.hotrocks[h].walkable == true) {
                                                     let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                                    // ////console.log(link)
+                                                    // ////////console.log(link)
                                                     if (link < max) {
                                                         max = link
                                                         index = h
@@ -3519,7 +3820,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                 if (this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                                     if (sandmap.hotrocks[h].walkable == true) {
                                                         let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                                        // ////console.log(link)
+                                                        // ////////console.log(link)
                                                         if (link < max) {
                                                             max = link
                                                             index = h
@@ -3576,21 +3877,34 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (Math.random() < (.3 / this.units.length)) {
                         for (let t = 0; t < this.buildings.length; t++) {
                             if (this.buildings[t].barracks == 1) {
-                                if (Math.random() < .1 - (this.units.length * .008)) {
-                                    if (this.hotrock > 70) {
-                                        this.buildings[t].makeScout()
-                                    }
-                                }
                                 if (Math.random() < .1 - (this.units.length * .005)) {
                                     if (this.hotrock > 130) {
                                         this.buildings[t].makeInfantry()
                                     }
                                 }
-                                if (Math.random() < .1 - (this.units.length * .003)) {
+                                if (Math.random() < (.13 - (this.units.length * .0045)) + (this.hotrock*.0001)) {
+                                    if (this.hotrock > 370) {
+                                        this.buildings[t].makeSniper()
+                                    }
+                                }
+                                if (Math.random() < .3) {
+                                    break
+                                }
+                            }
+                        }
+                        for (let t = 0; t < this.buildings.length; t++) {
+                          if (this.buildings[t].barracks == 2) {
+                                if (Math.random() < .1 - (this.units.length * .008)) {
+                                    if (this.hotrock > 70) {
+                                        this.buildings[t].makeScout()
+                                    }
+                                }
+                                if (Math.random() < (.1 - (this.units.length * .003)) + (this.hotrock*.0001)) {
                                     if (this.hotrock > 200) {
                                         this.buildings[t].makeHarvester()
                                     }
                                 }
+
                                 if (Math.random() < .3) {
                                     break
                                 }
@@ -3614,13 +3928,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         this.baseMoveFlag = 0
                         if (this.averageSpace.dirs2 == 1) {
                         } else {
-                            for (let x = this.averageSpace.tile.k; x < 126; x++) {
+                            for (let x = this.averageSpace.tile.k; x < 127; x++) {
                                 if (x < 0 || x > 127) {
                                     continue
                                 }
                                 if (this.blocks[this.averageSpace.tile.t][x + 1].markdraw != 1) {
                                     this.buildWall(sandmap.blocks[this.averageSpace.tile.t][x])
-                                } else if (x == 127) {
+                                } else if (x == 126) {
                                     this.buildWall(sandmap.blocks[this.averageSpace.tile.t][x])
                                 }
                                 if (debreak == 0) {
@@ -3662,13 +3976,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         }
                         if (this.averageSpace.dirs1 == 1) {
                         } else {
-                            for (let x = this.averageSpace.tile.t; x < 126; x++) {
+                            for (let x = this.averageSpace.tile.t; x < 127; x++) {
                                 if (x < 0 || x > 127) {
                                     continue
                                 }
                                 if (this.blocks[x + 1][this.averageSpace.tile.k].markdraw != 1) {
                                     this.buildWall(sandmap.blocks[x][this.averageSpace.tile.k])
-                                } else if (x == 127) {
+                                } else if (x == 126) {
                                     this.buildWall(sandmap.blocks[x][this.averageSpace.tile.k])
                                 }
                                 if (debreak == 0) {
@@ -3695,7 +4009,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                             if (Math.abs(this.units[t].realPath.length - this.units[t].index) < 3 || Math.abs(this.units[t].realPath.length - this.units[t].index) > (calcdeath - (this.units[t].movespeed * 10))) {
 
-                                // //console.log(this.units[t])
+                                // //////console.log(this.units[t])
 
                             } else {
                                 continue
@@ -3706,13 +4020,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 if (this.units[t].dirs2 == 1) {
                                 } else {
                                     if (this.units[t].health < (this.units[t].maxhealth * .9)) {
-                                        for (let x = this.units[t].tile.k; x < 126; x++) {
+                                        for (let x = this.units[t].tile.k; x < 127; x++) {
                                             if (x < 0 || x > 127) {
                                                 continue
                                             }
                                             if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1) {
                                                 this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
-                                            } else if (x == 127) {
+                                            } else if (x == 126) {
                                                 this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
                                             }
                                             if (debreak == 0) {
@@ -3760,13 +4074,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 if (this.units[t].dirs1 == 1) {
                                 } else {
                                     if (this.units[t].health < (this.units[t].maxhealth * .9)) {
-                                        for (let x = this.units[t].tile.t; x < 126; x++) {
+                                        for (let x = this.units[t].tile.t; x < 127; x++) {
                                             if (x < 0 || x > 127) {
                                                 continue
                                             }
                                             if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1) {
                                                 this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
-                                            } else if (x == 127) {
+                                            } else if (x == 126) {
                                                 this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
                                             }
                                             if (debreak == 0) {
@@ -3781,13 +4095,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 if (this.units[t].dirs2 == 1) {
                                 } else {
                                     if (this.units[t].health < (this.units[t].maxhealth * .9)) {
-                                        for (let x = this.units[t].tile.k; x < 126; x++) {
+                                        for (let x = this.units[t].tile.k; x < 127; x++) {
                                             if (x < 0 || x > 127) {
                                                 continue
                                             }
                                             if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1) {
                                                 this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
-                                            } else if (x == 127) {
+                                            } else if (x == 126) {
                                                 this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
                                             }
                                             if (debreak == 0) {
@@ -3835,13 +4149,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 if (this.units[t].dirs1 == 1) {
                                 } else {
                                     if (this.units[t].health < (this.units[t].maxhealth * .9)) {
-                                        for (let x = this.units[t].tile.t; x < 126; x++) {
+                                        for (let x = this.units[t].tile.t; x < 127; x++) {
                                             if (x < 0 || x > 127) {
                                                 continue
                                             }
                                             if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1) {
                                                 this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
-                                            } else if (x == 127) {
+                                            } else if (x == 126) {
                                                 this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
                                             }
                                             if (debreak == 0) {
@@ -3855,13 +4169,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 if (this.units[t].dirs2 == 1) {
                                 } else {
                                     if (this.units[t].health < (this.units[t].maxhealth * .9)) {
-                                        for (let x = this.units[t].tile.k; x < 126; x++) {
+                                        for (let x = this.units[t].tile.k; x < 127; x++) {
                                             if (x < 0 || x > 127) {
                                                 continue
                                             }
                                             if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1) {
                                                 this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
-                                            } else if (x == 127) {
+                                            } else if (x == 126) {
                                                 this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
                                             }
                                             if (debreak == 0) {
@@ -3909,13 +4223,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 if (this.units[t].dirs1 == 1) {
                                 } else {
                                     if (this.units[t].health < (this.units[t].maxhealth * .9)) {
-                                        for (let x = this.units[t].tile.t; x < 126; x++) {
+                                        for (let x = this.units[t].tile.t; x < 127; x++) {
                                             if (x < 0 || x > 127) {
                                                 continue
                                             }
                                             if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1) {
                                                 this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
-                                            } else if (x == 127) {
+                                            } else if (x == 126) {
                                                 this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
                                             }
                                             if (debreak == 0) {
@@ -3929,13 +4243,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 if (this.units[t].dirs2 == 1) {
                                 } else {
                                     if (this.units[t].health < (this.units[t].maxhealth * .9)) {
-                                        for (let x = this.units[t].tile.k; x < 126; x++) {
+                                        for (let x = this.units[t].tile.k; x < 127; x++) {
                                             if (x < 0 || x > 127) {
                                                 continue
                                             }
                                             if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1) {
                                                 this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
-                                            } else if (x == 127) {
+                                            } else if (x == 126) {
                                                 this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
                                             }
                                             if (debreak == 0) {
@@ -3983,13 +4297,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 if (this.units[t].dirs1 == 1) {
                                 } else {
                                     if (this.units[t].health < (this.units[t].maxhealth * .9)) {
-                                        for (let x = this.units[t].tile.t; x < 126; x++) {
+                                        for (let x = this.units[t].tile.t; x < 127; x++) {
                                             if (x < 0 || x > 127) {
                                                 continue
                                             }
                                             if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1) {
                                                 this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
-                                            } else if (x == 127) {
+                                            } else if (x == 126) {
                                                 this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
                                             }
                                             if (debreak == 0) {
@@ -4005,15 +4319,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             }
                         }
 
-                    }
-
-                    if (Math.random() < (this.units.length * .0009)) {
-                        for (let t = 0; t < this.units.length; t++) {
-                            if (this.units[t].nymph == 2) {
-                                this.units[t].metamorph2()
-                                break
-                            }
-                        }
                     }
 
                     if (this.units.length > 25) {
@@ -4035,16 +4340,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
             if (this.racks == 0 && this.isAI == 1) {
                 this.buildBarracks(tile)
-                this.racks = 1
+            } else if (this.lab == 0 && this.isAI == 1 && this.hotrock > 150) {
+                this.buildMachineLab(tile)
             } else {
                 let wet = 0
                 for (let t = 0; t < this.buildings.length; t++) {
                     if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
                         wet = 1
                         debreak = 1
-                        // //console.log(tile)
+                        // //////console.log(tile)
                     }
                 }
+                    if (tile.walkable == false) {
+                        wet = 1
+                    }
                 if (wet == 0) {
                     if (this.hotrock >= 10) {
                         this.hotrock -= 10
@@ -4061,7 +4370,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (this.type == 1) {
                 return
             }
+            let wet = 0
+            if (tile.walkable == false) {
+                wet = 1
+            }
+            for (let t = 0; t < this.buildings.length; t++) {
+                if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
+                    wet = 1
+                }
+            }
+            if(wet == 0){
+
             if (this.hotrock >= 70) {
+                this.racks = 1
                 this.hotrock -= 70
                 let building = new Building(tile, this, 0)
                 building.barracks = 1
@@ -4070,6 +4391,35 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 building.maxhealth = building.health
                 building.defense = 6
                 building.damage = 0
+            }
+        }
+        }
+        buildMachineLab(tile){
+            if (this.type == 1) {
+                return
+            }
+            let wet = 0
+            if (tile.walkable == false) {
+                wet = 1
+            }
+            for (let t = 0; t < this.buildings.length; t++) {
+                if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
+                    wet = 1
+                }
+            }
+            if(wet == 0){
+
+            if (this.hotrock >= 110) {
+                this.lab = 1
+                this.hotrock -= 110
+                let building = new Building(tile, this, 0)
+                building.barracks = 2
+                building.name = "Machine Lab"
+                building.health = 1000
+                building.maxhealth = building.health
+                building.defense = 20
+                building.damage = 0
+            }
             }
         }
         draw() {
@@ -4106,6 +4456,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     deathrattle.play()
                                 }
                             }
+                            if (this.units[t].infantry == 2) {
+                                if (Math.random() < .5) {
+                                    ahgeez.play()
+                                } else {
+                                    goingdown.play()
+                                }
+                            }
                             if (this.units[t].harvester == 1) {
                                 if (Math.random() < .5) {
                                     feelcold.play()
@@ -4118,6 +4475,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     boh.play()
                                 } else {
                                     die.play()
+                                }
+                            }
+                            if (this.units[t].imago == 2) {
+                                if (Math.random() < .3) {
+                                    ggd1.play()
+                                } else if (Math.random() < .3) {
+                                    ggd3.play()
+                                } else {
+                                    ggd2.play()
                                 }
                             }
                             if (this.units[t].nymph == 2) {
@@ -4202,8 +4568,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // this.startNode = gridPointsByPos[startNode.x][startNode.y];
             let roundedx = (Math.round((startNode.x))) * .1
             let roundedy = (Math.round((startNode.y))) * .1
-            //////////////////console.log(gridPointsByPos, roundedx, roundedy)
-            //////////////////////console.log(gridPointsByPos[roundedx] [roundedy])
+            //////////////////////console.log(gridPointsByPos, roundedx, roundedy)
+            //////////////////////////console.log(gridPointsByPos[roundedx] [roundedy])
             this.startNode = startNode // gridPointsByPos[roundedx] [roundedy]
             this.endNode = endNode //gridPointsByPos[endNode.x][endNode.y];
             this.currentNode = null;
@@ -4223,7 +4589,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             var grid = this.grid; //the grid we're working with
 
             var currentNode = this.startNode; // the currentNode, defaults to start node for now
-            ////////console.log(this.endNode)
+            ////////////console.log(this.endNode)
             var endNode = this.endNode //sandmap.gridPoints[this.endNode.id]; //the target node
             var startNode = this.startNode
 
@@ -4232,9 +4598,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             var newMovementCost; //the new movement cost to neighbor
 
             openSet.add(currentNode);
-            //   ////////////////console.log(currentNode)
+            //   ////////////////////console.log(currentNode)
             // currentNode.color = "black"
-            // //////////////////////console.log('begin');
+            // //////////////////////////console.log('begin');
 
             let j = 0
             let timeout = 0
@@ -4244,7 +4610,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     timeout = 1
                 }
                 tempArray = Array.from(openSet);
-                ////////////////console.log(tempArray)
+                ////////////////////console.log(tempArray)
                 currentNode = tempArray[0];
 
                 for (var i = 1; i < tempArray.length; i++) {
@@ -4276,24 +4642,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 //   currentNode.drawNode();
                 // }
 
-                ////////////////console.log(currentNode, endNode)
+                ////////////////////console.log(currentNode, endNode)
                 // currentNode.color = "black"
-                ////////console.log(currentNode, endNode)
+                ////////////console.log(currentNode, endNode)
                 if (currentNode.id == endNode.id) {
-                    //////console.log(startNode, endNode)
+                    //////////console.log(startNode, endNode)
                     retracePath(startNode, endNode, this.agent);
                     //hit the last point, exit's the loop.
 
                     return; //exits loop
                 } else if (timeout == 1) {
 
-                    //////console.log(startNode, endNode)
+                    //////////console.log(startNode, endNode)
                     retracePath(startNode, currentNode, this.agent);
                     //hit the last point, exit's the loop.
 
                     return; //exits loop
                 }
-                getNeighbors(currentNode).forEach(function (neighbor) {
+                getNeighbors(currentNode, this.agent).forEach(function (neighbor) {
 
                     var neighborNode = neighbor;
                     var neighborH = neighborNode.getHCost();
@@ -4301,8 +4667,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                     var currentG = currentNode.getGCost();
                     var currentH = currentNode.getHCost();
-
-                    if (!neighborNode.walkable || closedSet.has(neighborNode)) {
+                    if (neighborNode.occupied == true || ((!neighborNode.walkable &&  neighbor.agent.submerged !== 1) && (!neighborNode.walkable &&  (neighbor.agent.mounted !== 0))) || closedSet.has(neighborNode)) {
 
                         return; //acts as a continue, no need to continue if the wall was already checked.
 
@@ -4320,7 +4685,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             //push the neighborNode to the openSet, to check against other open values
                             openSet.add(neighborNode);
 
-                            neighborNode.drawOpenNode();
+                            // neighborNode.drawOpenNode();
 
                         }
                     }
@@ -4349,9 +4714,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         var reverseArray;
         while (currentNode != startNode) {
             path.add(currentNode);
-            //////console.log(currentNode)
+            //////////console.log(currentNode)
             currentNode = currentNode.parent;
-            //////console.log(currentNode)
+            //////////console.log(currentNode)
             // currentNode.inPath = true;
             // if (currentNode != startNode)
             //     currentNode.drawPath();
@@ -4362,19 +4727,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
         reverseArray.reverse();
         path = new Set(reverseArray);
 
-        //   //////////////////////console.log(path)
+        //   //////////////////////////console.log(path)
 
         realPath = Array.from(path)
-        //   //////////////////////console.log(realPath)
+        //   //////////////////////////console.log(realPath)
 
         if (realPath.length == 1) {
             // realPath[0].walkable = false
-            ////////////////////console.log("hit")
+            ////////////////////////console.log("hit")
             // wallSet.add(realPath[0])
-            ////////////////////console.log(wallSet)
+            ////////////////////////console.log(wallSet)
         }
 
-        ////////////////console.log(realPath)
+        ////////////////////console.log(realPath)
         if (realPath.length > 0) {
             realPath.unshift(agent.tile)
             agent.realPath = [...realPath]
@@ -4389,23 +4754,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // bottle.crew[bottle.selectedcrew].body.x =startPoint.x+4
             // bottle.crew[bottle.selectedcrew].body.y  = startPoint.y+4
             // startPoint = new Vec2(realPath[0].posx, realPath[0].posy);
-            //////////////////////console.log(startPoint)
+            //////////////////////////console.log(startPoint)
             // bottle.crew[bottle.selectedcrew].moving = 1
         } else {
-            //   //////////////////console.log(endPoint)
+            //   //////////////////////console.log(endPoint)
 
             //     if(bottle.crew[bottle.selectedcrew].moving == 1){
-            //         // //////////////////console.log(endPoint)
+            //         // //////////////////////console.log(endPoint)
             //     // bottle.crew[bottle.selectedcrew].body.x =endPoint.x+96
             //     // bottle.crew[bottle.selectedcrew].body.y  = endPoint.y+284
             //     // bottle.crew[bottle.selectedcrew].moving = 0
-            //     // //////////////////console.log(endPoint)
+            //     // //////////////////////console.log(endPoint)
             //         reset()
             //   }
         }
     }
     //list of neighbors
-    function getNeighbors(node) {
+    function getNeighbors(node, agent, parent) {
+        // ////console.log(agent)
         var checkX;
         var checkY;
         var neighborList = [];
@@ -4446,11 +4812,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                 if (checkX >= 0 && checkX <= sandmap.blocks.length && checkY >= 0 && checkY <= sandmap.blocks.length) { //127 mapsize
 
-                    if (x == 0 || y == 0 || Math.random() < .25) {  // randomness leads to organic
-                        ////////console.log(sandmap)
+                    if (x == 0 || y == 0 || Math.random() < .525) {  // randomness leads to organic //.25
+                        ////////////console.log(sandmap)
                         if (checkX < sandmap.blocks.length) {
                             if (checkY < sandmap.blocks[0].length) {
-                                if (sandmap.blocks[checkX][checkY].walkable !== false) {
+                                if ((sandmap.blocks[checkX][checkY].walkable !== false || agent.submerged == 1 || agent.mounted == 0) || sandmap.blocks[checkX][checkY].occupied == true ) {
+                                    sandmap.blocks[checkX][checkY].agent = agent
                                     tempList.push(sandmap.blocks[checkX][checkY]);
                                 }
 
@@ -4463,7 +4830,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
         neighborList = tempList;
-        ////////////////console.log(neighborList)
+        neighborList.agent = agent
+        ////////////////////console.log(neighborList)
         return (neighborList);
 
     }
@@ -4512,7 +4880,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 tile = sandmap.gridPoints[tile.id + 128]
             }
             this.tile = tile
-            this.tile.builtOn == 1
+            this.tile.builtOn = 1
             this.timer = -1
 
             this.faction = faction
@@ -4563,6 +4931,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             }
         }
+        makeSniper() {
+            if (this.que != 1) {
+                if (this.faction.hotrock >= 360 && this.faction.units.length < 51) {
+                    this.faction.hotrock -= 360
+                    this.que = 1
+                    this.sniper = 1
+                    this.timer = 250
+                    this.maxtimer = this.timer
+                }
+            }
+        }
         finishInfantry() {
             if (Math.random() < soundspamdrop) {
                 if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
@@ -4572,6 +4951,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
             let agent1 = new Agent(this.tile, this.faction)
             agent1.isInfantry()
+        }
+        finishSniper() {
+            if (Math.random() < soundspamdrop) {
+                if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
+                    soundCancel()
+                    if(Math.random()<.5){
+                        youunderstandany.play()
+                    }else{
+                        idontunderstand.play()
+                    }
+                }
+            }
+            let agent1 = new Agent(this.tile, this.faction)
+            agent1.isSniper()
         }
         makeHarvester() {
 
@@ -4618,10 +5011,35 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
                     this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
                     this.spawnsmall.draw()
+                    canvas_context.drawImage(infantry, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
+                    // this.spawnmedium = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 110, 125, 90, 50, "black")
+                    // this.spawnmedium.draw()
+                    // canvas_context.drawImage(infantry, 0, 0, 10, 10, this.spawnmedium.x + 10, this.spawnmedium.y + 5, 30, 30)
+                    this.spawnbig = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 210, 125, 90, 50, "black")
+                    this.spawnbig.draw()
+                    canvas_context.drawImage(sniper1, 0, 0, 10, 10, this.spawnbig.x + 10, this.spawnbig.y + 5, 30, 30)
+
+
+                    canvas_context.fillStyle = "white"
+                    canvas_context.font = "12px arial"
+                    // canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                    canvas_context.fillText("Infantry: 90", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                    canvas_context.fillText("Sniper: 360", this.spawnbig.x + 1, this.spawnbig.y + 46)
+                    // canvas_context.fillText("Drone: 30")
+                    // canvas_context.fillText("Drone: 30")
+                    if (this.timer > 0) {
+                        canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
+                    }
+                }           
+                 if (this.barracks == 2) {
+                    canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                    canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                    this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
+                    this.spawnsmall.draw()
                     canvas_context.drawImage(drone, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
-                    this.spawnmedium = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 110, 125, 90, 50, "black")
-                    this.spawnmedium.draw()
-                    canvas_context.drawImage(infantry, 0, 0, 10, 10, this.spawnmedium.x + 10, this.spawnmedium.y + 5, 30, 30)
+                    // this.spawnmedium = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 110, 125, 90, 50, "black")
+                    // this.spawnmedium.draw()
+                    // canvas_context.drawImage(infantry, 0, 0, 10, 10, this.spawnmedium.x + 10, this.spawnmedium.y + 5, 30, 30)
                     this.spawnbig = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 210, 125, 90, 50, "black")
                     this.spawnbig.draw()
                     canvas_context.drawImage(harvester, 0, 0, 10, 10, this.spawnbig.x + 10, this.spawnbig.y + 5, 30, 30)
@@ -4630,7 +5048,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     canvas_context.fillStyle = "white"
                     canvas_context.font = "13px arial"
                     canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
-                    canvas_context.fillText("Infantry: 90", this.spawnmedium.x + 1, this.spawnmedium.y + 46)
+                    // canvas_context.fillText("Infantry: 90", this.spawnmedium.x + 1, this.spawnmedium.y + 46)
                     canvas_context.fillText("Harvester: 160", this.spawnbig.x + 1, this.spawnbig.y + 46)
                     // canvas_context.fillText("Drone: 30")
                     // canvas_context.fillText("Drone: 30")
@@ -4641,7 +5059,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
         }
         draw() {
-            if (this.barracks == 1) {
+            if (this.barracks >= 1) {
                 this.timer--
                 if (this.timer == 0) {
                     if (this.drone == 1) {
@@ -4659,15 +5077,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         this.que = 0
                         this.finishHarvester()
                     }
+                    if (this.sniper == 1) {
+                        this.sniper = 0
+                        this.que = 0
+                        this.finishSniper()
+                    }
                 }
             }
             for (let t = 0; t < this.tiles.length; t++) {
                 this.tiles[t].walkable = false
                 this.tiles[t].color = this.faction.color  // this.faction.color
-                if (this.barracks != 1) {
-                    map_context.drawImage(icewall, this.tiles[t].x, this.tiles[t].y)
-                } else {
+                if (this.barracks == 1) {
                     map_context.drawImage(barracks, this.tiles[t].x, this.tiles[t].y)
+                }else if (this.barracks == 2) {
+                    map_context.drawImage(machinelab, this.tiles[t].x, this.tiles[t].y)
+                } else {
+                    map_context.drawImage(icewall, this.tiles[t].x, this.tiles[t].y)
                 }
                 if (this.selected == 1) {
                     this.tiles[t].wallcolor = "black"
@@ -4695,8 +5120,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (this.barracks == 1) {
                     this.faction.racks = 0
                 }
+                if (this.barracks == 2) {
+                    this.faction.lab = 0
+                }
 
-                this.tile.builtOn == 0
+                this.tile.builtOn = 0
                 this.faction.buildings.splice(this.faction.buildings.indexOf(this), 1)
             }
         }
@@ -4814,6 +5242,27 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.health = 350
             this.maxhealth = this.health
         }
+        isSniper() {
+            this.infantry = 2
+            this.movespeed = 7//4
+            this.body.color = "magenta"
+            this.body.radius = 4.8
+            this.defense = 7
+            this.name = "Sniper"
+            this.sight = 1 + this.movespeed
+            this.damage =  20
+            this.firerate = 3 //12 //(this.movespeed * 5)
+            this.attackrange = this.sight
+            this.maxhealth = this.health
+            this.shots = []
+            this.attacktarget = {}
+            this.attacktarget.health = 0
+            this.attackcounter = 0
+            this.decayRate = (12) * .02
+            this.health = 425
+            this.maxhealth = this.health
+            this.mounted = 0
+        }
         isHarvester() {
             this.harvester = 1
             this.movespeed = 5 //5 // 4
@@ -4866,16 +5315,25 @@ window.addEventListener('DOMContentLoaded', (event) => {
         makeNymph() {
             if (this.que != 1) {
                 if (this.faction.hotrock >= 120 && this.faction.units.length < 51) {
-                    if (this.imago == 1) {
+                    if (this.imago == 1 || this.imago == 2) {
                         this.faction.hotrock -= 120
                         this.spawn = 1
                         this.que = 1
                         this.timer = 55
                         this.maxtimer = this.timer
-                        if (Math.random() < soundspamdrop * 3) {
-                            if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
-                                soundCancel()
-                                youneedmyassagain.play()
+                        if (this.imago == 1) {
+                            if (Math.random() < soundspamdrop * 3) {
+                                if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
+                                    soundCancel()
+                                    youneedmyassagain.play()
+                                }
+                            }
+                        } else if (this.imago == 2) {
+                            if (Math.random() < soundspamdrop * 3) {
+                                if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
+                                    soundCancel()
+                                    hoppe.play()
+                                }
                             }
                         }
                     }
@@ -4924,13 +5382,43 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.health = 2100
             this.maxhealth = this.health
             this.attackrange = this.sight - 1
+            if (Math.random() < soundspamdrop) {
+                if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
+                    soundCancel()
+                    yeahiminthisroom.play()
+                }
+            }
+        }
+        finishMorphgamergate() {
+            this.body.color = "white"
+            this.body.radius = 6.5
+            this.movespeed = 6
+            this.sight = 1 + this.movespeed
+            this.firerate = 17 // 9
+            this.decayRate = 0
+            this.defense = 18
+            this.damage = (this.body.radius * 3) + 4
+            this.name = "Gamergate"
+            this.imago = 2
+            this.nymph = 0
+            this.gamergate = 1
+            this.health = 1451
+            this.maxhealth = this.health
+            this.attackrange = this.sight - 1
+            this.submerged = 0
+            if (Math.random() < soundspamdrop) {
+                if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
+                    soundCancel()
+                    doyouwantsome.play()
+                }
+            }
         }
         metamorph1() {
-            //console.log(this.que, 1)
+            //////console.log(this.que, 1)
             if (this.que != 1) {
-                //console.log(this.hotrock, 2)
+                //////console.log(this.hotrock, 2)
                 if (this.faction.hotrock >= 200) {
-                    //console.log(this.nymph, 3)
+                    //////console.log(this.nymph, 3)
                     if (this.nymph == 1) {
                         this.faction.hotrock -= 200
                         this.morphing = 1
@@ -4940,7 +5428,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                 }
             }
-            //console.log(this.timer, 4)
+            //////console.log(this.timer, 4)
         }
         metamorph2() {
             if (this.que != 1) {
@@ -4948,6 +5436,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (this.nymph == 2) {
                         this.faction.hotrock -= 300
                         this.morphingagain = 1
+                        this.que = 1
+                        this.timer = 200
+                        this.maxtimer = this.timer
+                    }
+                }
+            }
+        }
+        metamorph3() {
+            if (this.que != 1) {
+                if (this.faction.hotrock >= 451) {
+                    if (this.nymph == 2) {
+                        this.faction.hotrock -= 451
+                        this.morphinggamergate = 1
                         this.que = 1
                         this.timer = 200
                         this.maxtimer = this.timer
@@ -4977,7 +5478,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.fillText("Attack " + Math.ceil(this.damage * 3) + ", " + "Defense " + Math.ceil(this.defense), sandmap.window.body.x + sandmap.window.body.width + 10, 85)
                 canvas_context.strokeText("Speed " + Math.floor((1 / this.movespeed) * 120) + ", Vision " + this.sight + ", Range " + this.attackrange + ", Fire rate " + Math.floor((1 / this.firerate) * 120), sandmap.window.body.x + sandmap.window.body.width + 10, 115)
                 canvas_context.fillText("Speed " + Math.floor((1 / this.movespeed) * 120) + ", Vision " + this.sight + ", Range " + this.attackrange + ", Fire rate " + Math.floor((1 / this.firerate) * 120), sandmap.window.body.x + sandmap.window.body.width + 10, 115)
-                if (this.imago == 1) {
+                if (this.imago == 1 || this.imago == 2) {
                     this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
                     this.spawnsmall.draw()
                     canvas_context.drawImage(nymph, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
@@ -5005,6 +5506,28 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         canvas_context.fillStyle = "white"
                         canvas_context.font = "13px arial"
                         canvas_context.fillText("Imago: 300", this.morph2.x + 1, this.morph2.y + 46)
+                        this.morph3 = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 150, 125, 90, 50, "black")
+                        this.morph3.draw()
+                        canvas_context.drawImage(gamergate, 0, 0, 10, 10, this.morph3.x + 10, this.morph3.y + 5, 30, 30)
+                        canvas_context.fillStyle = "white"
+                        canvas_context.font = "12px arial"
+                        canvas_context.fillText("Gamergate: 451", this.morph3.x + 1, this.morph3.y + 46)
+                    }
+                } else {
+                    if (this.imago == 2) {
+                        this.morph3 = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 150, 125, 90, 50, "black")
+                        this.morph3.draw()
+                        canvas_context.fillStyle = "white"
+                        canvas_context.font = "22px arial"
+                        if (this.submerged == 0) {
+                            canvas_context.fillText("Tunnel", this.morph3.x + 10, this.morph3.y + 32)
+                        } else {
+                            if(this.tile.walkable == false ||this.tile.ice == 1 || this.tile.builtOn == 1){
+                                canvas_context.fillStyle = "red"
+                            }
+
+                            canvas_context.fillText("Emerge", this.morph3.x + 5, this.morph3.y + 32)
+                        }
                     }
                 }
 
@@ -5044,9 +5567,33 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                     soundCancel()
                                                                     if (Math.random() < .5) {
                                                                         ahhbarber.play()
-                                                                    } else[
+                                                                    } else{
                                                                         slamdownmustard.play()
-                                                                    ]
+                                                                    }
+                                                                }
+                                                            }
+                                                            if (this.imago == 2) {
+                                                                if (Math.random() < soundspamdrop) {
+                                                                    soundCancel()
+                                                                    youhurtme.play()
+                                                                }
+                                                            }
+                                                            if (this.infantry == 2) {
+                                                                if (Math.random() < soundspamdrop) {
+                                                                    soundCancel()
+                                                                    if (Math.random() < .3) {
+                                                                        isnipedyouaweekago2.play()
+                                                                    } else if (Math.random() < .3) {
+                                                                        isnipedyouaweekago.play()
+                                                                    } else if (Math.random() < .3) {
+                                                                        theresone.play()
+                                                                    } else if (Math.random() < .3) {
+                                                                        bossaroundhere.play()
+                                                                    }else if (Math.random() < .3) {
+                                                                        bossaroundhere2.play()
+                                                                    } else {
+                                                                        adjustingforwindspeed.play()
+                                                                    }
                                                                 }
                                                             }
                                                             if (this.nymph == 2) {
@@ -5085,26 +5632,65 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                             }
                                                         }
 
-                                                        this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
-                                                        if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].isAI == 1) {
-                                                            sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].pathTo(this.tile)
-                                                            sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].attackedAt = this.tile
+                                                        if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].submerged != 1) {
+                                                            this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
+                                                            this.attacktarget.faction.blocks[this.tile.t][this.tile.k].markdraw = 1
+                                                            if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].isAI == 1) {
+                                                                sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].pathTo(this.tile)
+                                                                sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].attackedAt = this.tile
 
-                                                            if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending < 0) {
-                                                                sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending = 1
-                                                            } else {
-                                                                sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending += sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length
+                                                                if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending < 0) {
+                                                                    sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending = 1
+                                                                } else {
+                                                                    sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending += sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length
+                                                                }
+
+
+
+                                                            }
+                                                            break
+                                                        } else {
+                                                            let wet = 0
+                                                            for (let n = 0; n < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units.length; n++) {
+                                                                let ct = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile.t
+                                                                let ck = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile.k
+                                                                let xt = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].tile.t
+                                                                let xk = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].tile.k
+                                                                let line = new Line(ct, ck, xt, xk)
+                                                                if (line.hypotenuse() <= sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].sight) {
+                                                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].drone == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].imago == 2) {
+                                                                        wet = 1
+                                                                    }
+                                                                }
                                                             }
 
+                                                            if (wet == 1) {
+                                                                this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
+
+                                                                this.attacktarget.faction.blocks[this.tile.t][this.tile.k].markdraw = 1
+                                                                // //console.log(this.attacktarget.faction.blocks[this.tile.t][this.tile.k])
+                                                                if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].isAI == 1) {
+                                                                    sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].pathTo(this.tile)
+                                                                    sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].attackedAt = this.tile
+
+                                                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending < 0) {
+                                                                        sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending = 1
+                                                                    } else {
+                                                                        sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending += sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length
+                                                                    }
 
 
+
+                                                                }
+                                                                break
+                                                            }
                                                         }
-                                                        break
                                                     }
                                                 }
                                                 for (let g = 0; g < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings.length; g++) {
                                                     if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
                                                         this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings[g]
+                                                        this.attacktarget.faction.blocks[this.tile.t][this.tile.k].markdraw = 1
                                                         this.attacktarget.isABuilding = 1
 
                                                         if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].isAI == 1) {
@@ -5135,7 +5721,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     return
                 }
                 this.attackcounter++
-                if (this.attackcounter % this.firerate == 0) {
+                if (this.attackcounter % this.firerate == 0 && this.submerged != 1) {
                     let shot = new UnitCircle(this.body.x, this.body.y, 2, this.faction.color)
                     shot.attacktarget = {}
                     shot.attacktarget.body = new UnitCircle(this.attacktarget.body.x, this.attacktarget.body.y, 1, "transparent")
@@ -5161,6 +5747,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
                                                         this.attacktargetmove = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
                                                         this.pathTo(this.attacktargetmove.tile)
+                                                        if(this.tile.walkable == false ||this.tile.ice == 1 || this.tile.builtOn == 1){
+                                                        }else{
+                                                            this.submerged = 0
+                                                        }
                                                         break
                                                     }
                                                 }
@@ -5168,6 +5758,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
                                                         this.attacktargetmove = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings[g]
                                                         this.pathTo(this.attacktargetmove.tile)
+                                                        if(this.tile.walkable == false ||this.tile.ice == 1 || this.tile.builtOn == 1){
+                                                        }else{
+                                                            this.submerged = 0
+                                                        }
                                                         break
                                                     }
                                                 }
@@ -5188,7 +5782,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
         }
         pathTo(point) {
-            if (point.walkable == true) {
+            if (point.walkable == true || this.submerged == 1 || this.mounted == 0) {
                 this.stepout = 1
                 this.pather = new PathFindingAlg(sandmap.blocks, this.tile, point, this)
                 this.pather.agent = this
@@ -5240,7 +5834,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     let max = 9999999999
                     for (let t = 0; t < this.tempcheck.length; t++) {
                         let link = (new LineOP(this.tile, this.tempcheck[t])).hypotenuse()
-                        // ////console.log(link)
+                        // ////////console.log(link)
                         if (link < max) {
                             max = link
                             index = t
@@ -5332,7 +5926,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (this.movespeedcount % this.movespeed == 0) {
                     this.movespeedcount = 0
                     this.index += 1
-                    if (this.realPath[this.index].walkable == false) {
+                    if (this.realPath[this.index].walkable == false &&   this.submerged !== 1&&   this.mounted !== 0) {
                         if (this.index == 0) {
                             let goal = 0
                             goal += this.tile.id
@@ -5353,6 +5947,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
             this.tile.drawish = 0
             this.tile.walkable = true
+            this.tile.occupied = false
             this.tile = this.realPath[this.index]
             if (this.index == this.realPath.length - 1) {
                 this.realPath = [this.tile]
@@ -5363,7 +5958,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             } else {
                 this.decayingInTheWind = 0
             }
-            //////////console.log( (this.decayingInTheWind*sandmap.windspeed))
+            //////////////console.log( (this.decayingInTheWind*sandmap.windspeed))
             this.health -= ((this.decayRate * this.decayingInTheWind * sandmap.windspeed))
             if (this.decayingInTheWind == 0) {
                 this.health += this.decayRate
@@ -5411,14 +6006,45 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                 }
             }
-            this.tile.walkable = false
+
+            this.tile.occupied = true
+            if(this.submerged != 1){
+                this.tile.walkable = false
+            }
             this.tile.drawish = 1
             // this.tile.draw()
         }
         draw() {
 
+            if(this.tile.builtOn == 1){
+                if(this.mounted == 0){
+                    this.sight = 4 + this.movespeed
+                    this.attackrange = this.sight
+                }
+            }else{
+                if(this.mounted == 0){
+                    this.sight = this.movespeed
+                    this.attackrange = this.sight
+                }
+            }
 
-            if (this.imago == 1 || this.nymph > 0) {
+
+            if(this.submerged == 1){
+                if(this.imago == 2){
+                    this.movespeed = 10
+                    this.sight = 3
+                    this.attackrange = 0
+                }
+            }else{
+                if(this.imago == 2){
+                    this.movespeed = 6
+                    this.sight = 7
+                    this.attackrange = 6
+                }
+            }
+
+
+            if (this.imago == 1 || this.imago == 2 || this.nymph > 0) {
                 this.timer--
                 if (this.timer == 0) {
                     if (this.spawn == 1) {
@@ -5435,6 +6061,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         this.morphingagain = 0
                         this.que = 0
                         this.finishMorph2()
+                    }
+                    if (this.morphinggamergate == 1) {
+                        this.morphinggamergate = 0
+                        this.que = 0
+                        this.finishMorphgamergate()
                     }
                 }
             }
@@ -5464,12 +6095,39 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 map_context.drawImage(drone, Math.floor(this.body.x) - 5, Math.floor(this.body.y) - 5)
             } else if (this.infantry == 1) {
                 map_context.drawImage(infantry, Math.floor(this.body.x) - 5, Math.floor(this.body.y) - 5)
+            } else if (this.infantry == 2) {
+                map_context.drawImage(sniper1, Math.floor(this.body.x) - 5, Math.floor(this.body.y) - 5)
             } else if (this.harvester == 1) {
                 map_context.drawImage(harvester, Math.floor(this.body.x) - 5, Math.floor(this.body.y) - 5)
             } else if (this.nymph == 1) {
                 map_context.drawImage(nymph, Math.floor(this.body.x) - 5, Math.floor(this.body.y) - 5)
             } else if (this.nymph == 2) {
                 map_context.drawImage(scuttler, Math.floor(this.body.x) - 5, Math.floor(this.body.y) - 5)
+            } else if (this.gamergate == 1) {
+                if (this.submerged == 0) {
+                    map_context.drawImage(gamergate, Math.floor(this.body.x) - 5, Math.floor(this.body.y) - 5)
+                } else {
+                    if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
+                        map_context.drawImage(gamergatedug, Math.floor(this.body.x) - 5, Math.floor(this.body.y) - 5)
+                    } else {
+                        let wet = 0
+                        for (let k = 0; k < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length; k++) {
+                            let ct = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].tile.t
+                            let ck = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].tile.k
+                            let xt = this.tile.t
+                            let xk = this.tile.k
+                            let line = new Line(ct, ck, xt, xk)
+                            if (line.hypotenuse() <= sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].sight) {
+                                if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].drone == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].imago == 2) {
+                                    wet = 1
+                                }
+                            }
+                        }
+                        if (wet == 1) {
+                            map_context.drawImage(gamergatedug, Math.floor(this.body.x) - 5, Math.floor(this.body.y) - 5)
+                        }
+                    }
+                }
             } else if (this.imago == 1) {
                 map_context.drawImage(imago, Math.floor(this.body.x) - 5, Math.floor(this.body.y) - 5)
             } else {
@@ -5477,12 +6135,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
 
             if (this.selected == 1 || this.selected == 2) {
-                this.healthbar = new Rectangle(this.body.x - 5.5, this.body.y + 2.5, 11, 3, "black")
-                this.healthbar.draw()
-                this.healthbar = new Rectangle(this.body.x - 5, this.body.y + 3, (this.health / this.maxhealth) * 10, 2, `rgb(${255 - ((this.health / this.maxhealth) * 255)},${(this.health / this.maxhealth) * 255},  0)`)
-                this.healthbar.draw()
                 if (sandmap.turn == sandmap.players.indexOf(this.faction)) {
                     this.dataOutput()
+                    this.healthbar = new Rectangle(this.body.x - 5.5, this.body.y + 2.5, 11, 3, "black")
+                    this.healthbar.draw()
+                    if(this.health/this.maxhealth > .5){
+                        this.healthbar = new Rectangle(this.body.x - 5, this.body.y + 3, (this.health / this.maxhealth) * 10, 2, `rgb(${(1 - ((this.health / this.maxhealth))) * 512},${255},  0)`)
+                    }else{
+                        this.healthbar = new Rectangle(this.body.x - 5, this.body.y + 3, (this.health / this.maxhealth) * 10, 2, `rgb(${255},${(((this.health / this.maxhealth)*1)) * 512},  0)`)
+                    }
+                    this.healthbar.draw()
                 }
             } else {
                 this.spawnsmall = {}
@@ -5491,6 +6153,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.morph.isPointInside = empty
                 this.morph2 = {}
                 this.morph2.isPointInside = empty
+                this.morph3 = {}
+                this.morph3.isPointInside = empty
             }
 
             for (let t = 0; t < this.shots.length; t++) {
@@ -5499,9 +6163,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.shots[t].y = (this.body.y * (1 - (this.shots[t].stage / this.projectilespeed))) + (((this.shots[t].stage / this.projectilespeed)) * this.shots[t].attacktarget.body.y)
                 this.shots[t].draw()
                 if (this.shots[t].stage >= this.projectilespeed) {
-                    this.shots[t].refhealth.health -= Math.max((this.damage * 3) - this.shots[t].attacktarget.defense, 0) //5?
-                    ////console.log(this.shots[t].refhealth)
-                    this.shots[t].marked = 1
+                    if(this.shots[t].refhealth.submerged == 1){
+                        this.attacktarget = {}
+                        this.attacktarget.tile = {} 
+
+                        //new
+                        this.attacktarget.tile.x = -100000
+                        this.attacktarget.tile.y = -100000
+                        this.attacktarget.tile.t = 0
+                        this.attacktarget.tile.k = 0
+                        this.shots[t].marked = 1
+                        continue
+                    }else{
+                        this.shots[t].refhealth.health -= Math.max((this.damage * 3) - this.shots[t].attacktarget.defense, 0) //5?
+                        ////////console.log(this.shots[t].refhealth)
+                        this.shots[t].marked = 1
+                    }
                 }
             }
             for (let t = 0; t < this.shots.length; t++) {
@@ -5554,9 +6231,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
         //     sandmap.turn = 0
         // }
         // if (keysPressed['q']) {
-        //     //console.log(sandmap)
+        //     //////console.log(sandmap)
         // }
-        ////////////console.log(selectrect)
+        ////////////////console.log(selectrect)
     }
 
 })
+
