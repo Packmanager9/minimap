@@ -3724,7 +3724,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                 for (let t = 0; t < this.units.length; t++) {
                     if (this.units[t].realPath.length - 1 == this.units[t].index) {
-                        if (this.units[t].suffocating > 0) {
+                        if (this.units[t].suffocating > 0 || (this.racks !== 1 && this.hotrock > 400)) {
                             if (Math.random() < .5) {
                                 if (Math.random() < .5) {
                                     this.buildWall(sandmap.blocks[Math.max(this.units[t].tile.t - 1, 0)][this.units[t].tile.k])
@@ -4755,9 +4755,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                 if (this.racks == 0 && this.isAI == 1 && this.hotrock > 400) {
                     this.buildGate(tile)
-                } else if (this.lab == 0 && this.isAI == 1 && this.hotrock > 150 && this.racks == 1) {
+                } else if (this.lab == 0 && this.isAI == 1 && this.hotrock > 150 && this.racks == 1)  {
                     this.buildBarracks(tile)
-                } else if (this.lab == 1 && this.isAI == 1 && this.hotrock > 150 && this.racks == 1) {
+                } else if (this.lab == 1 && this.isAI == 1 && this.hotrock > 150  && this.racks == 1) {
                     this.buildMachineLab(tile)
                 } else {
                     let wet = 0
@@ -4773,7 +4773,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                     if (wet == 0) {
                         if (this.hotrock >= 40) {
-                            this.racks = 1
+                            // this.racks = 1
                             this.hotrock -= 40
                             let building = new Building(tile, this, 0)
                             building.defense = 10
@@ -5469,8 +5469,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         makeHamartanworker() {
             if (this.que != 1) {
-                if (this.faction.hotrock >= 140 && this.faction.units.length < 51) {
-                    this.faction.hotrock -= 140
+                if (this.faction.hotrock >= 180 && this.faction.units.length < 51) {
+                    this.faction.hotrock -= 180
                     this.que = 1
                     this.worker = 1
                     this.timer = 20
@@ -5724,7 +5724,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     canvas_context.fillStyle = "white"
                     canvas_context.font = "12px arial"
                     // canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
-                    canvas_context.fillText("Worker: 140", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                    canvas_context.fillText("Worker: 180", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
                     canvas_context.fillText("invader: 340", this.spawnbig.x + 1, this.spawnbig.y + 46)
                     // canvas_context.fillText("Drone: 30")
                     // canvas_context.fillText("Drone: 30")
@@ -6025,7 +6025,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         isHamartanworker() {
             this.hamartanworker = 1
-            this.movespeed = 6
+            this.movespeed = 3
             this.body.color = "red"
             this.body.radius = 4
             this.defense = 1
