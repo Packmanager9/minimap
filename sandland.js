@@ -364,6 +364,39 @@ window.addEventListener('DOMContentLoaded', (event) => {
     sounds.push(collect)
 
 
+    // colditzlerian faces
+    let nymphface = new Image()
+    nymphface.src = "nymphface2.png"
+    let imagoface = new Image()
+    imagoface.src = "imagoface.png"
+    let scurrierface = new Image()
+    scurrierface.src = "scurrierface.png"
+    let gamergateface = new Image()
+    gamergateface.src = "gamergateface1.png"
+
+
+    // human faces
+    let infantryface = new Image()
+    infantryface.src = "infantryface.png"
+    let droneface = new Image()
+    droneface.src = "droneface.png"
+    let sniperface = new Image()
+    sniperface.src = "sniperface.png"
+    let harvesterface = new Image()
+    harvesterface.src = "harvesterface.png"
+
+
+
+    // hamartan faces
+    let hamartanscoutface = new Image()
+    hamartanscoutface.src = "hamartanscoutface.png"
+    let hamartansoldierface = new Image()
+    hamartansoldierface.src = "hamartansoldierface.png"
+    let hamartanworkerface = new Image()
+    hamartanworkerface.src = "hamartanworkerface.png"
+    let hamartaninvaderface = new Image()
+    hamartaninvaderface.src = "hamartaninvaderface.png"
+
 
     function soundCancel() {
         /* sets chance of audio playback  */
@@ -6457,6 +6490,48 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                 }
 
+                let facex = sandmap.window.body.x + sandmap.window.body.width + 10
+                let facey = 190
+
+                this.facerect = new UiRectangle(facex, facey, 64, 64, "#003333")
+                this.facerect.draw()
+
+                if(this.hamartaninvader == 1){
+                    canvas_context.drawImage(hamartaninvaderface, facex, facey)
+                }
+                if(this.hamartanscout == 1){
+                    canvas_context.drawImage(hamartanscoutface, facex, facey)
+                }
+                if(this.hamartansoldier == 1){
+                    canvas_context.drawImage(hamartansoldierface, facex, facey)
+                }
+                if(this.hamartanworker == 1){
+                    canvas_context.drawImage(hamartanworkerface, facex, facey)
+                }
+                if(this.infantry == 1){
+                    canvas_context.drawImage(infantryface, facex, facey)
+                }
+                if(this.infantry == 2){
+                    canvas_context.drawImage(sniperface, facex, facey)
+                }
+                if(this.drone == 1){
+                    canvas_context.drawImage(droneface, facex, facey)
+                }
+                if(this.harvester == 1){
+                    canvas_context.drawImage(harvesterface, facex, facey)
+                }
+                if(this.nymph == 1){
+                    canvas_context.drawImage(nymphface, facex, facey)
+                }
+                if(this.nymph == 2){
+                    canvas_context.drawImage(scurrierface, facex, facey)
+                }
+                if(this.imago == 2){
+                    canvas_context.drawImage(imagoface, facex, facey)
+                }
+                if(this.imago == 2){
+                    canvas_context.drawImage(gamergateface, facex, facey)
+                }
             }
 
             if (this.timer > 0) {
