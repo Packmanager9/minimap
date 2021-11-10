@@ -12,6 +12,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
     // preferential towards buildings
     // elite units
 
+    // startup frames
+    let startupart = new Image()
+    startupart.src = 'startupart.png'
+
     // background
     let snow = new Image()
     snow.src = 'smoothsnow4.png'
@@ -836,11 +840,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
             return false
         }
     }
-    let playbutton = new UiRectangle(1000, 620, 200, 75, "black")
-    let aitoggle1 = new UiRectangle(200, 200, 300, 75, "black")
-    let chartoggle1 = new UiRectangle(200, 400, 300, 75, "black")
-    let aitoggle2 = new UiRectangle(680, 200, 300, 75, "black")
-    let chartoggle2 = new UiRectangle(680, 400, 300, 75, "black")
+    let playbutton = new UiRectangle(80, 620, 200, 75, "#333333")
+    let aitoggle1 = new UiRectangle(200, 200, 300, 75, "#333333")
+    let chartoggle1 = new UiRectangle(200, 300, 300, 75, "#333333")
+    let aitoggle2 = new UiRectangle(680, 200, 300, 75, "#333333")
+    let chartoggle2 = new UiRectangle(680, 300, 300, 75, "#333333")
     class Circle {
         constructor(x, y, radius, color, xmom = 0, ymom = 0, friction = 1, reflect = 0, strokeWidth = 0, strokeColor = "transparent") {
             this.x = x
@@ -1796,6 +1800,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                 playbutton.draw()
                 if (playstart == 0) {
+                    canvas_context.drawImage(startupart,0,0)
+
+                playbutton.draw()
                     let invscale = 1
                     let string = "In the far flung Itzler star-system, on the sixth planet out, thought to be well beyond the habitable zone of Itzler, the planet Cold Itzler as it has come to be known is the only source of the miracle compound 'hotrock'. Hotrock makes life on Cold Itzler possible."
                     let ypointer = 50
@@ -1822,8 +1829,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     canvas_context.fillText("Continue", playbutton.x + 15, playbutton.y + 50)
                 }
                 if (playstart == 2) {
+
+                    canvas_context.drawImage(startupart,0,0)
+
+                playbutton.draw()
                     let invscale = 1
-                    let string = "You must choose, to defend your home planet as the Cold Itzlerians, or to pillage the icy rock for all it's worth as humans."
+                    let string = "You must choose, to defend your home planet as the Cold Itzlerians, to pillage the icy rock for all it's worth as the Earthoids, or to replenish your armada on your nomadic voyage as the Hamartans."
                     let ypointer = 50
                     let xpointer = 10
                     canvas_context.font = "50px Arial";
@@ -1850,6 +1861,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                 }
                 if (playstart == 3) {
+
+                    canvas_context.drawImage(startupart,0,0)
+
+                playbutton.draw()
                     let invscale = 1
                     let string = "Click the buttons to set up the match."
                     let ypointer = 50
@@ -1884,10 +1899,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     canvas_context.fillText(sandmap.players[0].name, chartoggle1.x + 15, chartoggle1.y + 50)
                     canvas_context.fillText(sandmap.players[1].name, chartoggle2.x + 15, chartoggle2.y + 50)
                     canvas_context.font = "40px Arial";
-                    canvas_context.fillStyle = "#000000"
+                    canvas_context.fillStyle = "#FFFFFF"
                     canvas_context.fillText("(You)", chartoggle1.x - 150, chartoggle1.y + 50)
                     canvas_context.font = "40px Arial";
-                    canvas_context.fillStyle = "#000000"
+                    canvas_context.fillStyle = "#FFFFFF"
                     canvas_context.fillText("(Enemy)", chartoggle2.x + 350, chartoggle2.y + 50)
                     canvas_context.font = "40px Arial";
                     canvas_context.fillStyle = "#FFFFFF"
