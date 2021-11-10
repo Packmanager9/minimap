@@ -7191,9 +7191,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
     function main() {
         soundspamdrop *= 1.009
 
-        if (keysPressed[' ']) {
-            sandmap.players[sandmap.turn].isAI = 0
-        }
+        // if (keysPressed[' ']) {
+        //     sandmap.players[sandmap.turn].isAI = 0
+        // }
 
         // sandmap.players[1].units = []
         postwind.play()
@@ -7207,12 +7207,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
         // // game code goes here
         dataflop = 0
         sandmap.draw()
-        if (keysPressed['h']) {
-            sandmap.turn = 1
-        }
-        if (keysPressed['k']) {
-            sandmap.turn = 0
-        }
+        // if (keysPressed['h']) {
+        //     sandmap.turn = 1
+        // }
+        // if (keysPressed['k']) {
+        //     sandmap.turn = 0
+        // }
         // if (keysPressed['q']) {
         //     //////console.log(sandmap)
         // }
