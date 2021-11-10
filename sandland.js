@@ -5941,6 +5941,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (this.barracks == 1) {
                     this.faction.racks = 0
                 }
+                if (this.assembler == 3) {
+                    this.faction.racks = 0
+                }
+                if (this.assembler == 1) {
+                    this.faction.lab = 0
+                }
+                if (this.assembler == 2) {
+                    this.faction.lab = 0
+                }
                 if (this.barracks == 2) {
                     this.faction.lab = 0
                 }
@@ -6575,7 +6584,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 let xk = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].tile.k
                                                                 let line = new Line(ct, ck, xt, xk)
                                                                 if (line.hypotenuse() <= sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].sight) {
-                                                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].drone == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].imago == 2) {
+                                                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].drone == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].imago == 2 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].hamartanscout == 1) {
                                                                         wet = 1
                                                                     }
                                                                 }
@@ -6913,7 +6922,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.heatwallcheck()
             } else if (this.faction.type == 2) {
                 this.aircheck++
-                if(this.aircheck%this.faction.buildings.length){
+                if(this.aircheck%this.faction.buildings.length == 0){
                     this.spirecheck()
                 }else if(typeof this.suffocating == "undefined"){
                     this.spirecheck()
@@ -7095,7 +7104,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     } else {
                         let wet = 0
                         for (let k = 0; k < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length; k++) {
-                        if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].drone == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].imago == 2) {
+                        if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].drone == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].imago == 2 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].hamartanscout == 1) {
                             let ct = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].tile.t
                             let ck = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].tile.k
                             let xt = this.tile.t
