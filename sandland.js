@@ -7402,7 +7402,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     // }
     start = 1
     function main() {
-        soundspamdrop *= 1.0011
+        soundspamdrop *= 1.011
 
         if (keysPressed[' ']) {
             sandmap.players[sandmap.turn].isAI = 0
