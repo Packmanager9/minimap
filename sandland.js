@@ -6170,7 +6170,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         this.isScout()
                     }
                     if (this.faction.units.length == 2) {
-                        this.isSniper()
+                        this.isInfantry()
                     }
                     if (this.faction.units.length == 3) {
                         this.isHarvester()
@@ -7402,7 +7402,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     // }
     start = 1
     function main() {
-        soundspamdrop *= 1.011
+        soundspamdrop *= 1.0011
 
         if (keysPressed[' ']) {
             sandmap.players[sandmap.turn].isAI = 0
