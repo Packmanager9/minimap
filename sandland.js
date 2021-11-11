@@ -83,6 +83,70 @@ window.addEventListener('DOMContentLoaded', (event) => {
     opening2.src = "opening2.mp3"
     sounds.push(opening2)
 
+    // soldier audio
+    let arerats = new Audio()
+    arerats.src = "arerats.mp3"
+    sounds.push(arerats)
+    let reallytacky = new Audio()
+    reallytacky.src = "reallytacky.mp3"
+    sounds.push(reallytacky)
+    let youareabuse = new Audio()
+    youareabuse.src = "youareabuse.mp3"
+    sounds.push(youareabuse)
+    let inthejetsarm = new Audio()
+    inthejetsarm.src = "inthejetsarm.mp3"
+    sounds.push(inthejetsarm)
+    let torus = new Audio()
+    torus.src = "torus.mp3"
+    sounds.push(torus)
+    let enormoushead = new Audio()
+    enormoushead.src = "enormoushead.mp3"
+    sounds.push(enormoushead)
+    let testroom = new Audio()
+    testroom.src = "testroom.mp3"
+    sounds.push(testroom)
+    let sorcery = new Audio()
+    sorcery.src = "sorcery.mp3"
+    sounds.push(sorcery)
+    let pagetti = new Audio()
+    pagetti.src = "pagetti.mp3"
+    sounds.push(pagetti)
+    let saytome = new Audio()
+    saytome.src = "saytome.mp3"
+    sounds.push(saytome)
+    let seearoundme = new Audio()
+    seearoundme.src = "seearoundme.mp3"
+    sounds.push(seearoundme)
+    let snnazzyroom = new Audio()
+    snnazzyroom.src = "snnazzyroom.mp3"
+    sounds.push(snnazzyroom)
+    let snazzyroom = new Audio()
+    snazzyroom.src = "snazzyroom.mp3"
+    sounds.push(snazzyroom)
+
+
+    //invader audio
+    let iamerror = new Audio()
+    iamerror.src = "iamerror.mp3"
+    sounds.push(iamerror)
+    let incroiable = new Audio()
+    incroiable.src = "incroiable.mp3"
+    sounds.push(incroiable)
+    let youhome = new Audio()
+    youhome.src = "youhome.mp3"
+    sounds.push(youhome)
+    let gentlemen = new Audio()
+    gentlemen.src = "gentlemen.mp3"
+    sounds.push(gentlemen)
+    let zero = new Audio()
+    zero.src = "zero.mp3"
+    sounds.push(zero)
+    let ohgeezyouvehurtme = new Audio()
+    ohgeezyouvehurtme.src = "ohgeezyouvehurtme.mp3"
+    sounds.push(ohgeezyouvehurtme)
+    let ritual = new Audio()
+    ritual.src = "ritual.mp3"
+    sounds.push(ritual)
 
     //sniper audio
     let adjustingforwindspeed = new Audio()
@@ -2326,6 +2390,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                 freezin.play()
                                             }
                                         }
+                                        if (sandmap.players[sandmap.turn].units[t].hamartaninvader == 1) {
+                                            if (Math.random() < .5) {
+                                                zero.play()
+                                            } else {
+                                                ritual.play()
+                                            }
+                                        }
+                                        if (sandmap.players[sandmap.turn].units[t].hamartansoldier == 1) {
+                                            if (Math.random() < .3) {
+                                                saytome.play()
+                                            }else  if (Math.random() < .3) {
+                                                snazzyroom.play()
+                                            } else {
+                                                snnazzyroom.play()
+                                            }
+                                        }
                                         if (sandmap.players[sandmap.turn].units[t].infantry == 2) {
                                             if (Math.random() < .3) {
                                                 jobsthejob.play()
@@ -2585,6 +2665,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         sieveceaselessly.play()
                                     }
                                 }
+                                if (sandmap.players[sandmap.turn].units[t].hamartaninvader == 1) {
+                                        incroiable.play()
+                                }
+                                if (sandmap.players[sandmap.turn].units[t].hamartansoldier == 1) {
+                                    pagetti.play()
+                                }
                                 if (sandmap.players[sandmap.turn].units[t].imago == 2) {
                                     if (Math.random() < .5) {
                                         dontstopeating.play()
@@ -2623,6 +2709,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             } else {
 
                                 soundCancel()
+
+                                if (sandmap.players[sandmap.turn].units[t].hamartaninvader == 1) {
+                                    gentlemen.play()
+                                }
+
+                                if (sandmap.players[sandmap.turn].units[t].hamartansoldier == 1) {
+                                    if (Math.random() < .5) {
+                                        seearoundme.play()
+                                    } else {
+                                        torus.play()
+                                    }
+                                }
+
                                 if (sandmap.players[sandmap.turn].units[t].imago == 1) {
                                     go.play()
                                 }
@@ -3430,7 +3529,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         if (t > 2 && k > 2) {
                             if (t < 125 && k < 125) {
 
-                                if(rect.ice != 1){
+                                if (rect.ice != 1) {
                                     if (Math.random() < .009) {
                                         rect.hotrock = 1
                                         rect.sourcerock = 200
@@ -5186,6 +5285,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     deathrattle.play()
                                 }
                             }
+                            if (this.units[t].hamartaninvader == 1) {
+                                ohgeezyouvehurtme.play()
+                            }
                             if (this.units[t].infantry == 2) {
                                 if (Math.random() < .5) {
                                     ahgeez.play()
@@ -5699,6 +5801,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (Math.random() < soundspamdrop) {
                 if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
                     soundCancel()
+                    testroom.play()
                 }
             }
             let agent1 = new Agent(this.tile, this.faction)
@@ -5708,6 +5811,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (Math.random() < soundspamdrop) {
                 if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
                     soundCancel()
+                    iamerror.play()
                 }
             }
             let agent1 = new Agent(this.tile, this.faction)
@@ -6464,7 +6568,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (Math.random() < soundspamdrop) {
                 if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
                     soundCancel()
-                    yeahiminthisroom.play()
+                    if (start != 0) {
+                        yeahiminthisroom.play()
+                    }
                 }
             }
         }
@@ -6733,6 +6839,30 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                     }
                                                                 }
                                                             }
+                                                            if (this.hamartaninvader == 1) {
+                                                                if (Math.random() < soundspamdrop) {
+                                                                    soundCancel()
+                                                                    youhome.play()
+                                                                }
+                                                            }
+                                                            if (this.hamartansoldier == 1) {
+                                                                if (Math.random() < soundspamdrop) {
+                                                                    soundCancel()
+                                                                    if (Math.random() < .3) {
+                                                                        inthejetsarm.play()
+                                                                    } else if (Math.random() < .3) {
+                                                                        youareabuse.play()
+                                                                    } else if (Math.random() < .3) {
+                                                                        sorcery.play()
+                                                                    } else if (Math.random() < .3) {
+                                                                        arerats.play()
+                                                                    }else if (Math.random() < .3) {
+                                                                        enormoushead.play()
+                                                                    } else {
+                                                                        reallytacky.play()
+                                                                    }
+                                                                }
+                                                            }
                                                             if (this.drone == 1) {
                                                                 if (Math.random() < soundspamdrop) {
                                                                     soundCancel()
@@ -6915,9 +7045,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 //     ////console.log(point, this.tile)
                 // }
                 this.stepout = 1
-                if(this.submerged == 1 || this.mounted == 0){
+                if (this.submerged == 1 || this.mounted == 0) {
                     this.pather = liarsastar
-                }else{
+                } else {
                     this.pather = astar
                 }
                 this.pather.agent = this
