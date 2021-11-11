@@ -5167,6 +5167,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             for (let t = 0; t < this.units.length; t++) {
                 if (this.units[t].marked == 1) {
                     this.units[t].tile.walkable = true
+                    this.units[t].tile.occupied = false
 
                     if (sandmap.players.indexOf(this) == sandmap.turn) {
                         if (Math.random() < soundspamdrop) {
@@ -6169,7 +6170,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         this.isScout()
                     }
                     if (this.faction.units.length == 2) {
-                        this.isInfantry()
+                        this.isSniper()
                     }
                     if (this.faction.units.length == 3) {
                         this.isHarvester()
@@ -6914,7 +6915,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 //     ////console.log(point, this.tile)
                 // }
                 this.stepout = 1
-                this.pather = astar
+                if(this.submerged == 1 || this.mounted == 0){
+                    this.pather = liarsastar
+                }else{
+                    this.pather = astar
+                }
                 this.pather.agent = this
                 this.obvious = this.realPath[this.index]
                 this.pathsto = []
@@ -7255,7 +7260,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
             if (this.realPath.length - 1 > this.index) {
-                if (this.realPath[this.index + 1].walkable == true && this.realPath[this.index + 1].occupied == false) { //?
+                if (((this.realPath[this.index + 1].walkable == true || (this.submerged == 1 || this.mounted == 0)) && this.realPath[this.index + 1].occupied == false)) { //?
                     let rat = (this.movespeedcount + 1) / this.movespeed
                     let invrat = 1 - rat
 
@@ -7397,11 +7402,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
     // }
     start = 1
     function main() {
-        soundspamdrop *= 1.009
+        soundspamdrop *= 1.011
 
-        // if (keysPressed[' ']) {
-        //     sandmap.players[sandmap.turn].isAI = 0
-        // }
+        if (keysPressed[' ']) {
+            sandmap.players[sandmap.turn].isAI = 0
+        }
 
         // sandmap.players[1].units = []
         postwind.play()
@@ -7415,12 +7420,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
         // // game code goes here
         dataflop = 0
         sandmap.draw()
-        // if (keysPressed['h']) {
-        //     sandmap.turn = 1
-        // }
-        // if (keysPressed['k']) {
-        //     sandmap.turn = 0
-        // }
+        if (keysPressed['h']) {
+            sandmap.turn = 1
+        }
+        if (keysPressed['k']) {
+            sandmap.turn = 0
+        }
         // if (keysPressed['q']) {
         //     //////////console.log(sandmap)
         // }
