@@ -3430,16 +3430,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         if (t > 2 && k > 2) {
                             if (t < 125 && k < 125) {
 
-                                if (Math.random() < .009) {
-                                    rect.hotrock = 1
-                                    rect.sourcerock = 200
-                                    rect.walkable = true
-                                    rect.color = "#DDAA44"
-                                    if (Math.random() < .5) {
-                                        rect.hotrock = 2
-                                        rect.sourcerock = 400
+                                if(rect.ice != 1){
+                                    if (Math.random() < .009) {
+                                        rect.hotrock = 1
+                                        rect.sourcerock = 200
                                         rect.walkable = true
-                                        rect.color = "#AA8822"
+                                        rect.color = "#DDAA44"
+                                        if (Math.random() < .5) {
+                                            rect.hotrock = 2
+                                            rect.sourcerock = 400
+                                            rect.walkable = true
+                                            rect.color = "#AA8822"
+                                        }
                                     }
                                 }
                             }
@@ -5856,7 +5858,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     canvas_context.fillStyle = "white"
                     canvas_context.font = "12px arial"
                     // canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
-                    canvas_context.fillText("Soldier: 190", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                    canvas_context.fillText("Soldier: 210", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
                     // canvas_context.fillText("Sniper: 360", this.spawnbig.x + 1, this.spawnbig.y + 46)
                     // canvas_context.fillText("Drone: 30")
                     // canvas_context.fillText("Drone: 30")
@@ -6158,6 +6160,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             } else if (this.faction.type == 1) {
                 this.isNymph()
+                if (this.faction.units.length == 2) {
+                    this.finishMorph2()
+                }
             } else {
                 if (start == 0) {
                     if (this.faction.units.length == 1) {
