@@ -5735,44 +5735,52 @@ window.addEventListener('DOMContentLoaded', (event) => {
         makeHamartansoldier() {
             if (this.que != 1) {
                 if (this.faction.hotrock >= 210 && this.faction.units.length < 51) {
+                    if(this.assembler == 1){
                     this.faction.hotrock -= 210
                     this.que = 1
                     this.soldier = 1
                     this.timer = 185
                     this.maxtimer = this.timer
+                    }
                 }
             }
         }
         makeHamartanscout() {
             if (this.que != 1) {
                 if (this.faction.hotrock >= 75 && this.faction.units.length < 51) {
+                    if(this.assembler == 2){
                     this.faction.hotrock -= 75
                     this.que = 1
                     this.scout = 1
                     this.timer = 85
                     this.maxtimer = this.timer
+                    }
                 }
             }
         }
         makeHamartanworker() {
             if (this.que != 1) {
                 if (this.faction.hotrock >= 180 && this.faction.units.length < 51) {
+                    if(this.assembler == 3){
                     this.faction.hotrock -= 180
                     this.que = 1
                     this.worker = 1
                     this.timer = 20
                     this.maxtimer = this.timer
+                    }
                 }
             }
         }
         makeHamartaninvader() {
             if (this.que != 1) {
                 if (this.faction.hotrock >= 340 && this.faction.units.length < 51) {
-                    this.faction.hotrock -= 340
-                    this.que = 1
-                    this.invader = 1
-                    this.timer = 320
-                    this.maxtimer = this.timer
+                    if(this.assembler == 3){
+                        this.faction.hotrock -= 340
+                        this.que = 1
+                        this.invader = 1
+                        this.timer = 320
+                        this.maxtimer = this.timer
+                    }
                 }
             }
         }
@@ -7532,7 +7540,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     // }
     start = 1
     function main() {
-        soundspamdrop *= 1.011
+        soundspamdrop *= 1.009
 
         if (keysPressed[' ']) {
             sandmap.players[sandmap.turn].isAI = 0
