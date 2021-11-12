@@ -4217,7 +4217,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                         this.units[t].pathTo(block)
                                                     }
                                                 }
-                                            } else if (this.units[t].pufffellow == 1) {
+                                            } else if (this.units[t].pufffellow == 1 || this.units[t].polllinator == 1) {
                                                 if (Math.random() < .5) {
                                                     let block = sandmap.gridPoints[Math.floor(Math.random() * sandmap.gridPoints.length)]
                                                     this.units[t].pathTo(block)
@@ -6279,7 +6279,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (Math.random() < soundspamdrop) {
                 if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
                     soundCancel()
-                    iamerror.play()
                 }
             }
             let agent1 = new Agent(this.tile, this.faction)
@@ -6325,6 +6324,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (Math.random() < soundspamdrop) {
                 if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
                     soundCancel()
+                    iamerror.play()
                 }
             }
             let agent1 = new Agent(this.tile, this.faction)
@@ -6883,7 +6883,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.name = "Librilbian Pollinator"
             this.polllinator = 1
             this.defense = 0
-            this.sight = 2 + this.movespeed
+            this.sight = 3 + this.movespeed
             this.attackrange = this.sight - 1
             this.maxhealth = this.health
             this.shots = []
@@ -6902,7 +6902,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.damage = (this.body.radius * 4.5) + 1
             this.name = "Librilbian Golophyte"
             this.goliophyte = 1
-            this.defense = 0
+            this.defense = 14
             this.sight = 2 + this.movespeed
             this.attackrange = this.sight - 1
             this.maxhealth = this.health
@@ -6922,7 +6922,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.damage = (this.body.radius * 3.5) + 1
             this.name = "Librilbian Podman"
             this.podman = 1
-            this.defense = 0
+            this.defense = 7
             this.sight = 2 + this.movespeed
             this.attackrange = this.sight - 1
             this.maxhealth = this.health
@@ -6930,7 +6930,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.attacktarget = {}
             this.attacktarget.health = 0
             this.attackcounter = 0
-            this.health = 700
+            this.health = 470
             this.maxhealth = this.health
         }
         isPufffellow() {
@@ -6939,10 +6939,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.movespeed = 2
             this.firerate = 4
             this.decayRate = 0
-            this.damage = (this.body.radius * 3.5) + 1
+            this.damage = (this.body.radius * 2.1) + 1
             this.name = "Librilbian Puff-Fellow"
             this.pufffellow = 1
-            this.defense = 0
+            this.defense = 4
             this.sight = 2 + this.movespeed
             this.attackrange = this.sight - 1
             this.maxhealth = this.health
@@ -7019,6 +7019,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         isHamartaninvader() {
             this.hamartaninvader = 1
+            this.hamartansoldier = 0
             this.movespeed = 7
             this.body.color = "red"
             this.body.radius = 4
@@ -7201,10 +7202,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.sight = 1 + this.movespeed
             this.firerate = 5
             this.decayRate = 0
-            this.damage = (this.body.radius * 3) + 1
+            this.damage = (this.body.radius * 3.2) + 1
             this.name = "Scurrier"
             this.nymph = 2
-            this.health = 400
+            this.health = 450
             this.defense = 3
             this.maxhealth = this.health
             this.attackrange = this.sight - 1
@@ -8225,9 +8226,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
     function main() {
         soundspamdrop *= 1.009
 
-        if (keysPressed[' ']) {
-            sandmap.players[sandmap.turn].isAI = 0
-        }
+        // if (keysPressed[' ']) {
+        //     sandmap.players[sandmap.turn].isAI = 0
+        // }
 
         // sandmap.players[1].units = []
         postwind.play()
@@ -8241,12 +8242,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
         // // game code goes here
         dataflop = 0
         sandmap.draw()
-        if (keysPressed['h']) {
-            sandmap.turn = 1
-        }
-        if (keysPressed['k']) {
-            sandmap.turn = 0
-        }
+        // if (keysPressed['h']) {
+        //     sandmap.turn = 1
+        // }
+        // if (keysPressed['k']) {
+        //     sandmap.turn = 0
+        // }
         // if (keysPressed['q']) {
         //     //////////console.log(sandmap)
         // }
