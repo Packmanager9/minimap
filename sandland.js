@@ -19,6 +19,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     // background
     let snow = new Image()
     snow.src = 'smoothsnow4.png'
+    let rawdirt = new Image()
+    rawdirt.src = 'rawdirt4.png'
     // barriers
     let nowalk = new Image()
     nowalk.src = 'nowalk.png'
@@ -427,6 +429,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
     collect.src = "collect.mp3"
     sounds.push(collect)
 
+    //librilian faces
+    let librilbianpollinatorface = new Image()
+    librilbianpollinatorface.src = "librilbianpollinatorface.png"
+    let golophyteface = new Image()
+    golophyteface.src = "golophyteface.png"
+    let pufffellowface = new Image()
+    pufffellowface.src = "pufffellowface.png"
+    let podmanface = new Image()
+    podmanface.src = "podmanface.png"
 
     // colditzlerian faces
     let nymphface = new Image()
@@ -483,6 +494,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let machinelab = new Image()
     machinelab.src = "machinelab.png"
 
+
+    //librilbian sprites
+    let librilbianbulbplant = new Image()
+    librilbianbulbplant.src = "bulbplant.png"
+    let librilbianpodman = new Image()
+    librilbianpodman.src = "podman.png"
+    let librilbianpufffellow = new Image()
+    librilbianpufffellow.src = "librilbian pufffellow.png"
+    let librilbianpodmother = new Image()
+    librilbianpodmother.src = "librilbian podmother.png"
+    let librilbiangoliophyte = new Image()
+    librilbiangoliophyte.src = "librilbian goliophyte.png"
+    let librilbianpollinator = new Image()
+    librilbianpollinator.src = "librilbian pollinator.png"
+
+
+    //human and base sprites
     let windmeter = new Image()
     windmeter.src = "windmeter.png"
     let progress = new Image()
@@ -504,9 +532,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let nymph = new Image()
     nymph.src = "nymph2.png"
     let hotrock1 = new Image()
-    hotrock1.src = "hotrock1.png"
+    hotrock1.src = "hotrock3a.png"
     let hotrock2 = new Image()
-    hotrock2.src = "hotrock2sheet.png"
+    hotrock2.src = "hotrock3.png"
 
 
     //hamartan sprites
@@ -1974,7 +2002,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                     playbutton.draw()
                     let invscale = 1
-                    let string = "You must choose, to defend your home planet as the Cold Itzlerians, to pillage the icy rock for all it's worth as the Earthoids, or to replenish your armada on your nomadic voyage as the Hamartans."
+                    let string = "You must choose, to defend your home planet as the Cold Itzlerians, to pillage the icy rock for all it's worth as the Earthoids, to replenish your armada on your nomadic voyage as the Hamartans, or to steal the water from the soil as the Librilbians."
                     let ypointer = 50
                     let xpointer = 10
                     canvas_context.font = "50px Arial";
@@ -2102,6 +2130,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             start = 1
 
                         } else if (sandmap.players[1].type == 2) {
+                            sandmap.players[1].type = 3
+                            sandmap.players[1].name = "Librilbians"
+                            sandmap.players[0].units = []
+                            sandmap.players[1].units = []
+                            start = 0
+                            for (let t = 0; t < 3; t++) {
+                                let agent1 = new Agent(sandmap.blocks[10][t + 10], sandmap.players[0])
+                            }
+                            for (let t = 0; t < 3; t++) {
+                                let agent2 = new Agent(sandmap.blocks[117][117 - t], sandmap.players[1])
+                            }
+                            start = 1
+                        } else if (sandmap.players[1].type == 3) {
                             sandmap.players[1].type = 0
                             sandmap.players[1].name = "Earthoids"
                             sandmap.players[0].units = []
@@ -2145,6 +2186,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             start = 1
 
                         } else if (sandmap.players[0].type == 2) {
+                            sandmap.players[0].type = 3
+                            sandmap.players[0].name = "Librilbians"
+                            sandmap.players[0].units = []
+                            sandmap.players[1].units = []
+                            start = 0
+                            for (let t = 0; t < 3; t++) {
+                                let agent1 = new Agent(sandmap.blocks[10][t + 10], sandmap.players[0])
+                            }
+                            for (let t = 0; t < 3; t++) {
+                                let agent2 = new Agent(sandmap.blocks[117][117 - t], sandmap.players[1])
+                            }
+                            start = 1
+                        } else if (sandmap.players[0].type == 3) {
                             sandmap.players[0].type = 0
                             sandmap.players[0].name = "Earthoids"
                             sandmap.players[0].units = []
@@ -2400,7 +2454,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         if (sandmap.players[sandmap.turn].units[t].hamartansoldier == 1) {
                                             if (Math.random() < .3) {
                                                 saytome.play()
-                                            }else  if (Math.random() < .3) {
+                                            } else if (Math.random() < .3) {
                                                 snazzyroom.play()
                                             } else {
                                                 snnazzyroom.play()
@@ -2507,6 +2561,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 }
                                 if (sandmap.players[sandmap.turn].buildings[t].spawnbig.isPointInside(TIP_engine)) {
                                     sandmap.players[sandmap.turn].buildings[t].makeHamartaninvader()
+                                }
+                            }
+                            if (sandmap.players[sandmap.turn].buildings[t].bulbplant == 1) {
+                                if (sandmap.players[sandmap.turn].buildings[t].spawnsmall.isPointInside(TIP_engine)) {
+                                    sandmap.players[sandmap.turn].buildings[t].makeLibrilbianpollinator()
+                                }
+                            }
+                            if (sandmap.players[sandmap.turn].buildings[t].bulbplant == 2) {
+                                if (sandmap.players[sandmap.turn].buildings[t].spawnsmall.isPointInside(TIP_engine)) {
+                                    sandmap.players[sandmap.turn].buildings[t].makeLibrilbianpufffellow()
+                                }
+                                if (sandmap.players[sandmap.turn].buildings[t].spawnmedium.isPointInside(TIP_engine)) {
+                                    sandmap.players[sandmap.turn].buildings[t].makeLibrilbianpodman()
+                                }
+                                if (sandmap.players[sandmap.turn].buildings[t].spawnbig.isPointInside(TIP_engine)) {
+                                    sandmap.players[sandmap.turn].buildings[t].makeLibrilbiangoliophyte()
                                 }
                             }
                         }
@@ -2666,7 +2736,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     }
                                 }
                                 if (sandmap.players[sandmap.turn].units[t].hamartaninvader == 1) {
-                                        incroiable.play()
+                                    incroiable.play()
                                 }
                                 if (sandmap.players[sandmap.turn].units[t].hamartansoldier == 1) {
                                     pagetti.play()
@@ -3203,6 +3273,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             // }
 
+        }
+        dirtdraw() {
+            if (this.dirt == 1) {
+                map_context.drawImage(rawdirt, 0, 0, rawdirt.width, rawdirt.height, (this.x + 5) - 100, (this.y + 5) - 100, 200, 200)
+            }
         }
         draw() {
             this.counterset++
@@ -3756,6 +3831,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 for (let k = 0; k < this.players[this.turn].blocks[t].length; k++) {
                     if (this.players[this.turn].blocks[t][k].markdraw == 1) {
 
+                        this.blocks[t][k].dirtdraw()
+
+                    }
+                }
+            }
+            for (let t = 0; t < this.players[this.turn].blocks.length; t++) {
+                for (let k = 0; k < this.players[this.turn].blocks[t].length; k++) {
+                    if (this.players[this.turn].blocks[t][k].markdraw == 1) {
+
                         this.blocks[t][k].draw()
 
                     }
@@ -3833,6 +3917,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.chunk = 0
             this.clickrate = 10 // 2
             this.aimode = 0
+            this.racksflag = 5
             this.racks = 0
             this.lab = 0
             this.averageSpace = {}
@@ -3895,7 +3980,260 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         ai() {
             this.defending--
-            if (this.type == 2) {
+            if (this.type == 3) {
+                this.chunk++
+                let index = -1
+                let j = 0
+
+
+
+                if (this.defending >= 32) {
+                    this.defending = 0
+                    this.defenseforce = 0
+                    for (let t = 0; t < this.units.length; t++) {
+                        if (this.units[t].pufffellow == 1) {
+                            this.defenseforce++
+                        }
+                        if (this.units[t].podman == 1) {
+                            this.defenseforce += 1.5
+                        }
+                        if (this.units[t].goliophyte == 1) {
+                            this.defenseforce += 2
+                        }
+                    }
+                    if (this.defenseforce > 0) {
+
+                        for (let t = 0; t < this.buildings.length; t++) {
+                            
+                        if (this.buildings[t].bulbplant == 2) {
+                            if (Math.random() < .5) {
+                                if (this.hotrock > 170) {
+                                    this.buildings[t].makeLibrilbianpodman()
+                                }
+                            } else {
+                                if (Math.random() < .5) {
+                                    if (this.hotrock > 95) {
+                                        this.buildings[t].makeLibrilbianpufffellow()
+                                    }
+                                } else {
+                                    if (this.hotrock > 370) {
+                                        this.buildings[t].makeLibrilbiangoliophyte()
+                                    }
+                                }
+                            }
+                    } 
+                }
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (this.units[t].podman == 1) {
+                                if (Math.random() < 2 / this.defenseforce) {
+                                    if (this.units[t].index == this.units[t].realPath.length - 1) {
+                                        this.units[t].pathTo(this.attackedAt)
+                                    }
+                                }
+                            }
+
+                            if (this.units[t].goliophyte == 1) {
+                                if (Math.random() < 2 / this.defenseforce) {
+                                    if (this.units[t].index == this.units[t].realPath.length - 1) {
+                                        this.units[t].pathTo(this.attackedAt)
+                                    }
+                                }
+                            }
+
+                            if (this.units[t].pufffellow == 1) {
+                                if (Math.random() < 2 / this.defenseforce) {
+                                    if (this.units[t].index == this.units[t].realPath.length - 1) {
+                                        this.units[t].pathTo(this.attackedAt)
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+
+                    }
+                }
+
+
+                
+                if (this.chunk % this.clickrate == 0) {
+                    for (let t = 0; t < this.buildings.length; t++) {
+                        if (this.buildings[t].bulbplant == 2) {
+                                if (Math.random() < .5) {
+                                    if (this.hotrock > 170) {
+                                        this.buildings[t].makeLibrilbianpodman()
+                                    }
+                                } else {
+                                    if (Math.random() < .5) {
+                                        if (this.hotrock > 95) {
+                                            this.buildings[t].makeLibrilbianpufffellow()
+                                        }
+                                    } else {
+                                        if (this.hotrock > 370) {
+                                            this.buildings[t].makeLibrilbiangoliophyte()
+                                        }
+                                    }
+                                }
+                        }
+                        if (this.buildings[t].bulbplant == 1) {
+                            if (this.units.length <= 15) {
+                                if (this.hotrock > 90) {
+                                    this.buildings[t].makeLibrilbianpollinator()
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+                if (this.units.length > this.racksflag) {
+                    this.racksflag += 5
+                    this.racks = 0
+                    this.lab = 0
+                }
+
+                if (this.racks == 0) {
+                    let length = this.buildings.length
+                    for (let t = 0; t < this.units.length; t++) {
+                        if (this.units[t].realPath.length - 1 == this.units[t].index) {
+                            // if (this.units[t].suffocating > 0 || (this.racks !== 1 && this.hotrock > 400)) {
+                            if (Math.random() < .5) {
+                                if (Math.random() < .5) {
+                                    this.buildBarracks(sandmap.blocks[Math.max(this.units[t].tile.t - 1, 0)][this.units[t].tile.k])
+                                } else {
+                                    this.buildBarracks(sandmap.blocks[Math.min(this.units[t].tile.t + 1, 127)][this.units[t].tile.k])
+                                }
+                            } else {
+                                if (Math.random() < .5) {
+                                    this.buildBarracks(sandmap.blocks[this.units[t].tile.t][Math.min(this.units[t].tile.k + 1, 127)])
+                                } else {
+                                    this.buildBarracks(sandmap.blocks[this.units[t].tile.t][Math.max(this.units[t].tile.k - 1, 0)])
+                                }
+                            }
+                            if(this.buildings.length > length){
+                                break
+                            }
+                        }
+                        // }
+                    }
+                }else if (this.lab == 0) {
+                    let length = this.buildings.length
+                    for (let t = 0; t < this.buildings.length; t++) {
+                        // if (this.buildings[t].realPath.length - 1 == this.buildings[t].index) {
+                            // if (this.units[t].suffocating > 0 || (this.racks !== 1 && this.hotrock > 400)) {
+                            if (Math.random() < .5) {
+                                if (Math.random() < .5) {
+                                    this.buildMachineLab(sandmap.blocks[Math.max(this.buildings[t].tile.t - 1, 0)][this.buildings[t].tile.k])
+                                } else {
+                                    this.buildMachineLab(sandmap.blocks[Math.min(this.buildings[t].tile.t + 1, 127)][this.buildings[t].tile.k])
+                                }
+                            } else {
+                                if (Math.random() < .5) {
+                                    this.buildMachineLab(sandmap.blocks[this.buildings[t].tile.t][Math.min(this.buildings[t].tile.k + 1, 127)])
+                                } else {
+                                    this.buildMachineLab(sandmap.blocks[this.buildings[t].tile.t][Math.max(this.buildings[t].tile.k - 1, 0)])
+                                }
+                            }
+                            if(this.buildings.length > length){
+                            break
+                            }
+                        // }
+                        // }
+                    }
+                }
+
+
+                if (this.chunk % this.clickrate == 1) {
+                    for (let t = 0; t < this.units.length; t++) {
+                        if (this.units[t].realPath.length - 1 == this.units[t].index) { //} || this.units[t].realPath[this.units[t].index].walkable !== true) {
+                            if (this.units[t].tile.hotrock != 1 && this.units[t].tile.hotrock != 2) {
+                                let max = 999999999
+                                for (let h = 0; h < sandmap.hotrocks.length; h++) {
+                                    if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
+                                        let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
+                                        // ////////////console.log(link)
+                                        if (link < max) {
+                                            max = link
+                                            index = h
+                                        }
+                                    }
+                                }
+
+                                if (typeof sandmap.hotrocks[index] !== "undefined") {
+                                    if (this.units[t].attacktarget.health > 0) {
+
+                                    } else {
+                                        j++
+                                        this.units[t].pathTo(sandmap.hotrocks[index])
+                                        if (j > 3) { //6
+                                            break
+                                        }
+                                    }
+                                } else {
+                                    if (Math.random() < (1 / this.units.length)) {
+                                        if (this.seen.length > 0) {
+                                            let block = this.seen[Math.floor(Math.random() * this.seen.length)]
+                                            this.units[t].pathTo(block)
+                                        }
+                                    }
+                                }
+                            }
+                        } else if (typeof this.units[t].realPath[this.units[t].index + 1] !== "undefined") {
+                            if (this.units[t].realPath[this.units[t].index + 1].walkable !== true) {
+                                if (this.units[t].tile.hotrock != 1 && this.units[t].tile.hotrock != 2) {
+                                    let max = 999999999
+                                    for (let h = 0; h < sandmap.hotrocks.length; h++) {
+                                        if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
+                                            let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
+                                            // ////////////console.log(link)
+                                            if (link < max) {
+                                                max = link
+                                                index = h
+                                            }
+                                        }
+                                    }
+
+                                    if (typeof sandmap.hotrocks[index] !== "undefined") {
+                                        if (this.units[t].attacktarget.health > 0) {
+
+                                        } else {
+                                            j++
+                                            this.units[t].pathTo(sandmap.hotrocks[index])
+                                            if (j > 3) { //6
+                                                break
+                                            }
+                                        }
+                                    } else {
+                                        if (Math.random() < .03) {
+                                            if (this.seen.length > 0) {
+                                                let block = this.seen[Math.floor(Math.random() * this.seen.length)]
+                                                this.units[t].pathTo(block)
+                                            }
+                                        } else {
+
+                                            if (this.seen.length <= this.units.length) {
+                                                if (this.units[t].polllinator == 1) {
+                                                    if (Math.random() < .5) {
+                                                        let block = sandmap.gridPoints[Math.floor(Math.random() * sandmap.gridPoints.length)]
+                                                        this.units[t].pathTo(block)
+                                                    }
+                                                }
+                                            } else if (this.units[t].pufffellow == 1) {
+                                                if (Math.random() < .5) {
+                                                    let block = sandmap.gridPoints[Math.floor(Math.random() * sandmap.gridPoints.length)]
+                                                    this.units[t].pathTo(block)
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
+            } else if (this.type == 2) {
 
 
                 if (this.chunk % this.clickrate == 0) {
@@ -5194,6 +5532,41 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         building.tile.spiretile = 1
                     }
                 }
+            } else if (this.type == 3) {
+                let wet = 0
+                let dirty = 0
+                for (let t = 0; t < this.buildings.length; t++) {
+                    if(this.buildings[t].bulbplant == 1){
+                        let link = new LineOP(tile, this.buildings[t].tile)
+                        if(link.hypotenuse() < 160){
+                            dirty = 1
+                        }
+                    }
+                }
+                if (tile.walkable == false) {
+                    wet = 1
+                }
+                for (let t = 0; t < this.buildings.length; t++) {
+                    if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
+                        wet = 1
+                    }
+                }
+                if (wet == 0 && ((dirty == 0 && this.isAI == 1) || this.isAI == 0)) {
+
+                    if (this.hotrock >= 90) {
+                        this.racks = 1
+                        this.hotrock -= 90
+                        let building = new Building(tile, this, 0)
+                        building.bulbplant = 1
+                        building.name = "Librilbian Bulbplant"
+                        building.health = 500
+                        building.maxhealth = building.health
+                        building.defense = 6
+                        building.damage = 0
+                        building.tile.spiretile = 1
+                        building.tile.dirt = 1
+                    }
+                }
             }
         }
         buildMachineLab(tile) {
@@ -5233,7 +5606,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         wet = 1
                     }
                 }
-                if (wet == 0) {
+                if (wet == 0 ) {
 
                     if (this.hotrock >= 210) {
                         this.lab = 2
@@ -5244,6 +5617,41 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         building.health = 750
                         building.maxhealth = building.health
                         building.defense = 20
+                        building.damage = 0
+                        building.tile.spiretile = 1
+                    }
+                }
+            } else if (this.type == 3) {
+                let wet = 0
+
+                let dirty = 0
+                for (let t = 0; t < this.buildings.length; t++) {
+                    if(this.buildings[t].bulbplant == 1){
+                        let link = new LineOP(tile, this.buildings[t].tile)
+                        if(link.hypotenuse() < 100){
+                            dirty = 1
+                        }
+                    }
+                }
+                if (tile.walkable == false) {
+                    wet = 1
+                }
+                for (let t = 0; t < this.buildings.length; t++) {
+                    if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
+                        wet = 1
+                    }
+                }
+                if (wet == 0 && dirty == 1)  {
+
+                    if (this.hotrock >= 210) {
+                        this.lab = 1
+                        this.hotrock -= 210
+                        let building = new Building(tile, this, 0)
+                        building.bulbplant = 2
+                        building.name = "Librilbian Podmother"
+                        building.health = 1750
+                        building.maxhealth = building.health
+                        building.defense = 22
                         building.damage = 0
                         building.tile.spiretile = 1
                     }
@@ -5735,12 +6143,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
         makeHamartansoldier() {
             if (this.que != 1) {
                 if (this.faction.hotrock >= 210 && this.faction.units.length < 51) {
-                    if(this.assembler == 1){
-                    this.faction.hotrock -= 210
-                    this.que = 1
-                    this.soldier = 1
-                    this.timer = 185
-                    this.maxtimer = this.timer
+                    if (this.assembler == 1) {
+                        this.faction.hotrock -= 210
+                        this.que = 1
+                        this.soldier = 1
+                        this.timer = 185
+                        this.maxtimer = this.timer
                     }
                 }
             }
@@ -5748,12 +6156,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
         makeHamartanscout() {
             if (this.que != 1) {
                 if (this.faction.hotrock >= 75 && this.faction.units.length < 51) {
-                    if(this.assembler == 2){
-                    this.faction.hotrock -= 75
-                    this.que = 1
-                    this.scout = 1
-                    this.timer = 85
-                    this.maxtimer = this.timer
+                    if (this.assembler == 2) {
+                        this.faction.hotrock -= 75
+                        this.que = 1
+                        this.scout = 1
+                        this.timer = 85
+                        this.maxtimer = this.timer
                     }
                 }
             }
@@ -5761,12 +6169,64 @@ window.addEventListener('DOMContentLoaded', (event) => {
         makeHamartanworker() {
             if (this.que != 1) {
                 if (this.faction.hotrock >= 180 && this.faction.units.length < 51) {
-                    if(this.assembler == 3){
-                    this.faction.hotrock -= 180
-                    this.que = 1
-                    this.worker = 1
-                    this.timer = 20
-                    this.maxtimer = this.timer
+                    if (this.assembler == 3) {
+                        this.faction.hotrock -= 180
+                        this.que = 1
+                        this.worker = 1
+                        this.timer = 20
+                        this.maxtimer = this.timer
+                    }
+                }
+            }
+        }
+        makeLibrilbianpollinator() {
+            if (this.que != 1) {
+                if (this.faction.hotrock >= 90 && this.faction.units.length < 51) {
+                    if (this.bulbplant == 1) {
+                        this.faction.hotrock -= 90
+                        this.que = 1
+                        this.polllinator = 1
+                        this.timer = 100
+                        this.maxtimer = this.timer
+                    }
+                }
+            }
+        }
+        makeLibrilbianpodman() {
+            if (this.que != 1) {
+                if (this.faction.hotrock >= 170 && this.faction.units.length < 51) {
+                    if (this.bulbplant == 2) {
+                        this.faction.hotrock -= 170
+                        this.que = 1
+                        this.podman = 1
+                        this.timer = 180
+                        this.maxtimer = this.timer
+                    }
+                }
+            }
+        }
+        makeLibrilbiangoliophyte() {
+            if (this.que != 1) {
+                if (this.faction.hotrock >= 370 && this.faction.units.length < 51) {
+                    if (this.bulbplant == 2) {
+                        this.faction.hotrock -= 370
+                        this.que = 1
+                        this.goliophyte = 1
+                        this.timer = 290
+                        this.maxtimer = this.timer
+                    }
+                }
+            }
+        }
+        makeLibrilbianpufffellow() {
+            if (this.que != 1) {
+                if (this.faction.hotrock >= 95 && this.faction.units.length < 51) {
+                    if (this.bulbplant == 2) {
+                        this.faction.hotrock -= 95
+                        this.que = 1
+                        this.pufffellow = 1
+                        this.timer = 50
+                        this.maxtimer = this.timer
                     }
                 }
             }
@@ -5774,7 +6234,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         makeHamartaninvader() {
             if (this.que != 1) {
                 if (this.faction.hotrock >= 340 && this.faction.units.length < 51) {
-                    if(this.assembler == 3){
+                    if (this.assembler == 3) {
                         this.faction.hotrock -= 340
                         this.que = 1
                         this.invader = 1
@@ -5824,6 +6284,42 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
             let agent1 = new Agent(this.tile, this.faction)
             agent1.isHamartanscout()
+        }
+        finishLibrilbianpollinator() {
+            if (Math.random() < soundspamdrop) {
+                if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
+                    soundCancel()
+                }
+            }
+            let agent1 = new Agent(this.tile, this.faction)
+            agent1.isPollinator()
+        }
+        finishLibrilbianpodman() {
+            if (Math.random() < soundspamdrop) {
+                if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
+                    soundCancel()
+                }
+            }
+            let agent1 = new Agent(this.tile, this.faction)
+            agent1.isPodman()
+        }
+        finishLibrilbiangoliophyte() {
+            if (Math.random() < soundspamdrop) {
+                if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
+                    soundCancel()
+                }
+            }
+            let agent1 = new Agent(this.tile, this.faction)
+            agent1.isGoliophyte()
+        }
+        finishLibrilbianpufffellow() {
+            if (Math.random() < soundspamdrop) {
+                if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
+                    soundCancel()
+                }
+            }
+            let agent1 = new Agent(this.tile, this.faction)
+            agent1.isPufffellow()
         }
         finishHamartaninvader() {
             if (Math.random() < soundspamdrop) {
@@ -6004,6 +6500,57 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
                     }
                 }
+                if (this.bulbplant == 1) {
+                    canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                    canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                    this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
+                    this.spawnsmall.draw()
+                    canvas_context.drawImage(librilbianpollinator, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
+                    // this.spawnmedium = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 110, 125, 90, 50, "black")
+                    // this.spawnmedium.draw()
+                    // canvas_context.drawImage(infantry, 0, 0, 10, 10, this.spawnmedium.x + 10, this.spawnmedium.y + 5, 30, 30)
+                    this.spawnbig = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 210, 125, 90, 50, "black")
+                    // this.spawnbig.draw()
+                    // canvas_context.drawImage(sniper1, 0, 0, 10, 10, this.spawnbig.x + 10, this.spawnbig.y + 5, 30, 30)
+
+
+                    canvas_context.fillStyle = "white"
+                    canvas_context.font = "12px arial"
+                    // canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                    canvas_context.fillText("Pollinator: 90", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                    // canvas_context.fillText("Sniper: 360", this.spawnbig.x + 1, this.spawnbig.y + 46)
+                    // canvas_context.fillText("Drone: 30")
+                    // canvas_context.fillText("Drone: 30")
+                    if (this.timer > 0) {
+                        canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
+                    }
+                }
+                if (this.bulbplant == 2) {
+                    canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                    canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                    this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
+                    this.spawnsmall.draw()
+                    canvas_context.drawImage(librilbianpufffellow, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
+                    this.spawnmedium = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 110, 125, 90, 50, "black")
+                    this.spawnmedium.draw()
+                    canvas_context.drawImage(librilbianpodman, 0, 0, 10, 10, this.spawnmedium.x + 10, this.spawnmedium.y + 5, 30, 30)
+                    this.spawnbig = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 210, 125, 90, 50, "black")
+                    this.spawnbig.draw()
+                    canvas_context.drawImage(librilbiangoliophyte, 0, 0, 10, 10, this.spawnbig.x + 10, this.spawnbig.y + 5, 30, 30)
+
+
+                    canvas_context.fillStyle = "white"
+                    canvas_context.font = "12px arial"
+                    // canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                    canvas_context.fillText("Puff-Fellow: 95", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                    canvas_context.fillText("Podman: 170", this.spawnmedium.x + 1, this.spawnmedium.y + 46)
+                    canvas_context.fillText("Goliophyte: 370", this.spawnbig.x + 1, this.spawnbig.y + 46)
+                    // canvas_context.fillText("Drone: 30")
+                    // canvas_context.fillText("Drone: 30")
+                    if (this.timer > 0) {
+                        canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
+                    }
+                }
                 if (this.assembler == 3) {
                     canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
                     canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
@@ -6084,7 +6631,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
         }
         draw() {
-            if (this.barracks >= 1 || this.assembler >= 1) {
+            if (this.barracks >= 1 || this.assembler >= 1 || this.bulbplant >= 1) {
                 this.timer--
                 if (this.timer == 0) {
                     if (this.drone == 1) {
@@ -6126,6 +6673,26 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         this.invader = 0
                         this.que = 0
                         this.finishHamartaninvader()
+                    }
+                    if (this.polllinator == 1) {
+                        this.polllinator = 0
+                        this.que = 0
+                        this.finishLibrilbianpollinator()
+                    }
+                    if (this.podman == 1) {
+                        this.podman = 0
+                        this.que = 0
+                        this.finishLibrilbianpodman()
+                    }
+                    if (this.goliophyte == 1) {
+                        this.goliophyte = 0
+                        this.que = 0
+                        this.finishLibrilbiangoliophyte()
+                    }
+                    if (this.pufffellow == 1) {
+                        this.pufffellow = 0
+                        this.que = 0
+                        this.finishLibrilbianpufffellow()
                     }
                 }
             }
@@ -6172,6 +6739,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     map_context.drawImage(assembler2, this.tiles[t].x, this.tiles[t].y)
                 } else if (this.assembler == 3) {
                     map_context.drawImage(assembler3, this.tiles[t].x, this.tiles[t].y)
+                } else if (this.bulbplant == 1) {
+                    map_context.drawImage(librilbianbulbplant, this.tiles[t].x, this.tiles[t].y)
+                } else if (this.bulbplant == 2) {
+                    map_context.drawImage(librilbianpodmother, this.tiles[t].x, this.tiles[t].y)
                 } else if (this.gate == 1) {
                     if (this.open == -1) {
                         map_context.drawImage(closedgate, this.tiles[t].x, this.tiles[t].y)
@@ -6222,6 +6793,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                 this.tile.spiretile = 0
                 this.tile.builtOn = 0
+                this.tile.dirt = 0
                 this.faction.buildings.splice(this.faction.buildings.indexOf(this), 1)
             }
         }
@@ -6276,6 +6848,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (this.faction.units.length == 2) {
                     this.finishMorph2()
                 }
+            } else if (this.faction.type == 3) {
+
+                if (this.faction.units.length == 1) {
+                    this.isPollinator()
+                }
+                if (this.faction.units.length == 2) {
+                    this.isPufffellow()
+                }
+                if (this.faction.units.length == 3) {
+                    this.isGoliophyte()
+                }
             } else {
                 if (start == 0) {
                     if (this.faction.units.length == 1) {
@@ -6289,6 +6872,86 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                 }
             }
+        }
+        isPollinator() {
+            this.body.color = "teal"
+            this.body.radius = 4
+            this.movespeed = 3
+            this.firerate = 6
+            this.decayRate = 0
+            this.damage = (this.body.radius * 1.5) + 1
+            this.name = "Librilbian Pollinator"
+            this.polllinator = 1
+            this.defense = 0
+            this.sight = 2 + this.movespeed
+            this.attackrange = this.sight - 1
+            this.maxhealth = this.health
+            this.shots = []
+            this.attacktarget = {}
+            this.attacktarget.health = 0
+            this.attackcounter = 0
+            this.health = 170
+            this.maxhealth = this.health
+        }
+        isGoliophyte() {
+            this.body.color = "teal"
+            this.body.radius = 4
+            this.movespeed = 7
+            this.firerate = 7
+            this.decayRate = 0
+            this.damage = (this.body.radius * 4.5) + 1
+            this.name = "Librilbian Golophyte"
+            this.goliophyte = 1
+            this.defense = 0
+            this.sight = 2 + this.movespeed
+            this.attackrange = this.sight - 1
+            this.maxhealth = this.health
+            this.shots = []
+            this.attacktarget = {}
+            this.attacktarget.health = 0
+            this.attackcounter = 0
+            this.health = 1700
+            this.maxhealth = this.health
+        }
+        isPodman() {
+            this.body.color = "teal"
+            this.body.radius = 4
+            this.movespeed = 5
+            this.firerate = 4
+            this.decayRate = 0
+            this.damage = (this.body.radius * 3.5) + 1
+            this.name = "Librilbian Podman"
+            this.podman = 1
+            this.defense = 0
+            this.sight = 2 + this.movespeed
+            this.attackrange = this.sight - 1
+            this.maxhealth = this.health
+            this.shots = []
+            this.attacktarget = {}
+            this.attacktarget.health = 0
+            this.attackcounter = 0
+            this.health = 700
+            this.maxhealth = this.health
+        }
+        isPufffellow() {
+            this.body.color = "teal"
+            this.body.radius = 4
+            this.movespeed = 2
+            this.firerate = 4
+            this.decayRate = 0
+            this.damage = (this.body.radius * 3.5) + 1
+            this.name = "Librilbian Puff-Fellow"
+            this.pufffellow = 1
+            this.defense = 0
+            this.sight = 2 + this.movespeed
+            this.attackrange = this.sight - 1
+            this.maxhealth = this.health
+            this.shots = []
+            this.attacktarget = {}
+            this.attacktarget.health = 0
+            this.attackcounter = 0
+            this.health = 300
+            this.maxhealth = this.health
         }
         isNymph() {
             this.body.color = "teal"
@@ -6761,6 +7424,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (this.nymph == 1) {
                     canvas_context.drawImage(nymphface, facex, facey)
                 }
+                if (this.polllinator == 1) {
+                    canvas_context.drawImage(librilbianpollinatorface, facex, facey)
+                }
+                if (this.pufffellow == 1) {
+                    canvas_context.drawImage(pufffellowface, facex, facey)
+                }
+                if (this.goliophyte == 1) {
+                    canvas_context.drawImage(golophyteface, facex, facey)
+                }
+                if (this.podman == 1) {
+                    canvas_context.drawImage(podmanface, facex, facey)
+                }
                 if (this.nymph == 2) {
                     canvas_context.drawImage(scurrierface, facex, facey)
                 }
@@ -6864,7 +7539,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                         sorcery.play()
                                                                     } else if (Math.random() < .3) {
                                                                         arerats.play()
-                                                                    }else if (Math.random() < .3) {
+                                                                    } else if (Math.random() < .3) {
                                                                         enormoushead.play()
                                                                     } else {
                                                                         reallytacky.play()
@@ -7464,6 +8139,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             } else if (this.imago == 1) {
                 map_context.drawImage(imago, Math.floor(this.body.x) - 5, Math.floor(this.body.y) - 5)
+            } else if (this.polllinator == 1) {
+                map_context.drawImage(librilbianpollinator, Math.floor(this.body.x) - 5, Math.floor(this.body.y) - 5)
+            } else if (this.goliophyte == 1) {
+                map_context.drawImage(librilbiangoliophyte, Math.floor(this.body.x) - 5, Math.floor(this.body.y) - 5)
+            } else if (this.pufffellow == 1) {
+                map_context.drawImage(librilbianpufffellow, Math.floor(this.body.x) - 5, Math.floor(this.body.y) - 5)
+            } else if (this.podman == 1) {
+                map_context.drawImage(librilbianpodman, Math.floor(this.body.x) - 5, Math.floor(this.body.y) - 5)
             } else {
                 this.body.draw()
             }
