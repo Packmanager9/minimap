@@ -2102,6 +2102,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 TIP_engine.y = YS_engine
                 TIP_engine.body = TIP_engine
 
+                if(endgame == 1){
+                    if(score.button.isPointInside(TIP_engine)){
+                        if(score.mode == 0){
+                            score.mode = 1
+                        }else if(score.mode == 1){
+                            score.mode = 0
+                        }
+                    }
+                }
+            
+
+                if (sandmap.players[0].units.length == 0 || sandmap.players[1].units.length == 0) {
+                    if (endbutton.isPointInside(TIP_engine)) {
+                        endgame = 1
+                    }
+                }
+
                 if (playstart != 1) {
                     if (playbutton.isPointInside(TIP_engine)) {
                         if (playstart == 3) {
@@ -3573,6 +3590,110 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 
+    class ScoreGraph {
+        constructor() {
+            this.faction0 = {}
+            this.faction0.firepower = []
+            this.faction0.collection = [0]
+            this.faction0.money = [250]
+            this.faction1 = {}
+            this.faction1.firepower = []
+            this.faction1.collection = [0]
+            this.faction1.money = [250]
+            this.granularity = 10
+            this.count = 0
+            this.mode = 0
+        }
+        add() {
+            if (this.count % this.granularity == 0) {
+                let force0 = 0
+                for (let t = 0; t < sandmap.players[0].units.length; t++) {
+                    force0 += sandmap.players[0].units[t].health
+                    force0 += (sandmap.players[0].units[t].damage * 3)
+                }
+                let force1 = 0
+                for (let t = 0; t < sandmap.players[1].units.length; t++) {
+                    force1 += sandmap.players[1].units[t].health
+                    force1 += (sandmap.players[1].units[t].damage * 3)
+                }
+                // console.log(force1)
+                this.faction0.firepower.push(force0)
+                this.faction1.firepower.push(force1)
+                // this.faction0.collection.push(0)
+                // this.faction1.collection.push(0)
+                this.faction0.money.push(sandmap.players[0].hotrock)
+                this.faction1.money.push(sandmap.players[1].hotrock)
+            }
+            this.count++
+        }
+        draw() {
+            this.box = new UiRectangle(0,0,1000,720, "#090909")
+            this.button = new UiRectangle(1010, 40, 270, 75, "#333333")
+            this.button.draw()
+            this.box.draw()
+            if(this.mode == 0){
+                canvas_context.fillStyle = "white"
+                canvas_context.font = "30px arial"
+                canvas_context.fillText("Mode: Firepower", this.button.x + 15,  this.button.y + 52)
+                let max0 = Math.max(...this.faction0.firepower)
+                let max1 = Math.max(...this.faction1.firepower)
+                let truemax = Math.max(max0, max1)
+                this.faction0.firepowerx = [...this.faction0.firepower]
+                this.faction1.firepowerx = [...this.faction1.firepower]
+                for (let t = 0; t < this.faction0.firepower.length; t++) {
+                    this.faction0.firepowerx[t] /= truemax
+                }
+                for (let t = 0; t < this.faction1.firepower.length; t++) {
+                    this.faction1.firepowerx[t] /= truemax
+                }
+                for (let t = 0; t < this.faction0.firepower.length; t++) {
+                    let x = (1000 / this.faction0.firepower.length) * t
+                    let y = (720 - (this.faction0.firepowerx[t] * 720))
+                    let point = new Circle(x, y, 1, sandmap.players[0].color)
+                    // console.log(point)
+                    point.draw()
+                }
+                for (let t = 0; t < this.faction1.firepower.length; t++) {
+                    let x = (1000 / this.faction1.firepower.length) * t
+                    let y = (720 - (this.faction1.firepowerx[t] * 720))
+                    let point = new Circle(x, y, 1, sandmap.players[1].color)
+                    // console.log(point)
+                    point.draw()
+                }
+    
+    
+            }else if(this.mode == 1){
+                canvas_context.fillStyle = "white"
+                canvas_context.font = "30px arial"
+                canvas_context.fillText("Mode: Hotrock", this.button.x + 15,  this.button.y + 52)
+                let max0 = Math.max(...this.faction0.money)
+                let max1 = Math.max(...this.faction1.money)
+                let truemax = Math.max(max0, max1)
+                this.faction0.moneyx = [...this.faction0.money]
+                this.faction1.moneyx = [...this.faction1.money]
+                for (let t = 0; t < this.faction0.money.length; t++) {
+                    this.faction0.moneyx[t] /= truemax
+                }
+                for (let t = 0; t < this.faction1.money.length; t++) {
+                    this.faction1.moneyx[t] /= truemax
+                }
+                for (let t = 0; t < this.faction0.money.length; t++) {
+                    let x = (1000 / this.faction0.money.length) * t
+                    let y = (720 - (this.faction0.moneyx[t] * 720))
+                    let point = new Circle(x, y, 1, sandmap.players[0].color)
+                    point.draw()
+                }
+                for (let t = 0; t < this.faction1.money.length; t++) {
+                    let x = (1000 / this.faction1.money.length) * t
+                    let y = (720 - (this.faction1.moneyx[t] * 720))
+                    let point = new Circle(x, y, 1, sandmap.players[1].color)
+                    point.draw()
+                }
+            }
+        }
+    }
+
+    let score = new ScoreGraph()
     class Sandmap {
         constructor(width, height, posx, posy, gridPoints) {
             this.windspeed = 1
@@ -4004,25 +4125,25 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (this.defenseforce > 0) {
 
                         for (let t = 0; t < this.buildings.length; t++) {
-                            
-                        if (this.buildings[t].bulbplant == 2) {
-                            if (Math.random() < .5) {
-                                if (this.hotrock > 170) {
-                                    this.buildings[t].makeLibrilbianpodman()
-                                }
-                            } else {
+
+                            if (this.buildings[t].bulbplant == 2) {
                                 if (Math.random() < .5) {
-                                    if (this.hotrock > 95) {
-                                        this.buildings[t].makeLibrilbianpufffellow()
+                                    if (this.hotrock > 170) {
+                                        this.buildings[t].makeLibrilbianpodman()
                                     }
                                 } else {
-                                    if (this.hotrock > 370) {
-                                        this.buildings[t].makeLibrilbiangoliophyte()
+                                    if (Math.random() < .5) {
+                                        if (this.hotrock > 95) {
+                                            this.buildings[t].makeLibrilbianpufffellow()
+                                        }
+                                    } else {
+                                        if (this.hotrock > 370) {
+                                            this.buildings[t].makeLibrilbiangoliophyte()
+                                        }
                                     }
                                 }
                             }
-                    } 
-                }
+                        }
                         for (let t = 0; t < this.units.length; t++) {
                             if (this.units[t].podman == 1) {
                                 if (Math.random() < 2 / this.defenseforce) {
@@ -4054,25 +4175,25 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
 
 
-                
+
                 if (this.chunk % this.clickrate == 0) {
                     for (let t = 0; t < this.buildings.length; t++) {
                         if (this.buildings[t].bulbplant == 2) {
+                            if (Math.random() < .5) {
+                                if (this.hotrock > 170) {
+                                    this.buildings[t].makeLibrilbianpodman()
+                                }
+                            } else {
                                 if (Math.random() < .5) {
-                                    if (this.hotrock > 170) {
-                                        this.buildings[t].makeLibrilbianpodman()
+                                    if (this.hotrock > 95) {
+                                        this.buildings[t].makeLibrilbianpufffellow()
                                     }
                                 } else {
-                                    if (Math.random() < .5) {
-                                        if (this.hotrock > 95) {
-                                            this.buildings[t].makeLibrilbianpufffellow()
-                                        }
-                                    } else {
-                                        if (this.hotrock > 370) {
-                                            this.buildings[t].makeLibrilbiangoliophyte()
-                                        }
+                                    if (this.hotrock > 370) {
+                                        this.buildings[t].makeLibrilbiangoliophyte()
                                     }
                                 }
+                            }
                         }
                         if (this.buildings[t].bulbplant == 1) {
                             if (this.units.length <= 15) {
@@ -4109,33 +4230,33 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     this.buildBarracks(sandmap.blocks[this.units[t].tile.t][Math.max(this.units[t].tile.k - 1, 0)])
                                 }
                             }
-                            if(this.buildings.length > length){
+                            if (this.buildings.length > length) {
                                 break
                             }
                         }
                         // }
                     }
-                }else if (this.lab == 0) {
+                } else if (this.lab == 0) {
                     let length = this.buildings.length
                     for (let t = 0; t < this.buildings.length; t++) {
                         // if (this.buildings[t].realPath.length - 1 == this.buildings[t].index) {
-                            // if (this.units[t].suffocating > 0 || (this.racks !== 1 && this.hotrock > 400)) {
+                        // if (this.units[t].suffocating > 0 || (this.racks !== 1 && this.hotrock > 400)) {
+                        if (Math.random() < .5) {
                             if (Math.random() < .5) {
-                                if (Math.random() < .5) {
-                                    this.buildMachineLab(sandmap.blocks[Math.max(this.buildings[t].tile.t - 1, 0)][this.buildings[t].tile.k])
-                                } else {
-                                    this.buildMachineLab(sandmap.blocks[Math.min(this.buildings[t].tile.t + 1, 127)][this.buildings[t].tile.k])
-                                }
+                                this.buildMachineLab(sandmap.blocks[Math.max(this.buildings[t].tile.t - 1, 0)][this.buildings[t].tile.k])
                             } else {
-                                if (Math.random() < .5) {
-                                    this.buildMachineLab(sandmap.blocks[this.buildings[t].tile.t][Math.min(this.buildings[t].tile.k + 1, 127)])
-                                } else {
-                                    this.buildMachineLab(sandmap.blocks[this.buildings[t].tile.t][Math.max(this.buildings[t].tile.k - 1, 0)])
-                                }
+                                this.buildMachineLab(sandmap.blocks[Math.min(this.buildings[t].tile.t + 1, 127)][this.buildings[t].tile.k])
                             }
-                            if(this.buildings.length > length){
+                        } else {
+                            if (Math.random() < .5) {
+                                this.buildMachineLab(sandmap.blocks[this.buildings[t].tile.t][Math.min(this.buildings[t].tile.k + 1, 127)])
+                            } else {
+                                this.buildMachineLab(sandmap.blocks[this.buildings[t].tile.t][Math.max(this.buildings[t].tile.k - 1, 0)])
+                            }
+                        }
+                        if (this.buildings.length > length) {
                             break
-                            }
+                        }
                         // }
                         // }
                     }
@@ -5536,9 +5657,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 let wet = 0
                 let dirty = 0
                 for (let t = 0; t < this.buildings.length; t++) {
-                    if(this.buildings[t].bulbplant == 1){
+                    if (this.buildings[t].bulbplant == 1) {
                         let link = new LineOP(tile, this.buildings[t].tile)
-                        if(link.hypotenuse() < 160){
+                        if (link.hypotenuse() < 160) {
                             dirty = 1
                         }
                     }
@@ -5606,7 +5727,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         wet = 1
                     }
                 }
-                if (wet == 0 ) {
+                if (wet == 0) {
 
                     if (this.hotrock >= 210) {
                         this.lab = 2
@@ -5626,9 +5747,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                 let dirty = 0
                 for (let t = 0; t < this.buildings.length; t++) {
-                    if(this.buildings[t].bulbplant == 1){
+                    if (this.buildings[t].bulbplant == 1) {
                         let link = new LineOP(tile, this.buildings[t].tile)
-                        if(link.hypotenuse() < 100){
+                        if (link.hypotenuse() < 100) {
                             dirty = 1
                         }
                     }
@@ -5641,7 +5762,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         wet = 1
                     }
                 }
-                if (wet == 0 && dirty == 1)  {
+                if (wet == 0 && dirty == 1) {
 
                     if (this.hotrock >= 210) {
                         this.lab = 1
@@ -6876,7 +6997,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         isPollinator() {
             this.body.color = "teal"
             this.body.radius = 4
-            this.movespeed = 3
+            this.movespeed = 1 //2 and 3 too high?
             this.firerate = 6
             this.decayRate = 0
             this.damage = (this.body.radius * 1.5) + 1
@@ -7980,7 +8101,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                     this.faction.hotrock += this.movespeed * .01
                     this.tile.sourcerock -= this.movespeed * .01
-                    if (this.nymph == 1 || this.harvester == 1 || this.hamartanworker == 1) {
+                    if (this.nymph == 1 || this.harvester == 1 || this.hamartanworker == 1  || this.polllinator == 1) {
                         this.faction.hotrock += this.movespeed * .025
                         this.tile.sourcerock -= this.movespeed * .025
                     }
@@ -7998,7 +8119,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 } else {
                     this.faction.hotrock += this.movespeed * .02
                     this.tile.sourcerock -= this.movespeed * .02
-                    if (this.nymph == 1 || this.harvester == 1 || this.hamartanworker == 1) {
+                    if (this.nymph == 1 || this.harvester == 1 || this.hamartanworker == 1 || this.polllinator == 1) {
                         this.faction.hotrock += this.movespeed * .05
                         this.tile.sourcerock += this.movespeed * .05
                     }
@@ -8223,35 +8344,52 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     // }
     start = 1
+
+    let endbutton = new UiRectangle(sandmap.window.minibody.x + 260, sandmap.window.minibody.y - 77, 100, 75, "#333333")
+    let endgame = 0
     function main() {
-        soundspamdrop *= 1.009
 
-        // if (keysPressed[' ']) {
-        //     sandmap.players[sandmap.turn].isAI = 0
-        // }
-
-        // sandmap.players[1].units = []
-        postwind.play()
-        // if(Math.random()<.2){
-        //     debreak = 0
-        // }
         canvas_context.clearRect(0, 0, canvas.width, canvas.height)  // refreshes the image
         map_context.clearRect(0, 0, map_canvas.width, map_canvas.height)  // refreshes the image
-        map_context.drawImage(snow, 0, 0, snow.width, snow.height, 0, 0, 1280, 1280)
-        // gamepadAPI.update() //checks for button presses/stick movement on the connected controller)
-        // // game code goes here
-        dataflop = 0
-        sandmap.draw()
-        // if (keysPressed['h']) {
-        //     sandmap.turn = 1
-        // }
-        // if (keysPressed['k']) {
-        //     sandmap.turn = 0
-        // }
-        // if (keysPressed['q']) {
-        //     //////////console.log(sandmap)
-        // }
-        ////////////////////console.log(selectrect)
+        if (endgame == 1) {
+            score.draw()
+        } else {
+            score.add()
+
+            soundspamdrop *= 1.009
+
+            // if (keysPressed[' ']) {
+            //     sandmap.players[sandmap.turn].isAI = 0
+            // }
+
+            // sandmap.players[1].units = []
+            postwind.play()
+            // if(Math.random()<.2){
+            //     debreak = 0
+            // }
+            map_context.drawImage(snow, 0, 0, snow.width, snow.height, 0, 0, 1280, 1280)
+            // gamepadAPI.update() //checks for button presses/stick movement on the connected controller)
+            // // game code goes here
+            dataflop = 0
+            sandmap.draw()
+            // if (keysPressed['h']) {
+            //     sandmap.turn = 1
+            // }
+            // if (keysPressed['k']) {
+            //     sandmap.turn = 0
+            // }
+            // if (keysPressed['q']) {
+            //     //////////console.log(sandmap)
+            // }
+            ////////////////////console.log(selectrect)
+
+        if (sandmap.players[0].units.length == 0 || sandmap.players[1].units.length == 0) {
+            endbutton.draw()
+            canvas_context.fillStyle = "white"
+            canvas_context.font = "40px arial"
+            canvas_context.fillText("End", endbutton.x + 15, endbutton.y + 52)
+        }
+        }
     }
 
 })
