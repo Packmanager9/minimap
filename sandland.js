@@ -2107,6 +2107,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         if(score.mode == 0){
                             score.mode = 1
                         }else if(score.mode == 1){
+                            score.mode = 2
+                        }else if(score.mode == 2){
                             score.mode = 0
                         }
                     }
@@ -3600,6 +3602,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.faction1.firepower = []
             this.faction1.collection = [0]
             this.faction1.money = [250]
+            this.wind = []
             this.granularity = 10
             this.count = 0
             this.mode = 0
@@ -3609,18 +3612,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 let force0 = 0
                 for (let t = 0; t < sandmap.players[0].units.length; t++) {
                     force0 += sandmap.players[0].units[t].health
-                    force0 += (sandmap.players[0].units[t].damage * 3)
+                    force0 += (sandmap.players[0].units[t].damage * 9)
+                    force0 += (sandmap.players[0].units[t].defense * 15)
                 }
                 let force1 = 0
                 for (let t = 0; t < sandmap.players[1].units.length; t++) {
                     force1 += sandmap.players[1].units[t].health
-                    force1 += (sandmap.players[1].units[t].damage * 3)
+                    force1 += (sandmap.players[1].units[t].damage * 9)
+                    force1 += (sandmap.players[1].units[t].defense * 15)
                 }
                 // console.log(force1)
                 this.faction0.firepower.push(force0)
                 this.faction1.firepower.push(force1)
-                // this.faction0.collection.push(0)
-                // this.faction1.collection.push(0)
+                this.wind.push(sandmap.windspeed)
+                // this.faction1.wind.push(sandmap.windspeed)
                 this.faction0.money.push(sandmap.players[0].hotrock)
                 this.faction1.money.push(sandmap.players[1].hotrock)
             }
@@ -3687,6 +3692,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     let x = (1000 / this.faction1.money.length) * t
                     let y = (720 - (this.faction1.moneyx[t] * 720))
                     let point = new Circle(x, y, 1, sandmap.players[1].color)
+                    point.draw()
+                }
+            }else if(this.mode == 2){
+                canvas_context.fillStyle = "white"
+                canvas_context.font = "30px arial"
+                canvas_context.fillText("Mode: Windspeed", this.button.x + 15,  this.button.y + 52)
+                let max0 = Math.max(...this.wind)
+                let truemax = Math.max(max0, 0)
+                this.windx = [...this.wind]
+                for (let t = 0; t < this.wind.length; t++) {
+                    this.windx[t] /= truemax
+                }
+                for (let t = 0; t < this.wind.length; t++) {
+                    let x = (1000 / this.wind.length) * t
+                    let y = (720 - (this.windx[t] * 720))
+                    let point = new Circle(x, y, 1, "red")
                     point.draw()
                 }
             }
