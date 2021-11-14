@@ -8786,11 +8786,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let endgame = 0
     function main() {
 
-        if (keysPressed['l']) {
-            endgame = 1
-        } else {
-            endgame = 0
-        }
+        // if (keysPressed['l']) {
+        //     endgame = 1
+        // } else {
+        //     endgame = 0
+        // }
         canvas_context.clearRect(0, 0, canvas.width, canvas.height)  // refreshes the image
         map_context.clearRect(0, 0, map_canvas.width, map_canvas.height)  // refreshes the image
         if (endgame == 1) {
@@ -8814,12 +8814,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // // game code goes here
             dataflop = 0
             sandmap.draw()
-            if (keysPressed['h']) {
-                sandmap.turn = 1
-            }
-            if (keysPressed['k']) {
-                sandmap.turn = 0
-            }
+            // if (keysPressed['h']) {
+            //     sandmap.turn = 1
+            // }
+            // if (keysPressed['k']) {
+            //     sandmap.turn = 0
+            // }
             // if (keysPressed['q']) {
             //     //////////console.log(sandmap)
             // }
