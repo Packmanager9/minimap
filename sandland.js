@@ -2102,18 +2102,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 TIP_engine.y = YS_engine
                 TIP_engine.body = TIP_engine
 
-                if(endgame == 1){
-                    if(score.button.isPointInside(TIP_engine)){
-                        if(score.mode == 0){
+                if (endgame == 1) {
+                    if (score.button.isPointInside(TIP_engine)) {
+                        if (score.mode == 0) {
                             score.mode = 1
-                        }else if(score.mode == 1){
+                        } else if (score.mode == 1) {
                             score.mode = 2
-                        }else if(score.mode == 2){
+                        } else if (score.mode == 2) {
+                            score.mode = 3
+                        }else if (score.mode == 3) {
                             score.mode = 0
                         }
                     }
                 }
-            
+
 
                 if (sandmap.players[0].units.length == 0 || sandmap.players[1].units.length == 0) {
                     if (endbutton.isPointInside(TIP_engine)) {
@@ -2623,6 +2625,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     if (Math.random() < soundspamdrop) {
                                         soundCancel()
                                         whoarewetomolt.play()
+                                    }
+                                }
+                                if (sandmap.players[sandmap.turn].units[t].pollinator == 1) {
+
+                                    for (let k = 0; k < sandmap.players[sandmap.turn].units.length; k++) {
+                                        if (sandmap.players[sandmap.turn].units[k].pollinator == 1) {
+                                            if (sandmap.players[sandmap.turn].units[k].selected == 1 || sandmap.players[sandmap.turn].units[k].selected == 2) {
+                                                sandmap.players[sandmap.turn].units[k].metamorphpufffellow()
+                                            }
+                                        }
+                                    }
+                                    if (Math.random() < soundspamdrop) {
+                                        soundCancel()
                                     }
                                 }
 
@@ -3603,7 +3618,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.faction1.collection = [0]
             this.faction1.money = [250]
             this.wind = []
-            this.granularity = 10
+            this.granularity = 6
             this.count = 0
             this.mode = 0
         }
@@ -3628,18 +3643,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 // this.faction1.wind.push(sandmap.windspeed)
                 this.faction0.money.push(sandmap.players[0].hotrock)
                 this.faction1.money.push(sandmap.players[1].hotrock)
+                this.faction0.collection.push(sandmap.players[0].income)
+                this.faction1.collection.push(sandmap.players[1].income)
             }
             this.count++
         }
         draw() {
-            this.box = new UiRectangle(0,0,1000,720, "#090909")
+            this.box = new UiRectangle(0, 0, 1000, 720, "#090909")
             this.button = new UiRectangle(1010, 40, 270, 75, "#333333")
             this.button.draw()
             this.box.draw()
-            if(this.mode == 0){
+            if (this.mode == 0) {
                 canvas_context.fillStyle = "white"
                 canvas_context.font = "30px arial"
-                canvas_context.fillText("Mode: Firepower", this.button.x + 15,  this.button.y + 52)
+                canvas_context.fillText("Mode: Firepower", this.button.x + 15, this.button.y + 52)
                 let max0 = Math.max(...this.faction0.firepower)
                 let max1 = Math.max(...this.faction1.firepower)
                 let truemax = Math.max(max0, max1)
@@ -3665,12 +3682,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     // console.log(point)
                     point.draw()
                 }
-    
-    
-            }else if(this.mode == 1){
+
+
+            } else if (this.mode == 1) {
                 canvas_context.fillStyle = "white"
                 canvas_context.font = "30px arial"
-                canvas_context.fillText("Mode: Hotrock", this.button.x + 15,  this.button.y + 52)
+                canvas_context.fillText("Mode: Hotrock", this.button.x + 15, this.button.y + 52)
                 let max0 = Math.max(...this.faction0.money)
                 let max1 = Math.max(...this.faction1.money)
                 let truemax = Math.max(max0, max1)
@@ -3694,10 +3711,37 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     let point = new Circle(x, y, 1, sandmap.players[1].color)
                     point.draw()
                 }
-            }else if(this.mode == 2){
+            }else if (this.mode == 3) {
                 canvas_context.fillStyle = "white"
                 canvas_context.font = "30px arial"
-                canvas_context.fillText("Mode: Windspeed", this.button.x + 15,  this.button.y + 52)
+                canvas_context.fillText("Mode: Income", this.button.x + 15, this.button.y + 52)
+                let max0 = Math.max(...this.faction0.collection)
+                let max1 = Math.max(...this.faction1.collection)
+                let truemax = Math.max(max0, max1)
+                this.faction0.collectionx = [...this.faction0.collection]
+                this.faction1.collectionx = [...this.faction1.collection]
+                for (let t = 0; t < this.faction0.collection.length; t++) {
+                    this.faction0.collectionx[t] /= truemax
+                }
+                for (let t = 0; t < this.faction1.collection.length; t++) {
+                    this.faction1.collectionx[t] /= truemax
+                }
+                for (let t = 0; t < this.faction0.collection.length; t++) {
+                    let x = (1000 / this.faction0.collection.length) * t
+                    let y = (720 - (this.faction0.collectionx[t] * 720))
+                    let point = new Circle(x, y, 1, sandmap.players[0].color)
+                    point.draw()
+                }
+                for (let t = 0; t < this.faction1.collection.length; t++) {
+                    let x = (1000 / this.faction1.collection.length) * t
+                    let y = (720 - (this.faction1.collectionx[t] * 720))
+                    let point = new Circle(x, y, 1, sandmap.players[1].color)
+                    point.draw()
+                }
+            } else if (this.mode == 2) {
+                canvas_context.fillStyle = "white"
+                canvas_context.font = "30px arial"
+                canvas_context.fillText("Mode: Windspeed", this.button.x + 15, this.button.y + 52)
                 let max0 = Math.max(...this.wind)
                 let truemax = Math.max(max0, 0)
                 this.windx = [...this.wind]
@@ -3732,6 +3776,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.diagonal = true
             this.hotrocks = []
             this.players = []
+            this.seed = 256 + (Math.floor(Math.random() * 256))
             // this.players.push(new Player('Hamartans', "#AA00AA", 0, 2))
             this.players.push(new Player('Earthoids', "#AA00AA", 0, 0))
             this.players.push(new Player('Cold Itzlerians', "#09DD99", 1, 1))
@@ -3743,20 +3788,33 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     for (let k = 0; k < 128; k++) {
                         let rect = new Tile(t * 10, k * 10, 10, 10, "#AACCFF", id, 10, t * 10, k * 10, true)
                         let fogtile = new FogTile(t * 10, k * 10, 10, 10, "#090909", id, 10, t * 10, k * 10, true)
-                        if (t > 2 && k > 2) {
-                            if (t < 125 && k < 125) {
+                        if (g == 2) {
+                            if (t > 2 && k > 2) {
+                                if (t < 125 && k < 125) {
+                                    let bump = 0
+                                    for (let p = 0; p < this.hotrocks.length; p++) {
+                                        let link = new LineOP(this.hotrocks[p], rect)
+                                        if (link.hypotenuse() < 120 + ((Math.random() - .5) * 60)) {
+                                            // console.log(this.hotrocks)
+                                            bump = 1
+                                        }
+                                    }
 
-                                if (rect.ice != 1) {
-                                    if (Math.random() < .009) {
-                                        rect.hotrock = 1
-                                        rect.sourcerock = 200
-                                        rect.walkable = true
-                                        rect.color = "#DDAA44"
-                                        if (Math.random() < .5) {
+                                    if (rect.ice != 1) {
+                                        if (bump == 0) { //.009
+                                            // rect.hotrock = 1
+                                            // rect.sourcerock = 200
+                                            // rect.walkable = true
+                                            // rect.color = "#DDAA44"
+                                            // if (Math.random() < .5) {
                                             rect.hotrock = 2
                                             rect.sourcerock = 400
                                             rect.walkable = true
                                             rect.color = "#AA8822"
+                                            // }
+                                            if (rect.hotrock == 1 || rect.hotrock == 2) {
+                                                this.hotrocks.push(rect)
+                                            }
                                         }
                                     }
                                 }
@@ -3790,9 +3848,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
             for (let t = 0; t < this.blocks.length; t++) {
                 for (let k = 0; k < this.blocks[t].length; k++) {
                     this.gridPoints.push(this.blocks[t][k])
-                    if (this.blocks[t][k].hotrock == 1 || this.blocks[t][k].hotrock == 2) {
-                        this.hotrocks.push(this.blocks[t][k])
-                    }
                 }
             }
             ////////////console.log(this)
@@ -3922,6 +3977,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
 
         draw() {
+            for (let t = 0; t < this.players.length; t++) {
+                this.players[t].income = 0
+            }
 
             if (Math.random() < .05) {
                 let chooser = Math.floor(Math.random() * 2)
@@ -4047,6 +4105,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.attacktimeout = 0
             this.blocks = []
             this.seen = []
+            this.seenrocks = []
             this.fog = []
             this.name = name
             this.selected_tile = {}
@@ -4057,7 +4116,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.isAI = ai
             this.type = type
             this.chunk = 0
-            this.clickrate = 10 // 2
+            this.clickrate = 2 // 2 // 10
             this.aimode = 0
             this.racksflag = 5
             this.racks = 0
@@ -4065,6 +4124,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.averageSpace = {}
             this.baseMoveFlag = 0
             this.defending = 0
+            this.income = 0
         }
         findBase() {
             this.averageSpace.dirs1 = 0
@@ -4130,6 +4190,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
                 if (this.defending >= 32) {
+                    if(this.defending > 39){
+                        for (let t = 0; t < this.units.length; t++) {
+                            if(this.units[t].pollinator == 1){
+                                this.units[t].metamorphpufffellow()
+                            }
+                        }
+                    }
                     this.defending = 0
                     this.defenseforce = 0
                     for (let t = 0; t < this.units.length; t++) {
@@ -4154,8 +4221,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     }
                                 } else {
                                     if (Math.random() < .5) {
-                                        if (this.hotrock > 95) {
-                                            this.buildings[t].makeLibrilbianpufffellow()
+                                        if (Math.random() < .5) {
+                                            if (this.hotrock > 170) {
+                                                this.buildings[t].makeLibrilbianpodman()
+                                            }
+                                        } else {
+                                            if (Math.random() < .5) {
+                                                if (this.hotrock > 95) {
+                                                    this.buildings[t].makeLibrilbianpufffellow()
+                                                }
+                                            } else {
+                                                if (this.hotrock > 370) {
+                                                    this.buildings[t].makeLibrilbiangoliophyte()
+                                                }
+                                            }
                                         }
                                     } else {
                                         if (this.hotrock > 370) {
@@ -4167,7 +4246,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         }
                         for (let t = 0; t < this.units.length; t++) {
                             if (this.units[t].podman == 1) {
-                                if (Math.random() < 2 / this.defenseforce) {
+                                if (Math.random() < 7 / this.defenseforce) { //2
                                     if (this.units[t].index == this.units[t].realPath.length - 1) {
                                         this.units[t].pathTo(this.attackedAt)
                                     }
@@ -4175,7 +4254,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             }
 
                             if (this.units[t].goliophyte == 1) {
-                                if (Math.random() < 2 / this.defenseforce) {
+                                if (Math.random() < 7 / this.defenseforce) { //2
                                     if (this.units[t].index == this.units[t].realPath.length - 1) {
                                         this.units[t].pathTo(this.attackedAt)
                                     }
@@ -4183,7 +4262,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             }
 
                             if (this.units[t].pufffellow == 1) {
-                                if (Math.random() < 2 / this.defenseforce) {
+                                if (Math.random() < 7 / this.defenseforce) { //2
                                     if (this.units[t].index == this.units[t].realPath.length - 1) {
                                         this.units[t].pathTo(this.attackedAt)
                                     }
@@ -4206,8 +4285,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 }
                             } else {
                                 if (Math.random() < .5) {
-                                    if (this.hotrock > 95) {
-                                        this.buildings[t].makeLibrilbianpufffellow()
+                                    if (Math.random() < .5) {
+                                        if (this.hotrock > 170) {
+                                            this.buildings[t].makeLibrilbianpodman()
+                                        }
+                                    } else {
+                                        if (Math.random() < .5) {
+                                            if (this.hotrock > 95) {
+                                                this.buildings[t].makeLibrilbianpufffellow()
+                                            }
+                                        } else {
+                                            if (this.hotrock > 370) {
+                                                this.buildings[t].makeLibrilbiangoliophyte()
+                                            }
+                                        }
                                     }
                                 } else {
                                     if (this.hotrock > 370) {
@@ -4217,7 +4308,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             }
                         }
                         if (this.buildings[t].bulbplant == 1) {
-                            if (this.units.length <= 15) {
+                            if (this.units.length <= 8) {
                                 if (this.hotrock > 90) {
                                     this.buildings[t].makeLibrilbianpollinator()
                                 }
@@ -4353,13 +4444,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         } else {
 
                                             if (this.seen.length <= this.units.length) {
-                                                if (this.units[t].polllinator == 1) {
+                                                if (this.units[t].pollinator == 1) {
                                                     if (Math.random() < .5) {
                                                         let block = sandmap.gridPoints[Math.floor(Math.random() * sandmap.gridPoints.length)]
                                                         this.units[t].pathTo(block)
                                                     }
                                                 }
-                                            } else if (this.units[t].pufffellow == 1 || this.units[t].polllinator == 1) {
+                                            } else if (this.units[t].pufffellow == 1 || this.units[t].pollinator == 1) {
                                                 if (Math.random() < .5) {
                                                     let block = sandmap.gridPoints[Math.floor(Math.random() * sandmap.gridPoints.length)]
                                                     this.units[t].pathTo(block)
@@ -4379,9 +4470,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
                 if (this.chunk % this.clickrate == 0) {
+
+                    if (this.units.length > this.racksflag) {
+                        this.racksflag += 10
+                        this.lab = 0
+                    }
+
+
                     for (let t = 0; t < this.buildings.length; t++) {
                         if (this.buildings[t].assembler == 2) {
-                            if (this.seen.length <= this.units.length) {
+                            if (this.seenrocks.length <= this.units.length) { //seen
                                 if (this.hotrock > 135) {
                                     this.buildings[t].makeHamartanscout()
                                     break
@@ -4391,25 +4489,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                         if (this.buildings[t].assembler == 1) {
                             if (this.seen.length <= this.units.length) {
-                                if (this.hotrock > 270) {
+                                if (this.hotrock > 235  && Math.random() < .75) {
                                     this.buildings[t].makeHamartansoldier()
                                 }
                             }
                         }
-
-                        if (this.buildings[t].assembler == 1) {
-                            if (this.hotrock > 270) {
-                                this.buildings[t].makeHamartansoldier()
-                            }
-                        }
                         if (this.buildings[t].assembler == 3) {
-                            if (Math.random() < .1 - (this.units.length * .005)) {
-                                if (this.hotrock > 220) {
+                            if (Math.random() < .12 - (this.units.length * .005)) { //.1
+                                if (this.hotrock > 145) { //220 //170
                                     this.buildings[t].makeHamartanworker()
                                 }
                             }
-                            if (Math.random() < (.13 - (this.units.length * .0045)) + (this.hotrock * .0001)) {
-                                if (this.hotrock > 400) {
+                            if (Math.random() < (.13 + (this.units.length * .0015)) + (this.hotrock * .0001)) {  // - unitslength not + //too frequent too early //45 not 15
+                                if (this.hotrock > 340) {
                                     this.buildings[t].makeHamartaninvader()
                                 }
                             }
@@ -4437,13 +4529,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                         for (let t = 0; t < this.buildings.length; t++) {
                             if (this.buildings[t].assembler == 1) {
-                                if (this.hotrock > 270) {
+                                if (this.hotrock > 235 && Math.random() < .75) {
                                     this.buildings[t].makeHamartansoldier()
                                 }
                             }
 
                             if (this.buildings[t].assembler == 2) {
-                                if (this.hotrock > 400) {
+                                if (this.hotrock > 340) {
                                     this.buildings[t].makeHamartaninvader()
                                 }
                             }
@@ -4451,7 +4543,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                         for (let t = 0; t < this.units.length; t++) {
                             if (this.units[t].hamartaninvader == 1) {
-                                if (Math.random() < 2 / this.defenseforce) {
+                                if (Math.random() < 7 / this.defenseforce) { //2
                                     if (this.units[t].index == this.units[t].realPath.length - 1) {
                                         this.units[t].pathTo(this.attackedAt)
                                     }
@@ -4459,7 +4551,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             }
 
                             if (this.units[t].soldier == 1) {
-                                if (Math.random() < 2 / this.defenseforce) {
+                                if (Math.random() < 7 / this.defenseforce) { //2
                                     if (this.units[t].index == this.units[t].realPath.length - 1) {
                                         this.units[t].pathTo(this.attackedAt)
                                     }
@@ -4498,6 +4590,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 let j = 0
                 this.chunk++
                 if (this.chunk % this.clickrate == 1) {
+
+
+
+                    for (let t = 0; t < this.units.length; t++) {
+                        if (this.units[t].hamartanscout == 1) {
+                            if (this.units.length >= this.seenrocks.length && (this.units[t].health/this.units[t].maxhealth) > .3) { //seen
+                                let block = sandmap.gridPoints[Math.floor(Math.random() * sandmap.gridPoints.length)]
+                                this.units[t].pathTo(block)
+                            }
+                        }
+                    }
+
                     for (let t = 0; t < this.units.length; t++) {
                         if (this.units[t].realPath.length - 1 == this.units[t].index) { //} || this.units[t].realPath[this.units[t].index].walkable !== true) {
                             if (this.units[t].tile.hotrock != 1 && this.units[t].tile.hotrock != 2) {
@@ -4580,7 +4684,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             } else if (this.type == 1) {
 
-                if (this.defending >= 32) {
+                if (this.defending >= 25) { //25 not 32 because they favor early advantage
                     this.defending = 0
                     this.defenseforce = 0
                     for (let t = 0; t < this.units.length; t++) {
@@ -4597,7 +4701,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (this.defenseforce > 0) {
                         for (let t = 0; t < this.units.length; t++) {
                             if (this.units[t].nymph == 2) {
-                                if (Math.random() < 2 / this.defenseforce) {
+                                if (Math.random() < 7 / this.defenseforce) { //2
                                     if (this.units[t].index == this.units[t].realPath.length - 1) {
                                         this.units[t].pathTo(this.attackedAt)
                                     }
@@ -4606,9 +4710,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         }
                     } else {
                         for (let t = 0; t < this.units.length; t++) {
-                            if (Math.random() < 2 / this.defenseforce) {
+                            if (Math.random() < 7 / this.defenseforce) {
                                 if (this.units[t].nymph !== 1) {
-                                    if ((this.units[t].imago == 1) && Math.random() < .9) {
+                                    if ((this.units[t].imago == 1) && Math.random() < .4) { //.9
                                         continue
                                     }
                                     if (this.units[t].index == this.units[t].realPath.length - 1) {
@@ -4806,6 +4910,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             } else { // human below, itzler above
 
+                if(this.hotrock > (this.racksflag * 75)){
+                    // console.log("earthoid effect")
+                    this.racks = 0 
+                    this.lab = 0 
+                    this.racksflag += 4
+                }
+
+
+
                 if (this.defending >= 32) {
                     this.defending = 0
                     this.defenseforce = 0
@@ -4816,7 +4929,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                     for (let t = 0; t < this.buildings.length; t++) {
                         if (this.buildings[t].barracks == 1) {
-                            if (this.hotrock > 40) {
+                            if (this.hotrock > 40) { // 40??
                                 this.buildings[t].makeInfantry()
                             }
                         }
@@ -4824,7 +4937,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (this.defenseforce > 0) {
                         for (let t = 0; t < this.units.length; t++) {
                             if (this.units[t].infantry == 1) {
-                                if (Math.random() < 2 / this.defenseforce) {
+                                if (Math.random() < 7 / this.defenseforce) { //2
                                     if (this.units[t].index == this.units[t].realPath.length - 1) {
                                         this.units[t].pathTo(this.attackedAt)
                                     }
@@ -4833,8 +4946,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         }
                     } else {
                         for (let t = 0; t < this.units.length; t++) {
-                            if (Math.random() < 2 / this.defenseforce) {
-                                if (this.units[t].harvester == 1 && Math.random() < .9) {
+                            if (Math.random() < 7 / this.defenseforce) { //2
+                                if (this.units[t].harvester == 1 && Math.random() < .4) { //.9
                                     continue
                                 }
 
@@ -5025,12 +5138,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         for (let t = 0; t < this.buildings.length; t++) {
                             if (this.buildings[t].barracks == 1) {
                                 if (Math.random() < .1 - (this.units.length * .005)) {
-                                    if (this.hotrock > 130) {
+                                    if (this.hotrock > 120) { 
                                         this.buildings[t].makeInfantry()
                                     }
                                 }
-                                if (Math.random() < (.13 - (this.units.length * .0045)) + (this.hotrock * .0001)) {
-                                    if (this.hotrock > 370) {
+                                if (Math.random() < (.13 + (this.units.length * .0045)) + (this.hotrock * .0001)) { // - not +
+                                    if (this.hotrock > 300) {
                                         this.buildings[t].makeSniper()
                                     }
                                 }
@@ -5046,8 +5159,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         this.buildings[t].makeScout()
                                     }
                                 }
-                                if (Math.random() < (.1 - (this.units.length * .003)) + (this.hotrock * .0001)) {
-                                    if (this.hotrock > 200) {
+                                if (Math.random() < (.1 + (this.units.length * .003)) + (this.hotrock * .0001)) { //- to +
+                                    if (this.hotrock > 170) { //200
                                         this.buildings[t].makeHarvester()
                                     }
                                 }
@@ -5061,7 +5174,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         for (let t = 0; t < this.buildings.length; t++) {
                             if (this.buildings[t].barracks == 1) {
                                 if (Math.random() < .005) {
-                                    if (this.hotrock > 200) {
+                                    if (this.hotrock > 100) { //200
                                         this.buildings[t].makeInfantry()
                                     }
                                 }
@@ -5512,8 +5625,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             } else if (this.type == 2) {
 
-                if (this.racks == 0 && this.isAI == 1 && this.hotrock > 400) {
-                    this.buildGate(tile)
+                if(this.hotrock > (this.racksflag * 75)){
+                    // console.log("hamartan effect")
+                    this.racks = 0 
+                    this.lab = 0 
+                    this.racksflag += 4
+                }
+
+                if (this.racks == 0 && this.isAI == 1 && this.hotrock > 340) {
+                    if(Math.random() < .5){
+                        this.buildGate(tile)
+                    }else if (this.lab == 0 && this.isAI == 1 && this.hotrock > 150) {
+                        this.buildBarracks(tile)
+                    }
                 } else if (this.lab == 0 && this.isAI == 1 && this.hotrock > 150 && this.racks == 1) {
                     this.buildBarracks(tile)
                 } else if (this.lab == 1 && this.isAI == 1 && this.hotrock > 150 && this.racks == 1) {
@@ -5601,8 +5725,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     wet = 1
                 }
                 if (wet == 0) {
-                    if (this.hotrock >= 400) {
-                        this.hotrock -= 400
+                    if (this.hotrock >= 340) {
+                        this.hotrock -= 340
                         let building = new Building(tile, this, 0)
                         building.health = 1300
                         building.maxhealth = building.health
@@ -5695,9 +5819,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
                 if (wet == 0 && ((dirty == 0 && this.isAI == 1) || this.isAI == 0)) {
 
-                    if (this.hotrock >= 90) {
+                    if (this.hotrock >= 80) {
                         this.racks = 1
-                        this.hotrock -= 90
+                        this.hotrock -= 80
                         let building = new Building(tile, this, 0)
                         building.bulbplant = 1
                         building.name = "Librilbian Bulbplant"
@@ -6282,14 +6406,43 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.body = new UnitCircle(this.tile.x + (this.tile.width * .5), this.tile.y + (this.tile.height * .5), 5, this.faction.color)
             this.faction.buildings.push(this)
         }
+
+        see() {
+            for (let t = -this.sight; t <= this.sight; t++) {
+                for (let k = -this.sight; k <= this.sight; k++) {
+                    if (this.tile.t + t >= 0) {
+                        if (this.tile.k + k >= 0) {
+                            if (this.tile.t + t < 128) {
+                                if (this.tile.k + k < 128) {
+                                    if (typeof (sandmap.blocks[this.tile.t + t] != undefined)) {
+                                        if (typeof (sandmap.blocks[this.tile.t + t][this.tile.k + k] != undefined)) {
+                                            this.faction.fog[this.tile.t + t][this.tile.k + k].color = "transparent"
+                                            this.faction.fog[this.tile.t + t][this.tile.k + k].timer = 100
+                                            this.faction.blocks[this.tile.t + t][this.tile.k + k].markdraw = 1
+                                            if (!this.faction.seen.includes(sandmap.blocks[this.tile.t + t][this.tile.k + k])) {
+                                                this.faction.seen.push(sandmap.blocks[this.tile.t + t][this.tile.k + k])
+                                                if (sandmap.blocks[this.tile.t + t][this.tile.k + k].sourcerock >= 1) {
+                                                    // this.faction.clickrate++
+                                                    this.faction.seenrocks.push(sandmap.blocks[this.tile.t + t][this.tile.k + k])
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
         makeHamartansoldier() {
             if (this.que != 1) {
-                if (this.faction.hotrock >= 210 && this.faction.units.length < 51) {
+                if (this.faction.hotrock >= 175 && this.faction.units.length < 51) {
                     if (this.assembler == 1) {
-                        this.faction.hotrock -= 210
+                        this.faction.hotrock -= 175
                         this.que = 1
                         this.soldier = 1
-                        this.timer = 185
+                        this.timer = 95 //115
                         this.maxtimer = this.timer
                     }
                 }
@@ -6310,9 +6463,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         makeHamartanworker() {
             if (this.que != 1) {
-                if (this.faction.hotrock >= 180 && this.faction.units.length < 51) {
+                if (this.faction.hotrock >= 145 && this.faction.units.length < 51) {
                     if (this.assembler == 3) {
-                        this.faction.hotrock -= 180
+                        this.faction.hotrock -= 145
                         this.que = 1
                         this.worker = 1
                         this.timer = 20
@@ -6327,7 +6480,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (this.bulbplant == 1) {
                         this.faction.hotrock -= 90
                         this.que = 1
-                        this.polllinator = 1
+                        this.pollinator = 1
                         this.timer = 100
                         this.maxtimer = this.timer
                     }
@@ -6380,7 +6533,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         this.faction.hotrock -= 340
                         this.que = 1
                         this.invader = 1
-                        this.timer = 320
+                        this.timer = 190 //270
                         this.maxtimer = this.timer
                     }
                 }
@@ -6483,22 +6636,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         makeInfantry() {
             if (this.que != 1) {
-                if (this.faction.hotrock >= 90 && this.faction.units.length < 51) {
-                    this.faction.hotrock -= 90
+                if (this.faction.hotrock >= 85 && this.faction.units.length < 51) {
+                    this.faction.hotrock -= 85
                     this.que = 1
                     this.infantry = 1
-                    this.timer = 70
+                    this.timer = 45 //70
                     this.maxtimer = this.timer
                 }
             }
         }
         makeSniper() {
             if (this.que != 1) {
-                if (this.faction.hotrock >= 360 && this.faction.units.length < 51) {
-                    this.faction.hotrock -= 360
+                if (this.faction.hotrock >= 290 && this.faction.units.length < 51) {
+                    this.faction.hotrock -= 290
                     this.que = 1
                     this.sniper = 1
-                    this.timer = 250
+                    this.timer = 200
                     this.maxtimer = this.timer
                 }
             }
@@ -6584,8 +6737,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     canvas_context.fillStyle = "white"
                     canvas_context.font = "12px arial"
                     // canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
-                    canvas_context.fillText("Infantry: 90", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
-                    canvas_context.fillText("Sniper: 360", this.spawnbig.x + 1, this.spawnbig.y + 46)
+                    canvas_context.fillText("Infantry: 85", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                    canvas_context.fillText("Sniper: 290", this.spawnbig.x + 1, this.spawnbig.y + 46)
                     // canvas_context.fillText("Drone: 30")
                     // canvas_context.fillText("Drone: 30")
                     if (this.timer > 0) {
@@ -6609,7 +6762,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     canvas_context.fillStyle = "white"
                     canvas_context.font = "12px arial"
                     // canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
-                    canvas_context.fillText("Soldier: 210", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                    canvas_context.fillText("Soldier: 175", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
                     // canvas_context.fillText("Sniper: 360", this.spawnbig.x + 1, this.spawnbig.y + 46)
                     // canvas_context.fillText("Drone: 30")
                     // canvas_context.fillText("Drone: 30")
@@ -6710,8 +6863,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     canvas_context.fillStyle = "white"
                     canvas_context.font = "12px arial"
                     // canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
-                    canvas_context.fillText("Worker: 180", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
-                    canvas_context.fillText("invader: 340", this.spawnbig.x + 1, this.spawnbig.y + 46)
+                    canvas_context.fillText("Worker: 145", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                    canvas_context.fillText("Invader: 340", this.spawnbig.x + 1, this.spawnbig.y + 46)
                     // canvas_context.fillText("Drone: 30")
                     // canvas_context.fillText("Drone: 30")
                     if (this.timer > 0) {
@@ -6773,6 +6926,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
         }
         draw() {
+            if (this.bulbplant == 1) {
+                this.sight = 10
+                this.see()
+            }
             if (this.barracks >= 1 || this.assembler >= 1 || this.bulbplant >= 1) {
                 this.timer--
                 if (this.timer == 0) {
@@ -6816,8 +6973,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         this.que = 0
                         this.finishHamartaninvader()
                     }
-                    if (this.polllinator == 1) {
-                        this.polllinator = 0
+                    if (this.pollinator == 1) {
+                        this.pollinator = 0
                         this.que = 0
                         this.finishLibrilbianpollinator()
                     }
@@ -6932,6 +7089,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (this.barracks == 2) {
                     this.faction.lab = 0
                 }
+                if (this.bulbplant == 1) {
+                    this.faction.racks = 0
+                }
+                if (this.bulbplant == 2) {
+                    this.faction.lab = 0
+                }
 
                 this.tile.spiretile = 0
                 this.tile.builtOn = 0
@@ -7023,7 +7186,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.decayRate = 0
             this.damage = (this.body.radius * 1.5) + 1
             this.name = "Librilbian Pollinator"
-            this.polllinator = 1
+            this.pollinator = 1
             this.defense = 0
             this.sight = 3 + this.movespeed
             this.attackrange = this.sight - 1
@@ -7037,8 +7200,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         isGoliophyte() {
             this.body.color = "teal"
-            this.body.radius = 4
-            this.movespeed = 7
+            this.body.radius = 5.5
+            this.movespeed = 8
             this.firerate = 7
             this.decayRate = 0
             this.damage = (this.body.radius * 4.5) + 1
@@ -7058,10 +7221,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
         isPodman() {
             this.body.color = "teal"
             this.body.radius = 4
-            this.movespeed = 5
+            this.movespeed = 4
             this.firerate = 4
             this.decayRate = 0
-            this.damage = (this.body.radius * 3.5) + 1
+            this.damage = (43 / 3)
             this.name = "Librilbian Podman"
             this.podman = 1
             this.defense = 7
@@ -7072,16 +7235,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.attacktarget = {}
             this.attacktarget.health = 0
             this.attackcounter = 0
-            this.health = 470
+            this.health = 890 //510 //490
             this.maxhealth = this.health
         }
         isPufffellow() {
+            this.pollinator = 0
             this.body.color = "teal"
             this.body.radius = 4
             this.movespeed = 2
             this.firerate = 4
             this.decayRate = 0
-            this.damage = (this.body.radius * 2.1) + 1
+            this.damage = (this.body.radius * 2.6) + 1  //2.1
             this.name = "Librilbian Puff-Fellow"
             this.pufffellow = 1
             this.defense = 4
@@ -7092,19 +7256,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.attacktarget = {}
             this.attacktarget.health = 0
             this.attackcounter = 0
-            this.health = 300
+            this.health = 330
             this.maxhealth = this.health
         }
         isNymph() {
             this.body.color = "teal"
             this.body.radius = 4
             this.movespeed = 1
-            this.firerate = 3
+            this.firerate = 2 //3 make more viable in combat
             this.decayRate = 0
-            this.damage = (this.body.radius * 2.5) + 1
+            this.damage = (this.body.radius * 2.75) + 1
             this.name = "Nymph"
             this.nymph = 1
-            this.defense = 0
+            this.defense = 3
             this.sight = 2 + this.movespeed
             // this.firerate = (this.movespeed * 5)
             this.attackrange = this.sight - 1
@@ -7141,6 +7305,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         isHamartanworker() {
             this.hamartanworker = 1
+            this.hamartansoldier = 0
             this.movespeed = 3 //too high?
             this.body.color = "red"
             this.body.radius = 4
@@ -7149,7 +7314,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.name = "Hamartan Worker"
             this.sight = 4
             this.damage = this.body.radius
-            this.firerate = 10  // 9//(this.movespeed * 5)
+            this.firerate = 7  // 9//(this.movespeed * 5) //10
             this.attackrange = this.sight - 1
             this.health = (this.sight - 2) * 100
             this.maxhealth = this.health
@@ -7164,14 +7329,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.hamartansoldier = 0
             this.movespeed = 7
             this.body.color = "red"
-            this.body.radius = 4
-            this.defense = 12
+            this.body.radius = 4.5
+            this.defense = 12 //14 //19
             this.damage = this.body.radius * 7
             this.name = "Hamartan Invader"
             this.sight = 6
-            this.firerate = 7  // 9//(this.movespeed * 5)
+            this.firerate = 7   // 9//(this.movespeed * 5) // 7? //6? - 7
             this.attackrange = this.sight
-            this.health = (this.sight - 2) * 420
+            this.health = (this.sight - 1) * 420  //-1 //1.5
             this.maxhealth = this.health
             this.shots = []
             this.attacktarget = {}
@@ -7181,16 +7346,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         isHamartansoldier() {
             this.hamartansoldier = 1
-            this.movespeed = 5
+            this.movespeed = 4 //5
             this.body.color = "red"
             this.body.radius = 4
-            this.defense = 9
-            this.damage = this.body.radius * 2.6
+            this.defense = 11 //9 //13
+            this.damage = this.body.radius * 3.25 //2.9
             this.name = "Hamartan Soldier"
-            this.sight = 6
-            this.firerate = 4  // 9//(this.movespeed * 5)
+            this.sight = 7
+            this.firerate = 3  // 9//(this.movespeed * 5) //4
             this.attackrange = this.sight
-            this.health = (this.sight - 2) * 130
+            this.health = (this.sight - 2) * 170
             this.maxhealth = this.health
             this.shots = []
             this.attacktarget = {}
@@ -7200,14 +7365,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         isHamartanscout() {
             this.hamartanscout = 1
-            this.movespeed = 13
+            this.hamartansoldier = 0
+            this.movespeed = 9 //13
             this.body.color = "red"
             this.body.radius = 4
             this.defense = 25
-            this.damage = 1
+            this.damage = 3
             this.name = "Hamartan Scout"
             this.sight = 12
-            this.firerate = 20  // 9//(this.movespeed * 5)
+            this.firerate = 1  // 9//(this.movespeed * 5) //20 lmao
             this.attackrange = this.sight - 5
             this.health = (this.sight - 2) * 9
             this.maxhealth = this.health
@@ -7226,7 +7392,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.damage = this.body.radius
             this.name = "Infantry"
             this.sight = 1 + this.movespeed
-            this.damage = (this.body.radius * 2)
+            this.damage = (this.body.radius * 2.9)
             this.firerate = 5 //12 //(this.movespeed * 5)
             this.attackrange = this.sight
             this.health = this.sight * 100
@@ -7236,7 +7402,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.attacktarget.health = 0
             this.attackcounter = 0
             this.decayRate = (this.sight * this.movespeed) * .02
-            this.health = 350
+            this.health = 460
             this.maxhealth = this.health
         }
         isSniper() {
@@ -7247,7 +7413,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.defense = 7
             this.name = "Sniper"
             this.sight = 1 + this.movespeed
-            this.damage = 20
+            this.damage = 23
             this.firerate = 3 //12 //(this.movespeed * 5)
             this.attackrange = this.sight
             this.maxhealth = this.health
@@ -7256,7 +7422,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.attacktarget.health = 0
             this.attackcounter = 0
             this.decayRate = (12) * .02
-            this.health = 425
+            this.health = 725
             this.maxhealth = this.health
             this.mounted = 0
         }
@@ -7268,7 +7434,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.defense = 10
             this.name = "Harvesting Vehicle"
             this.sight = 1 + this.movespeed
-            this.damage = (this.body.radius * 5.4)
+            this.damage = (this.body.radius * 5.6)
             this.firerate = 7 //(this.movespeed * 5) // 6
             this.attackrange = this.sight - 1
             this.shots = []
@@ -7276,7 +7442,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.attacktarget.health = 0
             this.attackcounter = 0
             this.decayRate = (this.sight * this.movespeed) * .01
-            this.health = 1200
+            this.health = 1400
             this.maxhealth = this.health
         }
         spawnNymph() {
@@ -7311,9 +7477,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         makeNymph() {
             if (this.que != 1) {
-                if (this.faction.hotrock >= 120 && this.faction.units.length < 51) {
+                if (this.faction.hotrock >= 109 && this.faction.units.length < 51) {
                     if (this.imago == 1 || this.imago == 2) {
-                        this.faction.hotrock -= 120
+                        this.faction.hotrock -= 109
                         this.spawn = 1
                         this.que = 1
                         this.timer = 55
@@ -7342,13 +7508,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.body.radius = 4.8
             this.movespeed = 3
             this.sight = 1 + this.movespeed
-            this.firerate = 5
+            this.firerate = 2  //3 geez too slow//4
             this.decayRate = 0
-            this.damage = (this.body.radius * 3.2) + 1
+            this.damage = 17.36 // (this.body.radius * 3.1) + 1
             this.name = "Scurrier"
             this.nymph = 2
-            this.health = 450
-            this.defense = 3
+            this.health = 660
+            this.defense = 6
             this.maxhealth = this.health
             this.attackrange = this.sight - 1
             if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
@@ -7366,17 +7532,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         finishMorph2() {
             this.body.color = "white"
-            this.body.radius = 6.5
-            this.movespeed = 8
+            this.body.radius = 7.9  // 7.9
+            this.movespeed = 6 //7 //8
             this.sight = 1 + this.movespeed
-            this.firerate = 8 // 9
+            this.firerate = 5 // 6 // 9 //8
             this.decayRate = 0
-            this.defense = 8
-            this.damage = (this.body.radius * 4) + 1.5
+            this.defense = 9
+            this.damage = 42 // (this.body.radius * 4) + 1.5
             this.name = "Imago"
             this.imago = 1
             this.nymph = 0
-            this.health = 2100
+            this.health = 2800
             this.maxhealth = this.health
             this.attackrange = this.sight - 1
             if (Math.random() < soundspamdrop) {
@@ -7393,10 +7559,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.body.radius = 6.5
             this.movespeed = 6
             this.sight = 1 + this.movespeed
-            this.firerate = 17 // 9
+            this.firerate = 17 // 9 // 17?
             this.decayRate = 0
             this.defense = 18
-            this.damage = (this.body.radius * 3) + 4
+            this.damage = 70 // 23.5  //(this.body.radius * 3) + 4
             this.name = "Gamergate"
             this.imago = 2
             this.nymph = 0
@@ -7412,14 +7578,27 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             }
         }
+        metamorphpufffellow() {
+            if (this.que != 1) {
+                if (this.faction.hotrock >= 40) {
+                    if (this.pollinator == 1) {
+                        this.faction.hotrock -= 40
+                        this.puffing = 1
+                        this.que = 1
+                        this.timer = 25
+                        this.maxtimer = this.timer
+                    }
+                }
+            }
+        }
         metamorph1() {
             //////////console.log(this.que, 1)
             if (this.que != 1) {
                 //////////console.log(this.hotrock, 2)
-                if (this.faction.hotrock >= 200) {
+                if (this.faction.hotrock >= 180) {
                     //////////console.log(this.nymph, 3)
                     if (this.nymph == 1) {
-                        this.faction.hotrock -= 200
+                        this.faction.hotrock -= 180
                         this.morphing = 1
                         this.que = 1
                         this.timer = 100
@@ -7431,9 +7610,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         metamorph2() {
             if (this.que != 1) {
-                if (this.faction.hotrock >= 300) {
+                if (this.faction.hotrock >= 240) {
                     if (this.nymph == 2) {
-                        this.faction.hotrock -= 300
+                        this.faction.hotrock -= 240
                         this.morphingagain = 1
                         this.que = 1
                         this.timer = 200
@@ -7444,9 +7623,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         metamorph3() {
             if (this.que != 1) {
-                if (this.faction.hotrock >= 451) {
+                if (this.faction.hotrock >= 350) {
                     if (this.nymph == 2) {
-                        this.faction.hotrock -= 451
+                        this.faction.hotrock -= 350
                         this.morphinggamergate = 1
                         this.que = 1
                         this.timer = 200
@@ -7487,8 +7666,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     canvas_context.drawImage(nymph, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
                     canvas_context.fillStyle = "white"
                     canvas_context.font = "13px arial"
-                    canvas_context.fillText("Nymph: 120", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                    canvas_context.fillText("Nymph: 109", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
 
+                }
+                if (this.pollinator == 1) {
+                    this.morph = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
+                    this.morph.draw()
+                    canvas_context.drawImage(librilbianpufffellow, 0, 0, 10, 10, this.morph.x + 10, this.morph.y + 5, 30, 30)
+                    canvas_context.fillStyle = "white"
+                    canvas_context.font = "13px arial"
+                    canvas_context.fillText("Puff-Fellow: 40", this.morph.x + 1, this.morph.y + 46)
                 }
                 if (this.nymph == 1 || this.nymph == 2) {
                     if (this.nymph == 1) {
@@ -7497,7 +7684,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         canvas_context.drawImage(scuttler, 0, 0, 10, 10, this.morph.x + 10, this.morph.y + 5, 30, 30)
                         canvas_context.fillStyle = "white"
                         canvas_context.font = "13px arial"
-                        canvas_context.fillText("Scurrier: 200", this.morph.x + 1, this.morph.y + 46)
+                        canvas_context.fillText("Scurrier: 160", this.morph.x + 1, this.morph.y + 46)
                         // this.morph = {}
                         // this.morph.isPointInside = empty
                     } else {
@@ -7508,13 +7695,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         canvas_context.drawImage(imago, 0, 0, 10, 10, this.morph2.x + 10, this.morph2.y + 5, 30, 30)
                         canvas_context.fillStyle = "white"
                         canvas_context.font = "13px arial"
-                        canvas_context.fillText("Imago: 300", this.morph2.x + 1, this.morph2.y + 46)
+                        canvas_context.fillText("Imago: 240", this.morph2.x + 1, this.morph2.y + 46)
                         this.morph3 = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 150, 125, 90, 50, "black")
                         this.morph3.draw()
                         canvas_context.drawImage(gamergate, 0, 0, 10, 10, this.morph3.x + 10, this.morph3.y + 5, 30, 30)
                         canvas_context.fillStyle = "white"
                         canvas_context.font = "12px arial"
-                        canvas_context.fillText("Gamergate: 451", this.morph3.x + 1, this.morph3.y + 46)
+                        canvas_context.fillText("Gamergate: 350", this.morph3.x + 1, this.morph3.y + 46)
                     }
                 } else {
                     if (this.imago == 2) {
@@ -7567,7 +7754,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (this.nymph == 1) {
                     canvas_context.drawImage(nymphface, facex, facey)
                 }
-                if (this.polllinator == 1) {
+                if (this.pollinator == 1) {
                     canvas_context.drawImage(librilbianpollinatorface, facex, facey)
                 }
                 if (this.pufffellow == 1) {
@@ -7605,6 +7792,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     if (this.tile.k + k < 128) {
                                         if (typeof (sandmap.blocks[this.tile.t + t] != undefined)) {
                                             if (typeof (sandmap.blocks[this.tile.t + t][this.tile.k + k] != undefined)) {
+
+
+
                                                 for (let g = 0; g < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length; g++) {
                                                     if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
 
@@ -7739,7 +7929,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 let xk = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].tile.k
                                                                 let line = new Line(ct, ck, xt, xk)
                                                                 if (line.hypotenuse() <= sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].sight) {
-                                                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].drone == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].imago == 2 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].hamartanscout == 1) {
+                                                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].drone == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].imago == 2 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].hamartanscout == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].pufffellow == 1) {
                                                                         wet = 1
                                                                     }
                                                                 }
@@ -7768,6 +7958,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                         }
                                                     }
                                                 }
+
+                                                //snadwich
+                                                //moved up?
                                                 for (let g = 0; g < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings.length; g++) {
                                                     if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
                                                         this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings[g]
@@ -7787,6 +7980,172 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                         break
                                                     }
                                                 }
+
+
+                                                for (let g = 0; g < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length; g++) {
+                                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
+
+                                                        if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
+                                                            if (this.nymph == 1) {
+                                                                if (Math.random() < soundspamdrop) {
+                                                                    soundCancel()
+                                                                    if (Math.random() < .5) {
+                                                                        itstheedgeofusfight.play()
+                                                                    } else {
+                                                                        seethemseetheme.play()
+                                                                    }
+                                                                }
+                                                            }
+                                                            if (this.imago == 1) {
+                                                                if (Math.random() < soundspamdrop) {
+                                                                    soundCancel()
+                                                                    if (Math.random() < .5) {
+                                                                        ahhbarber.play()
+                                                                    } else {
+                                                                        slamdownmustard.play()
+                                                                    }
+                                                                }
+                                                            }
+                                                            if (this.imago == 2) {
+                                                                if (Math.random() < soundspamdrop) {
+                                                                    soundCancel()
+                                                                    youhurtme.play()
+                                                                }
+                                                            }
+                                                            if (this.infantry == 2) {
+                                                                if (Math.random() < soundspamdrop) {
+                                                                    soundCancel()
+                                                                    if (Math.random() < .3) {
+                                                                        isnipedyouaweekago2.play()
+                                                                    } else if (Math.random() < .3) {
+                                                                        isnipedyouaweekago.play()
+                                                                    } else if (Math.random() < .3) {
+                                                                        theresone.play()
+                                                                    } else if (Math.random() < .3) {
+                                                                        bossaroundhere.play()
+                                                                    } else if (Math.random() < .3) {
+                                                                        bossaroundhere2.play()
+                                                                    } else {
+                                                                        adjustingforwindspeed.play()
+                                                                    }
+                                                                }
+                                                            }
+                                                            if (this.nymph == 2) {
+                                                                if (Math.random() < soundspamdrop) {
+                                                                    soundCancel()
+                                                                    if (Math.random() < .3) {
+                                                                        icannamethevillans.play()
+                                                                    } else if (Math.random() < .3) {
+                                                                        suresawwithvenom.play()
+                                                                    } else {
+                                                                        ohisthattheeyeofthesnake.play()
+                                                                    }
+                                                                }
+                                                            }
+                                                            if (this.hamartaninvader == 1) {
+                                                                if (Math.random() < soundspamdrop) {
+                                                                    soundCancel()
+                                                                    youhome.play()
+                                                                }
+                                                            }
+                                                            if (this.hamartansoldier == 1) {
+                                                                if (Math.random() < soundspamdrop) {
+                                                                    soundCancel()
+                                                                    if (Math.random() < .3) {
+                                                                        inthejetsarm.play()
+                                                                    } else if (Math.random() < .3) {
+                                                                        youareabuse.play()
+                                                                    } else if (Math.random() < .3) {
+                                                                        sorcery.play()
+                                                                    } else if (Math.random() < .3) {
+                                                                        arerats.play()
+                                                                    } else if (Math.random() < .3) {
+                                                                        enormoushead.play()
+                                                                    } else {
+                                                                        reallytacky.play()
+                                                                    }
+                                                                }
+                                                            }
+                                                            if (this.drone == 1) {
+                                                                if (Math.random() < soundspamdrop) {
+                                                                    soundCancel()
+                                                                    combatinit.play()
+                                                                }
+                                                            }
+                                                            if (this.infantry == 1) {
+                                                                if (Math.random() < soundspamdrop) {
+                                                                    soundCancel()
+                                                                    lightemup.play()
+                                                                }
+                                                            }
+                                                            if (this.harvester == 1) {
+                                                                if (Math.random() < soundspamdrop) {
+                                                                    soundCancel()
+                                                                    if (Math.random() < .3) {
+                                                                        myfuneral.play()
+                                                                    } else {
+                                                                        hopeyouknow.play()
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+
+                                                        if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].submerged != 1) {
+                                                            this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
+                                                            this.attacktarget.faction.blocks[this.tile.t][this.tile.k].markdraw = 1
+                                                            if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].isAI == 1) {
+                                                                sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].pathTo(this.tile)
+                                                                sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].attackedAt = this.tile
+
+                                                                if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending < 0) {
+                                                                    sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending = 1
+                                                                } else {
+                                                                    sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending += sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length
+                                                                }
+
+
+
+                                                            }
+                                                            break
+                                                        } else {
+                                                            let wet = 0
+                                                            for (let n = 0; n < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units.length; n++) {
+                                                                let ct = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile.t
+                                                                let ck = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile.k
+                                                                let xt = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].tile.t
+                                                                let xk = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].tile.k
+                                                                let line = new Line(ct, ck, xt, xk)
+                                                                if (line.hypotenuse() <= sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].sight) {
+                                                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].drone == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].imago == 2 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].hamartanscout == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].pufffellow == 1) {
+                                                                        wet = 1
+                                                                    }
+                                                                }
+                                                            }
+
+                                                            if (wet == 1) {
+                                                                this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
+
+                                                                this.attacktarget.faction.blocks[this.tile.t][this.tile.k].markdraw = 1
+                                                                // //////console.log(this.attacktarget.faction.blocks[this.tile.t][this.tile.k])
+                                                                if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].isAI == 1) {
+                                                                    sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].pathTo(this.tile)
+                                                                    sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].attackedAt = this.tile
+
+                                                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending < 0) {
+                                                                        sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending = 1
+                                                                    } else {
+                                                                        sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending += sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length
+                                                                    }
+
+
+
+                                                                }
+                                                                break
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                //building was here, should be first?
                                             }
                                         }
                                     }
@@ -7954,7 +8313,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             if (!this.faction.seen.includes(sandmap.blocks[this.tile.t + t][this.tile.k + k])) {
                                                 this.faction.seen.push(sandmap.blocks[this.tile.t + t][this.tile.k + k])
                                                 if (sandmap.blocks[this.tile.t + t][this.tile.k + k].sourcerock >= 1) {
-                                                    this.faction.clickrate++
+                                                    // this.faction.clickrate++
+                                                    this.faction.seenrocks.push(sandmap.blocks[this.tile.t + t][this.tile.k + k])
                                                 }
                                             }
                                         }
@@ -8098,14 +8458,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (this.suffocating > 0) {
                     this.health -= ((this.decayRate * this.suffocating))
                 } else {
-                    this.health += this.decayRate * .333
+                    this.health += (this.decayRate * .333)
                     if (this.health > this.maxhealth) {
                         this.health = this.maxhealth
                     }
                 }
             }
             if (this.decayingInTheWind == 0 && this.faction.type == 0) {
-                this.health += this.decayRate
+                this.health += (this.decayRate * .5)
                 if (this.health > this.maxhealth) {
                     this.health = this.maxhealth
                 }
@@ -8114,39 +8474,68 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.marked = 1
             }
             if (this.tile.hotrock == 1) {
-                if (this.drone == 1 || this.hamartanscout == 1) {
+                if (this.drone == 1 || this.hamartanscout == 1 ) { //|| this.hamartaninvader == 1
 
                     this.faction.hotrock += this.movespeed * .005
                     this.tile.sourcerock -= this.movespeed * .005
+                    this.faction.income += this.movespeed * .005
                 } else {
 
                     this.faction.hotrock += this.movespeed * .01
                     this.tile.sourcerock -= this.movespeed * .01
-                    if (this.nymph == 1 || this.harvester == 1 || this.hamartanworker == 1  || this.polllinator == 1) {
+                    if (this.nymph == 1 || this.harvester == 1 || this.hamartanworker == 1 || this.pollinator == 1) {
                         this.faction.hotrock += this.movespeed * .025
                         this.tile.sourcerock -= this.movespeed * .025
+                        this.faction.income += this.movespeed * .025
                     }
-                    if (this.nymph == 1) {
+                    if(this.infantry == 1){
+                        // this.faction.hotrock += this.movespeed * .0125
+                        // this.tile.sourcerock -= this.movespeed * .0125
+                        this.faction.hotrock += this.movespeed * .005//625
+                        this.tile.sourcerock -= this.movespeed * .005 //625
+                        this.faction.income += this.movespeed * .005
+                    }
+                    if(this.hamartanworker == 1){
+                        this.faction.hotrock += this.movespeed * .00625//625
+                        this.tile.sourcerock -= this.movespeed * .00625 //625
+                        this.faction.income += this.movespeed * .00625
+                    }
+                    if (this.nymph == 1 || this.harvester == 1 || this.pollinator == 1) { //  || this.pollinator == 1) { //harvester?
                         this.faction.hotrock += this.movespeed * .025
                         this.tile.sourcerock -= this.movespeed * .025
+                        this.faction.income += this.movespeed * .025
                     }
                 }
             }
             if (this.tile.hotrock == 2) {
 
-                if (this.drone == 1 || this.hamartanscout == 1) {
+                if (this.drone == 1 || this.hamartanscout == 1) { // || this.hamartaninvader == 1
                     this.faction.hotrock += this.movespeed * .01
                     this.tile.sourcerock -= this.movespeed * .01
+                    this.faction.income += this.movespeed * .01
                 } else {
                     this.faction.hotrock += this.movespeed * .02
                     this.tile.sourcerock -= this.movespeed * .02
-                    if (this.nymph == 1 || this.harvester == 1 || this.hamartanworker == 1 || this.polllinator == 1) {
+                    this.faction.income += this.movespeed * .02
+                    if (this.nymph == 1 || this.harvester == 1 || this.hamartanworker == 1 || this.pollinator == 1) {
                         this.faction.hotrock += this.movespeed * .05
-                        this.tile.sourcerock += this.movespeed * .05
+                        this.tile.sourcerock -= this.movespeed * .05
+                        this.faction.income += this.movespeed * .05
                     }
-                    if (this.nymph == 1) {
+                    if(this.infantry == 1){
+                        this.faction.hotrock += this.movespeed * .01//625
+                        this.tile.sourcerock -= this.movespeed * .01 //625
+                        this.faction.income += this.movespeed * .01
+                    }
+                    if(this.hamartanworker == 1){
+                        this.faction.hotrock += this.movespeed * .0125 //125
+                        this.tile.sourcerock -= this.movespeed * .0125 //125
+                        this.faction.income += this.movespeed * .0125
+                    }
+                    if (this.nymph == 1 || this.harvester == 1  || this.pollinator == 1) { // || this.pollinator == 1) { //harvester?
                         this.faction.hotrock += this.movespeed * .05
-                        this.tile.sourcerock += this.movespeed * .05
+                        this.tile.sourcerock -= this.movespeed * .05
+                        this.faction.income += this.movespeed * .05
                     }
                 }
             }
@@ -8214,6 +8603,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             }
 
+            if (this.pollinator == 1) {
+                this.timer--
+                if (this.timer == 0) {
+                    if (this.puffing == 1) {
+                        this.puffing = 0
+                        this.que = 0
+                        this.isPufffellow()
+                        this.pollinator = 0
+                    }
+                }
+            }
+
 
             if (this.realPath.length - 1 > this.index) {
                 if (((this.realPath[this.index + 1].walkable == true || (this.submerged == 1 || this.mounted == 0)) && this.realPath[this.index + 1].occupied == false)) { //?
@@ -8264,7 +8665,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     } else {
                         let wet = 0
                         for (let k = 0; k < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length; k++) {
-                            if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].drone == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].imago == 2 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].hamartanscout == 1) {
+                            if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].drone == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].imago == 2 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].hamartanscout == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].pufffellow == 1) {
                                 let ct = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].tile.t
                                 let ck = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].tile.k
                                 let xt = this.tile.t
@@ -8282,7 +8683,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             } else if (this.imago == 1) {
                 map_context.drawImage(imago, Math.floor(this.body.x) - 5, Math.floor(this.body.y) - 5)
-            } else if (this.polllinator == 1) {
+            } else if (this.pollinator == 1) {
                 map_context.drawImage(librilbianpollinator, Math.floor(this.body.x) - 5, Math.floor(this.body.y) - 5)
             } else if (this.goliophyte == 1) {
                 map_context.drawImage(librilbiangoliophyte, Math.floor(this.body.x) - 5, Math.floor(this.body.y) - 5)
@@ -8319,8 +8720,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             for (let t = 0; t < this.shots.length; t++) {
                 this.shots[t].stage++
-                this.shots[t].x = (this.body.x * (1 - (this.shots[t].stage / this.projectilespeed))) + (((this.shots[t].stage / this.projectilespeed)) * this.shots[t].attacktarget.body.x)
-                this.shots[t].y = (this.body.y * (1 - (this.shots[t].stage / this.projectilespeed))) + (((this.shots[t].stage / this.projectilespeed)) * this.shots[t].attacktarget.body.y)
+                this.shots[t].x = (this.body.x * (1 - (this.shots[t].stage / this.projectilespeed))) + (((this.shots[t].stage / this.projectilespeed)) * this.shots[t].refhealth.body.x)
+                this.shots[t].y = (this.body.y * (1 - (this.shots[t].stage / this.projectilespeed))) + (((this.shots[t].stage / this.projectilespeed)) * this.shots[t].refhealth.body.y)
                 this.shots[t].draw()
                 if (this.shots[t].stage >= this.projectilespeed) {
                     if (this.shots[t].refhealth.submerged == 1) {
@@ -8370,6 +8771,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let endgame = 0
     function main() {
 
+        if (keysPressed['l']) {
+            endgame = 1
+        } else {
+            endgame = 0
+        }
         canvas_context.clearRect(0, 0, canvas.width, canvas.height)  // refreshes the image
         map_context.clearRect(0, 0, map_canvas.width, map_canvas.height)  // refreshes the image
         if (endgame == 1) {
@@ -8393,23 +8799,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // // game code goes here
             dataflop = 0
             sandmap.draw()
-            // if (keysPressed['h']) {
-            //     sandmap.turn = 1
-            // }
-            // if (keysPressed['k']) {
-            //     sandmap.turn = 0
-            // }
+            if (keysPressed['h']) {
+                sandmap.turn = 1
+            }
+            if (keysPressed['k']) {
+                sandmap.turn = 0
+            }
             // if (keysPressed['q']) {
             //     //////////console.log(sandmap)
             // }
             ////////////////////console.log(selectrect)
 
-        if (sandmap.players[0].units.length == 0 || sandmap.players[1].units.length == 0) {
-            endbutton.draw()
-            canvas_context.fillStyle = "white"
-            canvas_context.font = "40px arial"
-            canvas_context.fillText("End", endbutton.x + 15, endbutton.y + 52)
-        }
+            if (sandmap.players[0].units.length == 0 || sandmap.players[1].units.length == 0) {
+                endbutton.draw()
+                canvas_context.fillStyle = "white"
+                canvas_context.font = "40px arial"
+                canvas_context.fillText("End", endbutton.x + 15, endbutton.y + 52)
+            }
         }
     }
 
