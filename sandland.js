@@ -1,6 +1,8 @@
 
 window.addEventListener('DOMContentLoaded', (event) => {
 
+    let dynamic2 = 0
+    let dynamic1 = 0
 
     let playstart = 0
     let debreak = 1
@@ -1013,6 +1015,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let chartoggle1 = new UiRectangle(200, 300, 300, 75, "#333333")
     let aitoggle2 = new UiRectangle(680, 200, 300, 75, "#333333")
     let chartoggle2 = new UiRectangle(680, 300, 300, 75, "#333333")
+
+    let difftoggle1 =new UiRectangle(200, 100, 450, 75, "#333333")
+    let difftoggle2 = new UiRectangle(680, 100, 450, 75, "#333333")
     class Circle {
         constructor(x, y, radius, color, xmom = 0, ymom = 0, friction = 1, reflect = 0, strokeWidth = 0, strokeColor = "transparent") {
             this.x = x
@@ -2061,7 +2066,54 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     aitoggle2.draw()
                     chartoggle1.draw()
                     chartoggle2.draw()
-
+                    if (sandmap.players[1].isAI == 1) {
+                        difftoggle2.draw()            
+                        canvas_context.font = "30px Arial";
+                        canvas_context.fillStyle = "#FFFFFF"
+                         if(dynamic2 == 1){
+                            canvas_context.fillText(`Power: Dynamic (?)`, difftoggle2.x + 10, difftoggle2.y + 50)
+                       }else if(sandmap.players[1].clickrate == 2){
+                            canvas_context.fillText(`Power: Absolute-Zero (8)`, difftoggle2.x + 10, difftoggle2.y + 50)
+                        }else if(sandmap.players[1].clickrate == 5){
+                            canvas_context.fillText(`Power: Bone-Chilling (7)`, difftoggle2.x + 10, difftoggle2.y + 50)
+                        }else if(sandmap.players[1].clickrate == 10){
+                            canvas_context.fillText(`Power: Frosty (6)`, difftoggle2.x + 10, difftoggle2.y + 50)
+                        }else if(sandmap.players[1].clickrate == 15){
+                            canvas_context.fillText(`Power: Frigid (5)`, difftoggle2.x + 10, difftoggle2.y + 50)
+                        }else if(sandmap.players[1].clickrate == 25){
+                            canvas_context.fillText(`Power: Cold (4)`, difftoggle2.x + 10, difftoggle2.y + 50)
+                        }else if(sandmap.players[1].clickrate == 35){
+                            canvas_context.fillText(`Power: Chilling (3)`, difftoggle2.x + 10, difftoggle2.y + 50)
+                        }else if(sandmap.players[1].clickrate == 50){
+                            canvas_context.fillText(`Power: Drafty (2)`, difftoggle2.x + 10, difftoggle2.y + 50)
+                        }else if(sandmap.players[1].clickrate == 100){
+                            canvas_context.fillText(`Power: Room-Temperature (1)`, difftoggle2.x + 10, difftoggle2.y + 50)
+                        }
+                    }
+                    if (sandmap.players[0].isAI == 1) {
+                        difftoggle1.draw()
+                        canvas_context.font = "30px Arial";
+                        canvas_context.fillStyle = "#FFFFFF"
+                         if(dynamic1 == 1){
+                            canvas_context.fillText(`Power: Dynamic (?)`, difftoggle1.x + 10, difftoggle1.y + 50)
+                        }else if(sandmap.players[0].clickrate == 2){
+                             canvas_context.fillText(`Power: Absolute-Zero (8)`, difftoggle1.x + 10, difftoggle1.y + 50)
+                         }else if(sandmap.players[0].clickrate == 5){
+                             canvas_context.fillText(`Power: Bone-Chilling (7)`, difftoggle1.x + 10, difftoggle1.y + 50)
+                         }else if(sandmap.players[0].clickrate == 10){
+                             canvas_context.fillText(`Power: Frosty (6)`, difftoggle1.x + 10, difftoggle1.y + 50)
+                         }else if(sandmap.players[0].clickrate == 15){
+                             canvas_context.fillText(`Power: Frigid (5)`, difftoggle1.x + 10, difftoggle1.y + 50)
+                         }else if(sandmap.players[0].clickrate == 25){
+                             canvas_context.fillText(`Power: Cold (4)`, difftoggle1.x + 10, difftoggle1.y + 50)
+                         }else if(sandmap.players[0].clickrate == 35){
+                             canvas_context.fillText(`Power: Chilling (3)`, difftoggle1.x + 10, difftoggle1.y + 50)
+                         }else if(sandmap.players[0].clickrate == 50){
+                             canvas_context.fillText(`Power: Drafty (2)`, difftoggle1.x + 10, difftoggle1.y + 50)
+                         }else if(sandmap.players[0].clickrate == 100){
+                             canvas_context.fillText(`Power: Room-Temperature (1)`, difftoggle1.x + 10, difftoggle1.y + 50)
+                         }
+                    }
                     canvas_context.font = "40px Arial";
                     canvas_context.fillStyle = "#FFFFFF"
                     canvas_context.fillText(sandmap.players[0].name, chartoggle1.x + 15, chartoggle1.y + 50)
@@ -2135,6 +2187,58 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             playstart = 2
                         }
                     }
+                    if(difftoggle2.isPointInside(TIP_engine)){
+
+                        if(dynamic2 == 1){
+                            dynamic2 = 0
+                            sandmap.players[1].clickrate = 100
+                       }else if(sandmap.players[1].clickrate == 2){
+                        dynamic2 = 1
+                        sandmap.players[1].clickrate = sandmap.players[1].units.length
+                        }else if(sandmap.players[1].clickrate == 5){
+                            sandmap.players[1].clickrate = 2
+                        }else if(sandmap.players[1].clickrate == 10){ 
+                             sandmap.players[1].clickrate = 5
+                        }else if(sandmap.players[1].clickrate == 15){
+                            sandmap.players[1].clickrate = 10
+                        }else if(sandmap.players[1].clickrate == 25){
+                            sandmap.players[1].clickrate = 15
+                        }else if(sandmap.players[1].clickrate == 35){
+                            sandmap.players[1].clickrate = 25
+                        }else if(sandmap.players[1].clickrate == 50){
+                            sandmap.players[1].clickrate = 35
+                        }else if(sandmap.players[1].clickrate == 100){
+                            sandmap.players[1].clickrate = 50
+                        }
+
+                    }
+                    if(difftoggle1.isPointInside(TIP_engine)){
+
+                        if(dynamic1 == 1){
+                            dynamic1 = 0
+                            sandmap.players[0].clickrate = 100
+                       }else if(sandmap.players[0].clickrate == 2){
+                        dynamic1 = 1
+                        sandmap.players[0].clickrate = sandmap.players[0].units.length
+                        }else if(sandmap.players[0].clickrate == 5){
+                            sandmap.players[0].clickrate = 2
+                        }else if(sandmap.players[0].clickrate == 10){ 
+                             sandmap.players[0].clickrate = 5
+                        }else if(sandmap.players[0].clickrate == 15){
+                            sandmap.players[0].clickrate = 10
+                        }else if(sandmap.players[0].clickrate == 25){
+                            sandmap.players[0].clickrate = 15
+                        }else if(sandmap.players[0].clickrate == 35){
+                            sandmap.players[0].clickrate = 25
+                        }else if(sandmap.players[0].clickrate == 50){
+                            sandmap.players[0].clickrate = 35
+                        }else if(sandmap.players[0].clickrate == 100){
+                            sandmap.players[0].clickrate = 50
+                        }
+
+                    }
+
+
                     if (chartoggle2.isPointInside(TIP_engine)) {
                         if (sandmap.players[1].type == 0) {
                             sandmap.players[1].type = 1
@@ -4120,7 +4224,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.isAI = ai
             this.type = type
             this.chunk = 0
-            this.clickrate = 2 // 2 // 10
+            this.clickrate = 100 // 2 // 10 //2
             this.aimode = 0
             this.racksflag = 5
             this.racks = 0
@@ -4185,6 +4289,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
         }
         ai() {
+            if(sandmap.players.indexOf(this) == 1){
+                if(dynamic2 == 1){
+                    this.clickrate = this.units.length
+                }
+            }
+            if(sandmap.players.indexOf(this) == 0){
+                if(dynamic1 == 1){
+                    this.clickrate = this.units.length
+                }
+            }
             this.defending--
             if (this.type == 3) {
                 this.chunk++
@@ -6853,7 +6967,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     canvas_context.font = "12px arial"
                     // canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
                     canvas_context.fillText("Puff-Fellow: 90", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
-                    canvas_context.fillText("Podman: 170", this.spawnmedium.x + 1, this.spawnmedium.y + 46)
+                    canvas_context.fillText("Podman: 140", this.spawnmedium.x + 1, this.spawnmedium.y + 46)
                     canvas_context.fillText("Golophyte: 355", this.spawnbig.x + 1, this.spawnbig.y + 46)
                     // canvas_context.fillText("Drone: 30")
                     // canvas_context.fillText("Drone: 30")
