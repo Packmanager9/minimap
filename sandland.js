@@ -2416,7 +2416,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 if (sandmap.players[sandmap.turn].buildings[t].tiles.includes(sandmap.players[sandmap.turn].selected_tile)) {
                                     sandmap.players[sandmap.turn].buildings[t].selected = 1
                                 } else {
-                                    sandmap.players[sandmap.turn].buildings[t].selected = 0
+                                    if(!keysPressed['Shift']){
+                                        sandmap.players[sandmap.turn].buildings[t].selected = 0
+                                    }
                                 }
                             }
 
@@ -2954,7 +2956,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         } else {
 
                             if (e.button == 0) {
-                                sandmap.players[sandmap.turn].units[t].selected = 0
+                                if(!keysPressed['Shift']){
+                                    sandmap.players[sandmap.turn].units[t].selected = 0
+                                }
                             }
                         }
                     }
@@ -4189,11 +4193,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
 
+                for (let t = 0; t < this.units.length; t++) {
+                    if (this.units[t].pollinator == 1) {
+                        if (this.units.length >= this.seenrocks.length && (this.units[t].health/this.units[t].maxhealth) > .3) { //seen
+                            let block = sandmap.gridPoints[Math.floor(Math.random() * sandmap.gridPoints.length)]
+                            this.units[t].pathTo(block)
+                        }
+                    }
+                }
+
                 if (this.defending >= 32) {
                     if(this.defending > 39){
                         for (let t = 0; t < this.units.length; t++) {
                             if(this.units[t].pollinator == 1){
-                                this.units[t].metamorphpufffellow()
+                                if(Math.random() < (this.hotrock/2000)){
+                                    this.units[t].metamorphpufffellow()
+                                }
                             }
                         }
                     }
@@ -4216,28 +4231,28 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                             if (this.buildings[t].bulbplant == 2) {
                                 if (Math.random() < .5) {
-                                    if (this.hotrock > 170) {
+                                    if (this.hotrock > 140) {
                                         this.buildings[t].makeLibrilbianpodman()
                                     }
                                 } else {
                                     if (Math.random() < .5) {
                                         if (Math.random() < .5) {
-                                            if (this.hotrock > 170) {
+                                            if (this.hotrock > 140) {
                                                 this.buildings[t].makeLibrilbianpodman()
                                             }
                                         } else {
                                             if (Math.random() < .5) {
-                                                if (this.hotrock > 95) {
+                                                if (this.hotrock > 95 && Math.random() < .7) { 
                                                     this.buildings[t].makeLibrilbianpufffellow()
                                                 }
                                             } else {
-                                                if (this.hotrock > 370) {
+                                                if (this.hotrock > 355) {
                                                     this.buildings[t].makeLibrilbiangoliophyte()
                                                 }
                                             }
                                         }
                                     } else {
-                                        if (this.hotrock > 370) {
+                                        if (this.hotrock > 355) {
                                             this.buildings[t].makeLibrilbiangoliophyte()
                                         }
                                     }
@@ -4280,28 +4295,28 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     for (let t = 0; t < this.buildings.length; t++) {
                         if (this.buildings[t].bulbplant == 2) {
                             if (Math.random() < .5) {
-                                if (this.hotrock > 170) {
+                                if (this.hotrock > 140) {
                                     this.buildings[t].makeLibrilbianpodman()
                                 }
                             } else {
                                 if (Math.random() < .5) {
                                     if (Math.random() < .5) {
-                                        if (this.hotrock > 170) {
+                                        if (this.hotrock > 140) {
                                             this.buildings[t].makeLibrilbianpodman()
                                         }
                                     } else {
                                         if (Math.random() < .5) {
-                                            if (this.hotrock > 95) {
+                                            if (this.hotrock > 95 && Math.random() < .7) {  // 100%
                                                 this.buildings[t].makeLibrilbianpufffellow()
                                             }
                                         } else {
-                                            if (this.hotrock > 370) {
+                                            if (this.hotrock > 355) {
                                                 this.buildings[t].makeLibrilbiangoliophyte()
                                             }
                                         }
                                     }
                                 } else {
-                                    if (this.hotrock > 370) {
+                                    if (this.hotrock > 355) {
                                         this.buildings[t].makeLibrilbiangoliophyte()
                                     }
                                 }
@@ -6476,9 +6491,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         makeLibrilbianpollinator() {
             if (this.que != 1) {
-                if (this.faction.hotrock >= 90 && this.faction.units.length < 51) {
+                if (this.faction.hotrock >= 85 && this.faction.units.length < 51) {
                     if (this.bulbplant == 1) {
-                        this.faction.hotrock -= 90
+                        this.faction.hotrock -= 85
                         this.que = 1
                         this.pollinator = 1
                         this.timer = 100
@@ -6489,9 +6504,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         makeLibrilbianpodman() {
             if (this.que != 1) {
-                if (this.faction.hotrock >= 170 && this.faction.units.length < 51) {
+                if (this.faction.hotrock >= 140 && this.faction.units.length < 51) {
                     if (this.bulbplant == 2) {
-                        this.faction.hotrock -= 170
+                        this.faction.hotrock -= 140 //170
                         this.que = 1
                         this.podman = 1
                         this.timer = 180
@@ -6502,9 +6517,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         makeLibrilbiangoliophyte() {
             if (this.que != 1) {
-                if (this.faction.hotrock >= 370 && this.faction.units.length < 51) {
+                if (this.faction.hotrock >= 355 && this.faction.units.length < 51) {
                     if (this.bulbplant == 2) {
-                        this.faction.hotrock -= 370
+                        this.faction.hotrock -= 355
                         this.que = 1
                         this.goliophyte = 1
                         this.timer = 290
@@ -6515,9 +6530,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         makeLibrilbianpufffellow() {
             if (this.que != 1) {
-                if (this.faction.hotrock >= 95 && this.faction.units.length < 51) {
+                if (this.faction.hotrock >= 90 && this.faction.units.length < 51) {
                     if (this.bulbplant == 2) {
-                        this.faction.hotrock -= 95
+                        this.faction.hotrock -= 90
                         this.que = 1
                         this.pufffellow = 1
                         this.timer = 50
@@ -6812,7 +6827,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     canvas_context.fillStyle = "white"
                     canvas_context.font = "12px arial"
                     // canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
-                    canvas_context.fillText("Pollinator: 90", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                    canvas_context.fillText("Pollinator: 85", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
                     // canvas_context.fillText("Sniper: 360", this.spawnbig.x + 1, this.spawnbig.y + 46)
                     // canvas_context.fillText("Drone: 30")
                     // canvas_context.fillText("Drone: 30")
@@ -6837,9 +6852,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     canvas_context.fillStyle = "white"
                     canvas_context.font = "12px arial"
                     // canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
-                    canvas_context.fillText("Puff-Fellow: 95", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                    canvas_context.fillText("Puff-Fellow: 90", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
                     canvas_context.fillText("Podman: 170", this.spawnmedium.x + 1, this.spawnmedium.y + 46)
-                    canvas_context.fillText("Goliophyte: 370", this.spawnbig.x + 1, this.spawnbig.y + 46)
+                    canvas_context.fillText("Golophyte: 355", this.spawnbig.x + 1, this.spawnbig.y + 46)
                     // canvas_context.fillText("Drone: 30")
                     // canvas_context.fillText("Drone: 30")
                     if (this.timer > 0) {
@@ -7202,7 +7217,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.body.color = "teal"
             this.body.radius = 5.5
             this.movespeed = 8
-            this.firerate = 7
+            this.firerate = 6 //7
             this.decayRate = 0
             this.damage = (this.body.radius * 4.5) + 1
             this.name = "Librilbian Golophyte"
@@ -7222,7 +7237,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.body.color = "teal"
             this.body.radius = 4
             this.movespeed = 4
-            this.firerate = 4
+            this.firerate = 3 //4
             this.decayRate = 0
             this.damage = (43 / 3)
             this.name = "Librilbian Podman"
@@ -7235,17 +7250,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.attacktarget = {}
             this.attacktarget.health = 0
             this.attackcounter = 0
-            this.health = 890 //510 //490
+            this.health = 990 //510 //490 //890
             this.maxhealth = this.health
         }
         isPufffellow() {
             this.pollinator = 0
             this.body.color = "teal"
-            this.body.radius = 4
+            this.body.radius = 4.7
             this.movespeed = 2
-            this.firerate = 4
+            this.firerate = 4//4 //lmao 4.7
             this.decayRate = 0
-            this.damage = (this.body.radius * 2.6) + 1  //2.1
+            this.damage = (this.body.radius * 2.6) + 0  //2.1 // +1
             this.name = "Librilbian Puff-Fellow"
             this.pufffellow = 1
             this.defense = 4
@@ -7256,7 +7271,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.attacktarget = {}
             this.attacktarget.health = 0
             this.attackcounter = 0
-            this.health = 330
+            this.health = 440//300 //530 //470
             this.maxhealth = this.health
         }
         isNymph() {
@@ -7580,9 +7595,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         metamorphpufffellow() {
             if (this.que != 1) {
-                if (this.faction.hotrock >= 40) {
+                if (this.faction.hotrock >= 5) {
                     if (this.pollinator == 1) {
-                        this.faction.hotrock -= 40
+                        this.faction.hotrock -= 5
                         this.puffing = 1
                         this.que = 1
                         this.timer = 25
@@ -7675,7 +7690,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     canvas_context.drawImage(librilbianpufffellow, 0, 0, 10, 10, this.morph.x + 10, this.morph.y + 5, 30, 30)
                     canvas_context.fillStyle = "white"
                     canvas_context.font = "13px arial"
-                    canvas_context.fillText("Puff-Fellow: 40", this.morph.x + 1, this.morph.y + 46)
+                    canvas_context.fillText("Puff-Fellow: 5", this.morph.x + 1, this.morph.y + 46)
                 }
                 if (this.nymph == 1 || this.nymph == 2) {
                     if (this.nymph == 1) {
