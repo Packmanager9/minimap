@@ -152,6 +152,50 @@ window.addEventListener('DOMContentLoaded', (event) => {
     ritual.src = "ritual.mp3"
     sounds.push(ritual)
 
+    // podman audio
+    let youworkforme = new Audio()
+    youworkforme.src = "youworkforme.mp3"
+    sounds.push(youworkforme)
+    let whatdoweneed = new Audio()
+    whatdoweneed.src = "whatdoweneed.mp3"
+    sounds.push(whatdoweneed)
+    let gushorgushnot = new Audio()
+    gushorgushnot.src = "gushorgushnot.mp3"
+    sounds.push(gushorgushnot)
+    let nahimgood = new Audio()
+    nahimgood.src = "nahimgood.mp3"
+    sounds.push(nahimgood)
+    let backwithclass = new Audio()
+    backwithclass.src = "backwithclass.mp3"
+    sounds.push(backwithclass)
+    let hotmore = new Audio()
+    hotmore.src = "hotmore.mp3"
+    sounds.push(hotmore)
+    let maybegofishing = new Audio()
+    maybegofishing.src = "maybegofishing.mp3"
+    sounds.push(maybegofishing)
+    let walkinthesunpostskirmish = new Audio()
+    walkinthesunpostskirmish.src = "walkinthesunpostskirmish.mp3"
+    sounds.push(walkinthesunpostskirmish)
+    let whosthegas = new Audio()
+    whosthegas.src = "whosthegas.mp3"
+    sounds.push(whosthegas)
+    let bombbuoy = new Audio()
+    bombbuoy.src = "bombbuoy.mp3"
+    sounds.push(bombbuoy)
+    let seeyesineed = new Audio()
+    seeyesineed.src = "seeyesineed.mp3"
+    sounds.push(seeyesineed)
+    let notinhere = new Audio()
+    notinhere.src = "notinhere.mp3"
+    sounds.push(notinhere)
+    let whatdoesthisdo = new Audio()
+    whatdoesthisdo.src = "whatdoesthisdo.mp3"
+    sounds.push(whatdoesthisdo)
+    let moveitalong = new Audio()
+    moveitalong.src = "moveitalong.mp3"
+    sounds.push(moveitalong)
+
     //sniper audio
     let adjustingforwindspeed = new Audio()
     adjustingforwindspeed.src = "adjustingforwindspeed.mp3"
@@ -2072,22 +2116,28 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         canvas_context.fillStyle = "#FFFFFF"
                          if(dynamic2 == 1){
                             canvas_context.fillText(`Power: Dynamic (?)`, difftoggle2.x + 10, difftoggle2.y + 50)
-                       }else if(sandmap.players[1].clickrate == 2){
-                            canvas_context.fillText(`Power: Absolute-Zero (8)`, difftoggle2.x + 10, difftoggle2.y + 50)
+                        }else if(sandmap.players[1].clickrate == 1){
+                            canvas_context.fillText(`Power: Absolute-Zero (11)`, difftoggle2.x + 10, difftoggle2.y + 50)
+                        }else if(sandmap.players[1].clickrate == 2){
+                            canvas_context.fillText(`Power: Bone-Chilling (10)`, difftoggle2.x + 10, difftoggle2.y + 50)
                         }else if(sandmap.players[1].clickrate == 5){
-                            canvas_context.fillText(`Power: Bone-Chilling (7)`, difftoggle2.x + 10, difftoggle2.y + 50)
+                            canvas_context.fillText(`Power: Frigid (9)`, difftoggle2.x + 10, difftoggle2.y + 50)
                         }else if(sandmap.players[1].clickrate == 10){
-                            canvas_context.fillText(`Power: Frosty (6)`, difftoggle2.x + 10, difftoggle2.y + 50)
+                            canvas_context.fillText(`Power: Frosty (8)`, difftoggle2.x + 10, difftoggle2.y + 50)
                         }else if(sandmap.players[1].clickrate == 15){
-                            canvas_context.fillText(`Power: Frigid (5)`, difftoggle2.x + 10, difftoggle2.y + 50)
+                            canvas_context.fillText(`Power: Sweater-Weather (7)`, difftoggle2.x + 10, difftoggle2.y + 50)
                         }else if(sandmap.players[1].clickrate == 25){
-                            canvas_context.fillText(`Power: Cold (4)`, difftoggle2.x + 10, difftoggle2.y + 50)
+                            canvas_context.fillText(`Power: Cold (6)`, difftoggle2.x + 10, difftoggle2.y + 50)
                         }else if(sandmap.players[1].clickrate == 35){
-                            canvas_context.fillText(`Power: Chilling (3)`, difftoggle2.x + 10, difftoggle2.y + 50)
+                            canvas_context.fillText(`Power: Chilly (5)`, difftoggle2.x + 10, difftoggle2.y + 50)
                         }else if(sandmap.players[1].clickrate == 50){
-                            canvas_context.fillText(`Power: Drafty (2)`, difftoggle2.x + 10, difftoggle2.y + 50)
+                            canvas_context.fillText(`Power: Drafty (4)`, difftoggle2.x + 10, difftoggle2.y + 50)
                         }else if(sandmap.players[1].clickrate == 100){
-                            canvas_context.fillText(`Power: Room-Temperature (1)`, difftoggle2.x + 10, difftoggle2.y + 50)
+                            canvas_context.fillText(`Power: Room-Temperature (3)`, difftoggle2.x + 10, difftoggle2.y + 50)
+                        }else if(sandmap.players[1].clickrate == 200){
+                            canvas_context.fillText(`Power: Warm (2)`, difftoggle2.x + 10, difftoggle2.y + 50)
+                        }else if(sandmap.players[1].clickrate == 400){
+                            canvas_context.fillText(`Power: Balmy (1)`, difftoggle2.x + 10, difftoggle2.y + 50)
                         }
                     }
                     if (sandmap.players[0].isAI == 1) {
@@ -2096,23 +2146,29 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         canvas_context.fillStyle = "#FFFFFF"
                          if(dynamic1 == 1){
                             canvas_context.fillText(`Power: Dynamic (?)`, difftoggle1.x + 10, difftoggle1.y + 50)
+                        }else if(sandmap.players[0].clickrate == 1){
+                            canvas_context.fillText(`Power: Absolute-Zero (11)`, difftoggle1.x + 10, difftoggle1.y + 50)
                         }else if(sandmap.players[0].clickrate == 2){
-                             canvas_context.fillText(`Power: Absolute-Zero (8)`, difftoggle1.x + 10, difftoggle1.y + 50)
-                         }else if(sandmap.players[0].clickrate == 5){
-                             canvas_context.fillText(`Power: Bone-Chilling (7)`, difftoggle1.x + 10, difftoggle1.y + 50)
-                         }else if(sandmap.players[0].clickrate == 10){
-                             canvas_context.fillText(`Power: Frosty (6)`, difftoggle1.x + 10, difftoggle1.y + 50)
-                         }else if(sandmap.players[0].clickrate == 15){
-                             canvas_context.fillText(`Power: Frigid (5)`, difftoggle1.x + 10, difftoggle1.y + 50)
-                         }else if(sandmap.players[0].clickrate == 25){
-                             canvas_context.fillText(`Power: Cold (4)`, difftoggle1.x + 10, difftoggle1.y + 50)
-                         }else if(sandmap.players[0].clickrate == 35){
-                             canvas_context.fillText(`Power: Chilling (3)`, difftoggle1.x + 10, difftoggle1.y + 50)
-                         }else if(sandmap.players[0].clickrate == 50){
-                             canvas_context.fillText(`Power: Drafty (2)`, difftoggle1.x + 10, difftoggle1.y + 50)
-                         }else if(sandmap.players[0].clickrate == 100){
-                             canvas_context.fillText(`Power: Room-Temperature (1)`, difftoggle1.x + 10, difftoggle1.y + 50)
-                         }
+                            canvas_context.fillText(`Power: Bone-Chilling (10)`, difftoggle1.x + 10, difftoggle1.y + 50)
+                        }else if(sandmap.players[0].clickrate == 5){
+                            canvas_context.fillText(`Power: Frigid (9)`, difftoggle1.x + 10, difftoggle1.y + 50)
+                        }else if(sandmap.players[0].clickrate == 10){
+                            canvas_context.fillText(`Power: Frosty (8)`, difftoggle1.x + 10, difftoggle1.y + 50)
+                        }else if(sandmap.players[0].clickrate == 15){
+                            canvas_context.fillText(`Power: Sweater-Weather (7)`, difftoggle1.x + 10, difftoggle1.y + 50)
+                        }else if(sandmap.players[0].clickrate == 25){
+                            canvas_context.fillText(`Power: Cold (6)`, difftoggle1.x + 10, difftoggle1.y + 50)
+                        }else if(sandmap.players[0].clickrate == 35){
+                            canvas_context.fillText(`Power: Chilly (5)`, difftoggle1.x + 10, difftoggle1.y + 50)
+                        }else if(sandmap.players[0].clickrate == 50){
+                            canvas_context.fillText(`Power: Drafty (4)`, difftoggle1.x + 10, difftoggle1.y + 50)
+                        }else if(sandmap.players[0].clickrate == 100){
+                            canvas_context.fillText(`Power: Room-Temperature (3)`, difftoggle1.x + 10, difftoggle1.y + 50)
+                        }else if(sandmap.players[0].clickrate == 200){
+                            canvas_context.fillText(`Power: Warm (2)`, difftoggle1.x + 10, difftoggle1.y + 50)
+                        }else if(sandmap.players[0].clickrate == 400){
+                            canvas_context.fillText(`Power: Balmy (1)`, difftoggle1.x + 10, difftoggle1.y + 50)
+                        }
                     }
                     canvas_context.font = "40px Arial";
                     canvas_context.fillStyle = "#FFFFFF"
@@ -2188,13 +2244,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         }
                     }
                     if(difftoggle2.isPointInside(TIP_engine)){
-
                         if(dynamic2 == 1){
                             dynamic2 = 0
-                            sandmap.players[1].clickrate = 100
-                       }else if(sandmap.players[1].clickrate == 2){
+                            sandmap.players[1].clickrate = 400
+                       }else if(sandmap.players[1].clickrate == 1){
                         dynamic2 = 1
                         sandmap.players[1].clickrate = sandmap.players[1].units.length
+                        }else if(sandmap.players[1].clickrate == 2){
+                            sandmap.players[1].clickrate = 1
                         }else if(sandmap.players[1].clickrate == 5){
                             sandmap.players[1].clickrate = 2
                         }else if(sandmap.players[1].clickrate == 10){ 
@@ -2209,6 +2266,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             sandmap.players[1].clickrate = 35
                         }else if(sandmap.players[1].clickrate == 100){
                             sandmap.players[1].clickrate = 50
+                        }else if(sandmap.players[1].clickrate == 200){
+                            sandmap.players[1].clickrate = 100
+                        }else if(sandmap.players[1].clickrate == 400){
+                            sandmap.players[1].clickrate = 200
                         }
 
                     }
@@ -2216,10 +2277,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                         if(dynamic1 == 1){
                             dynamic1 = 0
-                            sandmap.players[0].clickrate = 100
-                       }else if(sandmap.players[0].clickrate == 2){
+                            sandmap.players[0].clickrate = 400
+                       }else if(sandmap.players[0].clickrate == 1){
                         dynamic1 = 1
                         sandmap.players[0].clickrate = sandmap.players[0].units.length
+                        }else if(sandmap.players[0].clickrate == 2){
+                            sandmap.players[0].clickrate = 1
                         }else if(sandmap.players[0].clickrate == 5){
                             sandmap.players[0].clickrate = 2
                         }else if(sandmap.players[0].clickrate == 10){ 
@@ -2234,6 +2297,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             sandmap.players[0].clickrate = 35
                         }else if(sandmap.players[0].clickrate == 100){
                             sandmap.players[0].clickrate = 50
+                        }else if(sandmap.players[0].clickrate == 200){
+                            sandmap.players[0].clickrate = 100
+                        }else if(sandmap.players[0].clickrate == 400){
+                            sandmap.players[0].clickrate = 200
                         }
 
                     }
@@ -2605,6 +2672,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                 hitsomething.play()
                                             }
                                         }
+                                        if (sandmap.players[sandmap.turn].units[t].podman == 1) {
+                                            if (Math.random() < .5) {
+                                                backwithclass.play()
+                                            } else {
+                                                whosthegas.play()
+                                            }
+                                        }
                                         // }
                                     }
                                     sandmap.players[sandmap.turn].units[t].selected = 2
@@ -2875,6 +2949,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         sieveceaselessly.play()
                                     }
                                 }
+                                if (sandmap.players[sandmap.turn].units[t].podman == 1) {
+                                    if (Math.random() < .5) {
+                                        whatdoweneed.play()
+                                    } else {
+                                        hotmore.play()
+                                    }
+                                }
                                 if (sandmap.players[sandmap.turn].units[t].hamartaninvader == 1) {
                                     incroiable.play()
                                 }
@@ -2945,6 +3026,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                                 if (sandmap.players[sandmap.turn].units[t].harvester == 1) {
                                     movin.play()
+                                }
+                                if (sandmap.players[sandmap.turn].units[t].podman == 1) {
+                                    if (Math.random() < .5) {
+                                        nahimgood.play()
+                                    } else if (Math.random() < .5) {
+                                        whatdoesthisdo.play()
+                                    } else {
+                                        maybegofishing.play()
+                                    }
                                 }
                                 if (sandmap.players[sandmap.turn].units[t].drone == 1) {
                                     if (Math.random() < .5) {
@@ -4224,7 +4314,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.isAI = ai
             this.type = type
             this.chunk = 0
-            this.clickrate = 100 // 2 // 10 //2
+            this.clickrate = 400 // 2 // 10 //2
             this.aimode = 0
             this.racksflag = 5
             this.racks = 0
@@ -4504,7 +4594,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
 
 
-                if (this.chunk % this.clickrate == 1) {
+                if (this.chunk % this.clickrate == 0) {
                     for (let t = 0; t < this.units.length; t++) {
                         if (this.units[t].realPath.length - 1 == this.units[t].index) { //} || this.units[t].realPath[this.units[t].index].walkable !== true) {
                             if (this.units[t].tile.hotrock != 1 && this.units[t].tile.hotrock != 2) {
@@ -4718,7 +4808,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 let index
                 let j = 0
                 this.chunk++
-                if (this.chunk % this.clickrate == 1) {
+                if (this.chunk % this.clickrate == 0) {
 
 
 
@@ -4884,7 +4974,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 } else if (this.aimode == 0) {
                     let j = 0
 
-                    if (this.chunk % this.clickrate == 1) {
+                    if (this.chunk % this.clickrate == 0) {
                         for (let t = 0; t < this.units.length; t++) {
                             if (this.units[t].realPath.length - 1 == this.units[t].index) { //} || this.units[t].realPath[this.units[t].index].walkable !== true) {
                                 if (this.units[t].tile.hotrock != 1 && this.units[t].tile.hotrock != 2) {
@@ -5119,7 +5209,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 } else if (this.aimode == 0) {
                     let j = 0
 
-                    if (this.chunk % this.clickrate == 1) {
+                    if (this.chunk % this.clickrate == 0) {
 
                         this.findBase() // to make an averagespace
                         for (let t = 0; t < this.units.length; t++) {
@@ -6074,6 +6164,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (sandmap.players.indexOf(this) == sandmap.turn) {
                         if (Math.random() < soundspamdrop) {
                             soundCancel()
+                            if (this.units[t].podman == 1) {
+                                if (Math.random() < .5) {
+                                    walkinthesunpostskirmish.play()
+                                } else {
+                                    gushorgushnot.play()
+                                }
+                            }
                             if (this.units[t].drone == 1) {
                                 if (Math.random() < .5) {
                                     signallost.play()
@@ -6721,6 +6818,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (Math.random() < soundspamdrop) {
                 if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
                     soundCancel()
+                    youworkforme.play()
                 }
             }
             let agent1 = new Agent(this.tile, this.faction)
@@ -8199,6 +8297,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 if (Math.random() < soundspamdrop) {
                                                                     soundCancel()
                                                                     combatinit.play()
+                                                                }
+                                                            }
+                                                            if (this.podman == 1) {
+                                                                if (Math.random() < soundspamdrop) {
+                                                                    soundCancel()
+                                                                    if (Math.random() < .3) {
+                                                                        seeyesineed.play()
+                                                                    }else if (Math.random() < .3) {
+                                                                        bombbuoy.play()
+                                                                    }else{
+                                                                        notinhere.play()
+                                                                    }
                                                                 }
                                                             }
                                                             if (this.infantry == 1) {
