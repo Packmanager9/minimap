@@ -7335,7 +7335,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.stacksnap = 0
             this.aircheck = Math.floor(Math.random() * 10)
             this.swing = 0
-            this.swingout = 5
+            this.swingout = 1 //5
             this.stepout = 1
             this.selected = 0
             this.faction = player
@@ -8400,7 +8400,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     return
                 }
                 this.attackcounter++
-                if (this.attackcounter % this.firerate == 0 && this.submerged != 1) {
+                if (this.attackcounter % (this.firerate*3) == 0 && this.submerged != 1) { //3 because 0 strikeout
                     let shot = new UnitCircle(this.body.x, this.body.y, 2, this.faction.color)
                     shot.attacktarget = {}
                     shot.attacktarget.body = new UnitCircle(this.attacktarget.body.x, this.attacktarget.body.y, 1, "transparent")
