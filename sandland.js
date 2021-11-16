@@ -477,51 +477,51 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     //librilian faces
     let librilbianpollinatorface = new Image()
-    librilbianpollinatorface.src = "librilbianpollinatorface.png"
+    librilbianpollinatorface.src = "librilbianpollinatorface2.png"
     let golophyteface = new Image()
-    golophyteface.src = "golophyteface.png"
+    golophyteface.src = "librilbiangoliophyteface2.png"
     let pufffellowface = new Image()
-    pufffellowface.src = "pufffellowface.png"
+    pufffellowface.src = "pufffellowface4.png"
     let podmanface = new Image()
-    podmanface.src = "podmanface.png"
+    podmanface.src = "podmanface7.png"
 
     // colditzlerian faces
     let nymphface = new Image()
     nymphface.src = "nymphface2.png"
     let imagoface = new Image()
-    imagoface.src = "imagoface.png"
+    imagoface.src = "imagoface2.png"
     let scurrierface = new Image()
-    scurrierface.src = "scurrierface.png"
+    scurrierface.src = "scurrierface2.png"
     let gamergateface = new Image()
-    gamergateface.src = "gamergateface1.png"
+    gamergateface.src = "gamergateface2.png"
 
 
     // human faces
     let infantryface = new Image()
-    infantryface.src = "infantryface.png"
+    infantryface.src = "infantryface2.png"
     let droneface = new Image()
-    droneface.src = "droneface.png"
+    droneface.src = "droneface2.png"
     let sniperface = new Image()
-    sniperface.src = "sniperface.png"
+    sniperface.src = "sniperface2.png"
     let harvesterface = new Image()
-    harvesterface.src = "harvesterface.png"
+    harvesterface.src = "harvesterface2.png"
 
 
 
     // hamartan faces
     let hamartanscoutface = new Image()
-    hamartanscoutface.src = "hamartanscoutface.png"
+    hamartanscoutface.src = "hamartanscoutface2.png"
     let hamartansoldierface = new Image()
-    hamartansoldierface.src = "hamartansoldierface.png"
+    hamartansoldierface.src = "hamartansoldierface2.png"
     let hamartanworkerface = new Image()
-    hamartanworkerface.src = "hamartanworkerface.png"
+    hamartanworkerface.src = "hamartanworkerface2.png"
     let hamartaninvaderface = new Image()
-    hamartaninvaderface.src = "hamartaninvaderface.png"
+    hamartaninvaderface.src = "hamartaninvaderface2.png"
 
 
     function soundCancel() {
         /* sets chance of audio playback  */
-        soundspamdrop = .15
+        soundspamdrop = .10
         for (let t = 0; t < sounds.length; t++) {
             sounds[t].pause()
             sounds[t].currentTime = 0
@@ -6931,8 +6931,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
 
         dataOutput() {
-            if (dataflop == 0) {
-                dataflop = 1
+            if(true){
                 canvas_context.fillStyle = this.faction.color
                 canvas_context.font = "18px arial"
 
@@ -6940,27 +6939,36 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.strokeStyle = sandmap.players[sandmap.turn].color
                 canvas_context.lineWidth = 1.5
                 canvas_context.font = "18px arial"
+                if (dataflop == 0) {
                 canvas_context.strokeText(this.name + " " + Math.ceil(this.health) + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
                 canvas_context.fillText(this.name + " " + Math.ceil(this.health) + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
-
                 canvas_context.strokeText("Attack " + Math.ceil(this.damage), sandmap.window.body.x + sandmap.window.body.width + 10, 85)
                 canvas_context.fillText("Attack " + Math.ceil(this.damage), sandmap.window.body.x + sandmap.window.body.width + 10, 85)
                 canvas_context.strokeText("Defense " + Math.ceil(this.defense), sandmap.window.body.x + sandmap.window.body.width + 10, 115)
                 canvas_context.fillText("Defense " + Math.ceil(this.defense), sandmap.window.body.x + sandmap.window.body.width + 10, 115)
+                }
                 if (this.barracks == 1) {
+                    if (dataflop == 0) {
                     canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
                     canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                    }
                     this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
+
+                    if (dataflop == 0) {
                     this.spawnsmall.draw()
                     canvas_context.drawImage(infantry, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
+                    }
                     // this.spawnmedium = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 110, 125, 90, 50, "black")
                     // this.spawnmedium.draw()
                     // canvas_context.drawImage(infantry, 0, 0, 10, 10, this.spawnmedium.x + 10, this.spawnmedium.y + 5, 30, 30)
                     this.spawnbig = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 210, 125, 90, 50, "black")
+
+                    if (dataflop == 0) {
                     this.spawnbig.draw()
                     canvas_context.drawImage(sniper1, 0, 0, 10, 10, this.spawnbig.x + 10, this.spawnbig.y + 5, 30, 30)
+                    }
 
-
+                    if (dataflop == 0) {
                     canvas_context.fillStyle = "white"
                     canvas_context.font = "12px arial"
                     // canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
@@ -6968,16 +6976,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     canvas_context.fillText("Sniper: 290", this.spawnbig.x + 1, this.spawnbig.y + 46)
                     // canvas_context.fillText("Drone: 30")
                     // canvas_context.fillText("Drone: 30")
+                    }
                     if (this.timer > 0) {
+
+                    if (dataflop == 0) {
                         canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
+                    }
                     }
                 }
                 if (this.assembler == 1) {
+                    if (dataflop == 0) {
                     canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
                     canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                    }
                     this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
+                    if (dataflop == 0) {
                     this.spawnsmall.draw()
                     canvas_context.drawImage(hamartansoldier, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
+                    }
                     // this.spawnmedium = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 110, 125, 90, 50, "black")
                     // this.spawnmedium.draw()
                     // canvas_context.drawImage(infantry, 0, 0, 10, 10, this.spawnmedium.x + 10, this.spawnmedium.y + 5, 30, 30)
@@ -6986,6 +7002,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     // canvas_context.drawImage(sniper1, 0, 0, 10, 10, this.spawnbig.x + 10, this.spawnbig.y + 5, 30, 30)
 
 
+                    if (dataflop == 0) {
                     canvas_context.fillStyle = "white"
                     canvas_context.font = "12px arial"
                     // canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
@@ -6993,20 +7010,28 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     // canvas_context.fillText("Sniper: 360", this.spawnbig.x + 1, this.spawnbig.y + 46)
                     // canvas_context.fillText("Drone: 30")
                     // canvas_context.fillText("Drone: 30")
+                    }
                     if (this.timer > 0) {
+                        if (dataflop == 0) {
                         canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
+                        }
                     }
                 }
                 if (this.assembler == 2) {
+                    if (dataflop == 0) {
                     canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
                     canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                    }
                     this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
+                    if (dataflop == 0) {
                     this.spawnsmall.draw()
                     canvas_context.drawImage(hamartanscout, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
+                    }
                     // this.spawnmedium = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 110, 125, 90, 50, "black")
                     // this.spawnmedium.draw()
                     // canvas_context.drawImage(infantry, 0, 0, 10, 10, this.spawnmedium.x + 10, this.spawnmedium.y + 5, 30, 30)
                     this.spawnbig = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 210, 125, 90, 50, "black")
+                    if (dataflop == 0) {
                     // this.spawnbig.draw()
                     // canvas_context.drawImage(sniper1, 0, 0, 10, 10, this.spawnbig.x + 10, this.spawnbig.y + 5, 30, 30)
 
@@ -7018,16 +7043,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     // canvas_context.fillText("Sniper: 360", this.spawnbig.x + 1, this.spawnbig.y + 46)
                     // canvas_context.fillText("Drone: 30")
                     // canvas_context.fillText("Drone: 30")
+                    }
                     if (this.timer > 0) {
+                        if (dataflop == 0) {
                         canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
+                        }
                     }
                 }
                 if (this.bulbplant == 1) {
+                    if (dataflop == 0) {
                     canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
                     canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                    }
                     this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
+                    if (dataflop == 0) {
                     this.spawnsmall.draw()
                     canvas_context.drawImage(librilbianpollinator, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
+                    }
                     // this.spawnmedium = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 110, 125, 90, 50, "black")
                     // this.spawnmedium.draw()
                     // canvas_context.drawImage(infantry, 0, 0, 10, 10, this.spawnmedium.x + 10, this.spawnmedium.y + 5, 30, 30)
@@ -7036,6 +7068,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     // canvas_context.drawImage(sniper1, 0, 0, 10, 10, this.spawnbig.x + 10, this.spawnbig.y + 5, 30, 30)
 
 
+                    if (dataflop == 0) {
                     canvas_context.fillStyle = "white"
                     canvas_context.font = "12px arial"
                     // canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
@@ -7043,22 +7076,33 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     // canvas_context.fillText("Sniper: 360", this.spawnbig.x + 1, this.spawnbig.y + 46)
                     // canvas_context.fillText("Drone: 30")
                     // canvas_context.fillText("Drone: 30")
+                    }
                     if (this.timer > 0) {
+                        if (dataflop == 0) {
                         canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
+                        }
                     }
                 }
                 if (this.bulbplant == 2) {
+                    if (dataflop == 0) {
                     canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
                     canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                    }
                     this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
+                    if (dataflop == 0) {
                     this.spawnsmall.draw()
                     canvas_context.drawImage(librilbianpufffellow, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
+                    }
                     this.spawnmedium = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 110, 125, 90, 50, "black")
+                    if (dataflop == 0) {
                     this.spawnmedium.draw()
                     canvas_context.drawImage(librilbianpodman, 0, 0, 10, 10, this.spawnmedium.x + 10, this.spawnmedium.y + 5, 30, 30)
+                    }
                     this.spawnbig = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 210, 125, 90, 50, "black")
+                    if (dataflop == 0) {
                     this.spawnbig.draw()
                     canvas_context.drawImage(librilbiangoliophyte, 0, 0, 10, 10, this.spawnbig.x + 10, this.spawnbig.y + 5, 30, 30)
+                    
 
 
                     canvas_context.fillStyle = "white"
@@ -7069,24 +7113,35 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     canvas_context.fillText("Golophyte: 355", this.spawnbig.x + 1, this.spawnbig.y + 46)
                     // canvas_context.fillText("Drone: 30")
                     // canvas_context.fillText("Drone: 30")
+                    }
                     if (this.timer > 0) {
+                        if (dataflop == 0) {
                         canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
+                        }
                     }
                 }
                 if (this.assembler == 3) {
+
+                    if (dataflop == 0) {
                     canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
                     canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                    }
                     this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
+                    if (dataflop == 0) {
                     this.spawnsmall.draw()
                     canvas_context.drawImage(hamartanworker, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
+                    }
                     // this.spawnmedium = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 110, 125, 90, 50, "black")
                     // this.spawnmedium.draw()
                     // canvas_context.drawImage(infantry, 0, 0, 10, 10, this.spawnmedium.x + 10, this.spawnmedium.y + 5, 30, 30)
                     this.spawnbig = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 210, 125, 90, 50, "black")
+                    if (dataflop == 0) {
                     this.spawnbig.draw()
                     canvas_context.drawImage(hamartaninvader, 0, 0, 10, 10, this.spawnbig.x + 10, this.spawnbig.y + 5, 30, 30)
+                    }
 
 
+                    if (dataflop == 0) {
                     canvas_context.fillStyle = "white"
                     canvas_context.font = "12px arial"
                     // canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
@@ -7094,20 +7149,29 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     canvas_context.fillText("Invader: 340", this.spawnbig.x + 1, this.spawnbig.y + 46)
                     // canvas_context.fillText("Drone: 30")
                     // canvas_context.fillText("Drone: 30")
+                    }
                     if (this.timer > 0) {
+
+                    if (dataflop == 0) {
                         canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
+                    }
                     }
                 }
                 if (this.barracks == 2) {
+                    if (dataflop == 0) {
                     canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
                     canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                    }
                     this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
+                    if (dataflop == 0) {
                     this.spawnsmall.draw()
                     canvas_context.drawImage(drone, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
+                    }
                     // this.spawnmedium = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 110, 125, 90, 50, "black")
                     // this.spawnmedium.draw()
                     // canvas_context.drawImage(infantry, 0, 0, 10, 10, this.spawnmedium.x + 10, this.spawnmedium.y + 5, 30, 30)
                     this.spawnbig = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 210, 125, 90, 50, "black")
+                    if (dataflop == 0) {
                     this.spawnbig.draw()
                     canvas_context.drawImage(harvester, 0, 0, 10, 10, this.spawnbig.x + 10, this.spawnbig.y + 5, 30, 30)
 
@@ -7119,11 +7183,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     canvas_context.fillText("Harvester: 160", this.spawnbig.x + 1, this.spawnbig.y + 46)
                     // canvas_context.fillText("Drone: 30")
                     // canvas_context.fillText("Drone: 30")
+                    }
                     if (this.timer > 0) {
+                        if (dataflop == 0) {
                         canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
+                        }
                     }
                 }
                 if (this.gate == 1) {
+                    if (dataflop == 0) {
                     if (this.open == 1) {
                         canvas_context.strokeText("Status: Open", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
                         canvas_context.fillText("Status: Open", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
@@ -7131,8 +7199,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         canvas_context.strokeText("Status: Closed", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
                         canvas_context.fillText("Status: Closed", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
                     }
+                }
                     this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
+
+                    if (dataflop == 0) {
                     this.spawnsmall.draw()
+                    }
                     // this.spawnmedium = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 110, 125, 90, 50, "black")
                     // this.spawnmedium.draw()
                     // canvas_context.drawImage(infantry, 0, 0, 10, 10, this.spawnmedium.x + 10, this.spawnmedium.y + 5, 30, 30)
@@ -7140,6 +7212,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     // this.spawnbig.draw()
                     // canvas_context.drawImage(harvester, 0, 0, 10, 10, this.spawnbig.x + 10, this.spawnbig.y + 5, 30, 30)
 
+                    if (dataflop == 0) {
                     canvas_context.fillStyle = "white"
                     canvas_context.font = "22px arial"
 
@@ -7148,8 +7221,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     } else {
                         canvas_context.fillText("Open", this.spawnsmall.x + 15, this.spawnsmall.y + 32)
                     }
-
                 }
+                }
+            }
+
+            if (dataflop == 0) {
+                dataflop = 1
             }
         }
         draw() {
@@ -7862,11 +7939,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
         }
         dataOutput() {
-            if (dataflop == 0) {
-                dataflop = 1
+            if(true){
                 canvas_context.fillStyle = this.faction.color
                 // canvas_context.font = "18px arial"
 
+                if (dataflop == 0) {
                 canvas_context.fillStyle = "black"
                 canvas_context.strokeStyle = sandmap.players[sandmap.turn].color
                 canvas_context.lineWidth = 1.5
@@ -7887,52 +7964,66 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.fillText("Attack " + Math.ceil(this.damage * 3) + ", " + "Defense " + Math.ceil(this.defense), sandmap.window.body.x + sandmap.window.body.width + 10, 85)
                 canvas_context.strokeText("Speed " + Math.floor((1 / this.movespeed) * 120) + ", Vision " + this.sight + ", Range " + this.attackrange + ", Fire rate " + Math.floor((1 / this.firerate) * 120), sandmap.window.body.x + sandmap.window.body.width + 10, 115)
                 canvas_context.fillText("Speed " + Math.floor((1 / this.movespeed) * 120) + ", Vision " + this.sight + ", Range " + this.attackrange + ", Fire rate " + Math.floor((1 / this.firerate) * 120), sandmap.window.body.x + sandmap.window.body.width + 10, 115)
+
+            }
                 if (this.imago == 1 || this.imago == 2) {
                     this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
+                    if (dataflop == 0) {
                     this.spawnsmall.draw()
                     canvas_context.drawImage(nymph, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
                     canvas_context.fillStyle = "white"
                     canvas_context.font = "13px arial"
                     canvas_context.fillText("Nymph: 109", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                    }
 
                 }
                 if (this.pollinator == 1) {
                     this.morph = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
+                    if (dataflop == 0) {
                     this.morph.draw()
                     canvas_context.drawImage(librilbianpufffellow, 0, 0, 10, 10, this.morph.x + 10, this.morph.y + 5, 30, 30)
                     canvas_context.fillStyle = "white"
                     canvas_context.font = "13px arial"
                     canvas_context.fillText("Puff-Fellow: 5", this.morph.x + 1, this.morph.y + 46)
+                    }
                 }
                 if (this.nymph == 1 || this.nymph == 2) {
                     if (this.nymph == 1) {
                         this.morph = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
+                        if (dataflop == 0) {
                         this.morph.draw()
                         canvas_context.drawImage(scuttler, 0, 0, 10, 10, this.morph.x + 10, this.morph.y + 5, 30, 30)
                         canvas_context.fillStyle = "white"
                         canvas_context.font = "13px arial"
                         canvas_context.fillText("Scurrier: 160", this.morph.x + 1, this.morph.y + 46)
+                        }
                         // this.morph = {}
                         // this.morph.isPointInside = empty
                     } else {
                         // this.morph = {}
                         // this.morph.isPointInside = empty
                         this.morph2 = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
+                        if (dataflop == 0) {
                         this.morph2.draw()
                         canvas_context.drawImage(imago, 0, 0, 10, 10, this.morph2.x + 10, this.morph2.y + 5, 30, 30)
                         canvas_context.fillStyle = "white"
                         canvas_context.font = "13px arial"
                         canvas_context.fillText("Imago: 240", this.morph2.x + 1, this.morph2.y + 46)
+                        }
                         this.morph3 = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 150, 125, 90, 50, "black")
+                        if (dataflop == 0) {
                         this.morph3.draw()
                         canvas_context.drawImage(gamergate, 0, 0, 10, 10, this.morph3.x + 10, this.morph3.y + 5, 30, 30)
                         canvas_context.fillStyle = "white"
                         canvas_context.font = "12px arial"
                         canvas_context.fillText("Gamergate: 350", this.morph3.x + 1, this.morph3.y + 46)
+                        }
                     }
                 } else {
                     if (this.imago == 2) {
                         this.morph3 = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 150, 125, 90, 50, "black")
+
+            if (dataflop == 0) {
                         this.morph3.draw()
                         canvas_context.fillStyle = "white"
                         canvas_context.font = "22px arial"
@@ -7947,11 +8038,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         }
                     }
                 }
+                }
 
                 let facex = sandmap.window.body.x + sandmap.window.body.width + 10
                 let facey = 190
 
-                this.facerect = new UiRectangle(facex, facey, 64, 64, "#003333")
+                this.facerect = new UiRectangle(facex, facey, 64, 64, "#009999")
+
+            if (dataflop == 0) {
                 this.facerect.draw()
 
                 if (this.hamartaninvader == 1) {
@@ -8003,9 +8097,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     canvas_context.drawImage(gamergateface, facex, facey)
                 }
             }
+            }
 
             if (this.timer > 0) {
+                if (dataflop == 0) {
                 canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
+                }
+            }
+
+            if (dataflop == 0) {
+                dataflop = 1
             }
         }
 
@@ -9022,7 +9123,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         } else {
             score.add()
 
-            soundspamdrop *= 1.009
+            soundspamdrop *= 1.0089
 
             // if (keysPressed[' ']) {
             //     sandmap.players[sandmap.turn].isAI = 0
