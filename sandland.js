@@ -153,6 +153,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
     ritual.src = "ritual.mp3"
     sounds.push(ritual)
 
+    //pollinator audio
+    let pollinatoraudio = new Audio()
+    pollinatoraudio.src = "pollinatoraudio.mp3"
+    sounds.push(pollinatoraudio)
+
     // podman audio
     let youworkforme = new Audio()
     youworkforme.src = "youworkforme.mp3"
@@ -527,6 +532,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let hamartaninvaderface = new Image()
     hamartaninvaderface.src = "hamartaninvaderface2.png"
 
+    let pollinatornotch = 0
+    let pollinatortick = Math.floor(Math.random()*20)+25
 
     function soundCancel() {
         /* sets chance of audio playback  */
@@ -535,6 +542,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
             sounds[t].pause()
             sounds[t].currentTime = 0
         }
+        pollinatornotch = Math.floor(Math.random()*pollinatoraudio.duration)
+        pollinatoraudio.currentTime = pollinatornotch
+        pollinatoraudio.volume = 1
+        console.log(pollinatoraudio.duration)
+        pollinatortick = ((Math.random()*400)+1000)/1000
     }
 
     let defenseicon = new Image()
@@ -3255,6 +3267,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         if (sandmap.players[sandmap.turn].units[t].imago == 1) {
                                             yeahiminthisroom.play()
                                         }
+
+                                        if (sandmap.players[sandmap.turn].units[t].pollinator == 1) {
+                                            pollinatoraudio.play()
+                                        }
                                         if (sandmap.players[sandmap.turn].units[t].infantry == 1) {
                                             if (Math.random() < .8) {
                                                 orders.play()
@@ -3423,12 +3439,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         if (sandmap.players[sandmap.turn].units[k].nymph == 1) {
                                             if (sandmap.players[sandmap.turn].units[k].selected == 1 || sandmap.players[sandmap.turn].units[k].selected == 2) {
                                                 sandmap.players[sandmap.turn].units[k].metamorph1()
+                                                if (Math.random() < soundspamdrop) {
+                                                    soundCancel()
+                                                    whoarewetomolt.play()
+                                                }
                                             }
                                         }
-                                    }
-                                    if (Math.random() < soundspamdrop) {
-                                        soundCancel()
-                                        whoarewetomolt.play()
                                     }
                                 }
                                 if (sandmap.players[sandmap.turn].units[t].pollinator == 1) {
@@ -3437,11 +3453,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         if (sandmap.players[sandmap.turn].units[k].pollinator == 1) {
                                             if (sandmap.players[sandmap.turn].units[k].selected == 1 || sandmap.players[sandmap.turn].units[k].selected == 2) {
                                                 sandmap.players[sandmap.turn].units[k].metamorphpufffellow()
+                                                if (Math.random() < soundspamdrop) {
+                                                    soundCancel()
+                                                    pollinatoraudio.play()
+                                                }
                                             }
                                         }
-                                    }
-                                    if (Math.random() < soundspamdrop) {
-                                        soundCancel()
                                     }
                                 }
 
@@ -3449,53 +3466,50 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             if (sandmap.players[sandmap.turn].units[t].morph2.isPointInside(TIP_engine)) {
                                 // sandmap.players[sandmap.turn].units[t].metamorph2()
                                 if (sandmap.players[sandmap.turn].units[t].nymph == 2) {
-                                    if (Math.random() < soundspamdrop) {
-                                        soundCancel()
-                                        whoelsezagtheoystergush.play()
-                                    }
                                     for (let k = 0; k < sandmap.players[sandmap.turn].units.length; k++) {
                                         if (sandmap.players[sandmap.turn].units[k].nymph == 2) {
                                             if (sandmap.players[sandmap.turn].units[k].selected == 1 || sandmap.players[sandmap.turn].units[k].selected == 2) {
                                                 sandmap.players[sandmap.turn].units[k].metamorph2()
+                                                if (Math.random() < soundspamdrop) {
+                                                    soundCancel()
+                                                    whoelsezagtheoystergush.play()
+                                                }
                                             }
                                         }
                                     }
                                 }
                             }
+
                             if (sandmap.players[sandmap.turn].units[t].morph3.isPointInside(TIP_engine)) {
                                 if (sandmap.players[sandmap.turn].units[t].nymph == 2) {
                                     // sandmap.players[sandmap.turn].units[t].metamorph3()
-                                    if (Math.random() < soundspamdrop) {
-                                        soundCancel()
-                                        stallusyourworth.play()
-
-                                    }
 
                                     for (let k = 0; k < sandmap.players[sandmap.turn].units.length; k++) {
                                         if (sandmap.players[sandmap.turn].units[k].nymph == 2) {
                                             if (sandmap.players[sandmap.turn].units[k].selected == 1 || sandmap.players[sandmap.turn].units[k].selected == 2) {
                                                 sandmap.players[sandmap.turn].units[k].metamorph3()
+                                                if (Math.random() < soundspamdrop) {
+                                                    soundCancel()
+                                                    stallusyourworth.play()
+            
+                                                }
                                             }
                                         }
                                     }
                                 } else {
                                     if (sandmap.players[sandmap.turn].units[t].submerged == 0) {
-                                        if (Math.random() < soundspamdrop) {
-                                            soundCancel()
-                                            slurpslurp.play()
-                                        }
                                         for (let k = 0; k < sandmap.players[sandmap.turn].units.length; k++) {
                                             if (sandmap.players[sandmap.turn].units[k].imago == 2) {
                                                 if (sandmap.players[sandmap.turn].units[k].selected == 1 || sandmap.players[sandmap.turn].units[k].selected == 2) {
                                                     sandmap.players[sandmap.turn].units[k].submerged = 1
+                                                    if (Math.random() < soundspamdrop) {
+                                                        soundCancel()
+                                                        slurpslurp.play()
+                                                    }
                                                 }
                                             }
                                         }
                                     } else {
-                                        if (Math.random() < soundspamdrop) {
-                                            soundCancel()
-                                            gooutside.play()
-                                        }
                                         for (let k = 0; k < sandmap.players[sandmap.turn].units.length; k++) {
                                             if (sandmap.players[sandmap.turn].units[k].imago == 2) {
                                                 if (sandmap.players[sandmap.turn].units[k].selected == 1 || sandmap.players[sandmap.turn].units[k].selected == 2) {
@@ -3503,6 +3517,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     if (sandmap.players[sandmap.turn].units[k].tile.walkable == false || sandmap.players[sandmap.turn].units[k].tile.ice == 1 || sandmap.players[sandmap.turn].units[k].tile.builtOn == 1) {
                                                     } else {
                                                         sandmap.players[sandmap.turn].units[k].submerged = 0
+                                                        if (Math.random() < soundspamdrop) {
+                                                            soundCancel()
+                                                            gooutside.play()
+                                                        }
                                                     }
                                                 }
                                             }
@@ -3580,6 +3598,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         hotmore.play()
                                     }
                                 }
+                                if (sandmap.players[sandmap.turn].units[t].pollinator == 1) {
+                                    pollinatoraudio.play()
+                                }
+
+
                                 if (sandmap.players[sandmap.turn].units[t].hamartaninvader == 1) {
                                     incroiable.play()
                                 }
@@ -3618,6 +3641,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 if (sandmap.players[sandmap.turn].units[t].infantry == 1) {
                                     righton.play()
                                 }
+                                if (sandmap.players[sandmap.turn].units[t].pollinator == 1) {
+                                    pollinatoraudio.play()
+                                }
                                 if (sandmap.players[sandmap.turn].units[t].harvester == 1) {
                                     overtime.play()
                                 }
@@ -3637,6 +3663,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     }
                                 }
 
+                                if (sandmap.players[sandmap.turn].units[t].pollinator == 1) {
+                                    pollinatoraudio.play()
+                                }
                                 if (sandmap.players[sandmap.turn].units[t].imago == 1) {
                                     go.play()
                                 }
@@ -5036,6 +5065,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             if (this.units[t].pollinator == 1) {
                                 if (Math.random() < (this.hotrock / 2000)) {
                                     this.units[t].metamorphpufffellow()
+                                    if(sandmap.players.indexOf(this) == sandmap.turn){
+                                        if(Math.random()<soundspamdrop){
+                                            soundCancel()
+                                            pollinatoraudio.play()
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -6788,6 +6823,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (sandmap.players.indexOf(this) == sandmap.turn) {
                         if (Math.random() < soundspamdrop) {
                             soundCancel()
+
+
+                            if (this.units[t].pollinator == 1) {
+                                pollinatoraudio.play()
+                            }
                             if (this.units[t].podman == 1) {
                                 if (Math.random() < .5) {
                                     walkinthesunpostskirmish.play()
@@ -7433,6 +7473,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (Math.random() < soundspamdrop) {
                 if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
                     soundCancel()
+                    pollinatoraudio.play()
                 }
             }
             let agent1 = new Agent(this.tile, this.faction)
@@ -8108,6 +8149,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         isPollinator() {
             this.body.color = "teal"
+            this.goliophyte = 0
             this.body.radius = 4
             this.movespeed = 1 //2 and 3 too high?
             this.firerate = 6
@@ -8127,6 +8169,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.maxhealth = this.health
         }
         isGoliophyte() {
+            this.pollinator = 0
             this.body.color = "teal"
             this.body.radius = 5.5
             this.movespeed = 8
@@ -8147,7 +8190,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.maxhealth = this.health
         }
         isPodman() {
+            this.pollinator = 0
             this.body.color = "teal"
+            this.goliophyte = 0
             this.body.radius = 4
             this.movespeed = 4
             this.firerate = 3 //4
@@ -8168,6 +8213,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         isPufffellow() {
             this.pollinator = 0
+            this.goliophyte = 0
             this.body.color = "teal"
             this.body.radius = 4.7
             this.movespeed = 2
@@ -9746,7 +9792,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
             score.draw()
         } else {
             score.add()
-
+            // pollinatortick--
+            if(pollinatoraudio.currentTime >= pollinatornotch+pollinatortick){
+                pollinatoraudio.volume*=.94
+                // pollinatoraudio.pause()
+            }
             soundspamdrop *= 1.0089
 
             // if (keysPressed[' ']) {
