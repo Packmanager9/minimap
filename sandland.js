@@ -6,6 +6,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     let playstart = 0
     let debreak = 1
+    let manual = 0
     let start = 0 // whether it's okay to draw the game into the canvas element.
     function empty() {
 
@@ -476,6 +477,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     sounds.push(collect)
 
     //librilian faces
+    let bibiintro = new Image()
+    bibiintro.src = "bibiintro.png"
     let librilbianpollinatorface = new Image()
     librilbianpollinatorface.src = "librilbianpollinatorface2.png"
     let golophyteface = new Image()
@@ -486,6 +489,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     podmanface.src = "podmanface7.png"
 
     // colditzlerian faces
+    let coldintro = new Image()
+    coldintro.src = "coldintro.png"
     let nymphface = new Image()
     nymphface.src = "nymphface2.png"
     let imagoface = new Image()
@@ -497,6 +502,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
     // human faces
+    let humanfacesintro = new Image()
+    humanfacesintro.src = "humanfacesintro.png"
     let infantryface = new Image()
     infantryface.src = "infantryface2.png"
     let droneface = new Image()
@@ -509,6 +516,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
     // hamartan faces
+    let hamintro = new Image()
+    hamintro.src = "hamintro.png"
     let hamartanscoutface = new Image()
     hamartanscoutface.src = "hamartanscoutface2.png"
     let hamartansoldierface = new Image()
@@ -1054,13 +1063,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
             return false
         }
     }
+    let guideplus = new UiRectangle(550, 620, 200, 75, "#333333")
     let playbutton = new UiRectangle(80, 620, 200, 75, "#333333")
     let aitoggle1 = new UiRectangle(200, 200, 300, 75, "#333333")
     let chartoggle1 = new UiRectangle(200, 300, 300, 75, "#333333")
     let aitoggle2 = new UiRectangle(680, 200, 300, 75, "#333333")
     let chartoggle2 = new UiRectangle(680, 300, 300, 75, "#333333")
 
-    let difftoggle1 =new UiRectangle(200, 100, 450, 75, "#333333")
+    let difftoggle1 = new UiRectangle(200, 100, 450, 75, "#333333")
     let difftoggle2 = new UiRectangle(680, 100, 450, 75, "#333333")
     class Circle {
         constructor(x, y, radius, color, xmom = 0, ymom = 0, friction = 1, reflect = 0, strokeWidth = 0, strokeColor = "transparent") {
@@ -2081,6 +2091,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                     canvas_context.drawImage(startupart, 0, 0)
 
+                    guideplus.draw()
                     playbutton.draw()
                     let invscale = 1
                     let string = "Click the buttons to set up the match."
@@ -2106,37 +2117,40 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     canvas_context.font = "40px Arial";
                     canvas_context.fillStyle = "#FFFFFF"
                     canvas_context.fillText("Start", playbutton.x + 35, playbutton.y + 50)
+                    canvas_context.font = "40px Arial";
+                    canvas_context.fillStyle = "#FFFFFF"
+                    canvas_context.fillText("Guide", guideplus.x + 35, guideplus.y + 50)
                     aitoggle1.draw()
                     aitoggle2.draw()
                     chartoggle1.draw()
                     chartoggle2.draw()
                     if (sandmap.players[1].isAI == 1) {
-                        difftoggle2.draw()            
+                        difftoggle2.draw()
                         canvas_context.font = "30px Arial";
                         canvas_context.fillStyle = "#FFFFFF"
-                         if(dynamic2 == 1){
+                        if (dynamic2 == 1) {
                             canvas_context.fillText(`Power: Dynamic (?)`, difftoggle2.x + 10, difftoggle2.y + 50)
-                        }else if(sandmap.players[1].clickrate == 1){
+                        } else if (sandmap.players[1].clickrate == 1) {
                             canvas_context.fillText(`Power: Absolute-Zero (11)`, difftoggle2.x + 10, difftoggle2.y + 50)
-                        }else if(sandmap.players[1].clickrate == 2){
+                        } else if (sandmap.players[1].clickrate == 2) {
                             canvas_context.fillText(`Power: Bone-Chilling (10)`, difftoggle2.x + 10, difftoggle2.y + 50)
-                        }else if(sandmap.players[1].clickrate == 5){
+                        } else if (sandmap.players[1].clickrate == 5) {
                             canvas_context.fillText(`Power: Frigid (9)`, difftoggle2.x + 10, difftoggle2.y + 50)
-                        }else if(sandmap.players[1].clickrate == 10){
+                        } else if (sandmap.players[1].clickrate == 10) {
                             canvas_context.fillText(`Power: Frosty (8)`, difftoggle2.x + 10, difftoggle2.y + 50)
-                        }else if(sandmap.players[1].clickrate == 15){
+                        } else if (sandmap.players[1].clickrate == 15) {
                             canvas_context.fillText(`Power: Sweater-Weather (7)`, difftoggle2.x + 10, difftoggle2.y + 50)
-                        }else if(sandmap.players[1].clickrate == 25){
+                        } else if (sandmap.players[1].clickrate == 25) {
                             canvas_context.fillText(`Power: Cold (6)`, difftoggle2.x + 10, difftoggle2.y + 50)
-                        }else if(sandmap.players[1].clickrate == 35){
+                        } else if (sandmap.players[1].clickrate == 35) {
                             canvas_context.fillText(`Power: Chilly (5)`, difftoggle2.x + 10, difftoggle2.y + 50)
-                        }else if(sandmap.players[1].clickrate == 50){
+                        } else if (sandmap.players[1].clickrate == 50) {
                             canvas_context.fillText(`Power: Drafty (4)`, difftoggle2.x + 10, difftoggle2.y + 50)
-                        }else if(sandmap.players[1].clickrate == 100){
+                        } else if (sandmap.players[1].clickrate == 100) {
                             canvas_context.fillText(`Power: Room-Temperature (3)`, difftoggle2.x + 10, difftoggle2.y + 50)
-                        }else if(sandmap.players[1].clickrate == 200){
+                        } else if (sandmap.players[1].clickrate == 200) {
                             canvas_context.fillText(`Power: Warm (2)`, difftoggle2.x + 10, difftoggle2.y + 50)
-                        }else if(sandmap.players[1].clickrate == 400){
+                        } else if (sandmap.players[1].clickrate == 400) {
                             canvas_context.fillText(`Power: Balmy (1)`, difftoggle2.x + 10, difftoggle2.y + 50)
                         }
                     }
@@ -2144,29 +2158,29 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         difftoggle1.draw()
                         canvas_context.font = "30px Arial";
                         canvas_context.fillStyle = "#FFFFFF"
-                         if(dynamic1 == 1){
+                        if (dynamic1 == 1) {
                             canvas_context.fillText(`Power: Dynamic (?)`, difftoggle1.x + 10, difftoggle1.y + 50)
-                        }else if(sandmap.players[0].clickrate == 1){
+                        } else if (sandmap.players[0].clickrate == 1) {
                             canvas_context.fillText(`Power: Absolute-Zero (11)`, difftoggle1.x + 10, difftoggle1.y + 50)
-                        }else if(sandmap.players[0].clickrate == 2){
+                        } else if (sandmap.players[0].clickrate == 2) {
                             canvas_context.fillText(`Power: Bone-Chilling (10)`, difftoggle1.x + 10, difftoggle1.y + 50)
-                        }else if(sandmap.players[0].clickrate == 5){
+                        } else if (sandmap.players[0].clickrate == 5) {
                             canvas_context.fillText(`Power: Frigid (9)`, difftoggle1.x + 10, difftoggle1.y + 50)
-                        }else if(sandmap.players[0].clickrate == 10){
+                        } else if (sandmap.players[0].clickrate == 10) {
                             canvas_context.fillText(`Power: Frosty (8)`, difftoggle1.x + 10, difftoggle1.y + 50)
-                        }else if(sandmap.players[0].clickrate == 15){
+                        } else if (sandmap.players[0].clickrate == 15) {
                             canvas_context.fillText(`Power: Sweater-Weather (7)`, difftoggle1.x + 10, difftoggle1.y + 50)
-                        }else if(sandmap.players[0].clickrate == 25){
+                        } else if (sandmap.players[0].clickrate == 25) {
                             canvas_context.fillText(`Power: Cold (6)`, difftoggle1.x + 10, difftoggle1.y + 50)
-                        }else if(sandmap.players[0].clickrate == 35){
+                        } else if (sandmap.players[0].clickrate == 35) {
                             canvas_context.fillText(`Power: Chilly (5)`, difftoggle1.x + 10, difftoggle1.y + 50)
-                        }else if(sandmap.players[0].clickrate == 50){
+                        } else if (sandmap.players[0].clickrate == 50) {
                             canvas_context.fillText(`Power: Drafty (4)`, difftoggle1.x + 10, difftoggle1.y + 50)
-                        }else if(sandmap.players[0].clickrate == 100){
+                        } else if (sandmap.players[0].clickrate == 100) {
                             canvas_context.fillText(`Power: Room-Temperature (3)`, difftoggle1.x + 10, difftoggle1.y + 50)
-                        }else if(sandmap.players[0].clickrate == 200){
+                        } else if (sandmap.players[0].clickrate == 200) {
                             canvas_context.fillText(`Power: Warm (2)`, difftoggle1.x + 10, difftoggle1.y + 50)
-                        }else if(sandmap.players[0].clickrate == 400){
+                        } else if (sandmap.players[0].clickrate == 400) {
                             canvas_context.fillText(`Power: Balmy (1)`, difftoggle1.x + 10, difftoggle1.y + 50)
                         }
                     }
@@ -2191,6 +2205,599 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         canvas_context.fillText("CPU control", aitoggle2.x + 15, aitoggle1.y + 50)
                     } else {
                         canvas_context.fillText("Manual control", aitoggle2.x + 15, aitoggle2.y + 50)
+                    }
+                }
+                if (playstart == 4) {
+                    canvas_context.drawImage(startupart, 0, 0)
+                    guideplus.draw()
+                    playbutton.draw()
+                    canvas_context.font = "40px Arial";
+                    canvas_context.fillStyle = "#FFFFFF"
+                    canvas_context.fillText("Back", playbutton.x + 35, playbutton.y + 50)
+                    canvas_context.font = "40px Arial";
+                    canvas_context.fillStyle = "#FFFFFF"
+                    if (manual < 4) {
+                        canvas_context.fillText("Next", guideplus.x + 35, guideplus.y + 50)
+                    } else {
+                        canvas_context.fillText("Again", guideplus.x + 35, guideplus.y + 50)
+                    }
+                    if (manual == 0) {
+                        if (true) {
+                            let invscale = 1
+                            let string = "Click and drag to select your units."
+                            let ypointer = 50
+                            let xpointer = 10
+                            canvas_context.font = "30px Arial";
+                            canvas_context.fillStyle = "#FFFFFF"
+                            let stoarr = string.split(' ')
+                            let stostring = ''
+                            for (let t = 0; t < stoarr.length; t++) {
+                                const width = canvas_context.measureText(stostring + ' ' + stoarr[t]).width
+                                if (width > canvas.width * invscale * .821) {
+                                    canvas_context.fillText(stostring + ' ' + stoarr[t], xpointer, ypointer)
+                                    ypointer += 35
+                                    stostring = ''
+                                } else {
+                                    stostring = stostring + " " + stoarr[t]
+                                    if (t == stoarr.length - 1) {
+                                        canvas_context.fillText(stostring, xpointer, ypointer)
+                                    }
+                                }
+                            }
+
+                        }
+                        if (true) {
+                            let invscale = 1
+                            let string = "Direct selected units by right-clicking. "
+                            let ypointer = 150
+                            let xpointer = 10
+                            canvas_context.font = "30px Arial";
+                            canvas_context.fillStyle = "#FFFFFF"
+                            let stoarr = string.split(' ')
+                            let stostring = ''
+                            for (let t = 0; t < stoarr.length; t++) {
+                                const width = canvas_context.measureText(stostring + ' ' + stoarr[t]).width
+                                if (width > canvas.width * invscale * .821) {
+                                    canvas_context.fillText(stostring + ' ' + stoarr[t], xpointer, ypointer)
+                                    ypointer += 35
+                                    stostring = ''
+                                } else {
+                                    stostring = stostring + " " + stoarr[t]
+                                    if (t == stoarr.length - 1) {
+                                        canvas_context.fillText(stostring, xpointer, ypointer)
+                                    }
+                                }
+                            }
+
+                        }
+                        if (true) {
+                            let invscale = 1
+                            let string = "Use the minimap to navigate the large map, or WASD."
+                            let ypointer = 250
+                            let xpointer = 10
+                            canvas_context.font = "30px Arial";
+                            canvas_context.fillStyle = "#FFFFFF"
+                            let stoarr = string.split(' ')
+                            let stostring = ''
+                            for (let t = 0; t < stoarr.length; t++) {
+                                const width = canvas_context.measureText(stostring + ' ' + stoarr[t]).width
+                                if (width > canvas.width * invscale * .821) {
+                                    canvas_context.fillText(stostring + ' ' + stoarr[t], xpointer, ypointer)
+                                    ypointer += 35
+                                    stostring = ''
+                                } else {
+                                    stostring = stostring + " " + stoarr[t]
+                                    if (t == stoarr.length - 1) {
+                                        canvas_context.fillText(stostring, xpointer, ypointer)
+                                    }
+                                }
+                            }
+
+                        }
+                        if (true) {
+                            let invscale = 1
+                            let string = "Brown piles are hotrock, you can harvest them with any unit by standing on the tile."
+                            let ypointer = 350
+                            let xpointer = 10
+                            canvas_context.font = "30px Arial";
+                            canvas_context.fillStyle = "#FFFFFF"
+                            let stoarr = string.split(' ')
+                            let stostring = ''
+                            for (let t = 0; t < stoarr.length; t++) {
+                                const width = canvas_context.measureText(stostring + ' ' + stoarr[t]).width
+                                if (width > canvas.width * invscale * .921) {
+                                    canvas_context.fillText(stostring + ' ' + stoarr[t], xpointer, ypointer)
+                                    ypointer += 35
+                                    stostring = ''
+                                } else {
+                                    stostring = stostring + " " + stoarr[t]
+                                    if (t == stoarr.length - 1) {
+                                        canvas_context.fillText(stostring, xpointer, ypointer)
+                                    }
+                                }
+                            }
+
+                        }
+                    } else if (manual == 1) {
+                        canvas_context.drawImage(humanfacesintro,0,0,256,64, 1280-512, 720-128, 512,128)
+
+                        if (true) {
+                            let invscale = 1
+                            let string = "As humans. hold B and click a tile to build a wall, hold X and click a wall to remove it."
+                            let ypointer = 50
+                            let xpointer = 10
+                            canvas_context.font = "30px Arial";
+                            canvas_context.fillStyle = "#FFFFFF"
+                            let stoarr = string.split(' ')
+                            let stostring = ''
+                            for (let t = 0; t < stoarr.length; t++) {
+                                const width = canvas_context.measureText(stostring + ' ' + stoarr[t]).width
+                                if (width > canvas.width * invscale * .951) {
+                                    canvas_context.fillText(stostring + ' ' + stoarr[t], xpointer, ypointer)
+                                    ypointer += 35
+                                    stostring = ''
+                                } else {
+                                    stostring = stostring + " " + stoarr[t]
+                                    if (t == stoarr.length - 1) {
+                                        canvas_context.fillText(stostring, xpointer, ypointer)
+                                    }
+                                }
+                            }
+
+                        }
+                        if (true) {
+                            let invscale = 1
+                            let string = "Hold G and click a tile to build a gate, gates can open and closed for units to pass."
+                            let ypointer = 100
+                            let xpointer = 10
+                            canvas_context.font = "30px Arial";
+                            canvas_context.fillStyle = "#FFFFFF"
+                            let stoarr = string.split(' ')
+                            let stostring = ''
+                            for (let t = 0; t < stoarr.length; t++) {
+                                const width = canvas_context.measureText(stostring + ' ' + stoarr[t]).width
+                                if (width > canvas.width * invscale * .821) {
+                                    canvas_context.fillText(stostring + ' ' + stoarr[t], xpointer, ypointer)
+                                    ypointer += 35
+                                    stostring = ''
+                                } else {
+                                    stostring = stostring + " " + stoarr[t]
+                                    if (t == stoarr.length - 1) {
+                                        canvas_context.fillText(stostring, xpointer, ypointer)
+                                    }
+                                }
+                            }
+
+                        }
+                        if (true) {
+                            let invscale = 1
+                            let string = "Hold N and click a tile to build a barracks. Click it to select it to make infantry and snipers using the UI."
+                            let ypointer = 150
+                            let xpointer = 10
+                            canvas_context.font = "30px Arial";
+                            canvas_context.fillStyle = "#FFFFFF"
+                            let stoarr = string.split(' ')
+                            let stostring = ''
+                            for (let t = 0; t < stoarr.length; t++) {
+                                const width = canvas_context.measureText(stostring + ' ' + stoarr[t]).width
+                                if (width > canvas.width * invscale * .821) {
+                                    canvas_context.fillText(stostring + ' ' + stoarr[t], xpointer, ypointer)
+                                    ypointer += 35
+                                    stostring = ''
+                                } else {
+                                    stostring = stostring + " " + stoarr[t]
+                                    if (t == stoarr.length - 1) {
+                                        canvas_context.fillText(stostring, xpointer, ypointer)
+                                    }
+                                }
+                            }
+
+                        }
+                        if (true) {
+                            let invscale = 1
+                            let string = "Hold M and click a tile to build a machine lab. Click it to select it to make scout drones and harvesters using the UI."
+                            let ypointer = 250
+                            let xpointer = 10
+                            canvas_context.font = "30px Arial";
+                            canvas_context.fillStyle = "#FFFFFF"
+                            let stoarr = string.split(' ')
+                            let stostring = ''
+                            for (let t = 0; t < stoarr.length; t++) {
+                                const width = canvas_context.measureText(stostring + ' ' + stoarr[t]).width
+                                if (width > canvas.width * invscale * .921) {
+                                    canvas_context.fillText(stostring + ' ' + stoarr[t], xpointer, ypointer)
+                                    ypointer += 35
+                                    stostring = ''
+                                } else {
+                                    stostring = stostring + " " + stoarr[t]
+                                    if (t == stoarr.length - 1) {
+                                        canvas_context.fillText(stostring, xpointer, ypointer)
+                                    }
+                                }
+                            }
+
+                        }
+                        if (true) {
+                            let invscale = 1
+                            let string = "Humans will freeze to death without wind barrier walls. The wind speed may increase, making survival difficult."
+                            let ypointer = 350
+                            let xpointer = 10
+                            canvas_context.font = "30px Arial";
+                            canvas_context.fillStyle = "#FFFFFF"
+                            let stoarr = string.split(' ')
+                            let stostring = ''
+                            for (let t = 0; t < stoarr.length; t++) {
+                                const width = canvas_context.measureText(stostring + ' ' + stoarr[t]).width
+                                if (width > canvas.width * invscale * .921) {
+                                    canvas_context.fillText(stostring + ' ' + stoarr[t], xpointer, ypointer)
+                                    ypointer += 35
+                                    stostring = ''
+                                } else {
+                                    stostring = stostring + " " + stoarr[t]
+                                    if (t == stoarr.length - 1) {
+                                        canvas_context.fillText(stostring, xpointer, ypointer)
+                                    }
+                                }
+                            }
+                        }
+
+                        if (true) {
+                            let invscale = 1
+                            let string = "Difficulty: High."
+                            let ypointer = 450
+                            let xpointer = 10
+                            canvas_context.font = "30px Arial";
+                            canvas_context.fillStyle = "#FFFFFF"
+                            let stoarr = string.split(' ')
+                            let stostring = ''
+                            for (let t = 0; t < stoarr.length; t++) {
+                                const width = canvas_context.measureText(stostring + ' ' + stoarr[t]).width
+                                if (width > canvas.width * invscale * .921) {
+                                    canvas_context.fillText(stostring + ' ' + stoarr[t], xpointer, ypointer)
+                                    ypointer += 35
+                                    stostring = ''
+                                } else {
+                                    stostring = stostring + " " + stoarr[t]
+                                    if (t == stoarr.length - 1) {
+                                        canvas_context.fillText(stostring, xpointer, ypointer)
+                                    }
+                                }
+                            }
+                        }
+                    } else if (manual == 2) {
+
+                        canvas_context.drawImage(coldintro,0,0,256,64, 1280-512, 720-128, 512,128)
+                        if (true) {
+                            let invscale = 1
+                            let string = "As Cold Itzlerians. units can metamorphose into stronger units, this is controlled by clicking the buttons in the UI. Cold Itzlerians are immune to cold."
+                            let ypointer = 50
+                            let xpointer = 10
+                            canvas_context.font = "30px Arial";
+                            canvas_context.fillStyle = "#FFFFFF"
+                            let stoarr = string.split(' ')
+                            let stostring = ''
+                            for (let t = 0; t < stoarr.length; t++) {
+                                const width = canvas_context.measureText(stostring + ' ' + stoarr[t]).width
+                                if (width > canvas.width * invscale * .921) {
+                                    canvas_context.fillText(stostring + ' ' + stoarr[t], xpointer, ypointer)
+                                    ypointer += 35
+                                    stostring = ''
+                                } else {
+                                    stostring = stostring + " " + stoarr[t]
+                                    if (t == stoarr.length - 1) {
+                                        canvas_context.fillText(stostring, xpointer, ypointer)
+                                    }
+                                }
+                            }
+                        }
+                        if (true) {
+                            let invscale = 1
+                            let string = "Nymphs are effective gathering units, but weak in combat."
+                            let ypointer = 150
+                            let xpointer = 10
+                            canvas_context.font = "30px Arial";
+                            canvas_context.fillStyle = "#FFFFFF"
+                            let stoarr = string.split(' ')
+                            let stostring = ''
+                            for (let t = 0; t < stoarr.length; t++) {
+                                const width = canvas_context.measureText(stostring + ' ' + stoarr[t]).width
+                                if (width > canvas.width * invscale * .921) {
+                                    canvas_context.fillText(stostring + ' ' + stoarr[t], xpointer, ypointer)
+                                    ypointer += 35
+                                    stostring = ''
+                                } else {
+                                    stostring = stostring + " " + stoarr[t]
+                                    if (t == stoarr.length - 1) {
+                                        canvas_context.fillText(stostring, xpointer, ypointer)
+                                    }
+                                }
+                            }
+                        }
+
+                        if (true) {
+                            let invscale = 1
+                            let string = "Difficulty: Low."
+                            let ypointer = 450
+                            let xpointer = 10
+                            canvas_context.font = "30px Arial";
+                            canvas_context.fillStyle = "#FFFFFF"
+                            let stoarr = string.split(' ')
+                            let stostring = ''
+                            for (let t = 0; t < stoarr.length; t++) {
+                                const width = canvas_context.measureText(stostring + ' ' + stoarr[t]).width
+                                if (width > canvas.width * invscale * .921) {
+                                    canvas_context.fillText(stostring + ' ' + stoarr[t], xpointer, ypointer)
+                                    ypointer += 35
+                                    stostring = ''
+                                } else {
+                                    stostring = stostring + " " + stoarr[t]
+                                    if (t == stoarr.length - 1) {
+                                        canvas_context.fillText(stostring, xpointer, ypointer)
+                                    }
+                                }
+                            }
+                        }
+                    } else if (manual == 3) {
+
+                        canvas_context.drawImage(hamintro,0,0,256,64, 1280-512, 720-128, 512,128)
+                            if(true){
+                            let invscale = 1
+                            let string = "As the Hamartans, you must condition your air for breathing. "
+                            let ypointer = 50
+                            let xpointer = 10
+                            canvas_context.font = "30px Arial";
+                            canvas_context.fillStyle = "#FFFFFF"
+                            let stoarr = string.split(' ')
+                            let stostring = ''
+                            for (let t = 0; t < stoarr.length; t++) {
+                                const width = canvas_context.measureText(stostring + ' ' + stoarr[t]).width
+                                if (width > canvas.width * invscale * .921) {
+                                    canvas_context.fillText(stostring + ' ' + stoarr[t], xpointer, ypointer)
+                                    ypointer += 35
+                                    stostring = ''
+                                } else {
+                                    stostring = stostring + " " + stoarr[t]
+                                    if (t == stoarr.length - 1) {
+                                        canvas_context.fillText(stostring, xpointer, ypointer)
+                                    }
+                                }
+                            }
+                        }
+                        if (true) {
+                            let invscale = 1
+                            let string = "Hold B and click to build a spire to condition the air."
+                            let ypointer = 120
+                            let xpointer = 10
+                            canvas_context.font = "30px Arial";
+                            canvas_context.fillStyle = "#FFFFFF"
+                            let stoarr = string.split(' ')
+                            let stostring = ''
+                            for (let t = 0; t < stoarr.length; t++) {
+                                const width = canvas_context.measureText(stostring + ' ' + stoarr[t]).width
+                                if (width > canvas.width * invscale * .921) {
+                                    canvas_context.fillText(stostring + ' ' + stoarr[t], xpointer, ypointer)
+                                    ypointer += 35
+                                    stostring = ''
+                                } else {
+                                    stostring = stostring + " " + stoarr[t]
+                                    if (t == stoarr.length - 1) {
+                                        canvas_context.fillText(stostring, xpointer, ypointer)
+                                    }
+                                }
+                            }
+                        }
+
+                        if (true) {
+                            let invscale = 1
+                            let string = "Hold N and click for a soldier assembler."
+                            let ypointer = 190
+                            let xpointer = 10
+                            canvas_context.font = "30px Arial";
+                            canvas_context.fillStyle = "#FFFFFF"
+                            let stoarr = string.split(' ')
+                            let stostring = ''
+                            for (let t = 0; t < stoarr.length; t++) {
+                                const width = canvas_context.measureText(stostring + ' ' + stoarr[t]).width
+                                if (width > canvas.width * invscale * .921) {
+                                    canvas_context.fillText(stostring + ' ' + stoarr[t], xpointer, ypointer)
+                                    ypointer += 35
+                                    stostring = ''
+                                } else {
+                                    stostring = stostring + " " + stoarr[t]
+                                    if (t == stoarr.length - 1) {
+                                        canvas_context.fillText(stostring, xpointer, ypointer)
+                                    }
+                                }
+                            }
+                        }
+
+                        if (true) {
+                            let invscale = 1
+                            let string = "Hold M and clock for a scout assembler."
+                            let ypointer = 260
+                            let xpointer = 10
+                            canvas_context.font = "30px Arial";
+                            canvas_context.fillStyle = "#FFFFFF"
+                            let stoarr = string.split(' ')
+                            let stostring = ''
+                            for (let t = 0; t < stoarr.length; t++) {
+                                const width = canvas_context.measureText(stostring + ' ' + stoarr[t]).width
+                                if (width > canvas.width * invscale * .921) {
+                                    canvas_context.fillText(stostring + ' ' + stoarr[t], xpointer, ypointer)
+                                    ypointer += 35
+                                    stostring = ''
+                                } else {
+                                    stostring = stostring + " " + stoarr[t]
+                                    if (t == stoarr.length - 1) {
+                                        canvas_context.fillText(stostring, xpointer, ypointer)
+                                    }
+                                }
+                            }
+                        }
+                        if (true) {
+                            let invscale = 1
+                            let string = "Hold G and click for a 'high-caste' assembler where workers and invaders are made."
+                            let ypointer = 330
+                            let xpointer = 10
+                            canvas_context.font = "30px Arial";
+                            canvas_context.fillStyle = "#FFFFFF"
+                            let stoarr = string.split(' ')
+                            let stostring = ''
+                            for (let t = 0; t < stoarr.length; t++) {
+                                const width = canvas_context.measureText(stostring + ' ' + stoarr[t]).width
+                                if (width > canvas.width * invscale * .921) {
+                                    canvas_context.fillText(stostring + ' ' + stoarr[t], xpointer, ypointer)
+                                    ypointer += 35
+                                    stostring = ''
+                                } else {
+                                    stostring = stostring + " " + stoarr[t]
+                                    if (t == stoarr.length - 1) {
+                                        canvas_context.fillText(stostring, xpointer, ypointer)
+                                    }
+                                }
+                            }
+                        }
+                        if (true) {
+                            let invscale = 1
+                            let string = "Difficulty: Medium."
+                            let ypointer = 450
+                            let xpointer = 10
+                            canvas_context.font = "30px Arial";
+                            canvas_context.fillStyle = "#FFFFFF"
+                            let stoarr = string.split(' ')
+                            let stostring = ''
+                            for (let t = 0; t < stoarr.length; t++) {
+                                const width = canvas_context.measureText(stostring + ' ' + stoarr[t]).width
+                                if (width > canvas.width * invscale * .921) {
+                                    canvas_context.fillText(stostring + ' ' + stoarr[t], xpointer, ypointer)
+                                    ypointer += 35
+                                    stostring = ''
+                                } else {
+                                    stostring = stostring + " " + stoarr[t]
+                                    if (t == stoarr.length - 1) {
+                                        canvas_context.fillText(stostring, xpointer, ypointer)
+                                    }
+                                }
+                            }
+                        }
+                    } else if (manual == 4) {
+                        canvas_context.drawImage(bibiintro,0,0,256,64, 1280-512, 720-128, 512,128)
+
+                        if (true) {
+                            let invscale = 1
+                            let string = "As the Librilbians:"
+                            let ypointer = 50
+                            let xpointer = 10
+                            canvas_context.font = "30px Arial";
+                            canvas_context.fillStyle = "#FFFFFF"
+                            let stoarr = string.split(' ')
+                            let stostring = ''
+                            for (let t = 0; t < stoarr.length; t++) {
+                                const width = canvas_context.measureText(stostring + ' ' + stoarr[t]).width
+                                if (width > canvas.width * invscale * .921) {
+                                    canvas_context.fillText(stostring + ' ' + stoarr[t], xpointer, ypointer)
+                                    ypointer += 35
+                                    stostring = ''
+                                } else {
+                                    stostring = stostring + " " + stoarr[t]
+                                    if (t == stoarr.length - 1) {
+                                        canvas_context.fillText(stostring, xpointer, ypointer)
+                                    }
+                                }
+                            }
+                        }
+                        if (true) {
+                            let invscale = 1
+                            let string = "Hold N and click to plant a bulbplant, it can seed pollinators, your core gathering unit."
+                            let ypointer = 110
+                            let xpointer = 10
+                            canvas_context.font = "30px Arial";
+                            canvas_context.fillStyle = "#FFFFFF"
+                            let stoarr = string.split(' ')
+                            let stostring = ''
+                            for (let t = 0; t < stoarr.length; t++) {
+                                const width = canvas_context.measureText(stostring + ' ' + stoarr[t]).width
+                                if (width > canvas.width * invscale * .921) {
+                                    canvas_context.fillText(stostring + ' ' + stoarr[t], xpointer, ypointer)
+                                    ypointer += 35
+                                    stostring = ''
+                                } else {
+                                    stostring = stostring + " " + stoarr[t]
+                                    if (t == stoarr.length - 1) {
+                                        canvas_context.fillText(stostring, xpointer, ypointer)
+                                    }
+                                }
+                            }
+                        }
+                        if (true) {
+                            let invscale = 1
+                            let string = "Hold M and click to plant a podmother, it can create fighting units."
+                            let ypointer = 170
+                            let xpointer = 10
+                            canvas_context.font = "30px Arial";
+                            canvas_context.fillStyle = "#FFFFFF"
+                            let stoarr = string.split(' ')
+                            let stostring = ''
+                            for (let t = 0; t < stoarr.length; t++) {
+                                const width = canvas_context.measureText(stostring + ' ' + stoarr[t]).width
+                                if (width > canvas.width * invscale * .921) {
+                                    canvas_context.fillText(stostring + ' ' + stoarr[t], xpointer, ypointer)
+                                    ypointer += 35
+                                    stostring = ''
+                                } else {
+                                    stostring = stostring + " " + stoarr[t]
+                                    if (t == stoarr.length - 1) {
+                                        canvas_context.fillText(stostring, xpointer, ypointer)
+                                    }
+                                }
+                            }
+                        }
+                        if (true) {
+                            let invscale = 1
+                            let string = "The podmother can only be planted on soil (within range of the bulbplant)."
+                            let ypointer = 230
+                            let xpointer = 10
+                            canvas_context.font = "30px Arial";
+                            canvas_context.fillStyle = "#FFFFFF"
+                            let stoarr = string.split(' ')
+                            let stostring = ''
+                            for (let t = 0; t < stoarr.length; t++) {
+                                const width = canvas_context.measureText(stostring + ' ' + stoarr[t]).width
+                                if (width > canvas.width * invscale * .921) {
+                                    canvas_context.fillText(stostring + ' ' + stoarr[t], xpointer, ypointer)
+                                    ypointer += 35
+                                    stostring = ''
+                                } else {
+                                    stostring = stostring + " " + stoarr[t]
+                                    if (t == stoarr.length - 1) {
+                                        canvas_context.fillText(stostring, xpointer, ypointer)
+                                    }
+                                }
+                            }
+                        }
+                        if (true) {
+                            let invscale = 1
+                            let string = "Difficulty: Medium."
+                            let ypointer = 450
+                            let xpointer = 10
+                            canvas_context.font = "30px Arial";
+                            canvas_context.fillStyle = "#FFFFFF"
+                            let stoarr = string.split(' ')
+                            let stostring = ''
+                            for (let t = 0; t < stoarr.length; t++) {
+                                const width = canvas_context.measureText(stostring + ' ' + stoarr[t]).width
+                                if (width > canvas.width * invscale * .921) {
+                                    canvas_context.fillText(stostring + ' ' + stoarr[t], xpointer, ypointer)
+                                    ypointer += 35
+                                    stostring = ''
+                                } else {
+                                    stostring = stostring + " " + stoarr[t]
+                                    if (t == stoarr.length - 1) {
+                                        canvas_context.fillText(stostring, xpointer, ypointer)
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -2218,7 +2825,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             score.mode = 2
                         } else if (score.mode == 2) {
                             score.mode = 3
-                        }else if (score.mode == 3) {
+                        } else if (score.mode == 3) {
                             score.mode = 0
                         }
                     }
@@ -2230,8 +2837,25 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         endgame = 1
                     }
                 }
+                if (playstart == 4) {
+                    if (guideplus.isPointInside(TIP_engine)) {
+                        manual += 1
+                        manual %= 5
+                    }
+                    if (playbutton.isPointInside(TIP_engine)) {
+                        manual = 0
+                        playstart = 3
+                        return
+                    }
+                }
 
-                if (playstart != 1) {
+                if (playstart != 1 && playstart != 4) {
+
+                    if (playstart == 3) {
+                        if (guideplus.isPointInside(TIP_engine)) {
+                            playstart = 4
+                        }
+                    }
                     if (playbutton.isPointInside(TIP_engine)) {
                         if (playstart == 3) {
                             playstart = 1
@@ -2243,63 +2867,63 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             playstart = 2
                         }
                     }
-                    if(difftoggle2.isPointInside(TIP_engine)){
-                        if(dynamic2 == 1){
+                    if (difftoggle2.isPointInside(TIP_engine)) {
+                        if (dynamic2 == 1) {
                             dynamic2 = 0
                             sandmap.players[1].clickrate = 400
-                       }else if(sandmap.players[1].clickrate == 1){
-                        dynamic2 = 1
-                        sandmap.players[1].clickrate = sandmap.players[1].units.length
-                        }else if(sandmap.players[1].clickrate == 2){
+                        } else if (sandmap.players[1].clickrate == 1) {
+                            dynamic2 = 1
+                            sandmap.players[1].clickrate = sandmap.players[1].units.length
+                        } else if (sandmap.players[1].clickrate == 2) {
                             sandmap.players[1].clickrate = 1
-                        }else if(sandmap.players[1].clickrate == 5){
+                        } else if (sandmap.players[1].clickrate == 5) {
                             sandmap.players[1].clickrate = 2
-                        }else if(sandmap.players[1].clickrate == 10){ 
-                             sandmap.players[1].clickrate = 5
-                        }else if(sandmap.players[1].clickrate == 15){
+                        } else if (sandmap.players[1].clickrate == 10) {
+                            sandmap.players[1].clickrate = 5
+                        } else if (sandmap.players[1].clickrate == 15) {
                             sandmap.players[1].clickrate = 10
-                        }else if(sandmap.players[1].clickrate == 25){
+                        } else if (sandmap.players[1].clickrate == 25) {
                             sandmap.players[1].clickrate = 15
-                        }else if(sandmap.players[1].clickrate == 35){
+                        } else if (sandmap.players[1].clickrate == 35) {
                             sandmap.players[1].clickrate = 25
-                        }else if(sandmap.players[1].clickrate == 50){
+                        } else if (sandmap.players[1].clickrate == 50) {
                             sandmap.players[1].clickrate = 35
-                        }else if(sandmap.players[1].clickrate == 100){
+                        } else if (sandmap.players[1].clickrate == 100) {
                             sandmap.players[1].clickrate = 50
-                        }else if(sandmap.players[1].clickrate == 200){
+                        } else if (sandmap.players[1].clickrate == 200) {
                             sandmap.players[1].clickrate = 100
-                        }else if(sandmap.players[1].clickrate == 400){
+                        } else if (sandmap.players[1].clickrate == 400) {
                             sandmap.players[1].clickrate = 200
                         }
 
                     }
-                    if(difftoggle1.isPointInside(TIP_engine)){
+                    if (difftoggle1.isPointInside(TIP_engine)) {
 
-                        if(dynamic1 == 1){
+                        if (dynamic1 == 1) {
                             dynamic1 = 0
                             sandmap.players[0].clickrate = 400
-                       }else if(sandmap.players[0].clickrate == 1){
-                        dynamic1 = 1
-                        sandmap.players[0].clickrate = sandmap.players[0].units.length
-                        }else if(sandmap.players[0].clickrate == 2){
+                        } else if (sandmap.players[0].clickrate == 1) {
+                            dynamic1 = 1
+                            sandmap.players[0].clickrate = sandmap.players[0].units.length
+                        } else if (sandmap.players[0].clickrate == 2) {
                             sandmap.players[0].clickrate = 1
-                        }else if(sandmap.players[0].clickrate == 5){
+                        } else if (sandmap.players[0].clickrate == 5) {
                             sandmap.players[0].clickrate = 2
-                        }else if(sandmap.players[0].clickrate == 10){ 
-                             sandmap.players[0].clickrate = 5
-                        }else if(sandmap.players[0].clickrate == 15){
+                        } else if (sandmap.players[0].clickrate == 10) {
+                            sandmap.players[0].clickrate = 5
+                        } else if (sandmap.players[0].clickrate == 15) {
                             sandmap.players[0].clickrate = 10
-                        }else if(sandmap.players[0].clickrate == 25){
+                        } else if (sandmap.players[0].clickrate == 25) {
                             sandmap.players[0].clickrate = 15
-                        }else if(sandmap.players[0].clickrate == 35){
+                        } else if (sandmap.players[0].clickrate == 35) {
                             sandmap.players[0].clickrate = 25
-                        }else if(sandmap.players[0].clickrate == 50){
+                        } else if (sandmap.players[0].clickrate == 50) {
                             sandmap.players[0].clickrate = 35
-                        }else if(sandmap.players[0].clickrate == 100){
+                        } else if (sandmap.players[0].clickrate == 100) {
                             sandmap.players[0].clickrate = 50
-                        }else if(sandmap.players[0].clickrate == 200){
+                        } else if (sandmap.players[0].clickrate == 200) {
                             sandmap.players[0].clickrate = 100
-                        }else if(sandmap.players[0].clickrate == 400){
+                        } else if (sandmap.players[0].clickrate == 400) {
                             sandmap.players[0].clickrate = 200
                         }
 
@@ -2587,7 +3211,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 if (sandmap.players[sandmap.turn].buildings[t].tiles.includes(sandmap.players[sandmap.turn].selected_tile)) {
                                     sandmap.players[sandmap.turn].buildings[t].selected = 1
                                 } else {
-                                    if(!keysPressed['Shift']){
+                                    if (!keysPressed['Shift']) {
                                         sandmap.players[sandmap.turn].buildings[t].selected = 0
                                     }
                                 }
@@ -3150,7 +3774,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         } else {
 
                             if (e.button == 0) {
-                                if(!keysPressed['Shift']){
+                                if (!keysPressed['Shift']) {
                                     sandmap.players[sandmap.turn].units[t].selected = 0
                                 }
                             }
@@ -3909,7 +4533,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     let point = new Circle(x, y, 1, sandmap.players[1].color)
                     point.draw()
                 }
-            }else if (this.mode == 3) {
+            } else if (this.mode == 3) {
                 canvas_context.fillStyle = "white"
                 canvas_context.font = "30px arial"
                 canvas_context.fillText("Mode: Income", this.button.x + 15, this.button.y + 52)
@@ -4379,13 +5003,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
         }
         ai() {
-            if(sandmap.players.indexOf(this) == 1){
-                if(dynamic2 == 1){
+            if (sandmap.players.indexOf(this) == 1) {
+                if (dynamic2 == 1) {
                     this.clickrate = this.units.length
                 }
             }
-            if(sandmap.players.indexOf(this) == 0){
-                if(dynamic1 == 1){
+            if (sandmap.players.indexOf(this) == 0) {
+                if (dynamic1 == 1) {
                     this.clickrate = this.units.length
                 }
             }
@@ -4399,7 +5023,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                 for (let t = 0; t < this.units.length; t++) {
                     if (this.units[t].pollinator == 1) {
-                        if (this.units.length >= this.seenrocks.length && (this.units[t].health/this.units[t].maxhealth) > .3) { //seen
+                        if (this.units.length >= this.seenrocks.length && (this.units[t].health / this.units[t].maxhealth) > .3) { //seen
                             let block = sandmap.gridPoints[Math.floor(Math.random() * sandmap.gridPoints.length)]
                             this.units[t].pathTo(block)
                         }
@@ -4407,10 +5031,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
 
                 if (this.defending >= 32) {
-                    if(this.defending > 39){
+                    if (this.defending > 39) {
                         for (let t = 0; t < this.units.length; t++) {
-                            if(this.units[t].pollinator == 1){
-                                if(Math.random() < (this.hotrock/2000)){
+                            if (this.units[t].pollinator == 1) {
+                                if (Math.random() < (this.hotrock / 2000)) {
                                     this.units[t].metamorphpufffellow()
                                 }
                             }
@@ -4446,7 +5070,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             }
                                         } else {
                                             if (Math.random() < .5) {
-                                                if (this.hotrock > 95 && Math.random() < .7) { 
+                                                if (this.hotrock > 95 && Math.random() < .7) {
                                                     this.buildings[t].makeLibrilbianpufffellow()
                                                 }
                                             } else {
@@ -4708,7 +5332,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                         if (this.buildings[t].assembler == 1) {
                             if (this.seen.length <= this.units.length) {
-                                if (this.hotrock > 235  && Math.random() < .75) {
+                                if (this.hotrock > 235 && Math.random() < .75) {
                                     this.buildings[t].makeHamartansoldier()
                                 }
                             }
@@ -4814,7 +5438,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                     for (let t = 0; t < this.units.length; t++) {
                         if (this.units[t].hamartanscout == 1) {
-                            if (this.units.length >= this.seenrocks.length && (this.units[t].health/this.units[t].maxhealth) > .3) { //seen
+                            if (this.units.length >= this.seenrocks.length && (this.units[t].health / this.units[t].maxhealth) > .3) { //seen
                                 let block = sandmap.gridPoints[Math.floor(Math.random() * sandmap.gridPoints.length)]
                                 this.units[t].pathTo(block)
                             }
@@ -5129,10 +5753,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             } else { // human below, itzler above
 
-                if(this.hotrock > (this.racksflag * 75)){
+                if (this.hotrock > (this.racksflag * 75)) {
                     // console.log("earthoid effect")
-                    this.racks = 0 
-                    this.lab = 0 
+                    this.racks = 0
+                    this.lab = 0
                     this.racksflag += 4
                 }
 
@@ -5357,7 +5981,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         for (let t = 0; t < this.buildings.length; t++) {
                             if (this.buildings[t].barracks == 1) {
                                 if (Math.random() < .1 - (this.units.length * .005)) {
-                                    if (this.hotrock > 120) { 
+                                    if (this.hotrock > 120) {
                                         this.buildings[t].makeInfantry()
                                     }
                                 }
@@ -5844,17 +6468,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             } else if (this.type == 2) {
 
-                if(this.hotrock > (this.racksflag * 75)){
+                if (this.hotrock > (this.racksflag * 75)) {
                     // console.log("hamartan effect")
-                    this.racks = 0 
-                    this.lab = 0 
+                    this.racks = 0
+                    this.lab = 0
                     this.racksflag += 4
                 }
 
                 if (this.racks == 0 && this.isAI == 1 && this.hotrock > 340) {
-                    if(Math.random() < .5){
+                    if (Math.random() < .5) {
                         this.buildGate(tile)
-                    }else if (this.lab == 0 && this.isAI == 1 && this.hotrock > 150) {
+                    } else if (this.lab == 0 && this.isAI == 1 && this.hotrock > 150) {
                         this.buildBarracks(tile)
                     }
                 } else if (this.lab == 0 && this.isAI == 1 && this.hotrock > 150 && this.racks == 1) {
@@ -6931,7 +7555,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
 
         dataOutput() {
-            if(true){
+            if (true) {
                 canvas_context.fillStyle = this.faction.color
                 canvas_context.font = "18px arial"
 
@@ -6940,23 +7564,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.lineWidth = 1.5
                 canvas_context.font = "18px arial"
                 if (dataflop == 0) {
-                canvas_context.strokeText(this.name + " " + Math.ceil(this.health) + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
-                canvas_context.fillText(this.name + " " + Math.ceil(this.health) + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
-                canvas_context.strokeText("Attack " + Math.ceil(this.damage), sandmap.window.body.x + sandmap.window.body.width + 10, 85)
-                canvas_context.fillText("Attack " + Math.ceil(this.damage), sandmap.window.body.x + sandmap.window.body.width + 10, 85)
-                canvas_context.strokeText("Defense " + Math.ceil(this.defense), sandmap.window.body.x + sandmap.window.body.width + 10, 115)
-                canvas_context.fillText("Defense " + Math.ceil(this.defense), sandmap.window.body.x + sandmap.window.body.width + 10, 115)
+                    canvas_context.strokeText(this.name + " " + Math.ceil(this.health) + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
+                    canvas_context.fillText(this.name + " " + Math.ceil(this.health) + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
+                    canvas_context.strokeText("Attack " + Math.ceil(this.damage), sandmap.window.body.x + sandmap.window.body.width + 10, 85)
+                    canvas_context.fillText("Attack " + Math.ceil(this.damage), sandmap.window.body.x + sandmap.window.body.width + 10, 85)
+                    canvas_context.strokeText("Defense " + Math.ceil(this.defense), sandmap.window.body.x + sandmap.window.body.width + 10, 115)
+                    canvas_context.fillText("Defense " + Math.ceil(this.defense), sandmap.window.body.x + sandmap.window.body.width + 10, 115)
                 }
                 if (this.barracks == 1) {
                     if (dataflop == 0) {
-                    canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
-                    canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                        canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                        canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
                     }
                     this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
 
                     if (dataflop == 0) {
-                    this.spawnsmall.draw()
-                    canvas_context.drawImage(infantry, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
+                        this.spawnsmall.draw()
+                        canvas_context.drawImage(infantry, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
                     }
                     // this.spawnmedium = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 110, 125, 90, 50, "black")
                     // this.spawnmedium.draw()
@@ -6964,35 +7588,35 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     this.spawnbig = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 210, 125, 90, 50, "black")
 
                     if (dataflop == 0) {
-                    this.spawnbig.draw()
-                    canvas_context.drawImage(sniper1, 0, 0, 10, 10, this.spawnbig.x + 10, this.spawnbig.y + 5, 30, 30)
+                        this.spawnbig.draw()
+                        canvas_context.drawImage(sniper1, 0, 0, 10, 10, this.spawnbig.x + 10, this.spawnbig.y + 5, 30, 30)
                     }
 
                     if (dataflop == 0) {
-                    canvas_context.fillStyle = "white"
-                    canvas_context.font = "12px arial"
-                    // canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
-                    canvas_context.fillText("Infantry: 85", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
-                    canvas_context.fillText("Sniper: 290", this.spawnbig.x + 1, this.spawnbig.y + 46)
-                    // canvas_context.fillText("Drone: 30")
-                    // canvas_context.fillText("Drone: 30")
+                        canvas_context.fillStyle = "white"
+                        canvas_context.font = "12px arial"
+                        // canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                        canvas_context.fillText("Infantry: 85", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                        canvas_context.fillText("Sniper: 290", this.spawnbig.x + 1, this.spawnbig.y + 46)
+                        // canvas_context.fillText("Drone: 30")
+                        // canvas_context.fillText("Drone: 30")
                     }
                     if (this.timer > 0) {
 
-                    if (dataflop == 0) {
-                        canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
-                    }
+                        if (dataflop == 0) {
+                            canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
+                        }
                     }
                 }
                 if (this.assembler == 1) {
                     if (dataflop == 0) {
-                    canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
-                    canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                        canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                        canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
                     }
                     this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
                     if (dataflop == 0) {
-                    this.spawnsmall.draw()
-                    canvas_context.drawImage(hamartansoldier, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
+                        this.spawnsmall.draw()
+                        canvas_context.drawImage(hamartansoldier, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
                     }
                     // this.spawnmedium = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 110, 125, 90, 50, "black")
                     // this.spawnmedium.draw()
@@ -7003,62 +7627,62 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
                     if (dataflop == 0) {
-                    canvas_context.fillStyle = "white"
-                    canvas_context.font = "12px arial"
-                    // canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
-                    canvas_context.fillText("Soldier: 175", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
-                    // canvas_context.fillText("Sniper: 360", this.spawnbig.x + 1, this.spawnbig.y + 46)
-                    // canvas_context.fillText("Drone: 30")
-                    // canvas_context.fillText("Drone: 30")
+                        canvas_context.fillStyle = "white"
+                        canvas_context.font = "12px arial"
+                        // canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                        canvas_context.fillText("Soldier: 175", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                        // canvas_context.fillText("Sniper: 360", this.spawnbig.x + 1, this.spawnbig.y + 46)
+                        // canvas_context.fillText("Drone: 30")
+                        // canvas_context.fillText("Drone: 30")
                     }
                     if (this.timer > 0) {
                         if (dataflop == 0) {
-                        canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
+                            canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
                         }
                     }
                 }
                 if (this.assembler == 2) {
                     if (dataflop == 0) {
-                    canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
-                    canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                        canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                        canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
                     }
                     this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
                     if (dataflop == 0) {
-                    this.spawnsmall.draw()
-                    canvas_context.drawImage(hamartanscout, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
+                        this.spawnsmall.draw()
+                        canvas_context.drawImage(hamartanscout, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
                     }
                     // this.spawnmedium = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 110, 125, 90, 50, "black")
                     // this.spawnmedium.draw()
                     // canvas_context.drawImage(infantry, 0, 0, 10, 10, this.spawnmedium.x + 10, this.spawnmedium.y + 5, 30, 30)
                     this.spawnbig = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 210, 125, 90, 50, "black")
                     if (dataflop == 0) {
-                    // this.spawnbig.draw()
-                    // canvas_context.drawImage(sniper1, 0, 0, 10, 10, this.spawnbig.x + 10, this.spawnbig.y + 5, 30, 30)
+                        // this.spawnbig.draw()
+                        // canvas_context.drawImage(sniper1, 0, 0, 10, 10, this.spawnbig.x + 10, this.spawnbig.y + 5, 30, 30)
 
 
-                    canvas_context.fillStyle = "white"
-                    canvas_context.font = "12px arial"
-                    // canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
-                    canvas_context.fillText("Scout: 75", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
-                    // canvas_context.fillText("Sniper: 360", this.spawnbig.x + 1, this.spawnbig.y + 46)
-                    // canvas_context.fillText("Drone: 30")
-                    // canvas_context.fillText("Drone: 30")
+                        canvas_context.fillStyle = "white"
+                        canvas_context.font = "12px arial"
+                        // canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                        canvas_context.fillText("Scout: 75", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                        // canvas_context.fillText("Sniper: 360", this.spawnbig.x + 1, this.spawnbig.y + 46)
+                        // canvas_context.fillText("Drone: 30")
+                        // canvas_context.fillText("Drone: 30")
                     }
                     if (this.timer > 0) {
                         if (dataflop == 0) {
-                        canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
+                            canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
                         }
                     }
                 }
                 if (this.bulbplant == 1) {
                     if (dataflop == 0) {
-                    canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
-                    canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                        canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                        canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
                     }
                     this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
                     if (dataflop == 0) {
-                    this.spawnsmall.draw()
-                    canvas_context.drawImage(librilbianpollinator, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
+                        this.spawnsmall.draw()
+                        canvas_context.drawImage(librilbianpollinator, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
                     }
                     // this.spawnmedium = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 110, 125, 90, 50, "black")
                     // this.spawnmedium.draw()
@@ -7069,141 +7693,141 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
                     if (dataflop == 0) {
-                    canvas_context.fillStyle = "white"
-                    canvas_context.font = "12px arial"
-                    // canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
-                    canvas_context.fillText("Pollinator: 85", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
-                    // canvas_context.fillText("Sniper: 360", this.spawnbig.x + 1, this.spawnbig.y + 46)
-                    // canvas_context.fillText("Drone: 30")
-                    // canvas_context.fillText("Drone: 30")
+                        canvas_context.fillStyle = "white"
+                        canvas_context.font = "12px arial"
+                        // canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                        canvas_context.fillText("Pollinator: 85", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                        // canvas_context.fillText("Sniper: 360", this.spawnbig.x + 1, this.spawnbig.y + 46)
+                        // canvas_context.fillText("Drone: 30")
+                        // canvas_context.fillText("Drone: 30")
                     }
                     if (this.timer > 0) {
                         if (dataflop == 0) {
-                        canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
+                            canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
                         }
                     }
                 }
                 if (this.bulbplant == 2) {
                     if (dataflop == 0) {
-                    canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
-                    canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                        canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                        canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
                     }
                     this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
                     if (dataflop == 0) {
-                    this.spawnsmall.draw()
-                    canvas_context.drawImage(librilbianpufffellow, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
+                        this.spawnsmall.draw()
+                        canvas_context.drawImage(librilbianpufffellow, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
                     }
                     this.spawnmedium = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 110, 125, 90, 50, "black")
                     if (dataflop == 0) {
-                    this.spawnmedium.draw()
-                    canvas_context.drawImage(librilbianpodman, 0, 0, 10, 10, this.spawnmedium.x + 10, this.spawnmedium.y + 5, 30, 30)
+                        this.spawnmedium.draw()
+                        canvas_context.drawImage(librilbianpodman, 0, 0, 10, 10, this.spawnmedium.x + 10, this.spawnmedium.y + 5, 30, 30)
                     }
                     this.spawnbig = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 210, 125, 90, 50, "black")
                     if (dataflop == 0) {
-                    this.spawnbig.draw()
-                    canvas_context.drawImage(librilbiangoliophyte, 0, 0, 10, 10, this.spawnbig.x + 10, this.spawnbig.y + 5, 30, 30)
-                    
+                        this.spawnbig.draw()
+                        canvas_context.drawImage(librilbiangoliophyte, 0, 0, 10, 10, this.spawnbig.x + 10, this.spawnbig.y + 5, 30, 30)
 
 
-                    canvas_context.fillStyle = "white"
-                    canvas_context.font = "12px arial"
-                    // canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
-                    canvas_context.fillText("Puff-Fellow: 90", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
-                    canvas_context.fillText("Podman: 140", this.spawnmedium.x + 1, this.spawnmedium.y + 46)
-                    canvas_context.fillText("Golophyte: 355", this.spawnbig.x + 1, this.spawnbig.y + 46)
-                    // canvas_context.fillText("Drone: 30")
-                    // canvas_context.fillText("Drone: 30")
+
+                        canvas_context.fillStyle = "white"
+                        canvas_context.font = "12px arial"
+                        // canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                        canvas_context.fillText("Puff-Fellow: 90", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                        canvas_context.fillText("Podman: 140", this.spawnmedium.x + 1, this.spawnmedium.y + 46)
+                        canvas_context.fillText("Golophyte: 355", this.spawnbig.x + 1, this.spawnbig.y + 46)
+                        // canvas_context.fillText("Drone: 30")
+                        // canvas_context.fillText("Drone: 30")
                     }
                     if (this.timer > 0) {
                         if (dataflop == 0) {
-                        canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
+                            canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
                         }
                     }
                 }
                 if (this.assembler == 3) {
 
                     if (dataflop == 0) {
-                    canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
-                    canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                        canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                        canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
                     }
                     this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
                     if (dataflop == 0) {
-                    this.spawnsmall.draw()
-                    canvas_context.drawImage(hamartanworker, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
+                        this.spawnsmall.draw()
+                        canvas_context.drawImage(hamartanworker, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
                     }
                     // this.spawnmedium = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 110, 125, 90, 50, "black")
                     // this.spawnmedium.draw()
                     // canvas_context.drawImage(infantry, 0, 0, 10, 10, this.spawnmedium.x + 10, this.spawnmedium.y + 5, 30, 30)
                     this.spawnbig = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 210, 125, 90, 50, "black")
                     if (dataflop == 0) {
-                    this.spawnbig.draw()
-                    canvas_context.drawImage(hamartaninvader, 0, 0, 10, 10, this.spawnbig.x + 10, this.spawnbig.y + 5, 30, 30)
+                        this.spawnbig.draw()
+                        canvas_context.drawImage(hamartaninvader, 0, 0, 10, 10, this.spawnbig.x + 10, this.spawnbig.y + 5, 30, 30)
                     }
 
 
                     if (dataflop == 0) {
-                    canvas_context.fillStyle = "white"
-                    canvas_context.font = "12px arial"
-                    // canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
-                    canvas_context.fillText("Worker: 145", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
-                    canvas_context.fillText("Invader: 340", this.spawnbig.x + 1, this.spawnbig.y + 46)
-                    // canvas_context.fillText("Drone: 30")
-                    // canvas_context.fillText("Drone: 30")
+                        canvas_context.fillStyle = "white"
+                        canvas_context.font = "12px arial"
+                        // canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                        canvas_context.fillText("Worker: 145", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                        canvas_context.fillText("Invader: 340", this.spawnbig.x + 1, this.spawnbig.y + 46)
+                        // canvas_context.fillText("Drone: 30")
+                        // canvas_context.fillText("Drone: 30")
                     }
                     if (this.timer > 0) {
 
-                    if (dataflop == 0) {
-                        canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
-                    }
+                        if (dataflop == 0) {
+                            canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
+                        }
                     }
                 }
                 if (this.barracks == 2) {
                     if (dataflop == 0) {
-                    canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
-                    canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                        canvas_context.strokeText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                        canvas_context.fillText("Units", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
                     }
                     this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
                     if (dataflop == 0) {
-                    this.spawnsmall.draw()
-                    canvas_context.drawImage(drone, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
+                        this.spawnsmall.draw()
+                        canvas_context.drawImage(drone, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
                     }
                     // this.spawnmedium = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 110, 125, 90, 50, "black")
                     // this.spawnmedium.draw()
                     // canvas_context.drawImage(infantry, 0, 0, 10, 10, this.spawnmedium.x + 10, this.spawnmedium.y + 5, 30, 30)
                     this.spawnbig = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 210, 125, 90, 50, "black")
                     if (dataflop == 0) {
-                    this.spawnbig.draw()
-                    canvas_context.drawImage(harvester, 0, 0, 10, 10, this.spawnbig.x + 10, this.spawnbig.y + 5, 30, 30)
+                        this.spawnbig.draw()
+                        canvas_context.drawImage(harvester, 0, 0, 10, 10, this.spawnbig.x + 10, this.spawnbig.y + 5, 30, 30)
 
 
-                    canvas_context.fillStyle = "white"
-                    canvas_context.font = "13px arial"
-                    canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
-                    // canvas_context.fillText("Infantry: 90", this.spawnmedium.x + 1, this.spawnmedium.y + 46)
-                    canvas_context.fillText("Harvester: 160", this.spawnbig.x + 1, this.spawnbig.y + 46)
-                    // canvas_context.fillText("Drone: 30")
-                    // canvas_context.fillText("Drone: 30")
+                        canvas_context.fillStyle = "white"
+                        canvas_context.font = "13px arial"
+                        canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                        // canvas_context.fillText("Infantry: 90", this.spawnmedium.x + 1, this.spawnmedium.y + 46)
+                        canvas_context.fillText("Harvester: 160", this.spawnbig.x + 1, this.spawnbig.y + 46)
+                        // canvas_context.fillText("Drone: 30")
+                        // canvas_context.fillText("Drone: 30")
                     }
                     if (this.timer > 0) {
                         if (dataflop == 0) {
-                        canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
+                            canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
                         }
                     }
                 }
                 if (this.gate == 1) {
                     if (dataflop == 0) {
-                    if (this.open == 1) {
-                        canvas_context.strokeText("Status: Open", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
-                        canvas_context.fillText("Status: Open", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
-                    } else {
-                        canvas_context.strokeText("Status: Closed", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
-                        canvas_context.fillText("Status: Closed", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                        if (this.open == 1) {
+                            canvas_context.strokeText("Status: Open", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                            canvas_context.fillText("Status: Open", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                        } else {
+                            canvas_context.strokeText("Status: Closed", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                            canvas_context.fillText("Status: Closed", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                        }
                     }
-                }
                     this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
 
                     if (dataflop == 0) {
-                    this.spawnsmall.draw()
+                        this.spawnsmall.draw()
                     }
                     // this.spawnmedium = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 110, 125, 90, 50, "black")
                     // this.spawnmedium.draw()
@@ -7213,15 +7837,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     // canvas_context.drawImage(harvester, 0, 0, 10, 10, this.spawnbig.x + 10, this.spawnbig.y + 5, 30, 30)
 
                     if (dataflop == 0) {
-                    canvas_context.fillStyle = "white"
-                    canvas_context.font = "22px arial"
+                        canvas_context.fillStyle = "white"
+                        canvas_context.font = "22px arial"
 
-                    if (this.open == 1) {
-                        canvas_context.fillText("Close", this.spawnsmall.x + 5, this.spawnsmall.y + 32)
-                    } else {
-                        canvas_context.fillText("Open", this.spawnsmall.x + 15, this.spawnsmall.y + 32)
+                        if (this.open == 1) {
+                            canvas_context.fillText("Close", this.spawnsmall.x + 5, this.spawnsmall.y + 32)
+                        } else {
+                            canvas_context.fillText("Open", this.spawnsmall.x + 15, this.spawnsmall.y + 32)
+                        }
                     }
-                }
                 }
             }
 
@@ -7939,63 +8563,63 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
         }
         dataOutput() {
-            if(true){
+            if (true) {
                 canvas_context.fillStyle = this.faction.color
                 // canvas_context.font = "18px arial"
 
                 if (dataflop == 0) {
-                canvas_context.fillStyle = "black"
-                canvas_context.strokeStyle = sandmap.players[sandmap.turn].color
-                canvas_context.lineWidth = 1.5
-                canvas_context.font = "18px arial"
-                canvas_context.strokeText(this.name + " " + Math.round(this.health) + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
-                if (this.faction.type == 0) {
-                    canvas_context.strokeText(((1 - this.decayingInTheWind) * 100) + "% Cover", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
-                    canvas_context.fillText(((1 - this.decayingInTheWind) * 100) + "% Cover", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                    canvas_context.fillStyle = "black"
+                    canvas_context.strokeStyle = sandmap.players[sandmap.turn].color
+                    canvas_context.lineWidth = 1.5
+                    canvas_context.font = "18px arial"
+                    canvas_context.strokeText(this.name + " " + Math.round(this.health) + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
+                    if (this.faction.type == 0) {
+                        canvas_context.strokeText(((1 - this.decayingInTheWind) * 100) + "% Cover", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                        canvas_context.fillText(((1 - this.decayingInTheWind) * 100) + "% Cover", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                    }
+                    if (this.faction.type == 2) {
+                        canvas_context.strokeText(((1 - this.suffocating) * 100) + "%  Air Tolerance", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                        canvas_context.fillText(((1 - this.suffocating) * 100) + "%  Air Tolerance", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
+                    }
+                    canvas_context.fillText(this.name + " " + Math.round(this.health) + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
+
+
+                    canvas_context.strokeText("Attack " + Math.ceil(this.damage * 3) + ", " + "Defense " + Math.ceil(this.defense), sandmap.window.body.x + sandmap.window.body.width + 10, 85)
+                    canvas_context.fillText("Attack " + Math.ceil(this.damage * 3) + ", " + "Defense " + Math.ceil(this.defense), sandmap.window.body.x + sandmap.window.body.width + 10, 85)
+                    canvas_context.strokeText("Speed " + Math.floor((1 / this.movespeed) * 120) + ", Vision " + this.sight + ", Range " + this.attackrange + ", Fire rate " + Math.floor((1 / this.firerate) * 120), sandmap.window.body.x + sandmap.window.body.width + 10, 115)
+                    canvas_context.fillText("Speed " + Math.floor((1 / this.movespeed) * 120) + ", Vision " + this.sight + ", Range " + this.attackrange + ", Fire rate " + Math.floor((1 / this.firerate) * 120), sandmap.window.body.x + sandmap.window.body.width + 10, 115)
+
                 }
-                if (this.faction.type == 2) {
-                    canvas_context.strokeText(((1 - this.suffocating) * 100) + "%  Air Tolerance", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
-                    canvas_context.fillText(((1 - this.suffocating) * 100) + "%  Air Tolerance", sandmap.window.body.x + sandmap.window.body.width + 10, 55)
-                }
-                canvas_context.fillText(this.name + " " + Math.round(this.health) + "/" + this.maxhealth, sandmap.window.body.x + sandmap.window.body.width + 10, 25)
-
-
-                canvas_context.strokeText("Attack " + Math.ceil(this.damage * 3) + ", " + "Defense " + Math.ceil(this.defense), sandmap.window.body.x + sandmap.window.body.width + 10, 85)
-                canvas_context.fillText("Attack " + Math.ceil(this.damage * 3) + ", " + "Defense " + Math.ceil(this.defense), sandmap.window.body.x + sandmap.window.body.width + 10, 85)
-                canvas_context.strokeText("Speed " + Math.floor((1 / this.movespeed) * 120) + ", Vision " + this.sight + ", Range " + this.attackrange + ", Fire rate " + Math.floor((1 / this.firerate) * 120), sandmap.window.body.x + sandmap.window.body.width + 10, 115)
-                canvas_context.fillText("Speed " + Math.floor((1 / this.movespeed) * 120) + ", Vision " + this.sight + ", Range " + this.attackrange + ", Fire rate " + Math.floor((1 / this.firerate) * 120), sandmap.window.body.x + sandmap.window.body.width + 10, 115)
-
-            }
                 if (this.imago == 1 || this.imago == 2) {
                     this.spawnsmall = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
                     if (dataflop == 0) {
-                    this.spawnsmall.draw()
-                    canvas_context.drawImage(nymph, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
-                    canvas_context.fillStyle = "white"
-                    canvas_context.font = "13px arial"
-                    canvas_context.fillText("Nymph: 109", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                        this.spawnsmall.draw()
+                        canvas_context.drawImage(nymph, 0, 0, 10, 10, this.spawnsmall.x + 10, this.spawnsmall.y + 5, 30, 30)
+                        canvas_context.fillStyle = "white"
+                        canvas_context.font = "13px arial"
+                        canvas_context.fillText("Nymph: 109", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
                     }
 
                 }
                 if (this.pollinator == 1) {
                     this.morph = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
                     if (dataflop == 0) {
-                    this.morph.draw()
-                    canvas_context.drawImage(librilbianpufffellow, 0, 0, 10, 10, this.morph.x + 10, this.morph.y + 5, 30, 30)
-                    canvas_context.fillStyle = "white"
-                    canvas_context.font = "13px arial"
-                    canvas_context.fillText("Puff-Fellow: 5", this.morph.x + 1, this.morph.y + 46)
+                        this.morph.draw()
+                        canvas_context.drawImage(librilbianpufffellow, 0, 0, 10, 10, this.morph.x + 10, this.morph.y + 5, 30, 30)
+                        canvas_context.fillStyle = "white"
+                        canvas_context.font = "13px arial"
+                        canvas_context.fillText("Puff-Fellow: 5", this.morph.x + 1, this.morph.y + 46)
                     }
                 }
                 if (this.nymph == 1 || this.nymph == 2) {
                     if (this.nymph == 1) {
                         this.morph = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
                         if (dataflop == 0) {
-                        this.morph.draw()
-                        canvas_context.drawImage(scuttler, 0, 0, 10, 10, this.morph.x + 10, this.morph.y + 5, 30, 30)
-                        canvas_context.fillStyle = "white"
-                        canvas_context.font = "13px arial"
-                        canvas_context.fillText("Scurrier: 160", this.morph.x + 1, this.morph.y + 46)
+                            this.morph.draw()
+                            canvas_context.drawImage(scuttler, 0, 0, 10, 10, this.morph.x + 10, this.morph.y + 5, 30, 30)
+                            canvas_context.fillStyle = "white"
+                            canvas_context.font = "13px arial"
+                            canvas_context.fillText("Scurrier: 160", this.morph.x + 1, this.morph.y + 46)
                         }
                         // this.morph = {}
                         // this.morph.isPointInside = empty
@@ -8004,40 +8628,40 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         // this.morph.isPointInside = empty
                         this.morph2 = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 10, 125, 90, 50, "black")
                         if (dataflop == 0) {
-                        this.morph2.draw()
-                        canvas_context.drawImage(imago, 0, 0, 10, 10, this.morph2.x + 10, this.morph2.y + 5, 30, 30)
-                        canvas_context.fillStyle = "white"
-                        canvas_context.font = "13px arial"
-                        canvas_context.fillText("Imago: 240", this.morph2.x + 1, this.morph2.y + 46)
+                            this.morph2.draw()
+                            canvas_context.drawImage(imago, 0, 0, 10, 10, this.morph2.x + 10, this.morph2.y + 5, 30, 30)
+                            canvas_context.fillStyle = "white"
+                            canvas_context.font = "13px arial"
+                            canvas_context.fillText("Imago: 240", this.morph2.x + 1, this.morph2.y + 46)
                         }
                         this.morph3 = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 150, 125, 90, 50, "black")
                         if (dataflop == 0) {
-                        this.morph3.draw()
-                        canvas_context.drawImage(gamergate, 0, 0, 10, 10, this.morph3.x + 10, this.morph3.y + 5, 30, 30)
-                        canvas_context.fillStyle = "white"
-                        canvas_context.font = "12px arial"
-                        canvas_context.fillText("Gamergate: 350", this.morph3.x + 1, this.morph3.y + 46)
+                            this.morph3.draw()
+                            canvas_context.drawImage(gamergate, 0, 0, 10, 10, this.morph3.x + 10, this.morph3.y + 5, 30, 30)
+                            canvas_context.fillStyle = "white"
+                            canvas_context.font = "12px arial"
+                            canvas_context.fillText("Gamergate: 350", this.morph3.x + 1, this.morph3.y + 46)
                         }
                     }
                 } else {
                     if (this.imago == 2) {
                         this.morph3 = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 150, 125, 90, 50, "black")
 
-            if (dataflop == 0) {
-                        this.morph3.draw()
-                        canvas_context.fillStyle = "white"
-                        canvas_context.font = "22px arial"
-                        if (this.submerged == 0) {
-                            canvas_context.fillText("Tunnel", this.morph3.x + 10, this.morph3.y + 32)
-                        } else {
-                            if (this.tile.walkable == false || this.tile.ice == 1 || this.tile.builtOn == 1) {
-                                canvas_context.fillStyle = "red"
-                            }
+                        if (dataflop == 0) {
+                            this.morph3.draw()
+                            canvas_context.fillStyle = "white"
+                            canvas_context.font = "22px arial"
+                            if (this.submerged == 0) {
+                                canvas_context.fillText("Tunnel", this.morph3.x + 10, this.morph3.y + 32)
+                            } else {
+                                if (this.tile.walkable == false || this.tile.ice == 1 || this.tile.builtOn == 1) {
+                                    canvas_context.fillStyle = "red"
+                                }
 
-                            canvas_context.fillText("Emerge", this.morph3.x + 5, this.morph3.y + 32)
+                                canvas_context.fillText("Emerge", this.morph3.x + 5, this.morph3.y + 32)
+                            }
                         }
                     }
-                }
                 }
 
                 let facex = sandmap.window.body.x + sandmap.window.body.width + 10
@@ -8045,63 +8669,63 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                 this.facerect = new UiRectangle(facex, facey, 64, 64, "#009999")
 
-            if (dataflop == 0) {
-                this.facerect.draw()
+                if (dataflop == 0) {
+                    this.facerect.draw()
 
-                if (this.hamartaninvader == 1) {
-                    canvas_context.drawImage(hamartaninvaderface, facex, facey)
+                    if (this.hamartaninvader == 1) {
+                        canvas_context.drawImage(hamartaninvaderface, facex, facey)
+                    }
+                    if (this.hamartanscout == 1) {
+                        canvas_context.drawImage(hamartanscoutface, facex, facey)
+                    }
+                    if (this.hamartansoldier == 1) {
+                        canvas_context.drawImage(hamartansoldierface, facex, facey)
+                    }
+                    if (this.hamartanworker == 1) {
+                        canvas_context.drawImage(hamartanworkerface, facex, facey)
+                    }
+                    if (this.infantry == 1) {
+                        canvas_context.drawImage(infantryface, facex, facey)
+                    }
+                    if (this.infantry == 2) {
+                        canvas_context.drawImage(sniperface, facex, facey)
+                    }
+                    if (this.drone == 1) {
+                        canvas_context.drawImage(droneface, facex, facey)
+                    }
+                    if (this.harvester == 1) {
+                        canvas_context.drawImage(harvesterface, facex, facey)
+                    }
+                    if (this.nymph == 1) {
+                        canvas_context.drawImage(nymphface, facex, facey)
+                    }
+                    if (this.pollinator == 1) {
+                        canvas_context.drawImage(librilbianpollinatorface, facex, facey)
+                    }
+                    if (this.pufffellow == 1) {
+                        canvas_context.drawImage(pufffellowface, facex, facey)
+                    }
+                    if (this.goliophyte == 1) {
+                        canvas_context.drawImage(golophyteface, facex, facey)
+                    }
+                    if (this.podman == 1) {
+                        canvas_context.drawImage(podmanface, facex, facey)
+                    }
+                    if (this.nymph == 2) {
+                        canvas_context.drawImage(scurrierface, facex, facey)
+                    }
+                    if (this.imago == 1) {
+                        canvas_context.drawImage(imagoface, facex, facey)
+                    }
+                    if (this.imago == 2) {
+                        canvas_context.drawImage(gamergateface, facex, facey)
+                    }
                 }
-                if (this.hamartanscout == 1) {
-                    canvas_context.drawImage(hamartanscoutface, facex, facey)
-                }
-                if (this.hamartansoldier == 1) {
-                    canvas_context.drawImage(hamartansoldierface, facex, facey)
-                }
-                if (this.hamartanworker == 1) {
-                    canvas_context.drawImage(hamartanworkerface, facex, facey)
-                }
-                if (this.infantry == 1) {
-                    canvas_context.drawImage(infantryface, facex, facey)
-                }
-                if (this.infantry == 2) {
-                    canvas_context.drawImage(sniperface, facex, facey)
-                }
-                if (this.drone == 1) {
-                    canvas_context.drawImage(droneface, facex, facey)
-                }
-                if (this.harvester == 1) {
-                    canvas_context.drawImage(harvesterface, facex, facey)
-                }
-                if (this.nymph == 1) {
-                    canvas_context.drawImage(nymphface, facex, facey)
-                }
-                if (this.pollinator == 1) {
-                    canvas_context.drawImage(librilbianpollinatorface, facex, facey)
-                }
-                if (this.pufffellow == 1) {
-                    canvas_context.drawImage(pufffellowface, facex, facey)
-                }
-                if (this.goliophyte == 1) {
-                    canvas_context.drawImage(golophyteface, facex, facey)
-                }
-                if (this.podman == 1) {
-                    canvas_context.drawImage(podmanface, facex, facey)
-                }
-                if (this.nymph == 2) {
-                    canvas_context.drawImage(scurrierface, facex, facey)
-                }
-                if (this.imago == 1) {
-                    canvas_context.drawImage(imagoface, facex, facey)
-                }
-                if (this.imago == 2) {
-                    canvas_context.drawImage(gamergateface, facex, facey)
-                }
-            }
             }
 
             if (this.timer > 0) {
                 if (dataflop == 0) {
-                canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
+                    canvas_context.drawImage(progress, 0, (250 - (Math.round((this.timer / this.maxtimer) * 250))), progress.width, 10, sandmap.window.minibody.x, 185, 250, 10)
                 }
             }
 
@@ -8405,9 +9029,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                     soundCancel()
                                                                     if (Math.random() < .3) {
                                                                         seeyesineed.play()
-                                                                    }else if (Math.random() < .3) {
+                                                                    } else if (Math.random() < .3) {
                                                                         bombbuoy.play()
-                                                                    }else{
+                                                                    } else {
                                                                         notinhere.play()
                                                                     }
                                                                 }
@@ -8501,7 +9125,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     return
                 }
                 this.attackcounter++
-                if (this.attackcounter % (this.firerate*3) == 0 && this.submerged != 1) { //3 because 0 strikeout
+                if (this.attackcounter % (this.firerate * 3) == 0 && this.submerged != 1) { //3 because 0 strikeout
                     let shot = new UnitCircle(this.body.x, this.body.y, 2, this.faction.color)
                     shot.attacktarget = {}
                     shot.attacktarget.body = new UnitCircle(this.attacktarget.body.x, this.attacktarget.body.y, 1, "transparent")
@@ -8814,7 +9438,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.marked = 1
             }
             if (this.tile.hotrock == 1) {
-                if (this.drone == 1 || this.hamartanscout == 1 ) { //|| this.hamartaninvader == 1
+                if (this.drone == 1 || this.hamartanscout == 1) { //|| this.hamartaninvader == 1
 
                     this.faction.hotrock += this.movespeed * .005
                     this.tile.sourcerock -= this.movespeed * .005
@@ -8828,14 +9452,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         this.tile.sourcerock -= this.movespeed * .025
                         this.faction.income += this.movespeed * .025
                     }
-                    if(this.infantry == 1){
+                    if (this.infantry == 1) {
                         // this.faction.hotrock += this.movespeed * .0125
                         // this.tile.sourcerock -= this.movespeed * .0125
                         this.faction.hotrock += this.movespeed * .005//625
                         this.tile.sourcerock -= this.movespeed * .005 //625
                         this.faction.income += this.movespeed * .005
                     }
-                    if(this.hamartanworker == 1){
+                    if (this.hamartanworker == 1) {
                         this.faction.hotrock += this.movespeed * .00625//625
                         this.tile.sourcerock -= this.movespeed * .00625 //625
                         this.faction.income += this.movespeed * .00625
@@ -8862,17 +9486,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         this.tile.sourcerock -= this.movespeed * .05
                         this.faction.income += this.movespeed * .05
                     }
-                    if(this.infantry == 1){
+                    if (this.infantry == 1) {
                         this.faction.hotrock += this.movespeed * .01//625
                         this.tile.sourcerock -= this.movespeed * .01 //625
                         this.faction.income += this.movespeed * .01
                     }
-                    if(this.hamartanworker == 1){
+                    if (this.hamartanworker == 1) {
                         this.faction.hotrock += this.movespeed * .0125 //125
                         this.tile.sourcerock -= this.movespeed * .0125 //125
                         this.faction.income += this.movespeed * .0125
                     }
-                    if (this.nymph == 1 || this.harvester == 1  || this.pollinator == 1) { // || this.pollinator == 1) { //harvester?
+                    if (this.nymph == 1 || this.harvester == 1 || this.pollinator == 1) { // || this.pollinator == 1) { //harvester?
                         this.faction.hotrock += this.movespeed * .05
                         this.tile.sourcerock -= this.movespeed * .05
                         this.faction.income += this.movespeed * .05
