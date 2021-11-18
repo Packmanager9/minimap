@@ -53,7 +53,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
       */
       search: function(graph, start, end, options) {
         //   //////console.log(graph)
-        graph.cleanDirty();
+        graph.cleanLiar();
         options = options || {};
         var heuristic = options.heuristic || liarsastar.heuristics.diagonal;
         var closest = options.closest || false;
@@ -186,7 +186,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
       }
     };
     
-    Graph.prototype.cleanDirty = function() {
+    Graph.prototype.cleanLiar = function() {
       for (var i = 0; i < this.dirtyNodes.length; i++) {
         liarsastar.cleanNode(this.dirtyNodes[i]);
       }
