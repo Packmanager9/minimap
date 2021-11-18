@@ -155,7 +155,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     //pollinator audio
     let pollinatoraudio = new Audio()
-    pollinatoraudio.src = "pollinatoraudio.mp3"
+    pollinatoraudio.src = "pollinatoraudioamp2.mp3"
     sounds.push(pollinatoraudio)
 
     // podman audio
@@ -544,7 +544,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         pollinatornotch = Math.floor(Math.random()*pollinatoraudio.duration)
         pollinatoraudio.currentTime = pollinatornotch
-        pollinatoraudio.volume = 1
+        pollinatoraudio.volume = .5
         console.log(pollinatoraudio.duration)
         pollinatortick = ((Math.random()*400)+1000)/1000
     }
@@ -9734,6 +9734,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.shots[t].y = (this.body.y * (1 - (this.shots[t].stage / this.projectilespeed))) + (((this.shots[t].stage / this.projectilespeed)) * this.shots[t].refhealth.body.y)
                 this.shots[t].draw()
                 if (this.shots[t].stage >= this.projectilespeed) {
+                        this.shots[t].refhealth.health -= Math.max((this.damage * 3) - this.shots[t].attacktarget.defense, 0) //5?
+                        ////////////console.log(this.shots[t].refhealth)
+                        this.shots[t].marked = 1
+
                     if (this.shots[t].refhealth.submerged == 1) {
                         this.attacktarget = {}
                         this.attacktarget.tile = {}
@@ -9743,13 +9747,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         this.attacktarget.tile.y = -100000
                         this.attacktarget.tile.t = 0
                         this.attacktarget.tile.k = 0
-                        this.shots[t].marked = 1
-                        continue
-                    } else {
-                        this.shots[t].refhealth.health -= Math.max((this.damage * 3) - this.shots[t].attacktarget.defense, 0) //5?
-                        ////////////console.log(this.shots[t].refhealth)
-                        this.shots[t].marked = 1
-                    }
+                    } 
+                    // }
                 }
             }
             for (let t = 0; t < this.shots.length; t++) {
@@ -9796,6 +9795,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if(pollinatoraudio.currentTime >= pollinatornotch+pollinatortick){
                 pollinatoraudio.volume*=.94
                 // pollinatoraudio.pause()
+            }else{
+                let volhold = pollinatoraudio.volume
+                volhold*= 1.1
+                if(volhold <= 1){
+                    pollinatoraudio.volume = volhold
+                }
             }
             soundspamdrop *= 1.0089
 
