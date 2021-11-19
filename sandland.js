@@ -8735,6 +8735,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if(this.tile.sourcerock > 0){
                     this.tile.sourcerock -= .09
                     this.faction.hotrock += .09
+                    this.faction.income += .09
                 }
 
             }
