@@ -3,6 +3,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     let dynamic2 = 0
     let dynamic1 = 0
+    let engageconstant = .4
 
     let playstart = 0
     let debreak = 1
@@ -157,6 +158,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let pollinatoraudio = new Audio()
     pollinatoraudio.src = "pollinatoraudioamp2.mp3"
     sounds.push(pollinatoraudio)
+
+    //pufffellow audio
+    let pufffellowaudio = new Audio()
+    pufffellowaudio.src = "pufffellowaudio.mp3"
+    sounds.push(pufffellowaudio)
 
     // podman audio
     let youworkforme = new Audio()
@@ -557,6 +563,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     let pollinatornotch = 0
     let pollinatortick = Math.floor(Math.random()*20)+25
+    
+    let puffnotch = 0
+    let pufftick = Math.floor(Math.random()*20)+25
 
     function soundCancel() {
         /* sets chance of audio playback  */
@@ -568,8 +577,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
         pollinatornotch = Math.floor(Math.random()*pollinatoraudio.duration)
         pollinatoraudio.currentTime = pollinatornotch
         pollinatoraudio.volume = .5
+        puffnotch = Math.floor(Math.random()*pufffellowaudio.duration)
+        pufffellowaudio.currentTime = puffnotch
+        pufffellowaudio.volume = .5
         ////////console.log(pollinatoraudio.duration)
         pollinatortick = ((Math.random()*400)+1000)/1000
+        pufftick = ((Math.random()*400)+1000)/1000
     }
 
     let defenseicon = new Image()
@@ -3454,6 +3467,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         if (sandmap.players[sandmap.turn].units[t].pollinator == 1) {
                                             pollinatoraudio.play()
                                         }
+                                        if (sandmap.players[sandmap.turn].units[t].pufffellow == 1) {
+                                            pufffellowaudio.play()
+                                        }
                                         if (sandmap.players[sandmap.turn].units[t].infantry == 1) {
                                             if (Math.random() < .8) {
                                                 orders.play()
@@ -3797,10 +3813,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         hotmore.play()
                                     }
                                 }
-                                if (sandmap.players[sandmap.turn].units[t].pollinator == 1) {
-                                    pollinatoraudio.play()
-                                }
-
 
                                 if (sandmap.players[sandmap.turn].units[t].hamartaninvader == 1) {
                                     incroiable.play()
@@ -3843,6 +3855,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 if (sandmap.players[sandmap.turn].units[t].pollinator == 1) {
                                     pollinatoraudio.play()
                                 }
+                                if (sandmap.players[sandmap.turn].units[t].pufffellow == 1) {
+                                    pufffellowaudio.play()
+                                }
                                 if (sandmap.players[sandmap.turn].units[t].harvester == 1) {
                                     overtime.play()
                                 }
@@ -3862,6 +3877,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     }
                                 }
 
+                                if (sandmap.players[sandmap.turn].units[t].pufffellow == 1) {
+                                    pufffellowaudio.play()
+                                }
                                 if (sandmap.players[sandmap.turn].units[t].pollinator == 1) {
                                     pollinatoraudio.play()
                                 }
@@ -5318,7 +5336,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     continue
                                 } 
 
-                                if(this.seenrocks[k].builtOn == 0){ // && this.seenrocks[k].occupied == false){
+                                if((this.seenrocks[k].builtOn == 0) || this.seenrocks[k].primed != 1){ // && this.seenrocks[k].occupied == false){ //wow primed is a big diff
 
                                     this.pather = slimemakingastar
                                     sandmap.diagonal = false
@@ -7074,6 +7092,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             building.maxhealth = building.health
                             building.pather = slimyastar
                             building.active = 0
+                            building.tile.primed = 0
                             building.pather.agent = building
                             for(let t = 0;t<this.buildings.length;t++){
                                 if(this.buildings[t].sporeball == 1){
@@ -7083,6 +7102,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     ////////console.log(path)
                                     if(path.length > 0){
                                         building.active = 1
+                                        building.tile.primed = 1
                                         break
                                     }
                                 }
@@ -7474,6 +7494,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             soundCancel()
 
 
+                            if (this.units[t].pufffellow == 1) {
+                                pufffellowaudio.play()
+                            }
                             if (this.units[t].pollinator == 1) {
                                 pollinatoraudio.play()
                             }
@@ -8239,6 +8262,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (Math.random() < soundspamdrop) {
                 if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
                     soundCancel()
+                    pufffellowaudio.play()
                 }
             }
             let agent1 = new Agent(this.tile, this.faction)
@@ -8699,6 +8723,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                     if(sum == 0){
                         this.active = 0
+                        this.tile.primed = 0
                     }
                 // }
             }
@@ -8714,6 +8739,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 //////console.log(path)
                                 if(path.length > 0){
                                     this.active = 1
+                                    this.tile.primed = 1
                                     break
                                 }
                             }
@@ -9805,7 +9831,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                                                         if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
                                                             if (this.nymph == 1) {
-                                                                if (Math.random() < soundspamdrop) {
+                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
                                                                     soundCancel()
                                                                     if (Math.random() < .5) {
                                                                         itstheedgeofusfight.play()
@@ -9815,7 +9841,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 }
                                                             }
                                                             if (this.imago == 1) {
-                                                                if (Math.random() < soundspamdrop) {
+                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
                                                                     soundCancel()
                                                                     if (Math.random() < .5) {
                                                                         ahhbarber.play()
@@ -9825,13 +9851,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 }
                                                             }
                                                             if (this.imago == 2) {
-                                                                if (Math.random() < soundspamdrop) {
+                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
                                                                     soundCancel()
                                                                     youhurtme.play()
                                                                 }
                                                             }
                                                             if (this.infantry == 2) {
-                                                                if (Math.random() < soundspamdrop) {
+                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
                                                                     soundCancel()
                                                                     if (Math.random() < .3) {
                                                                         isnipedyouaweekago2.play()
@@ -9849,7 +9875,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 }
                                                             }
                                                             if (this.nymph == 2) {
-                                                                if (Math.random() < soundspamdrop) {
+                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
                                                                     soundCancel()
                                                                     if (Math.random() < .3) {
                                                                         icannamethevillans.play()
@@ -9861,13 +9887,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 }
                                                             }
                                                             if (this.hamartaninvader == 1) {
-                                                                if (Math.random() < soundspamdrop) {
+                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
                                                                     soundCancel()
                                                                     youhome.play()
                                                                 }
                                                             }
                                                             if (this.hamartansoldier == 1) {
-                                                                if (Math.random() < soundspamdrop) {
+                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
                                                                     soundCancel()
                                                                     if (Math.random() < .3) {
                                                                         inthejetsarm.play()
@@ -9885,25 +9911,37 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 }
                                                             }
                                                             if (this.drone == 1) {
-                                                                if (Math.random() < soundspamdrop) {
+                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
                                                                     soundCancel()
                                                                     combatinit.play()
                                                                 }
                                                             }
                                                             if (this.infantry == 1) {
-                                                                if (Math.random() < soundspamdrop) {
+                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
                                                                     soundCancel()
                                                                     lightemup.play()
                                                                 }
                                                             }
                                                             if (this.harvester == 1) {
-                                                                if (Math.random() < soundspamdrop) {
+                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
                                                                     soundCancel()
                                                                     if (Math.random() < .3) {
                                                                         myfuneral.play()
                                                                     } else {
                                                                         hopeyouknow.play()
                                                                     }
+                                                                }
+                                                            }
+                                                            if (this.pufffellow == 1) {
+                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                    soundCancel()
+                                                                    pufffellowaudio.play()
+                                                                }
+                                                            }
+                                                            if (this.pollinator == 1) {
+                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                    soundCancel()
+                                                                    pollinatoraudio.play()
                                                                 }
                                                             }
                                                         }
@@ -9992,7 +10030,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                                                         if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
                                                             if (this.nymph == 1) {
-                                                                if (Math.random() < soundspamdrop) {
+                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
                                                                     soundCancel()
                                                                     if (Math.random() < .5) {
                                                                         itstheedgeofusfight.play()
@@ -10002,7 +10040,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 }
                                                             }
                                                             if (this.imago == 1) {
-                                                                if (Math.random() < soundspamdrop) {
+                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
                                                                     soundCancel()
                                                                     if (Math.random() < .5) {
                                                                         ahhbarber.play()
@@ -10012,13 +10050,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 }
                                                             }
                                                             if (this.imago == 2) {
-                                                                if (Math.random() < soundspamdrop) {
+                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
                                                                     soundCancel()
                                                                     youhurtme.play()
                                                                 }
                                                             }
                                                             if (this.infantry == 2) {
-                                                                if (Math.random() < soundspamdrop) {
+                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
                                                                     soundCancel()
                                                                     if (Math.random() < .3) {
                                                                         isnipedyouaweekago2.play()
@@ -10036,7 +10074,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 }
                                                             }
                                                             if (this.nymph == 2) {
-                                                                if (Math.random() < soundspamdrop) {
+                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
                                                                     soundCancel()
                                                                     if (Math.random() < .3) {
                                                                         icannamethevillans.play()
@@ -10048,13 +10086,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 }
                                                             }
                                                             if (this.hamartaninvader == 1) {
-                                                                if (Math.random() < soundspamdrop) {
+                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
                                                                     soundCancel()
                                                                     youhome.play()
                                                                 }
                                                             }
                                                             if (this.hamartansoldier == 1) {
-                                                                if (Math.random() < soundspamdrop) {
+                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
                                                                     soundCancel()
                                                                     if (Math.random() < .3) {
                                                                         inthejetsarm.play()
@@ -10072,13 +10110,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 }
                                                             }
                                                             if (this.drone == 1) {
-                                                                if (Math.random() < soundspamdrop) {
+                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
                                                                     soundCancel()
                                                                     combatinit.play()
                                                                 }
                                                             }
                                                             if (this.podman == 1) {
-                                                                if (Math.random() < soundspamdrop) {
+                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
                                                                     soundCancel()
                                                                     if (Math.random() < .3) {
                                                                         seeyesineed.play()
@@ -10090,19 +10128,32 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 }
                                                             }
                                                             if (this.infantry == 1) {
-                                                                if (Math.random() < soundspamdrop) {
+                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
                                                                     soundCancel()
                                                                     lightemup.play()
                                                                 }
                                                             }
                                                             if (this.harvester == 1) {
-                                                                if (Math.random() < soundspamdrop) {
+                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
                                                                     soundCancel()
                                                                     if (Math.random() < .3) {
                                                                         myfuneral.play()
                                                                     } else {
                                                                         hopeyouknow.play()
                                                                     }
+                                                                }
+                                                            }
+
+                                                            if (this.pufffellow == 1) {
+                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                    soundCancel()
+                                                                    pufffellowaudio.play()
+                                                                }
+                                                            }
+                                                            if (this.pollinator == 1) {
+                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                    soundCancel()
+                                                                    pollinatoraudio.play()
                                                                 }
                                                             }
                                                         }
@@ -10865,6 +10916,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     pollinatoraudio.volume = volhold
                 }
             }
+
+            if(pufffellowaudio.currentTime >= puffnotch+pufftick){
+                pufffellowaudio.volume*=.94
+                // pollinatoraudio.pause()
+            }else{
+                let volhold = pufffellowaudio.volume
+                volhold*= 1.1
+                if(volhold <= 1){
+                    pufffellowaudio.volume = volhold
+                }
+            }
+
             soundspamdrop *= 1.0089
 
             // if (keysPressed[' ']) {
