@@ -154,6 +154,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
     ritual.src = "ritual.mp3"
     sounds.push(ritual)
 
+    //plaztilite audio
+    let vizieraudio = new Audio()
+    vizieraudio.src = "vizieraudio2.mp3"
+    sounds.push(vizieraudio)
+    let mycoknightaudio = new Audio()
+    mycoknightaudio.src = "mycoknightaudio.mp3"
+    sounds.push(mycoknightaudio)
+    let buddyaudio = new Audio()
+    buddyaudio.src = "fruitingbuddyaudio.mp3"
+    sounds.push(buddyaudio)
+
+
     //pollinator audio
     let pollinatoraudio = new Audio()
     pollinatoraudio.src = "pollinatoraudioamp2.mp3"
@@ -163,6 +175,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let pufffellowaudio = new Audio()
     pufffellowaudio.src = "pufffellowaudio.mp3"
     sounds.push(pufffellowaudio)
+
+    //golophyte audio
+    let golophyteaudio = new Audio()
+    golophyteaudio.src = "golophyteaudio.mp3"
+    sounds.push(golophyteaudio)
 
     // podman audio
     let youworkforme = new Audio()
@@ -562,10 +579,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
     hamartaninvaderface.src = "hamartaninvaderface2.png"
 
     let pollinatornotch = 0
-    let pollinatortick = Math.floor(Math.random()*20)+25
-    
+    let pollinatortick = Math.floor(Math.random() * 20) + 25
+
     let puffnotch = 0
-    let pufftick = Math.floor(Math.random()*20)+25
+    let pufftick = Math.floor(Math.random() * 20) + 25
+
+    let golonotch = 0
+    let golotick = Math.floor(Math.random() * 20) + 25
+
+    let buddynotch = 0
+    let viznotch = 0
+    let myconotch = 0
+    let buddytick = Math.floor(Math.random() * 20) + 25
+    let mycotick = Math.floor(Math.random() * 20) + 25
+    let viztick = Math.floor(Math.random() * 20) + 25
 
     function soundCancel() {
         /* sets chance of audio playback  */
@@ -574,15 +601,38 @@ window.addEventListener('DOMContentLoaded', (event) => {
             sounds[t].pause()
             sounds[t].currentTime = 0
         }
-        pollinatornotch = Math.floor(Math.random()*pollinatoraudio.duration)
+        pollinatornotch = Math.floor(Math.random() * pollinatoraudio.duration)
         pollinatoraudio.currentTime = pollinatornotch
         pollinatoraudio.volume = .5
-        puffnotch = Math.floor(Math.random()*pufffellowaudio.duration)
+        puffnotch = Math.floor(Math.random() * pufffellowaudio.duration)
         pufffellowaudio.currentTime = puffnotch
         pufffellowaudio.volume = .5
-        ////////console.log(pollinatoraudio.duration)
-        pollinatortick = ((Math.random()*400)+1000)/1000
-        pufftick = ((Math.random()*400)+1000)/1000
+
+
+        buddynotch = Math.floor(Math.random() * buddyaudio.duration)
+        buddyaudio.currentTime = buddynotch
+        buddyaudio.volume = .5
+
+        viznotch = Math.floor(Math.random() * vizieraudio.duration)
+        vizieraudio.currentTime = viznotch
+        vizieraudio.volume = .5
+
+        myconotch = Math.floor(Math.random() * mycoknightaudio.duration)
+        mycoknightaudio.currentTime = myconotch
+        mycoknightaudio.volume = .5
+
+
+        golonotch = Math.floor(Math.random() * golophyteaudio.duration)
+        golophyteaudio.currentTime = golonotch
+        golophyteaudio.volume = .5
+        //////////////console.log(pollinatoraudio.duration)
+        pollinatortick = ((Math.random() * 400) + 1000) / 1000
+        pufftick = ((Math.random() * 400) + 900) / 1000
+        golotick = ((Math.random() * 400) + 800) / 1000
+
+        buddytick = ((Math.random() * 400) + 500) / 1000
+        viztick = ((Math.random() * 400) + 700) / 1000
+        mycotick = ((Math.random() * 400) + 1000) / 1000
     }
 
     let defenseicon = new Image()
@@ -703,7 +753,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     //     }
     //     return (1.4 * distX + ((distY - distX)));
     // }
-    // ////////////console.time("onetile")
+    // //////////////////console.time("onetile")
     // for(let t = 0;t<100;t+=10){
     //     for(let k = 0;k<1280;k+=10){
     //         for(let g = 0;g<1280;g+=10){
@@ -716,10 +766,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
     //                 ob2.y = n
     //                 distancetable[`${t},${k},${g},${n}`] = makeDistanceTable(t,k, g,n)
     //             }
-    //             ////////////console.log(g)
+    //             //////////////////console.log(g)
     //         }
     //     }
-    //     ////////////console.log(t)
+    //     //////////////////console.log(t)
     // }
     // // distancetable = JSON.stringify(distancetable)
     // function downloadObject(obj, filename){
@@ -787,7 +837,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     //         }
     //         gamepadAPI.axesStatus = axes;// assign received values
     //         gamepadAPI.buttonsStatus = pressed;
-    //         // //////////////////////////////////console.log(pressed); // return buttons for debugging purposes
+    //         // ////////////////////////////////////////console.log(pressed); // return buttons for debugging purposes
     //         return pressed;
     //     },
     //     buttonPressed: function (button, hold) {
@@ -1151,7 +1201,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.fill()
                 canvas_context.stroke();
             } else {
-                //////////////////////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                ////////////////////////////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -1303,7 +1353,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 map_context.strokeStyle = "#00000010"
                 map_context.stroke();
             } else {
-                //////////////////////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                ////////////////////////////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -1454,7 +1504,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.fill()
                 canvas_context.stroke();
             } else {
-                //////////////////////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                ////////////////////////////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -1940,7 +1990,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             }
 
-            //////////////////////////////////console.log(this)
+            ////////////////////////////////////////console.log(this)
 
             // this.spring = new Spring(x, y, radius, color, this.pin, memberLength, gravity)
             // this.springs.push(this.spring)
@@ -2375,7 +2425,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                         }
                     } else if (manual == 1) {
-                        canvas_context.drawImage(humanfacesintro,0,0,256,64, 1280-512, 720-128, 512,128)
+                        canvas_context.drawImage(humanfacesintro, 0, 0, 256, 64, 1280 - 512, 720 - 128, 512, 128)
 
                         if (true) {
                             let invscale = 1
@@ -2522,7 +2572,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         }
                     } else if (manual == 2) {
 
-                        canvas_context.drawImage(coldintro,0,0,256,64, 1280-512, 720-128, 512,128)
+                        canvas_context.drawImage(coldintro, 0, 0, 256, 64, 1280 - 512, 720 - 128, 512, 128)
                         if (true) {
                             let invscale = 1
                             let string = "As Cold Itzlerians. units can metamorphose into stronger units, this is controlled by clicking the buttons in the UI. Cold Itzlerians are immune to cold."
@@ -2595,8 +2645,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         }
                     } else if (manual == 3) {
 
-                        canvas_context.drawImage(hamintro,0,0,256,64, 1280-512, 720-128, 512,128)
-                            if(true){
+                        canvas_context.drawImage(hamintro, 0, 0, 256, 64, 1280 - 512, 720 - 128, 512, 128)
+                        if (true) {
                             let invscale = 1
                             let string = "As the Hamartans, you must condition your air for breathing. "
                             let ypointer = 50
@@ -2737,7 +2787,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             }
                         }
                     } else if (manual == 4) {
-                        canvas_context.drawImage(bibiintro,0,0,256,64, 1280-512, 720-128, 512,128)
+                        canvas_context.drawImage(bibiintro, 0, 0, 256, 64, 1280 - 512, 720 - 128, 512, 128)
 
                         if (true) {
                             let invscale = 1
@@ -2854,8 +2904,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 }
                             }
                         }
-                    }else if (manual == 5) {
-                        canvas_context.drawImage(funintro,0,0,256,64, 1280-512, 720-128, 512,128)
+                    } else if (manual == 5) {
+                        canvas_context.drawImage(funintro, 0, 0, 256, 64, 1280 - 512, 720 - 128, 512, 128)
 
                         if (true) {
                             let invscale = 1
@@ -3145,7 +3195,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 let agent2 = new Agent(sandmap.blocks[117][117 - t], sandmap.players[1])
                             }
                             start = 1
-                        }else if (sandmap.players[1].type == 4) {
+                        } else if (sandmap.players[1].type == 4) {
                             sandmap.players[1].type = 0
                             sandmap.players[1].name = "Earthoids"
                             sandmap.players[0].units = []
@@ -3334,7 +3384,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         delete sandmap.players[sandmap.turn].buildings[t].tiles[k].wallcolor
                                     }
 
-                                    if(sandmap.players[sandmap.turn].buildings[t].slime == true){
+                                    if (sandmap.players[sandmap.turn].buildings[t].slime == true) {
                                         sandmap.players[sandmap.turn].slimeflag = 1
                                     }
                                     sandmap.players[sandmap.turn].buildings[t].tile.spiretile = 0
@@ -3470,6 +3520,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         if (sandmap.players[sandmap.turn].units[t].pufffellow == 1) {
                                             pufffellowaudio.play()
                                         }
+                                        if (sandmap.players[sandmap.turn].units[t].goliophyte == 1) {
+                                            golophyteaudio.play()
+                                        }
+                                        if (sandmap.players[sandmap.turn].units[t].fruiting == 1) {
+                                            buddyaudio.play()
+                                        }
+                                        if (sandmap.players[sandmap.turn].units[t].sporevizir == 1) {
+                                            vizieraudio.play()
+                                        }
+                                        if (sandmap.players[sandmap.turn].units[t].mycoknight == 1) {
+                                            mycoknightaudio.play()
+                                        }
+
+
                                         if (sandmap.players[sandmap.turn].units[t].infantry == 1) {
                                             if (Math.random() < .8) {
                                                 orders.play()
@@ -3585,7 +3649,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 if (sandmap.players[sandmap.turn].buildings[t].spawnlast.isPointInside(TIP_engine)) {
                                     sandmap.players[sandmap.turn].buildings[t].makeMycoknight()
                                 }
-                                
+
                             }
                             if (sandmap.players[sandmap.turn].buildings[t].barracks == 2) {
                                 if (sandmap.players[sandmap.turn].buildings[t].spawnsmall.isPointInside(TIP_engine)) {
@@ -3706,7 +3770,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                 if (Math.random() < soundspamdrop) {
                                                     soundCancel()
                                                     stallusyourworth.play()
-            
+
                                                 }
                                             }
                                         }
@@ -3791,7 +3855,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             sandmap.players[sandmap.turn].units[t].selected = 2
                         }
 
-                        ////////////////////////console.log(sandmap.players[sandmap.turn].selected_tile)
+                        //////////////////////////////console.log(sandmap.players[sandmap.turn].selected_tile)
                         sandmap.players[sandmap.turn].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile)
 
 
@@ -3806,6 +3870,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         sieveceaselessly.play()
                                     }
                                 }
+
+                                if (sandmap.players[sandmap.turn].units[t].fruiting == 1) {
+                                    buddyaudio.play()
+                                }
+                                if (sandmap.players[sandmap.turn].units[t].sporevizir == 1) {
+                                    vizieraudio.play()
+                                }
+                                if (sandmap.players[sandmap.turn].units[t].mycoknight == 1) {
+                                    mycoknightaudio.play()
+                                }
+
+
                                 if (sandmap.players[sandmap.turn].units[t].podman == 1) {
                                     if (Math.random() < .5) {
                                         whatdoweneed.play()
@@ -3858,6 +3934,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 if (sandmap.players[sandmap.turn].units[t].pufffellow == 1) {
                                     pufffellowaudio.play()
                                 }
+                                if (sandmap.players[sandmap.turn].units[t].goliophyte == 1) {
+                                    golophyteaudio.play()
+                                }
+
+
                                 if (sandmap.players[sandmap.turn].units[t].harvester == 1) {
                                     overtime.play()
                                 }
@@ -3876,7 +3957,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         torus.play()
                                     }
                                 }
-
+                                if (sandmap.players[sandmap.turn].units[t].goliophyte == 1) {
+                                    golophyteaudio.play()
+                                }
+                                if (sandmap.players[sandmap.turn].units[t].fruiting == 1) {
+                                    buddyaudio.play()
+                                }
+                                if (sandmap.players[sandmap.turn].units[t].sporevizir == 1) {
+                                    vizieraudio.play()
+                                }
+                                if (sandmap.players[sandmap.turn].units[t].mycoknight == 1) {
+                                    mycoknightaudio.play()
+                                }
                                 if (sandmap.players[sandmap.turn].units[t].pufffellow == 1) {
                                     pufffellowaudio.play()
                                 }
@@ -3973,7 +4065,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     continue
                                 }
                             }
-                            ////////////////////////console.log(sandmap.players[sandmap.turn].selected_tile)
+                            //////////////////////////////console.log(sandmap.players[sandmap.turn].selected_tile)
                             sandmap.players[sandmap.turn].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile)
                             if (sandmap.players[sandmap.turn].selected_tile.hotrock > 0) {
 
@@ -4120,7 +4212,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         selectrect.height = Math.abs(selectrect.height)
                     }
 
-                    // ////////////////////////////console.log(selectrect)
+                    // //////////////////////////////////console.log(selectrect)
                     // selectrect.draw()
                     // sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
                     // sandmap.turn++
@@ -4144,7 +4236,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     }
     //     function gamepad_control(object, speed = 1) { // basic control for objects using the controler
-    // //         //////////////////////////////////console.log(gamepadAPI.axesStatus[1]*gamepadAPI.axesStatus[0]) //debugging
+    // //         ////////////////////////////////////////console.log(gamepadAPI.axesStatus[1]*gamepadAPI.axesStatus[0]) //debugging
     //         if (typeof object.body != 'undefined') {
     //             if(typeof (gamepadAPI.axesStatus[1]) != 'undefined'){
     //                 if(typeof (gamepadAPI.axesStatus[0]) != 'undefined'){
@@ -4285,15 +4377,47 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         getCost(fromNeighbor) {
             // Take diagonal weight into consideration.
-            if(sandmap.diagonal == false){ //edit???
-                if(fromNeighbor.slime == true){
+            if (sandmap.diagonal == false && sandmap.repairflag == 1) {
+                if (fromNeighbor.slime == true) {
                     return 0
                 }
+            } else if (sandmap.diagonal == false && sandmap.slimeflag != 1) { //edit???
+                if (fromNeighbor.slime == true) {
+                    if (this.slime == true) {
+                        if (fromNeighbor && fromNeighbor.x != this.x && fromNeighbor.y != this.y) {
+                            return -(1.1 * 1.4) * this.weight
+                        } else {
+                            return -1.1 * this.weight
+                        }
+                    } else {
+
+                        if (fromNeighbor && fromNeighbor.x != this.x && fromNeighbor.y != this.y) {
+                            return 1405.1 * this.weight
+                        } else {
+                            return 1005.1 * this.weight
+                        }
+                    }
+                } else {
+
+                    if (this.slime == true) {
+                        if (fromNeighbor && fromNeighbor.x != this.x && fromNeighbor.y != this.y) {
+                            return -(6.1 * 1.4) * this.weight
+                        } else {
+                            return -6.1 * this.weight
+                        }
+                    } else {
+                        if (fromNeighbor && fromNeighbor.x != this.x && fromNeighbor.y != this.y) {
+                            return this.weight * 14.1421;
+                        }
+                        return this.weight * 10;
+                    }
+                }
+            } else {
+                if (fromNeighbor && fromNeighbor.x != this.x && fromNeighbor.y != this.y) {
+                    return this.weight * 1.41421;
+                }
+                return this.weight;
             }
-            if (fromNeighbor && fromNeighbor.x != this.x && fromNeighbor.y != this.y) {
-                return this.weight * 1.41421;
-            }
-            return this.weight;
         }
         toString() {
             return "[" + this.x + " " + this.y + "]";
@@ -4354,8 +4478,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             // let link = new Line(this.posx, this.posy, bottle.crew[bottle.selectedcrew].body.x-100, bottle.crew[bottle.selectedcrew].body.y-300, "red", 1)
             // if (link.hypotenuse() < 108) {
-            // //////////////////////////////////////console.log(link)
-            // //////////////////////////////////////console.log(bottle)
+            // ////////////////////////////////////////////console.log(link)
+            // ////////////////////////////////////////////console.log(bottle)
             // }
             // let roundedx = (Math.round((startPoint.x) / 10))
             // let roundedy = (Math.round((startPoint.y) / 10))
@@ -4368,13 +4492,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // if (this.inPath === true) {
             //     // this.drawPath();
             // } else if (this.walkable === false) {
-            //     // //////////////////////////////////////console.log(this)
+            //     // ////////////////////////////////////////////console.log(this)
 
             //     // this.createWall();
             //     return;
             //     // }else if (link.hypotenuse() < 11) {
             // } else if (this.posx == roundedx && this.posy == roundedy) {
-            //     //   //////////////////////////////////////console.log("hit the startNode");
+            //     //   ////////////////////////////////////////////console.log("hit the startNode");
             //     //   this.createStartNode();
             //     return;
             // } else if (this.posx == endPoint.x && this.posy == endPoint.y) {
@@ -4578,8 +4702,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             // let link = new Line(this.posx, this.posy, bottle.crew[bottle.selectedcrew].body.x-100, bottle.crew[bottle.selectedcrew].body.y-300, "red", 1)
             // if (link.hypotenuse() < 108) {
-            // //////////////////////////////////////console.log(link)
-            // //////////////////////////////////////console.log(bottle)
+            // ////////////////////////////////////////////console.log(link)
+            // ////////////////////////////////////////////console.log(bottle)
             // }
             // let roundedx = (Math.round((startPoint.x) / 10))
             // let roundedy = (Math.round((startPoint.y) / 10))
@@ -4592,13 +4716,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // if (this.inPath === true) {
             //     // this.drawPath();
             // } else if (this.walkable === false) {
-            //     // //////////////////////////////////////console.log(this)
+            //     // ////////////////////////////////////////////console.log(this)
 
             //     // this.createWall();
             //     return;
             //     // }else if (link.hypotenuse() < 11) {
             // } else if (this.posx == roundedx && this.posy == roundedy) {
-            //     //   //////////////////////////////////////console.log("hit the startNode");
+            //     //   ////////////////////////////////////////////console.log("hit the startNode");
             //     //   this.createStartNode();
             //     return;
             // } else if (this.posx == endPoint.x && this.posy == endPoint.y) {
@@ -4711,7 +4835,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     force1 += (sandmap.players[1].units[t].damage * 9)
                     force1 += (sandmap.players[1].units[t].defense * 15)
                 }
-                // ////////console.log(force1)
+                // //////////////console.log(force1)
                 this.faction0.firepower.push(force0)
                 this.faction1.firepower.push(force1)
                 this.wind.push(sandmap.windspeed)
@@ -4747,14 +4871,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     let x = (1000 / this.faction0.firepower.length) * t
                     let y = (720 - (this.faction0.firepowerx[t] * 720))
                     let point = new Circle(x, y, 1, sandmap.players[0].color)
-                    // ////////console.log(point)
+                    // //////////////console.log(point)
                     point.draw()
                 }
                 for (let t = 0; t < this.faction1.firepower.length; t++) {
                     let x = (1000 / this.faction1.firepower.length) * t
                     let y = (720 - (this.faction1.firepowerx[t] * 720))
                     let point = new Circle(x, y, 1, sandmap.players[1].color)
-                    // ////////console.log(point)
+                    // //////////////console.log(point)
                     point.draw()
                 }
 
@@ -4870,7 +4994,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     for (let p = 0; p < this.hotrocks.length; p++) {
                                         let link = new LineOP(this.hotrocks[p], rect)
                                         if (link.hypotenuse() < 120 + ((Math.random() - .5) * 60)) {
-                                            // ////////console.log(this.hotrocks)
+                                            // //////////////console.log(this.hotrocks)
                                             bump = 1
                                         }
                                     }
@@ -4925,7 +5049,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     this.gridPoints.push(this.blocks[t][k])
                 }
             }
-            ////////////////////console.log(this)
+            //////////////////////////console.log(this)
             this.dirtyNodes = []
         }
         cleanDirty() {
@@ -5022,7 +5146,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 for (var j = 0; j < this.height; j += NODESIZE) {
                     gridPointsByPos[i][j] = countNodes;
                     //here's the problem , need to set the walkability of the node without always being true...
-                    //////////////////////////////////////console.log(countNodes)
+                    ////////////////////////////////////////////console.log(countNodes)
                     tempNode = new Tile(i, j, 10, 10, "tan", countNodes, NODESIZE, i, j, true);
 
                     // let cutOut = [0,1 ,2, 3, 4, 5,6,7, 8, 9, 10, 11, 12,13, 18, 19,20, 32,33,  26, 31, 39, 44, 45, 46, 52, 57,58,59,99, 112, 108, 95, 197, 198, 199, 205, 203, 204, 236, 237, 238, 242, 243,244, 216, 212, 229, 225, 210, 211, 223, 224, 217, 218, 230, 231]
@@ -5054,7 +5178,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                     // }
                     // if (wallSet.has(countNodes)) {
-                    // //   //////////////////////////////////////console.log("wallSet had countNodes!")
+                    // //   ////////////////////////////////////////////console.log("wallSet had countNodes!")
                     //   tempNode.walkable = false;
                     // }
 
@@ -5155,7 +5279,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             for (let t = 0; t < this.players.length; t++) {
                 this.players[t].slimeflag = 0
             }
-            
+
 
             //abstract fog to player teams
             for (let t = 0; t < this.fog.length; t++) {
@@ -5297,16 +5421,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             }
             this.defending--
-            if(this.type == 4){
+            if (this.type == 4) {
 
                 if (Math.random() < .01) {
                     for (let t = 0; t < this.units.length; t++) {
-                            this.units[t].attackmove()
+                        this.units[t].attackmove()
                     }
                 }
 
-                if ((this.units.length > this.racksflag) || this.hotrock*.005 > this.racksflag) {
-                    this.racksflag += 8
+                if ((this.units.length > this.racksflag) || this.hotrock * .004 > this.racksflag) {
+                    this.racksflag += 17 //8
                     this.racks = 0
                 }
 
@@ -5314,67 +5438,125 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.chunk++
                 let index = -1
                 let j = 0
-                if(this.chunk%this.clickrate == 0){
+                if (this.chunk % this.clickrate == 0) {
 
-                    let wet = 0
-                    for(let t = this.buildings.length-1;t>=0;t--){
-                        if(this.buildings[t].sporeball == 1){
-                            if(this.racks == 1){
-                                wet = 1
-                            }
-                            for(let k = 0;k<this.seenrocks.length;k++){
-                                if(this.seenrocks[k].breaker.includes(t)){
-                                    if(t > 0){
-                                        t--
-                                    }
-                                    continue
-                                }else if(Math.abs(this.seenrocks[k].t - this.buildings[t].tile.t)+Math.abs(this.seenrocks[k].k - this.buildings[t].tile.k) > (170/5)){//cost to build new sporeball and change
-                                    this.seenrocks[k].breaker.push(t)
-                                    if(t > 0){
-                                        // t--
-                                    }
-                                    continue
-                                } 
+                    if (this.hotrock >= 10) {
 
-                                if((this.seenrocks[k].builtOn == 0) || this.seenrocks[k].primed != 1){ // && this.seenrocks[k].occupied == false){ //wow primed is a big diff
+                        let wet = 0
+                        for (let t = this.buildings.length - 1; t >= 0; t--) {
+                            if (this.buildings[t].sporeball == 1) {
+                                if (this.racks == 1) {
+                                    wet = 1
+                                }
+
+                                let max = 999999999999
+                                let slimetarget = this.buildings[t].tile
+
+                                for (let k = 0; k < this.seenrocks.length; k++) {
+                                    if (this.seenrocks[k].slime == false || this.seenrocks[k].primed != 1) {
+                                        let dis = (new LineOP(this.buildings[t].tile, this.seenrocks[k])).hypotenuse()
+                                        if (dis < max && !this.seenrocks[k].breaker.includes(t)) {
+                                            max = dis
+                                            slimetarget = this.seenrocks[k]
+                                        }
+                                    }
+
+                                }
+                                // for(let k = 0;k<this.seenrocks.length;k++){
+                                // if(slimetarget.primed == 1){
+                                //     continue
+                                // }
+                                if (slimetarget.breaker.includes(t)) {
+                                    ////console.log("what")
+                                    // if(Math.random()<.01){
+                                    //     slimetarget.breaker.splice(slimetarget.breaker.indexOf(t), 1)
+                                    // }
+                                    // if(t > 0){
+                                    //     t--
+                                    // }
+                                    // continue
+                                } else if (Math.abs(slimetarget.t - this.buildings[t].tile.t) + Math.abs(slimetarget.k - this.buildings[t].tile.k) > 1000) {//cost to build new sporeball and change
+                                    ////console.log("huh")
+
+                                    if (Math.random() < .001) {
+                                        if (slimetarget.primed != 1) {
+                                            if (Math.random() < .5) {
+                                                if (Math.random() < .5) {
+                                                    //////console.log("ball")
+                                                    this.buildBarracks(sandmap.blocks[slimetarget.t][slimetarget.k + 1])
+                                                } else {
+                                                    //////console.log("ball")
+                                                    this.buildBarracks(sandmap.blocks[slimetarget.t][slimetarget.k - 1])
+                                                }
+                                            } else {
+                                                if (Math.random() < .5) {
+                                                    //////console.log("ball")
+                                                    this.buildBarracks(sandmap.blocks[slimetarget.t + 1][slimetarget.k])
+                                                } else {
+                                                    //////console.log("ball")
+                                                    this.buildBarracks(sandmap.blocks[slimetarget.t - 1][slimetarget.k])
+                                                }
+
+                                            }
+                                        }
+                                    }
+                                    slimetarget.breaker.push(t)
+                                    // if(t > 0){
+                                    //     // t--
+                                    // }
+                                    // continue
+                                }
+
+                                if ((slimetarget.builtOn == 0) || slimetarget.primed != 1) { // && slimetarget.occupied == false){ //wow primed is a big diff
 
                                     this.pather = slimemakingastar
                                     sandmap.diagonal = false
-                                    this.path = [...this.pather.search(sandmap, this.buildings[t].tile, this.seenrocks[k], {}, this.seen)]
+                                    this.path = [...this.pather.search(sandmap, this.buildings[t].tile, slimetarget, {}, this.seen)]
                                     sandmap.diagonal = true
-                                    if(this.path.length > 0){
+                                    if (this.path.length > 0) {
                                         let discount = 0
-                                        for(let p = 0;p<this.path.length;p++){
-                                            if(this.path[p].slime == true){
-                                                discount-=5
+                                        for (let p = 0; p < this.path.length; p++) {
+                                            if (this.path[p].slime == true) {
+                                                discount -= 5
                                             }
                                         }
 
-                                        if(((this.path.length*5)+discount) <= this.hotrock && ((this.path.length*5)+discount)  < 170){//} &&  ((this.path.length*5)+discount) > 0){ //cost to build new sporeball // no free paths
-                                            for(let p = 0;p<this.path.length;p++){
+                                        if (((this.path.length * 5) + discount) <= this.hotrock && ((this.path.length * 5) + discount) < 170) {//} &&  ((this.path.length*5)+discount) > 0){ //cost to build new sporeball // no free paths
+                                            for (let p = 0; p < this.path.length; p++) {
                                                 this.buildWall(this.path[p])
                                             }
                                             // break
-                                        }else if( ((this.path.length*5)+discount)  >= 170){
-                                            if(Math.random()<.5){
-                                                this.buildBarracks(this.path[(this.path.length-2)])
+                                        } else if (((this.path.length * 2) + discount) >= 170) {
+                                            // for(let p = 0;p<this.path.length;p++){
+                                            //     if(p%2 ==0){
+                                            //         this.buildWall(this.path[p])
+                                            //     }
+                                            // }
+                                            // //////console.log((this.path.length*5), discount)
+                                            if (Math.random() < .01) {
+                                                //////console.log("length ball")
+                                                this.buildBarracks(this.path[(this.path.length - 2)])
                                             }
-                                            if(t > 0){
-                                                // t--
-                                            }
-                                            break
+                                            // if(t > 0){
+                                            //     // t--
+                                            // }
+                                            // break
                                         }
                                     }
                                 }
+                                // }
                             }
                         }
-                    }
-                    if(wet == 0){
-                        if(this.seen.length > 0){
-                            this.buildBarracks(this.seen[Math.floor(Math.random()*this.seen.length)])
-                        }
-                    }
+                        if (wet == 0) {
+                            if (this.seen.length > 0) {
 
+                                //////console.log("solo ball")
+                                this.buildBarracks(this.seen[Math.floor(Math.random() * this.seen.length)])
+                            }
+                        }
+
+
+                    }
 
                     for (let t = 0; t < this.units.length; t++) {
                         if (this.units[t].realPath.length - 1 == this.units[t].index) { //} || this.units[t].realPath[this.units[t].index].walkable !== true) {
@@ -5383,7 +5565,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                     if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                         let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                        // ////////////////////console.log(link)
+                                        // //////////////////////////console.log(link)
                                         if (link < max) {
                                             max = link
                                             index = h
@@ -5407,10 +5589,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             let block = this.seen[Math.floor(Math.random() * this.seen.length)]
                                             this.units[t].pathTo(block)
 
-                                        j++                 
-                                        if (j > 3) { //6
-                                            break
-                                        }
+                                            j++
+                                            if (j > 3) { //6
+                                                break
+                                            }
                                         }
                                     }
                                 }
@@ -5422,15 +5604,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                         if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                             let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                            // ////////////////////console.log(link)
+                                            // //////////////////////////console.log(link)
                                             if (link > max) { //reversals time
-                                                max = link 
+                                                max = link
                                                 index = h
                                             }
                                         }
                                     }
 
-                                    if (typeof sandmap.hotrocks[index] !== "undefined" && (this.hotrock < 60+(this.buildings.length*5) || this.seenrocks.length > (this.units.length + 5))) {
+                                    if (typeof sandmap.hotrocks[index] !== "undefined" && (this.hotrock < 60 + (this.buildings.length * 5) || this.seenrocks.length > (this.units.length + 5))) {
                                         if (this.units[t].attacktarget.health > 0) {
 
                                         } else {
@@ -5445,7 +5627,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             if (this.seen.length > 0) {
                                                 let block = this.seen[Math.floor(Math.random() * this.seen.length)]
                                                 this.units[t].pathTo(block)
-                                                j++                 
+                                                j++
                                                 if (j > 3) { //6
                                                     break
                                                 }
@@ -5457,7 +5639,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     if (Math.random() < .05) { //.5
                                                         let block = sandmap.gridPoints[Math.floor(Math.random() * sandmap.gridPoints.length)]
                                                         this.units[t].pathTo(block)
-                                                        j++                 
+                                                        j++
                                                         if (j > 3) { //6
                                                             break
                                                         }
@@ -5467,7 +5649,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                 if (Math.random() < .05) { //.5
                                                     let block = sandmap.gridPoints[Math.floor(Math.random() * sandmap.gridPoints.length)]
                                                     this.units[t].pathTo(block)
-                                                    j++                 
+                                                    j++
                                                     if (j > 3) { //6
                                                         break
                                                     }
@@ -5492,7 +5674,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 if (Math.random() < .5) {
                                     if (this.hotrock > 95 && Math.random() < .7) {
                                         this.buildings[t].makeSporeseer()
-                                    }else{
+                                    } else {
                                         this.buildings[t].makeVizier()
                                     }
                                 } else {
@@ -5505,7 +5687,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             if (Math.random() < .5) {
                                                 if (this.hotrock > 95 && Math.random() < .7) {
                                                     this.buildings[t].makeSporeseer()
-                                                }else{
+                                                } else {
                                                     this.buildings[t].makeVizier()
                                                 }
                                             } else {
@@ -5557,66 +5739,66 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     } else {
 
                     }
-                }else{
+                } else {
                     let j = 0
-                    if(Math.random(),.3){
+                    if (Math.random(), .3) {
 
-                            for (let t = 0; t < this.buildings.length; t++) {
-                                if (this.buildings[t].slime == 1) {
-                                    if (Math.random() < .5) {
-                                        //console.log(this.seenrocks.length, this.units.length)
-                                        if ((this.hotrock > 70+(this.buildings.length*5) || this.seenrocks.length <= this.units.length) && this.units.length < 15) {
-                                            this.buildings[t].makeFruitingbuddy()
-                                            j++                 
-                                            if (j > 5) { //6
-                                                break
-                                            }
-                                            if(Math.random()<.1){
-                                                break
-                                            }
-                                        }else if ((this.hotrock > 80+(this.buildings.length*2) || this.seenrocks.length <= this.units.length) && this.units.length < 35) {
-                                            if(Math.random()<.5){
-                                                this.buildings[t].makeSporeseer()
-                                                j++                 
-                                                if (j > 5) { //6
-                                                    break
-                                                }
-                                            }else{
-                                                this.buildings[t].makeVizier()
-                                                j++                 
-                                                if (j > 5) { //6
-                                                    break
-                                                }
-                                            }
-                                            if(Math.random()<.1){
-                                                break
-                                            }
-                                        }else if ((this.hotrock > 180+(this.buildings.length*1) || this.seenrocks.length <= this.units.length) && this.units.length < 51) {
-
-                                            this.buildings[t].makeMycoknight()
-                                            j++                 
-                                            if (j > 5) { //6
-                                                break
-                                            }
-                                        
+                        for (let t = 0; t < this.buildings.length; t++) {
+                            if (this.buildings[t].slime == 1) {
+                                if (Math.random() < .5) {
+                                    ////////console.log(this.seenrocks.length, this.units.length)
+                                    if ((this.hotrock > 70 + (this.buildings.length * 5) || this.seenrocks.length <= this.units.length) && this.units.length < 15) {
+                                        this.buildings[t].makeFruitingbuddy()
+                                        j++
+                                        if (j > 5) { //6
+                                            break
                                         }
-                                    } 
+                                        if (Math.random() < .1) {
+                                            break
+                                        }
+                                    } else if ((this.hotrock > 80 + (this.buildings.length * 2) || this.seenrocks.length <= this.units.length) && this.units.length < 35) {
+                                        if (Math.random() < .5) {
+                                            this.buildings[t].makeSporeseer()
+                                            j++
+                                            if (j > 5) { //6
+                                                break
+                                            }
+                                        } else {
+                                            this.buildings[t].makeVizier()
+                                            j++
+                                            if (j > 5) { //6
+                                                break
+                                            }
+                                        }
+                                        if (Math.random() < .1) {
+                                            break
+                                        }
+                                    } else if ((this.hotrock > 180 + (this.buildings.length * 1) || this.seenrocks.length <= this.units.length) && this.units.length < 51) {
+
+                                        this.buildings[t].makeMycoknight()
+                                        j++
+                                        if (j > 5) { //6
+                                            break
+                                        }
+
+                                    }
                                 }
+                            }
                         }
                     }
-            }
+                }
 
 
 
 
-            }else if (this.type == 3) {
+            } else if (this.type == 3) {
                 this.chunk++
                 let index = -1
                 let j = 0
 
                 if (Math.random() < .1) { //new
                     for (let t = 0; t < this.units.length; t++) {
-                        if(this.units[t].pufffellow == 1){
+                        if (this.units[t].pufffellow == 1) {
                             this.units[t].attackmove()
                         }
                     }
@@ -5638,8 +5820,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             if (this.units[t].pollinator == 1) {
                                 if (Math.random() < (this.hotrock / 2000)) {
                                     this.units[t].metamorphpufffellow()
-                                    if(sandmap.players.indexOf(this) == sandmap.turn){
-                                        if(Math.random()<soundspamdrop){
+                                    if (sandmap.players.indexOf(this) == sandmap.turn) {
+                                        if (Math.random() < soundspamdrop) {
                                             soundCancel()
                                             pollinatoraudio.play()
                                         }
@@ -5834,7 +6016,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                     if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                         let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                        // ////////////////////console.log(link)
+                                        // //////////////////////////console.log(link)
                                         if (link < max) {
                                             max = link
                                             index = h
@@ -5868,7 +6050,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                         if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                             let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                            // ////////////////////console.log(link)
+                                            // //////////////////////////console.log(link)
                                             if (link < max) {
                                                 max = link
                                                 index = h
@@ -6060,7 +6242,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                     if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                         let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                        // ////////////////////console.log(link)
+                                        // //////////////////////////console.log(link)
                                         if (link < max) {
                                             max = link
                                             index = h
@@ -6094,7 +6276,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                         if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                             let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                            // ////////////////////console.log(link)
+                                            // //////////////////////////console.log(link)
                                             if (link < max) {
                                                 max = link
                                                 index = h
@@ -6214,7 +6396,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                         if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                             let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                            // ////////////////////console.log(link)
+                                            // //////////////////////////console.log(link)
                                             if (link < max) {
                                                 max = link
                                                 index = h
@@ -6248,7 +6430,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                             if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                                 let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                                // ////////////////////console.log(link)
+                                                // //////////////////////////console.log(link)
                                                 if (link < max) {
                                                     max = link
                                                     index = h
@@ -6362,7 +6544,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             } else { // human below, itzler above
 
                 if (this.hotrock > (this.racksflag * 75)) {
-                    // ////////console.log("earthoid effect")
+                    // //////////////console.log("earthoid effect")
                     this.racks = 0
                     this.lab = 0
                     this.racksflag += 4
@@ -6461,7 +6643,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             if (this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                                 if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false) {
                                                     let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                                    // ////////////////////console.log(link)
+                                                    // //////////////////////////console.log(link)
                                                     if (link < max) {
                                                         max = link
                                                         index = h
@@ -6531,7 +6713,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                 if (this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                                     if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false) {
                                                         let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                                        // ////////////////////console.log(link)
+                                                        // //////////////////////////console.log(link)
                                                         if (link < max) {
                                                             max = link
                                                             index = h
@@ -6720,7 +6902,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                             if (Math.abs(this.units[t].realPath.length - this.units[t].index) < 3 || Math.abs(this.units[t].realPath.length - this.units[t].index) > (calcdeath - (this.units[t].movespeed * 10))) {
 
-                                // //////////////////console.log(this.units[t])
+                                // ////////////////////////console.log(this.units[t])
 
                             } else {
                                 continue
@@ -7054,61 +7236,61 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 // } else if (this.lab == 0 && this.isAI == 1 && this.hotrock > 150) {
                 //     this.buildMachineLab(tile)
                 // } else {
-                    let wet = 0
-                    for (let t = 0; t < this.buildings.length; t++) {
-                        if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
-                            wet = 1
-                            debreak = 1
-                            // //////////////////console.log(tile)
+                let wet = 0
+                for (let t = 0; t < this.buildings.length; t++) {
+                    if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
+                        wet = 1
+                        debreak = 1
+                        // ////////////////////////console.log(tile)
+                    }
+                }
+                if (tile.walkable == false) {
+                    let us = 0
+                    for (let u = 0; u < this.units.length; u++) {
+                        if (this.units[u].tile == tile) {
+                            us = 1
                         }
                     }
-                    if (tile.walkable == false) { 
-                        let us = 0
-                        for(let u = 0;u<this.units.length;u++){
-                            if(this.units[u].tile == tile){
-                                us = 1
-                            }
-                        }
-                        if(us == 0){
-                            wet = 1
-                        }
-                    }
-                    if (tile.builtOn == 1) {
+                    if (us == 0) {
                         wet = 1
                     }
-                    if (wet == 0) {
-                        if (this.hotrock >= 5) {
-                            this.hotrock -= 5
-                            let building = new Building(tile, this, 0)
-                            building.name = "Slime"
-                            building.defense = 0
-                            building.damage = 0
-                            building.tile.spiretile = 1
-                            building.tile.walkable = true
-                            building.tile.slime = true
-                            this.slimeflag = 1
-                            building.slime = 1
-                            building.health = 10
-                            building.maxhealth = building.health
-                            building.pather = slimyastar
-                            building.active = 0
-                            building.tile.primed = 0
-                            building.pather.agent = building
-                            for(let t = 0;t<this.buildings.length;t++){
-                                if(this.buildings[t].sporeball == 1){
-                                    sandmap.diagonal = false
-                                    let path = [...building.pather.search(sandmap, building.tile, this.buildings[t].tile, {})]
-                                    sandmap.diagonal = true
-                                    ////////console.log(path)
-                                    if(path.length > 0){
-                                        building.active = 1
-                                        building.tile.primed = 1
-                                        break
-                                    }
+                }
+                if (tile.builtOn == 1) {
+                    wet = 1
+                }
+                if (wet == 0) {
+                    if (this.hotrock >= 5) {
+                        this.hotrock -= 5
+                        let building = new Building(tile, this, 0)
+                        building.name = "Slime"
+                        building.defense = 0
+                        building.damage = 0
+                        building.tile.spiretile = 1
+                        building.tile.walkable = true
+                        building.tile.slime = true
+                        this.slimeflag = 1
+                        building.slime = 1
+                        building.health = 10
+                        building.maxhealth = building.health
+                        building.pather = slimyastar
+                        building.active = 0
+                        building.tile.primed = 0
+                        building.pather.agent = building
+                        for (let t = 0; t < this.buildings.length; t++) {
+                            if (this.buildings[t].sporeball == 1) {
+                                sandmap.diagonal = false
+                                let path = [...building.pather.search(sandmap, building.tile, this.buildings[t].tile, {})]
+                                sandmap.diagonal = true
+                                //////////////console.log(path)
+                                if (path.length > 0) {
+                                    building.active = 1
+                                    building.tile.primed = 1
+                                    break
                                 }
                             }
                         }
                     }
+                }
                 // }
             } else if (this.type == 0) {
                 if (this.racks == 0 && this.isAI == 1) {
@@ -7121,7 +7303,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
                             wet = 1
                             debreak = 1
-                            // //////////////////console.log(tile)
+                            // ////////////////////////console.log(tile)
                         }
                     }
                     if (tile.walkable == false) {
@@ -7139,7 +7321,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             } else if (this.type == 2) {
 
                 if (this.hotrock > (this.racksflag * 75)) {
-                    // ////////console.log("hamartan effect")
+                    // //////////////console.log("hamartan effect")
                     this.racks = 0
                     this.lab = 0
                     this.racksflag += 4
@@ -7161,7 +7343,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
                             wet = 1
                             debreak = 1
-                            // //////////////////console.log(tile)
+                            // ////////////////////////console.log(tile)
                         }
                     }
                     if (tile.walkable == false) {
@@ -7204,7 +7386,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
                             wet = 1
                             debreak = 1
-                            // //////////////////console.log(tile)
+                            // ////////////////////////console.log(tile)
                         }
                     }
                     if (tile.walkable == false) {
@@ -7231,7 +7413,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
                         wet = 1
                         debreak = 1
-                        // //////////////////console.log(tile)
+                        // ////////////////////////console.log(tile)
                     }
                 }
                 if (tile.walkable == false) {
@@ -7474,7 +7656,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.buildings[t].draw()
             }
         }
-        unitdraw(){
+        unitdraw() {
             for (let t = 0; t < this.units.length; t++) {
                 this.units[t].move()
             }
@@ -7482,7 +7664,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.units[t].draw()
             }
         }
-        uiDraw(){
+        uiDraw() {
 
             for (let t = 0; t < this.units.length; t++) {
                 if (this.units[t].marked == 1) {
@@ -7492,6 +7674,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (sandmap.players.indexOf(this) == sandmap.turn) {
                         if (Math.random() < soundspamdrop) {
                             soundCancel()
+                            if (this.units[t].goliophyte == 1) {
+                                golophyteaudio.play()
+                            }
+                            if (this.units[t].fruiting == 1) {
+                                buddyaudio.play()
+                            }
+                            if (this.units[t].sporevizir == 1) {
+                                vizieraudio.play()
+                            }
+                            if (this.units[t].mycoknight == 1) {
+                                mycoknightaudio.play()
+                            }
+
 
 
                             if (this.units[t].pufffellow == 1) {
@@ -7569,7 +7764,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             }
             for (let t = 0; t < this.units.length; t++) {
-                if(this.units[t].seetime%20||this.units[t].moved==1){
+                if (this.units[t].seetime % 20 || this.units[t].moved == 1) {
                     this.units[t].moved = 0
                     this.units[t].see()
                 }
@@ -7585,7 +7780,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.strokeText("Units: " + Math.round(this.units.length), sandmap.window.body.x + sandmap.window.body.width + 10, 290)
                 canvas_context.fillText("Units: " + Math.round(this.units.length), sandmap.window.body.x + sandmap.window.body.width + 10, 290)
             }
-        
+
 
         }
     }
@@ -7642,8 +7837,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // this.startNode = gridPointsByPos[startNode.x][startNode.y];
             let roundedx = (Math.round((startNode.x))) * .1
             let roundedy = (Math.round((startNode.y))) * .1
-            //////////////////////////////////console.log(gridPointsByPos, roundedx, roundedy)
-            //////////////////////////////////////console.log(gridPointsByPos[roundedx] [roundedy])
+            ////////////////////////////////////////console.log(gridPointsByPos, roundedx, roundedy)
+            ////////////////////////////////////////////console.log(gridPointsByPos[roundedx] [roundedy])
             this.startNode = startNode // gridPointsByPos[roundedx] [roundedy]
             this.endNode = endNode //gridPointsByPos[endNode.x][endNode.y];
             this.currentNode = null;
@@ -7663,7 +7858,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             var grid = this.grid; //the grid we're working with
 
             var currentNode = this.startNode; // the currentNode, defaults to start node for now
-            ////////////////////////console.log(this.endNode)
+            //////////////////////////////console.log(this.endNode)
             var endNode = this.endNode //sandmap.gridPoints[this.endNode.id]; //the target node
             var startNode = this.startNode
 
@@ -7672,9 +7867,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             var newMovementCost; //the new movement cost to neighbor
 
             openSet.add(currentNode);
-            //   ////////////////////////////////console.log(currentNode)
+            //   //////////////////////////////////////console.log(currentNode)
             // currentNode.color = "black"
-            // //////////////////////////////////////console.log('begin');
+            // ////////////////////////////////////////////console.log('begin');
 
             let j = 0
             let timeout = 0
@@ -7684,7 +7879,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     timeout = 1
                 }
                 tempArray = Array.from(openSet);
-                ////////////////////////////////console.log(tempArray)
+                //////////////////////////////////////console.log(tempArray)
                 currentNode = tempArray[0];
 
                 for (var i = 1; i < tempArray.length; i++) {
@@ -7716,18 +7911,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 //   currentNode.drawNode();
                 // }
 
-                ////////////////////////////////console.log(currentNode, endNode)
+                //////////////////////////////////////console.log(currentNode, endNode)
                 // currentNode.color = "black"
-                ////////////////////////console.log(currentNode, endNode)
+                //////////////////////////////console.log(currentNode, endNode)
                 if (currentNode.id == endNode.id) {
-                    //////////////////////console.log(startNode, endNode)
+                    ////////////////////////////console.log(startNode, endNode)
                     retracePath(startNode, endNode, this.agent);
                     //hit the last point, exit's the loop.
 
                     return; //exits loop
                 } else if (timeout == 1) {
 
-                    //////////////////////console.log(startNode, endNode)
+                    ////////////////////////////console.log(startNode, endNode)
                     retracePath(startNode, currentNode, this.agent);
                     //hit the last point, exit's the loop.
 
@@ -7789,9 +7984,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         var reverseArray;
         while (currentNode != startNode) {
             path.add(currentNode);
-            //////////////////////console.log(currentNode)
+            ////////////////////////////console.log(currentNode)
             currentNode = currentNode.parent;
-            //////////////////////console.log(currentNode)
+            ////////////////////////////console.log(currentNode)
             // currentNode.inPath = true;
             // if (currentNode != startNode)
             //     currentNode.drawPath();
@@ -7802,19 +7997,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
         reverseArray.reverse();
         path = new Set(reverseArray);
 
-        //   //////////////////////////////////////console.log(path)
+        //   ////////////////////////////////////////////console.log(path)
 
         realPath = Array.from(path)
-        //   //////////////////////////////////////console.log(realPath)
+        //   ////////////////////////////////////////////console.log(realPath)
 
         if (realPath.length == 1) {
             // realPath[0].walkable = false
-            ////////////////////////////////////console.log("hit")
+            //////////////////////////////////////////console.log("hit")
             // wallSet.add(realPath[0])
-            ////////////////////////////////////console.log(wallSet)
+            //////////////////////////////////////////console.log(wallSet)
         }
 
-        ////////////////////////////////console.log(realPath)
+        //////////////////////////////////////console.log(realPath)
         if (realPath.length > 0) {
             realPath.unshift(agent.tile)
             agent.realPath = [...realPath]
@@ -7829,24 +8024,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // bottle.crew[bottle.selectedcrew].body.x =startPoint.x+4
             // bottle.crew[bottle.selectedcrew].body.y  = startPoint.y+4
             // startPoint = new Vec2(realPath[0].posx, realPath[0].posy);
-            //////////////////////////////////////console.log(startPoint)
+            ////////////////////////////////////////////console.log(startPoint)
             // bottle.crew[bottle.selectedcrew].moving = 1
         } else {
-            //   //////////////////////////////////console.log(endPoint)
+            //   ////////////////////////////////////////console.log(endPoint)
 
             //     if(bottle.crew[bottle.selectedcrew].moving == 1){
-            //         // //////////////////////////////////console.log(endPoint)
+            //         // ////////////////////////////////////////console.log(endPoint)
             //     // bottle.crew[bottle.selectedcrew].body.x =endPoint.x+96
             //     // bottle.crew[bottle.selectedcrew].body.y  = endPoint.y+284
             //     // bottle.crew[bottle.selectedcrew].moving = 0
-            //     // //////////////////////////////////console.log(endPoint)
+            //     // ////////////////////////////////////////console.log(endPoint)
             //         reset()
             //   }
         }
     }
     //list of neighbors
     function getNeighbors(node, agent, parent) {
-        // ////////////////console.log(agent)
+        // //////////////////////console.log(agent)
         var checkX;
         var checkY;
         var neighborList = [];
@@ -7888,7 +8083,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (checkX >= 0 && checkX <= sandmap.blocks.length && checkY >= 0 && checkY <= sandmap.blocks.length) { //127 mapsize
 
                     if (x == 0 || y == 0 || Math.random() < .525) {  // randomness leads to organic //.25
-                        ////////////////////////console.log(sandmap)
+                        //////////////////////////////console.log(sandmap)
                         if (checkX < sandmap.blocks.length) {
                             if (checkY < sandmap.blocks[0].length) {
                                 if ((sandmap.blocks[checkX][checkY].walkable !== false || agent.submerged == 1 || agent.mounted == 0) || sandmap.blocks[checkX][checkY].occupied == false) { //occupied? false?
@@ -7906,7 +8101,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         neighborList = tempList;
         neighborList.agent = agent
-        ////////////////////////////////console.log(neighborList)
+        //////////////////////////////////////console.log(neighborList)
         return (neighborList);
 
     }
@@ -8108,7 +8303,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             }
         }
-        makeSporeseer(){
+        makeSporeseer() {
             if (this.que != 1) {
                 if (this.faction.hotrock >= 80 && this.faction.units.length < 51) {
                     this.faction.hotrock -= 80
@@ -8118,9 +8313,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     this.maxtimer = this.timer
                 }
             }
-            
+
         }
-        makeVizier(){
+        makeVizier() {
             if (this.que != 1) {
                 if (this.faction.hotrock >= 90 && this.faction.units.length < 51) {
                     this.faction.hotrock -= 90
@@ -8131,7 +8326,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             }
         }
-        makeMycoknight(){
+        makeMycoknight() {
             if (this.que != 1) {
                 if (this.faction.hotrock >= 200 && this.faction.units.length < 51) {
                     this.faction.hotrock -= 200
@@ -8142,7 +8337,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             }
         }
-        makeFruitingbuddy(){
+        makeFruitingbuddy() {
             if (this.que != 1) {
                 if (this.faction.hotrock >= 40 && this.faction.units.length < 51) {
                     this.faction.hotrock -= 40
@@ -8164,25 +8359,27 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             }
         }
-        finishVizier(){
+        finishVizier() {
             if (Math.random() < soundspamdrop) {
                 if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
                     soundCancel()
+                    vizieraudio.play()
                 }
             }
             let agent1 = new Agent(this.tile, this.faction)
             agent1.isSporevizir()
         }
-        finishMycoknight(){
+        finishMycoknight() {
             if (Math.random() < soundspamdrop) {
                 if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
                     soundCancel()
+                    mycoknightaudio.play()
                 }
             }
             let agent1 = new Agent(this.tile, this.faction)
             agent1.isMycoknight()
         }
-        finishSporeseer(){
+        finishSporeseer() {
             if (Math.random() < soundspamdrop) {
                 if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
                     soundCancel()
@@ -8191,10 +8388,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
             let agent1 = new Agent(this.tile, this.faction)
             agent1.isSporeseer()
         }
-        finishFruitingbuddy(){
+        finishFruitingbuddy() {
             if (Math.random() < soundspamdrop) {
                 if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
                     soundCancel()
+                    buddyaudio.play()
                 }
             }
             let agent1 = new Agent(this.tile, this.faction)
@@ -8253,6 +8451,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (Math.random() < soundspamdrop) {
                 if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
                     soundCancel()
+                    golophyteaudio.play()
                 }
             }
             let agent1 = new Agent(this.tile, this.faction)
@@ -8423,8 +8622,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
 
                     if (dataflop == 0) {
-                    this.spawnmedium = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 80, 125, 65, 50, "black")
-                    this.spawnmedium.draw()
+                        this.spawnmedium = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 80, 125, 65, 50, "black")
+                        this.spawnmedium.draw()
                     }
                     canvas_context.drawImage(sporeseer, 0, 0, 10, 10, this.spawnmedium.x + 10, this.spawnmedium.y + 5, 30, 30)
                     this.spawnbig = new UiRectangle(sandmap.window.body.x + sandmap.window.body.width + 150, 125, 65, 50, "black")
@@ -8699,51 +8898,55 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 dataflop = 1
             }
         }
-        slimecheck(){
-            if(this.active == 1){
+        slimecheck() {
+            if (this.active == 1) {
 
-                if(this.tile.sourcerock > 0){
-                // if(this.tile.sourcerock > 0){
-                //     this.tile.sourcerock -= .09
-                //     this.faction.hotrock += .09
-                // }
+                if (this.tile.sourcerock > 0) {
+                    // if(this.tile.sourcerock > 0){
+                    //     this.tile.sourcerock -= .09
+                    //     this.faction.hotrock += .09
+                    // }
 
-                // if(Math.random()<.03){
+                    // if(Math.random()<.03){
                     let sum = 0
-                    for(let t = 0;t<this.faction.buildings.length;t++){
-                        if(this.faction.buildings[t].sporeball == 1){
+                    for (let t = 0; t < this.faction.buildings.length; t++) {
+                        if (this.faction.buildings[t].sporeball == 1) {
                             sandmap.diagonal = false
+                            sandmap.slimeflag = 1
                             let path = [...this.pather.search(sandmap, this.tile, this.faction.buildings[t].tile, {})]
+                            sandmap.slimeflag = 0
                             sandmap.diagonal = true
-                            //////console.log(path)
-                            if(path.length > 0){
+                            ////////////console.log(path)
+                            if (path.length > 0) {
                                 sum += path.length
                             }
                         }
                     }
-                    if(sum == 0){
+                    if (sum == 0) {
                         this.active = 0
                         this.tile.primed = 0
                     }
-                // }
-            }
-            }else if(this.active == 0){
+                    // }
+                }
+            } else if (this.active == 0) {
 
-                if(this.tile.sourcerock > 0){
+                if (this.tile.sourcerock > 0) {
                     // if(Math.random()<.35){
-                        for(let t = 0;t<this.faction.buildings.length;t++){
-                            if(this.faction.buildings[t].sporeball == 1){
-                                sandmap.diagonal = false
-                                let path = [...this.pather.search(sandmap, this.tile, this.faction.buildings[t].tile, {})]
-                                sandmap.diagonal = true
-                                //////console.log(path)
-                                if(path.length > 0){
-                                    this.active = 1
-                                    this.tile.primed = 1
-                                    break
-                                }
+                    for (let t = 0; t < this.faction.buildings.length; t++) {
+                        if (this.faction.buildings[t].sporeball == 1) {
+                            sandmap.diagonal = false
+                            sandmap.slimeflag = 1
+                            let path = [...this.pather.search(sandmap, this.tile, this.faction.buildings[t].tile, {})]
+                            sandmap.slimeflag = 0
+                            sandmap.diagonal = true
+                            ////////////console.log(path)
+                            if (path.length > 0) {
+                                this.active = 1
+                                this.tile.primed = 1
+                                break
                             }
                         }
+                    }
                     // }
                 }
             }
@@ -8751,33 +8954,38 @@ window.addEventListener('DOMContentLoaded', (event) => {
         draw() {
 
 
-            if(this.faction.slimeflag == 1){
-                this.slimecheck()
-               
+            if (this.faction.slimeflag == 1) {
+                this.slimeflag = 1
+            }
+            if (this.slimeflag == 1) {
+                if (Math.random() < .09) {
+                    this.slimecheck()
+                    this.slimeflag = 0
+                }
             }
 
-            if(this.active == 1){
+            if (this.active == 1) {
 
-                if(this.tile.sourcerock > 0){
+                if (this.tile.sourcerock > 0) {
                     this.tile.sourcerock -= .09
                     this.faction.hotrock += .09
                     this.faction.income += .09
                 }
 
             }
-            ////////console.log(this)
+            //////////////console.log(this)
             if (this.bulbplant == 1 || this.slime == 1) {
                 this.sight = 10
-                if(this.slime == 1){
+                if (this.slime == 1) {
                     this.sight = 1
                 }
-                if(this.slime != 1){
-                    if(Math.random()<.5){
+                if (this.slime != 1) {
+                    if (Math.random() < .5) {
                         this.see()
                     }
-                }else{
+                } else {
                     this.seetime++
-                    if(this.seetime%99==0){
+                    if (this.seetime % 99 == 0) {
                         this.see()
                     }
                 }
@@ -8789,39 +8997,39 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         this.que = 0
                         this.seer = 0
                         this.finishSporeseer()
-                    }else  if(this.vizier == 1){
+                    } else if (this.vizier == 1) {
                         this.que = 0
                         this.vizier = 0
                         this.finishVizier()
-                    }else if (this.knight == 1) {
+                    } else if (this.knight == 1) {
                         this.que = 0
                         this.knight = 0
                         this.finishMycoknight()
-                    }else  if (this.buddy == 1) {
+                    } else if (this.buddy == 1) {
                         this.que = 0
                         this.buddy = 0
                         this.finishFruitingbuddy()
-                    }else if (this.drone == 1) {
+                    } else if (this.drone == 1) {
                         this.que = 0
                         this.drone = 0
                         this.finishScout()
-                    }else if (this.infantry == 1) {
+                    } else if (this.infantry == 1) {
                         this.infantry = 0
                         this.que = 0
                         this.finishInfantry()
-                    }else if (this.harvester == 1) {
+                    } else if (this.harvester == 1) {
                         this.harvester = 0
                         this.que = 0
                         this.finishHarvester()
-                    }else if (this.sniper == 1) {
+                    } else if (this.sniper == 1) {
                         this.sniper = 0
                         this.que = 0
                         this.finishSniper()
-                    }else if (this.soldier == 1) {
+                    } else if (this.soldier == 1) {
                         this.soldier = 0
                         this.que = 0
                         this.finishHamartansoldier()
-                    }else if (this.scout == 1) {
+                    } else if (this.scout == 1) {
                         this.scout = 0
                         this.que = 0
                         this.finishHamartanscout()
@@ -8830,23 +9038,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         this.worker = 0
                         this.que = 0
                         this.finishHamartanworker()
-                    }else if (this.invader == 1) {
+                    } else if (this.invader == 1) {
                         this.invader = 0
                         this.que = 0
                         this.finishHamartaninvader()
-                    }else if (this.pollinator == 1) {
+                    } else if (this.pollinator == 1) {
                         this.pollinator = 0
                         this.que = 0
                         this.finishLibrilbianpollinator()
-                    }else if (this.podman == 1) {
+                    } else if (this.podman == 1) {
                         this.podman = 0
                         this.que = 0
                         this.finishLibrilbianpodman()
-                    }else if (this.goliophyte == 1) {
+                    } else if (this.goliophyte == 1) {
                         this.goliophyte = 0
                         this.que = 0
                         this.finishLibrilbiangoliophyte()
-                    }else if (this.pufffellow == 1) {
+                    } else if (this.pufffellow == 1) {
                         this.pufffellow = 0
                         this.que = 0
                         this.finishLibrilbianpufffellow()
@@ -8880,10 +9088,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     this.tiles[t].walkable = false
                 }
 
-            if(this.slime == 1){
-                this.tiles[t].builtOn = 1
-                this.tiles[t].walkable = true
-            }
+                if (this.slime == 1) {
+                    this.tiles[t].builtOn = 1
+                    this.tiles[t].walkable = true
+                }
 
 
                 this.tiles[t].color = this.faction.color  // this.faction.color
@@ -8894,9 +9102,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 } else if (this.sporeball == 1) {
                     map_context.drawImage(sporeball, this.tiles[t].x, this.tiles[t].y)
                 } else if (this.slime == 1) {
-                    if(this.tile.sourcerock > 0){
+                    if (this.tile.sourcerock > 0) {
                         map_context.drawImage(hotslime, this.tiles[t].x, this.tiles[t].y)
-                    }else{
+                    } else {
                         map_context.drawImage(slime, this.tiles[t].x, this.tiles[t].y)
                     }
                 } else if (this.spire == 1) {
@@ -8974,7 +9182,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.tile.spiretile = 0
                 this.tile.builtOn = 0
 
-                if(this.tile.slime == true){
+                if (this.tile.slime == true) {
                     this.faction.slimeflag = 1
                 }
                 this.tile.slime = false
@@ -9047,19 +9255,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     this.isGoliophyte()
                 }
             } else if (this.faction.type == 4) {
-                    if (this.faction.units.length%4 == 3) {
-                        this.isMycoknight()
-                    }else{
-                        if (this.faction.units.length%4 == 2) {
+                if (this.faction.units.length % 4 == 3) {
+                    this.isMycoknight()
+                } else {
+                    if (this.faction.units.length % 4 == 2) {
                         this.isFruitingBuddy()
-                        }else{
-                            if (this.faction.units.length%4 == 1) {
+                    } else {
+                        if (this.faction.units.length % 4 == 1) {
                             this.isSporevizir()
-                            }else{
-                                this.isSporeseer()
-                            }
+                        } else {
+                            this.isSporeseer()
                         }
                     }
+                }
             } else {
                 if (start == 0) {
                     if (this.faction.units.length == 1) {
@@ -9074,7 +9282,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             }
         }
-        
+
         isFruitingBuddy() {
             this.seer = 0
             this.sporevizir = 0
@@ -9084,7 +9292,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.movespeed = 5 //2 and 3 too high?
             this.firerate = 2
             this.decayRate = 0
-            this.damage =  6
+            this.damage = 6
             this.name = "Plaztilite Fruiting-Buddy"
             this.fruiting = 1
             this.fungi = 1
@@ -9108,7 +9316,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.movespeed = 5 //2 and 3 too high?
             this.firerate = 4
             this.decayRate = 0
-            this.damage =  13
+            this.damage = 13
             this.name = "Plaztilite Spore-Seer"
             this.seer = 1
             this.fungi = 1
@@ -9122,7 +9330,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.health = 595
             this.maxhealth = this.health
         }
-        isSporevizir(){
+        isSporevizir() {
             this.seer = 0
             this.fruiting = 0
             this.mycoknight = 0
@@ -9131,7 +9339,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.movespeed = 6 //2 and 3 too high?
             this.firerate = 4
             this.decayRate = 0
-            this.damage =  15
+            this.damage = 15
             this.name = "Plaztilite Spore Vizier"
             this.sporevizir = 1
             this.fungi = 1
@@ -9154,7 +9362,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.movespeed = 7 //2 and 3 too high?
             this.firerate = 5
             this.decayRate = 0
-            this.damage =  34
+            this.damage = 34
             this.name = "Plaztilite Mycoknight"
             this.mycoknight = 1
             this.fungi = 1
@@ -9587,11 +9795,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
         }
         metamorph1() {
-            //////////////////console.log(this.que, 1)
+            ////////////////////////console.log(this.que, 1)
             if (this.que != 1) {
-                //////////////////console.log(this.hotrock, 2)
+                ////////////////////////console.log(this.hotrock, 2)
                 if (this.faction.hotrock >= 180) {
-                    //////////////////console.log(this.nymph, 3)
+                    ////////////////////////console.log(this.nymph, 3)
                     if (this.nymph == 1) {
                         this.faction.hotrock -= 180
                         this.morphing = 1
@@ -9601,7 +9809,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                 }
             }
-            //////////////////console.log(this.timer, 4)
+            ////////////////////////console.log(this.timer, 4)
         }
         metamorph2() {
             if (this.que != 1) {
@@ -9739,13 +9947,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (dataflop == 0) {
                     this.facerect.draw()
 
-                    if(this.mycoknight == 1){
+                    if (this.mycoknight == 1) {
                         canvas_context.drawImage(knightface, facex, facey)
                     }
-                    if(this.sporevizir == 1){
+                    if (this.sporevizir == 1) {
                         canvas_context.drawImage(vizirface, facex, facey)
                     }
-                    if(this.seer == 1){
+                    if (this.seer == 1) {
                         canvas_context.drawImage(seerface, facex, facey)
                     }
                     if (this.fruiting == 1) {
@@ -9831,7 +10039,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                                                         if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
                                                             if (this.nymph == 1) {
-                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
                                                                     soundCancel()
                                                                     if (Math.random() < .5) {
                                                                         itstheedgeofusfight.play()
@@ -9841,7 +10049,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 }
                                                             }
                                                             if (this.imago == 1) {
-                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
                                                                     soundCancel()
                                                                     if (Math.random() < .5) {
                                                                         ahhbarber.play()
@@ -9851,13 +10059,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 }
                                                             }
                                                             if (this.imago == 2) {
-                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
                                                                     soundCancel()
                                                                     youhurtme.play()
                                                                 }
                                                             }
                                                             if (this.infantry == 2) {
-                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
                                                                     soundCancel()
                                                                     if (Math.random() < .3) {
                                                                         isnipedyouaweekago2.play()
@@ -9875,7 +10083,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 }
                                                             }
                                                             if (this.nymph == 2) {
-                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
                                                                     soundCancel()
                                                                     if (Math.random() < .3) {
                                                                         icannamethevillans.play()
@@ -9887,13 +10095,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 }
                                                             }
                                                             if (this.hamartaninvader == 1) {
-                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
                                                                     soundCancel()
                                                                     youhome.play()
                                                                 }
                                                             }
                                                             if (this.hamartansoldier == 1) {
-                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
                                                                     soundCancel()
                                                                     if (Math.random() < .3) {
                                                                         inthejetsarm.play()
@@ -9911,19 +10119,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 }
                                                             }
                                                             if (this.drone == 1) {
-                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
                                                                     soundCancel()
                                                                     combatinit.play()
                                                                 }
                                                             }
                                                             if (this.infantry == 1) {
-                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
                                                                     soundCancel()
                                                                     lightemup.play()
                                                                 }
                                                             }
                                                             if (this.harvester == 1) {
-                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
                                                                     soundCancel()
                                                                     if (Math.random() < .3) {
                                                                         myfuneral.play()
@@ -9933,15 +10141,42 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 }
                                                             }
                                                             if (this.pufffellow == 1) {
-                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
                                                                     soundCancel()
                                                                     pufffellowaudio.play()
                                                                 }
                                                             }
                                                             if (this.pollinator == 1) {
-                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
                                                                     soundCancel()
                                                                     pollinatoraudio.play()
+                                                                }
+                                                            }
+
+                                                            if (this.goliophyte == 1) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                                                    soundCancel()
+                                                                    golophyteaudio.play()
+                                                                }
+                                                            }
+
+
+                                                            if (this.fruiting == 1) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                                                    soundCancel()
+                                                                    buddyaudio.play()
+                                                                }
+                                                            }
+                                                            if (this.sporevizir == 1) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                                                    soundCancel()
+                                                                    vizieraudio.play()
+                                                                }
+                                                            }
+                                                            if (this.mycoknight == 1) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                                                    soundCancel()
+                                                                    mycoknightaudio.play()
                                                                 }
                                                             }
                                                         }
@@ -9982,7 +10217,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
 
                                                                 this.attacktarget.faction.blocks[this.tile.t][this.tile.k].markdraw = 1
-                                                                // //////////////console.log(this.attacktarget.faction.blocks[this.tile.t][this.tile.k])
+                                                                // ////////////////////console.log(this.attacktarget.faction.blocks[this.tile.t][this.tile.k])
                                                                 if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].isAI == 1) {
                                                                     sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].pathTo(this.tile)
                                                                     sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].attackedAt = this.tile
@@ -10030,7 +10265,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                                                         if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
                                                             if (this.nymph == 1) {
-                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
                                                                     soundCancel()
                                                                     if (Math.random() < .5) {
                                                                         itstheedgeofusfight.play()
@@ -10040,7 +10275,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 }
                                                             }
                                                             if (this.imago == 1) {
-                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
                                                                     soundCancel()
                                                                     if (Math.random() < .5) {
                                                                         ahhbarber.play()
@@ -10050,13 +10285,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 }
                                                             }
                                                             if (this.imago == 2) {
-                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
                                                                     soundCancel()
                                                                     youhurtme.play()
                                                                 }
                                                             }
                                                             if (this.infantry == 2) {
-                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
                                                                     soundCancel()
                                                                     if (Math.random() < .3) {
                                                                         isnipedyouaweekago2.play()
@@ -10074,7 +10309,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 }
                                                             }
                                                             if (this.nymph == 2) {
-                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
                                                                     soundCancel()
                                                                     if (Math.random() < .3) {
                                                                         icannamethevillans.play()
@@ -10086,13 +10321,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 }
                                                             }
                                                             if (this.hamartaninvader == 1) {
-                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
                                                                     soundCancel()
                                                                     youhome.play()
                                                                 }
                                                             }
                                                             if (this.hamartansoldier == 1) {
-                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
                                                                     soundCancel()
                                                                     if (Math.random() < .3) {
                                                                         inthejetsarm.play()
@@ -10110,13 +10345,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 }
                                                             }
                                                             if (this.drone == 1) {
-                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
                                                                     soundCancel()
                                                                     combatinit.play()
                                                                 }
                                                             }
                                                             if (this.podman == 1) {
-                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
                                                                     soundCancel()
                                                                     if (Math.random() < .3) {
                                                                         seeyesineed.play()
@@ -10128,13 +10363,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 }
                                                             }
                                                             if (this.infantry == 1) {
-                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
                                                                     soundCancel()
                                                                     lightemup.play()
                                                                 }
                                                             }
                                                             if (this.harvester == 1) {
-                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
                                                                     soundCancel()
                                                                     if (Math.random() < .3) {
                                                                         myfuneral.play()
@@ -10145,15 +10380,40 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                             }
 
                                                             if (this.pufffellow == 1) {
-                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
                                                                     soundCancel()
                                                                     pufffellowaudio.play()
                                                                 }
                                                             }
                                                             if (this.pollinator == 1) {
-                                                                if (Math.random() < (soundspamdrop*engageconstant)) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
                                                                     soundCancel()
                                                                     pollinatoraudio.play()
+                                                                }
+                                                            }
+                                                            if (this.goliophyte == 1) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                                                    soundCancel()
+                                                                    golophyteaudio.play()
+                                                                }
+                                                            }
+
+                                                            if (this.fruiting == 1) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                                                    soundCancel()
+                                                                    buddyaudio.play()
+                                                                }
+                                                            }
+                                                            if (this.sporevizir == 1) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                                                    soundCancel()
+                                                                    vizieraudio.play()
+                                                                }
+                                                            }
+                                                            if (this.mycoknight == 1) {
+                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                                                    soundCancel()
+                                                                    mycoknightaudio.play()
                                                                 }
                                                             }
                                                         }
@@ -10194,7 +10454,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                                 this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
 
                                                                 this.attacktarget.faction.blocks[this.tile.t][this.tile.k].markdraw = 1
-                                                                // //////////////console.log(this.attacktarget.faction.blocks[this.tile.t][this.tile.k])
+                                                                // ////////////////////console.log(this.attacktarget.faction.blocks[this.tile.t][this.tile.k])
                                                                 if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].isAI == 1) {
                                                                     sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].pathTo(this.tile)
                                                                     sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].attackedAt = this.tile
@@ -10225,7 +10485,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             } else {
             }
         }
-        shoot(){
+        shoot() {
 
             if (Math.abs(this.attacktarget.tile.x - this.tile.x) + Math.abs((this.attacktarget.tile.y - this.tile.y)) > (this.attackrange * 21)) {
                 this.attacktarget = {}
@@ -10298,7 +10558,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
             if ((point.walkable == true || this.submerged == 1 || (this.mounted == 0 && point.occupied == false)) && point != this.tile) {
                 // if(this.submerged == 1){
-                //     ////////////console.log(point, this.tile)
+                //     //////////////////console.log(point, this.tile)
                 // }
                 this.stepout = 1
                 if (this.submerged == 1 || this.mounted == 0) {
@@ -10315,7 +10575,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.stacksnap++
                 this.realPath = [...this.pather.search(sandmap, this.tile, point, {})]
                 this.moved = 1
-                ////////////console.log(this.realPath)
+                //////////////////console.log(this.realPath)
                 if (this.obvious == this.realPath[0]) {
                     this.index = 0
                 } else {
@@ -10358,7 +10618,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     let max = 9999999999
                     for (let t = 0; t < this.tempcheck.length; t++) {
                         let link = (new LineOP(this.tile, this.tempcheck[t])).hypotenuse()
-                        // ////////////////////console.log(link)
+                        // //////////////////////////console.log(link)
                         if (link < max) {
                             max = link
                             index = t
@@ -10475,10 +10735,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
             if (this.index < this.realPath.length - 1) {
                 this.movespeedcount++
-                if(this.fungi == 1){
-                    if(this.tile.slime == 1){
+                if (this.fungi == 1) {
+                    if (this.tile.slime == 1) {
                         this.movespeedcount++
-                        if(this.movespeedcount > this.movespeed){
+                        if (this.movespeedcount > this.movespeed) {
                             this.movespeedcount--
                         }
                     }
@@ -10513,10 +10773,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.swing++
             if (this.swing % this.swingout == 0) {
                 if (this.attacktarget.health <= 0 || (Math.abs((this.attacktarget.tile.y - this.tile.y)) + Math.abs((this.attacktarget.tile.x - this.tile.x))) > (this.attackrange * 21)) {
-                    if(this.moved == 1 || this.seetime%5 == 0){
+                    if (this.moved == 1 || this.seetime % 5 == 0) {
                         this.attack()
                     }
-                }else{
+                } else {
                     this.shoot()
                 }
             }
@@ -10531,11 +10791,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.index = 0
                 this.movespeedcount = 0
                 // this.moved = 1
-            }else{
-                if(this.faction.surf == 1){
-                    if(this.faction.isAI == 1){
-                        if(this.faction.hotrock > 500){
-                            this.faction.buildWall(this.realPath[this.index+1])
+            } else {
+                if (this.faction.surf == 1) {
+                    if (this.faction.isAI == 1) {
+                        if (this.faction.hotrock > 500) {
+                            this.faction.buildWall(this.realPath[this.index + 1])
                         }
                     }
                 }
@@ -10552,7 +10812,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             } else {
                 this.decayingInTheWind = 0
             }
-            //////////////////////////console.log( (this.decayingInTheWind*sandmap.windspeed))
+            ////////////////////////////////console.log( (this.decayingInTheWind*sandmap.windspeed))
             if (this.faction.type == 0) {
                 this.health -= ((this.decayRate * this.decayingInTheWind * sandmap.windspeed))
             }
@@ -10577,18 +10837,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
             if (this.tile.hotrock == 1) {
 
-                if(this.fungi == 1){
+                if (this.fungi == 1) {
                     this.faction.hotrock += this.movespeed * .004
                     this.tile.sourcerock -= this.movespeed * .004
                     this.faction.income += this.movespeed * .004
-                }else{
+                } else {
                     if (this.drone == 1 || this.hamartanscout == 1) { //|| this.hamartaninvader == 1
 
                         this.faction.hotrock += this.movespeed * .005
                         this.tile.sourcerock -= this.movespeed * .005
                         this.faction.income += this.movespeed * .005
                     } else {
-    
+
                         this.faction.hotrock += this.movespeed * .01
                         this.tile.sourcerock -= this.movespeed * .01
                         if (this.nymph == 1 || this.harvester == 1 || this.hamartanworker == 1 || this.pollinator == 1) {
@@ -10618,41 +10878,41 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
             if (this.tile.hotrock == 2) {
 
-                if(this.fungi == 1){
+                if (this.fungi == 1) {
                     this.faction.hotrock += this.movespeed * .008
                     this.tile.sourcerock -= this.movespeed * .008
                     this.faction.income += this.movespeed * .008
-                }else{
-                if (this.drone == 1 || this.hamartanscout == 1) { // || this.hamartaninvader == 1
-                    this.faction.hotrock += this.movespeed * .01
-                    this.tile.sourcerock -= this.movespeed * .01
-                    this.faction.income += this.movespeed * .01
                 } else {
-                    this.faction.hotrock += this.movespeed * .02
-                    this.tile.sourcerock -= this.movespeed * .02
-                    this.faction.income += this.movespeed * .02
-                    if (this.nymph == 1 || this.harvester == 1 || this.hamartanworker == 1 || this.pollinator == 1) {
-                        this.faction.hotrock += this.movespeed * .05
-                        this.tile.sourcerock -= this.movespeed * .05
-                        this.faction.income += this.movespeed * .05
-                    }
-                    if (this.infantry == 1) {
-                        this.faction.hotrock += this.movespeed * .01//625
-                        this.tile.sourcerock -= this.movespeed * .01 //625
+                    if (this.drone == 1 || this.hamartanscout == 1) { // || this.hamartaninvader == 1
+                        this.faction.hotrock += this.movespeed * .01
+                        this.tile.sourcerock -= this.movespeed * .01
                         this.faction.income += this.movespeed * .01
-                    }
-                    if (this.hamartanworker == 1) {
-                        this.faction.hotrock += this.movespeed * .0125 //125
-                        this.tile.sourcerock -= this.movespeed * .0125 //125
-                        this.faction.income += this.movespeed * .0125
-                    }
-                    if (this.nymph == 1 || this.harvester == 1 || this.pollinator == 1) { // || this.pollinator == 1) { //harvester?
-                        this.faction.hotrock += this.movespeed * .05
-                        this.tile.sourcerock -= this.movespeed * .05
-                        this.faction.income += this.movespeed * .05
+                    } else {
+                        this.faction.hotrock += this.movespeed * .02
+                        this.tile.sourcerock -= this.movespeed * .02
+                        this.faction.income += this.movespeed * .02
+                        if (this.nymph == 1 || this.harvester == 1 || this.hamartanworker == 1 || this.pollinator == 1) {
+                            this.faction.hotrock += this.movespeed * .05
+                            this.tile.sourcerock -= this.movespeed * .05
+                            this.faction.income += this.movespeed * .05
+                        }
+                        if (this.infantry == 1) {
+                            this.faction.hotrock += this.movespeed * .01//625
+                            this.tile.sourcerock -= this.movespeed * .01 //625
+                            this.faction.income += this.movespeed * .01
+                        }
+                        if (this.hamartanworker == 1) {
+                            this.faction.hotrock += this.movespeed * .0125 //125
+                            this.tile.sourcerock -= this.movespeed * .0125 //125
+                            this.faction.income += this.movespeed * .0125
+                        }
+                        if (this.nymph == 1 || this.harvester == 1 || this.pollinator == 1) { // || this.pollinator == 1) { //harvester?
+                            this.faction.hotrock += this.movespeed * .05
+                            this.tile.sourcerock -= this.movespeed * .05
+                            this.faction.income += this.movespeed * .05
+                        }
                     }
                 }
-            }
             }
 
             this.tile.occupied = true
@@ -10815,7 +11075,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             } else if (this.seer == 1) {
                 map_context.drawImage(sporeseer, Math.floor(this.body.x) - 5, Math.floor(this.body.y) - 5)
             } else {
-                
+
                 this.body.draw()
             }
 
@@ -10848,9 +11108,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.shots[t].y = (this.body.y * (1 - (this.shots[t].stage / this.projectilespeed))) + (((this.shots[t].stage / this.projectilespeed)) * this.shots[t].refhealth.body.y)
                 this.shots[t].draw()
                 if (this.shots[t].stage >= this.projectilespeed) {
-                        this.shots[t].refhealth.health -= Math.max((this.damage * 3) - this.shots[t].attacktarget.defense, 0) //5?
-                        ////////////////////console.log(this.shots[t].refhealth)
-                        this.shots[t].marked = 1
+                    this.shots[t].refhealth.health -= Math.max((this.damage * 3) - this.shots[t].attacktarget.defense, 0) //5?
+                    //////////////////////////console.log(this.shots[t].refhealth)
+                    this.shots[t].marked = 1
 
                     if (this.shots[t].refhealth.submerged == 1) {
                         this.attacktarget = {}
@@ -10861,7 +11121,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         this.attacktarget.tile.y = -100000
                         this.attacktarget.tile.t = 0
                         this.attacktarget.tile.k = 0
-                    } 
+                    }
                     // }
                 }
             }
@@ -10892,6 +11152,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     let endbutton = new UiRectangle(sandmap.window.minibody.x + 260, sandmap.window.minibody.y - 77, 100, 75, "#333333")
     let endgame = 0
+
+    // for(let  t = 0;t<128;t++){
+    //     for(let  k = 0;k<128;k++){    
+    //         sandmap.players[0].seen.push(sandmap.blocks[t][k])   
+    //         sandmap.players[1].seen.push(sandmap.blocks[t][k])    
+    //         if(sandmap.blocks[t][k].sourcerock > 0){
+    //             sandmap.players[0].seenrocks.push(sandmap.blocks[t][k])
+    //             sandmap.players[1].seenrocks.push(sandmap.blocks[t][k])
+    //         }
+    //     }
+    // }
+
     function main() {
 
         // if (keysPressed['l']) {
@@ -10906,25 +11178,70 @@ window.addEventListener('DOMContentLoaded', (event) => {
         } else {
             score.add()
             // pollinatortick--
-            if(pollinatoraudio.currentTime >= pollinatornotch+pollinatortick){
-                pollinatoraudio.volume*=.94
+            if (pollinatoraudio.currentTime >= pollinatornotch + pollinatortick) {
+                pollinatoraudio.volume *= .93
                 // pollinatoraudio.pause()
-            }else{
+            } else {
                 let volhold = pollinatoraudio.volume
-                volhold*= 1.1
-                if(volhold <= 1){
+                volhold *= 1.1
+                if (volhold <= 1) {
                     pollinatoraudio.volume = volhold
                 }
             }
 
-            if(pufffellowaudio.currentTime >= puffnotch+pufftick){
-                pufffellowaudio.volume*=.94
+            if (pufffellowaudio.currentTime >= puffnotch + pufftick) {
+                pufffellowaudio.volume *= .93
                 // pollinatoraudio.pause()
-            }else{
+            } else {
                 let volhold = pufffellowaudio.volume
-                volhold*= 1.1
-                if(volhold <= 1){
+                volhold *= 1.1
+                if (volhold <= 1) {
                     pufffellowaudio.volume = volhold
+                }
+            }
+
+
+            if (golophyteaudio.currentTime >= golonotch + golotick) {
+                golophyteaudio.volume *= .93
+                // pollinatoraudio.pause()
+            } else {
+                let volhold = golophyteaudio.volume
+                volhold *= 1.1
+                if (volhold <= 1) {
+                    golophyteaudio.volume = volhold
+                }
+            }
+
+            if (buddyaudio.currentTime >= buddynotch + buddytick) {
+                buddyaudio.volume *= .93
+                // pollinatoraudio.pause()
+            } else {
+                let volhold = buddyaudio.volume
+                volhold *= 1.1
+                if (volhold <= 1) {
+                    buddyaudio.volume = volhold
+                }
+            }
+
+            if (vizieraudio.currentTime >= viznotch + viztick) {
+                vizieraudio.volume *= .93
+                // pollinatoraudio.pause()
+            } else {
+                let volhold = vizieraudio.volume
+                volhold *= 1.1
+                if (volhold <= 1) {
+                    vizieraudio.volume = volhold
+                }
+            }
+
+            if (mycoknightaudio.currentTime >= myconotch + mycotick) {
+                mycoknightaudio.volume *= .93
+                // pollinatoraudio.pause()
+            } else {
+                let volhold = mycoknightaudio.volume
+                volhold *= 1.1
+                if (volhold <= 1) {
+                    mycoknightaudio.volume = volhold
                 }
             }
 
@@ -10951,9 +11268,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             //     sandmap.turn = 0
             // }
             // if (keysPressed['q']) {
-            //     //////////////////console.log(sandmap)
+            //     ////////////////////////console.log(sandmap)
             // }
-            ////////////////////////////console.log(selectrect)
+            //////////////////////////////////console.log(selectrect)
 
             if (sandmap.players[0].units.length == 0 || sandmap.players[1].units.length == 0) {
                 endbutton.draw()
