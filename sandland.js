@@ -625,7 +625,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         golonotch = Math.floor(Math.random() * golophyteaudio.duration)
         golophyteaudio.currentTime = golonotch
         golophyteaudio.volume = .5
-        //////////////console.log(pollinatoraudio.duration)
+        ////////////////console.log(pollinatoraudio.duration)
         pollinatortick = ((Math.random() * 400) + 1000) / 1000
         pufftick = ((Math.random() * 400) + 900) / 1000
         golotick = ((Math.random() * 400) + 800) / 1000
@@ -753,7 +753,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     //     }
     //     return (1.4 * distX + ((distY - distX)));
     // }
-    // //////////////////console.time("onetile")
+    // ////////////////////console.time("onetile")
     // for(let t = 0;t<100;t+=10){
     //     for(let k = 0;k<1280;k+=10){
     //         for(let g = 0;g<1280;g+=10){
@@ -766,10 +766,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
     //                 ob2.y = n
     //                 distancetable[`${t},${k},${g},${n}`] = makeDistanceTable(t,k, g,n)
     //             }
-    //             //////////////////console.log(g)
+    //             ////////////////////console.log(g)
     //         }
     //     }
-    //     //////////////////console.log(t)
+    //     ////////////////////console.log(t)
     // }
     // // distancetable = JSON.stringify(distancetable)
     // function downloadObject(obj, filename){
@@ -837,7 +837,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     //         }
     //         gamepadAPI.axesStatus = axes;// assign received values
     //         gamepadAPI.buttonsStatus = pressed;
-    //         // ////////////////////////////////////////console.log(pressed); // return buttons for debugging purposes
+    //         // //////////////////////////////////////////console.log(pressed); // return buttons for debugging purposes
     //         return pressed;
     //     },
     //     buttonPressed: function (button, hold) {
@@ -891,10 +891,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         isToward(point) {
             let link = new LineOP(this.object, point)
-            let dis1 = link.sqrDis()
+            let dis1 = link.squareDistance()
             let dummy = new Point(this.object.x + this.xmom, this.object.y + this.ymom)
             let link2 = new LineOP(dummy, point)
-            let dis2 = link2.sqrDis()
+            let dis2 = link2.squareDistance()
             if (dis2 < dis1) {
                 return true
             } else {
@@ -1201,7 +1201,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.fill()
                 canvas_context.stroke();
             } else {
-                ////////////////////////////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                //////////////////////////////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -1353,7 +1353,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 map_context.strokeStyle = "#00000010"
                 map_context.stroke();
             } else {
-                ////////////////////////////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                //////////////////////////////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -1504,7 +1504,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.fill()
                 canvas_context.stroke();
             } else {
-                ////////////////////////////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                //////////////////////////////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -1990,7 +1990,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             }
 
-            ////////////////////////////////////////console.log(this)
+            //////////////////////////////////////////console.log(this)
 
             // this.spring = new Spring(x, y, radius, color, this.pin, memberLength, gravity)
             // this.springs.push(this.spring)
@@ -3855,7 +3855,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             sandmap.players[sandmap.turn].units[t].selected = 2
                         }
 
-                        //////////////////////////////console.log(sandmap.players[sandmap.turn].selected_tile)
+                        ////////////////////////////////console.log(sandmap.players[sandmap.turn].selected_tile)
                         sandmap.players[sandmap.turn].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile)
 
 
@@ -4065,7 +4065,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     continue
                                 }
                             }
-                            //////////////////////////////console.log(sandmap.players[sandmap.turn].selected_tile)
+                            ////////////////////////////////console.log(sandmap.players[sandmap.turn].selected_tile)
                             sandmap.players[sandmap.turn].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile)
                             if (sandmap.players[sandmap.turn].selected_tile.hotrock > 0) {
 
@@ -4212,7 +4212,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         selectrect.height = Math.abs(selectrect.height)
                     }
 
-                    // //////////////////////////////////console.log(selectrect)
+                    // ////////////////////////////////////console.log(selectrect)
                     // selectrect.draw()
                     // sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
                     // sandmap.turn++
@@ -4236,7 +4236,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     }
     //     function gamepad_control(object, speed = 1) { // basic control for objects using the controler
-    // //         ////////////////////////////////////////console.log(gamepadAPI.axesStatus[1]*gamepadAPI.axesStatus[0]) //debugging
+    // //         //////////////////////////////////////////console.log(gamepadAPI.axesStatus[1]*gamepadAPI.axesStatus[0]) //debugging
     //         if (typeof object.body != 'undefined') {
     //             if(typeof (gamepadAPI.axesStatus[1]) != 'undefined'){
     //                 if(typeof (gamepadAPI.axesStatus[0]) != 'undefined'){
@@ -4334,6 +4334,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     class Tile {
         constructor(x, y, width, height, color, id, size, posx, posy, walkable) {
+            this.factionsrock = []
+            this.factions = []
             this.counterset = 0
             this.slime = false
             this.counter = 0
@@ -4375,13 +4377,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
         isWall() {
             return this.walkable
         }
+
+
         getCost(fromNeighbor) {
-            // Take diagonal weight into consideration.
-            if (sandmap.diagonal == false && sandmap.repairflag == 1) {
-                if (fromNeighbor.slime == true) {
-                    return 0
-                }
-            } else if (sandmap.diagonal == false && sandmap.slimeflag != 1) { //edit???
+            if (sandmap.diagonal == false && sandmap.slimeflag != 1) { //edit???
                 if (fromNeighbor.slime == true) {
                     if (this.slime == true) {
                         if (fromNeighbor && fromNeighbor.x != this.x && fromNeighbor.y != this.y) {
@@ -4478,8 +4477,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             // let link = new Line(this.posx, this.posy, bottle.crew[bottle.selectedcrew].body.x-100, bottle.crew[bottle.selectedcrew].body.y-300, "red", 1)
             // if (link.hypotenuse() < 108) {
-            // ////////////////////////////////////////////console.log(link)
-            // ////////////////////////////////////////////console.log(bottle)
+            // //////////////////////////////////////////////console.log(link)
+            // //////////////////////////////////////////////console.log(bottle)
             // }
             // let roundedx = (Math.round((startPoint.x) / 10))
             // let roundedy = (Math.round((startPoint.y) / 10))
@@ -4492,13 +4491,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // if (this.inPath === true) {
             //     // this.drawPath();
             // } else if (this.walkable === false) {
-            //     // ////////////////////////////////////////////console.log(this)
+            //     // //////////////////////////////////////////////console.log(this)
 
             //     // this.createWall();
             //     return;
             //     // }else if (link.hypotenuse() < 11) {
             // } else if (this.posx == roundedx && this.posy == roundedy) {
-            //     //   ////////////////////////////////////////////console.log("hit the startNode");
+            //     //   //////////////////////////////////////////////console.log("hit the startNode");
             //     //   this.createStartNode();
             //     return;
             // } else if (this.posx == endPoint.x && this.posy == endPoint.y) {
@@ -4702,8 +4701,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             // let link = new Line(this.posx, this.posy, bottle.crew[bottle.selectedcrew].body.x-100, bottle.crew[bottle.selectedcrew].body.y-300, "red", 1)
             // if (link.hypotenuse() < 108) {
-            // ////////////////////////////////////////////console.log(link)
-            // ////////////////////////////////////////////console.log(bottle)
+            // //////////////////////////////////////////////console.log(link)
+            // //////////////////////////////////////////////console.log(bottle)
             // }
             // let roundedx = (Math.round((startPoint.x) / 10))
             // let roundedy = (Math.round((startPoint.y) / 10))
@@ -4716,13 +4715,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // if (this.inPath === true) {
             //     // this.drawPath();
             // } else if (this.walkable === false) {
-            //     // ////////////////////////////////////////////console.log(this)
+            //     // //////////////////////////////////////////////console.log(this)
 
             //     // this.createWall();
             //     return;
             //     // }else if (link.hypotenuse() < 11) {
             // } else if (this.posx == roundedx && this.posy == roundedy) {
-            //     //   ////////////////////////////////////////////console.log("hit the startNode");
+            //     //   //////////////////////////////////////////////console.log("hit the startNode");
             //     //   this.createStartNode();
             //     return;
             // } else if (this.posx == endPoint.x && this.posy == endPoint.y) {
@@ -4835,7 +4834,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     force1 += (sandmap.players[1].units[t].damage * 9)
                     force1 += (sandmap.players[1].units[t].defense * 15)
                 }
-                // //////////////console.log(force1)
+                // ////////////////console.log(force1)
                 this.faction0.firepower.push(force0)
                 this.faction1.firepower.push(force1)
                 this.wind.push(sandmap.windspeed)
@@ -4871,14 +4870,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     let x = (1000 / this.faction0.firepower.length) * t
                     let y = (720 - (this.faction0.firepowerx[t] * 720))
                     let point = new Circle(x, y, 1, sandmap.players[0].color)
-                    // //////////////console.log(point)
+                    // ////////////////console.log(point)
                     point.draw()
                 }
                 for (let t = 0; t < this.faction1.firepower.length; t++) {
                     let x = (1000 / this.faction1.firepower.length) * t
                     let y = (720 - (this.faction1.firepowerx[t] * 720))
                     let point = new Circle(x, y, 1, sandmap.players[1].color)
-                    // //////////////console.log(point)
+                    // ////////////////console.log(point)
                     point.draw()
                 }
 
@@ -4994,7 +4993,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     for (let p = 0; p < this.hotrocks.length; p++) {
                                         let link = new LineOP(this.hotrocks[p], rect)
                                         if (link.hypotenuse() < 120 + ((Math.random() - .5) * 60)) {
-                                            // //////////////console.log(this.hotrocks)
+                                            // ////////////////console.log(this.hotrocks)
                                             bump = 1
                                         }
                                     }
@@ -5049,7 +5048,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     this.gridPoints.push(this.blocks[t][k])
                 }
             }
-            //////////////////////////console.log(this)
+            ////////////////////////////console.log(this)
             this.dirtyNodes = []
         }
         cleanDirty() {
@@ -5146,7 +5145,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 for (var j = 0; j < this.height; j += NODESIZE) {
                     gridPointsByPos[i][j] = countNodes;
                     //here's the problem , need to set the walkability of the node without always being true...
-                    ////////////////////////////////////////////console.log(countNodes)
+                    //////////////////////////////////////////////console.log(countNodes)
                     tempNode = new Tile(i, j, 10, 10, "tan", countNodes, NODESIZE, i, j, true);
 
                     // let cutOut = [0,1 ,2, 3, 4, 5,6,7, 8, 9, 10, 11, 12,13, 18, 19,20, 32,33,  26, 31, 39, 44, 45, 46, 52, 57,58,59,99, 112, 108, 95, 197, 198, 199, 205, 203, 204, 236, 237, 238, 242, 243,244, 216, 212, 229, 225, 210, 211, 223, 224, 217, 218, 230, 231]
@@ -5178,7 +5177,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                     // }
                     // if (wallSet.has(countNodes)) {
-                    // //   ////////////////////////////////////////////console.log("wallSet had countNodes!")
+                    // //   //////////////////////////////////////////////console.log("wallSet had countNodes!")
                     //   tempNode.walkable = false;
                     // }
 
@@ -5420,6 +5419,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     this.clickrate = this.units.length
                 }
             }
+
+            for (let t = 0; t < this.units.length; t++) {
+                this.units[t].attackmove()
+            }
             this.defending--
             if (this.type == 4) {
 
@@ -5467,7 +5470,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 //     continue
                                 // }
                                 if (slimetarget.breaker.includes(t)) {
-                                    ////console.log("what")
+                                    //////console.log("what")
                                     // if(Math.random()<.01){
                                     //     slimetarget.breaker.splice(slimetarget.breaker.indexOf(t), 1)
                                     // }
@@ -5476,24 +5479,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     // }
                                     // continue
                                 } else if (Math.abs(slimetarget.t - this.buildings[t].tile.t) + Math.abs(slimetarget.k - this.buildings[t].tile.k) > 1000) {//cost to build new sporeball and change
-                                    ////console.log("huh")
+                                    //////console.log("huh")
 
                                     if (Math.random() < .001) {
                                         if (slimetarget.primed != 1) {
                                             if (Math.random() < .5) {
                                                 if (Math.random() < .5) {
-                                                    //////console.log("ball")
+                                                    ////////console.log("ball")
                                                     this.buildBarracks(sandmap.blocks[slimetarget.t][slimetarget.k + 1])
                                                 } else {
-                                                    //////console.log("ball")
+                                                    ////////console.log("ball")
                                                     this.buildBarracks(sandmap.blocks[slimetarget.t][slimetarget.k - 1])
                                                 }
                                             } else {
                                                 if (Math.random() < .5) {
-                                                    //////console.log("ball")
+                                                    ////////console.log("ball")
                                                     this.buildBarracks(sandmap.blocks[slimetarget.t + 1][slimetarget.k])
                                                 } else {
-                                                    //////console.log("ball")
+                                                    ////////console.log("ball")
                                                     this.buildBarracks(sandmap.blocks[slimetarget.t - 1][slimetarget.k])
                                                 }
 
@@ -5532,9 +5535,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             //         this.buildWall(this.path[p])
                                             //     }
                                             // }
-                                            // //////console.log((this.path.length*5), discount)
+                                            // ////////console.log((this.path.length*5), discount)
                                             if (Math.random() < .01) {
-                                                //////console.log("length ball")
+                                                ////////console.log("length ball")
                                                 this.buildBarracks(this.path[(this.path.length - 2)])
                                             }
                                             // if(t > 0){
@@ -5550,7 +5553,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         if (wet == 0) {
                             if (this.seen.length > 0) {
 
-                                //////console.log("solo ball")
+                                ////////console.log("solo ball")
                                 this.buildBarracks(this.seen[Math.floor(Math.random() * this.seen.length)])
                             }
                         }
@@ -5565,7 +5568,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                     if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                         let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                        // //////////////////////////console.log(link)
+                                        // ////////////////////////////console.log(link)
                                         if (link < max) {
                                             max = link
                                             index = h
@@ -5604,10 +5607,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                         if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                             let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                            // //////////////////////////console.log(link)
-                                            if (link > max) { //reversals time
+                                            // ////////////////////////////console.log(link)
+                                            if (link < max) { //reversals time //rereverse
                                                 max = link
                                                 index = h
+
+                                                // if(Math.random()<.5){
+                                                //     break
+                                                // }
                                             }
                                         }
                                     }
@@ -5623,7 +5630,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             }
                                         }
                                     } else {
-                                        if (Math.random() < .03) {
+                                        if (Math.random() < .13) { //03
                                             if (this.seen.length > 0) {
                                                 let block = this.seen[Math.floor(Math.random() * this.seen.length)]
                                                 this.units[t].pathTo(block)
@@ -5634,7 +5641,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             }
                                         } else {
 
-                                            if (this.seen.length <= this.units.length) {
+                                            if (this.seenrocks.length <= this.units.length) {
                                                 if (this.units[t].fruiting == 1) { //lmao pollinator
                                                     if (Math.random() < .05) { //.5
                                                         let block = sandmap.gridPoints[Math.floor(Math.random() * sandmap.gridPoints.length)]
@@ -5746,7 +5753,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         for (let t = 0; t < this.buildings.length; t++) {
                             if (this.buildings[t].slime == 1) {
                                 if (Math.random() < .5) {
-                                    ////////console.log(this.seenrocks.length, this.units.length)
+                                    //////////console.log(this.seenrocks.length, this.units.length)
                                     if ((this.hotrock > 70 + (this.buildings.length * 5) || this.seenrocks.length <= this.units.length) && this.units.length < 15) {
                                         this.buildings[t].makeFruitingbuddy()
                                         j++
@@ -6016,7 +6023,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                     if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                         let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                        // //////////////////////////console.log(link)
+                                        // ////////////////////////////console.log(link)
                                         if (link < max) {
                                             max = link
                                             index = h
@@ -6050,7 +6057,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                         if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                             let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                            // //////////////////////////console.log(link)
+                                            // ////////////////////////////console.log(link)
                                             if (link < max) {
                                                 max = link
                                                 index = h
@@ -6226,11 +6233,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
 
-                    for (let t = 0; t < this.units.length; t++) {
-                        if (this.units[t].hamartanscout == 1) {
-                            if (this.units.length >= this.seenrocks.length && (this.units[t].health / this.units[t].maxhealth) > .3) { //seen
-                                let block = sandmap.gridPoints[Math.floor(Math.random() * sandmap.gridPoints.length)]
-                                this.units[t].pathTo(block)
+                    if(Math.random()<.3){
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (this.units[t].hamartanscout == 1) {
+                                if (this.units.length >= this.seenrocks.length+5 && (this.units[t].health / this.units[t].maxhealth) > .3) { //seen
+                                    let block = sandmap.gridPoints[Math.floor(Math.random() * sandmap.gridPoints.length)]
+                                    this.units[t].pathTo(block)
+                                }
                             }
                         }
                     }
@@ -6242,7 +6251,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                     if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                         let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                        // //////////////////////////console.log(link)
+                                        // ////////////////////////////console.log(link)
                                         if (link < max) {
                                             max = link
                                             index = h
@@ -6276,7 +6285,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                         if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                             let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                            // //////////////////////////console.log(link)
+                                            // ////////////////////////////console.log(link)
                                             if (link < max) {
                                                 max = link
                                                 index = h
@@ -6302,7 +6311,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             }
                                         } else {
                                             if (this.units[t].hamartanscout == 1) {
-                                                if (Math.random() < .5) {
+                                                if (Math.random() < .015) { //.5?
                                                     let block = sandmap.gridPoints[Math.floor(Math.random() * sandmap.gridPoints.length)]
                                                     this.units[t].pathTo(block)
                                                 }
@@ -6396,7 +6405,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                         if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                             let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                            // //////////////////////////console.log(link)
+                                            // ////////////////////////////console.log(link)
                                             if (link < max) {
                                                 max = link
                                                 index = h
@@ -6430,7 +6439,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                             if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                                 let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                                // //////////////////////////console.log(link)
+                                                // ////////////////////////////console.log(link)
                                                 if (link < max) {
                                                     max = link
                                                     index = h
@@ -6544,7 +6553,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             } else { // human below, itzler above
 
                 if (this.hotrock > (this.racksflag * 75)) {
-                    // //////////////console.log("earthoid effect")
+                    // ////////////////console.log("earthoid effect")
                     this.racks = 0
                     this.lab = 0
                     this.racksflag += 4
@@ -6643,7 +6652,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             if (this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                                 if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false) {
                                                     let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                                    // //////////////////////////console.log(link)
+                                                    // ////////////////////////////console.log(link)
                                                     if (link < max) {
                                                         max = link
                                                         index = h
@@ -6713,7 +6722,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                 if (this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                                     if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false) {
                                                         let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                                        // //////////////////////////console.log(link)
+                                                        // ////////////////////////////console.log(link)
                                                         if (link < max) {
                                                             max = link
                                                             index = h
@@ -6902,7 +6911,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                             if (Math.abs(this.units[t].realPath.length - this.units[t].index) < 3 || Math.abs(this.units[t].realPath.length - this.units[t].index) > (calcdeath - (this.units[t].movespeed * 10))) {
 
-                                // ////////////////////////console.log(this.units[t])
+                                // //////////////////////////console.log(this.units[t])
 
                             } else {
                                 continue
@@ -7241,7 +7250,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
                         wet = 1
                         debreak = 1
-                        // ////////////////////////console.log(tile)
+                        // //////////////////////////console.log(tile)
                     }
                 }
                 if (tile.walkable == false) {
@@ -7281,7 +7290,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 sandmap.diagonal = false
                                 let path = [...building.pather.search(sandmap, building.tile, this.buildings[t].tile, {})]
                                 sandmap.diagonal = true
-                                //////////////console.log(path)
+                                ////////////////console.log(path)
                                 if (path.length > 0) {
                                     building.active = 1
                                     building.tile.primed = 1
@@ -7303,7 +7312,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
                             wet = 1
                             debreak = 1
-                            // ////////////////////////console.log(tile)
+                            // //////////////////////////console.log(tile)
                         }
                     }
                     if (tile.walkable == false) {
@@ -7321,7 +7330,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             } else if (this.type == 2) {
 
                 if (this.hotrock > (this.racksflag * 75)) {
-                    // //////////////console.log("hamartan effect")
+                    // ////////////////console.log("hamartan effect")
                     this.racks = 0
                     this.lab = 0
                     this.racksflag += 4
@@ -7343,7 +7352,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
                             wet = 1
                             debreak = 1
-                            // ////////////////////////console.log(tile)
+                            // //////////////////////////console.log(tile)
                         }
                     }
                     if (tile.walkable == false) {
@@ -7386,7 +7395,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
                             wet = 1
                             debreak = 1
-                            // ////////////////////////console.log(tile)
+                            // //////////////////////////console.log(tile)
                         }
                     }
                     if (tile.walkable == false) {
@@ -7413,7 +7422,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
                         wet = 1
                         debreak = 1
-                        // ////////////////////////console.log(tile)
+                        // //////////////////////////console.log(tile)
                     }
                 }
                 if (tile.walkable == false) {
@@ -7764,7 +7773,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             }
             for (let t = 0; t < this.units.length; t++) {
-                if (this.units[t].seetime % 20 || this.units[t].moved == 1) {
+                if (this.units[t].seetime % 40 || this.units[t].moved == 1) {
                     this.units[t].moved = 0
                     this.units[t].see()
                 }
@@ -7837,8 +7846,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // this.startNode = gridPointsByPos[startNode.x][startNode.y];
             let roundedx = (Math.round((startNode.x))) * .1
             let roundedy = (Math.round((startNode.y))) * .1
-            ////////////////////////////////////////console.log(gridPointsByPos, roundedx, roundedy)
-            ////////////////////////////////////////////console.log(gridPointsByPos[roundedx] [roundedy])
+            //////////////////////////////////////////console.log(gridPointsByPos, roundedx, roundedy)
+            //////////////////////////////////////////////console.log(gridPointsByPos[roundedx] [roundedy])
             this.startNode = startNode // gridPointsByPos[roundedx] [roundedy]
             this.endNode = endNode //gridPointsByPos[endNode.x][endNode.y];
             this.currentNode = null;
@@ -7858,7 +7867,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             var grid = this.grid; //the grid we're working with
 
             var currentNode = this.startNode; // the currentNode, defaults to start node for now
-            //////////////////////////////console.log(this.endNode)
+            ////////////////////////////////console.log(this.endNode)
             var endNode = this.endNode //sandmap.gridPoints[this.endNode.id]; //the target node
             var startNode = this.startNode
 
@@ -7867,9 +7876,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             var newMovementCost; //the new movement cost to neighbor
 
             openSet.add(currentNode);
-            //   //////////////////////////////////////console.log(currentNode)
+            //   ////////////////////////////////////////console.log(currentNode)
             // currentNode.color = "black"
-            // ////////////////////////////////////////////console.log('begin');
+            // //////////////////////////////////////////////console.log('begin');
 
             let j = 0
             let timeout = 0
@@ -7879,7 +7888,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     timeout = 1
                 }
                 tempArray = Array.from(openSet);
-                //////////////////////////////////////console.log(tempArray)
+                ////////////////////////////////////////console.log(tempArray)
                 currentNode = tempArray[0];
 
                 for (var i = 1; i < tempArray.length; i++) {
@@ -7911,18 +7920,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 //   currentNode.drawNode();
                 // }
 
-                //////////////////////////////////////console.log(currentNode, endNode)
+                ////////////////////////////////////////console.log(currentNode, endNode)
                 // currentNode.color = "black"
-                //////////////////////////////console.log(currentNode, endNode)
+                ////////////////////////////////console.log(currentNode, endNode)
                 if (currentNode.id == endNode.id) {
-                    ////////////////////////////console.log(startNode, endNode)
+                    //////////////////////////////console.log(startNode, endNode)
                     retracePath(startNode, endNode, this.agent);
                     //hit the last point, exit's the loop.
 
                     return; //exits loop
                 } else if (timeout == 1) {
 
-                    ////////////////////////////console.log(startNode, endNode)
+                    //////////////////////////////console.log(startNode, endNode)
                     retracePath(startNode, currentNode, this.agent);
                     //hit the last point, exit's the loop.
 
@@ -7984,9 +7993,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         var reverseArray;
         while (currentNode != startNode) {
             path.add(currentNode);
-            ////////////////////////////console.log(currentNode)
+            //////////////////////////////console.log(currentNode)
             currentNode = currentNode.parent;
-            ////////////////////////////console.log(currentNode)
+            //////////////////////////////console.log(currentNode)
             // currentNode.inPath = true;
             // if (currentNode != startNode)
             //     currentNode.drawPath();
@@ -7997,19 +8006,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
         reverseArray.reverse();
         path = new Set(reverseArray);
 
-        //   ////////////////////////////////////////////console.log(path)
+        //   //////////////////////////////////////////////console.log(path)
 
         realPath = Array.from(path)
-        //   ////////////////////////////////////////////console.log(realPath)
+        //   //////////////////////////////////////////////console.log(realPath)
 
         if (realPath.length == 1) {
             // realPath[0].walkable = false
-            //////////////////////////////////////////console.log("hit")
+            ////////////////////////////////////////////console.log("hit")
             // wallSet.add(realPath[0])
-            //////////////////////////////////////////console.log(wallSet)
+            ////////////////////////////////////////////console.log(wallSet)
         }
 
-        //////////////////////////////////////console.log(realPath)
+        ////////////////////////////////////////console.log(realPath)
         if (realPath.length > 0) {
             realPath.unshift(agent.tile)
             agent.realPath = [...realPath]
@@ -8024,24 +8033,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // bottle.crew[bottle.selectedcrew].body.x =startPoint.x+4
             // bottle.crew[bottle.selectedcrew].body.y  = startPoint.y+4
             // startPoint = new Vec2(realPath[0].posx, realPath[0].posy);
-            ////////////////////////////////////////////console.log(startPoint)
+            //////////////////////////////////////////////console.log(startPoint)
             // bottle.crew[bottle.selectedcrew].moving = 1
         } else {
-            //   ////////////////////////////////////////console.log(endPoint)
+            //   //////////////////////////////////////////console.log(endPoint)
 
             //     if(bottle.crew[bottle.selectedcrew].moving == 1){
-            //         // ////////////////////////////////////////console.log(endPoint)
+            //         // //////////////////////////////////////////console.log(endPoint)
             //     // bottle.crew[bottle.selectedcrew].body.x =endPoint.x+96
             //     // bottle.crew[bottle.selectedcrew].body.y  = endPoint.y+284
             //     // bottle.crew[bottle.selectedcrew].moving = 0
-            //     // ////////////////////////////////////////console.log(endPoint)
+            //     // //////////////////////////////////////////console.log(endPoint)
             //         reset()
             //   }
         }
     }
     //list of neighbors
     function getNeighbors(node, agent, parent) {
-        // //////////////////////console.log(agent)
+        // ////////////////////////console.log(agent)
         var checkX;
         var checkY;
         var neighborList = [];
@@ -8083,7 +8092,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (checkX >= 0 && checkX <= sandmap.blocks.length && checkY >= 0 && checkY <= sandmap.blocks.length) { //127 mapsize
 
                     if (x == 0 || y == 0 || Math.random() < .525) {  // randomness leads to organic //.25
-                        //////////////////////////////console.log(sandmap)
+                        ////////////////////////////////console.log(sandmap)
                         if (checkX < sandmap.blocks.length) {
                             if (checkY < sandmap.blocks[0].length) {
                                 if ((sandmap.blocks[checkX][checkY].walkable !== false || agent.submerged == 1 || agent.mounted == 0) || sandmap.blocks[checkX][checkY].occupied == false) { //occupied? false?
@@ -8101,7 +8110,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         neighborList = tempList;
         neighborList.agent = agent
-        //////////////////////////////////////console.log(neighborList)
+        ////////////////////////////////////////console.log(neighborList)
         return (neighborList);
 
     }
@@ -8170,7 +8179,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.body = new UnitCircle(this.tile.x + (this.tile.width * .5), this.tile.y + (this.tile.height * .5), 5, this.faction.color)
             this.faction.buildings.push(this)
         }
-
         see() {
             for (let t = -this.sight; t <= this.sight; t++) {
                 for (let k = -this.sight; k <= this.sight; k++) {
@@ -8183,11 +8191,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             this.faction.fog[this.tile.t + t][this.tile.k + k].color = "transparent"
                                             this.faction.fog[this.tile.t + t][this.tile.k + k].timer = 100
                                             this.faction.blocks[this.tile.t + t][this.tile.k + k].markdraw = 1
-                                            if (!this.faction.seen.includes(sandmap.blocks[this.tile.t + t][this.tile.k + k])) {
+                                            if (!sandmap.blocks[this.tile.t + t][this.tile.k + k].factions.includes(sandmap.players.indexOf(this.faction))) {
+                                                sandmap.blocks[this.tile.t + t][this.tile.k + k].factions.push(sandmap.players.indexOf(this.faction))
                                                 this.faction.seen.push(sandmap.blocks[this.tile.t + t][this.tile.k + k])
-                                                if (sandmap.blocks[this.tile.t + t][this.tile.k + k].sourcerock >= 1) {
+                                                if (!sandmap.blocks[this.tile.t + t][this.tile.k + k].factionsrock.includes(sandmap.players.indexOf(this.faction)) && sandmap.blocks[this.tile.t + t][this.tile.k + k].sourcerock > 0) {
                                                     // this.faction.clickrate++
+                                                sandmap.blocks[this.tile.t + t][this.tile.k + k].factionsrock.push(sandmap.players.indexOf(this.faction))
                                                     this.faction.seenrocks.push(sandmap.blocks[this.tile.t + t][this.tile.k + k])
+                                                    //console.log(sandmap.blocks[this.tile.t + t][this.tile.k + k].factionsrock)
+                                                }else{
+                                                    sandmap.blocks[this.tile.t + t][this.tile.k + k].factionsrock.push(sandmap.players.indexOf(this.faction))
                                                 }
                                             }
                                         }
@@ -8916,7 +8929,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             let path = [...this.pather.search(sandmap, this.tile, this.faction.buildings[t].tile, {})]
                             sandmap.slimeflag = 0
                             sandmap.diagonal = true
-                            ////////////console.log(path)
+                            //////////////console.log(path)
                             if (path.length > 0) {
                                 sum += path.length
                             }
@@ -8939,7 +8952,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             let path = [...this.pather.search(sandmap, this.tile, this.faction.buildings[t].tile, {})]
                             sandmap.slimeflag = 0
                             sandmap.diagonal = true
-                            ////////////console.log(path)
+                            //////////////console.log(path)
                             if (path.length > 0) {
                                 this.active = 1
                                 this.tile.primed = 1
@@ -8973,7 +8986,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
 
             }
-            //////////////console.log(this)
+            ////////////////console.log(this)
             if (this.bulbplant == 1 || this.slime == 1) {
                 this.sight = 10
                 if (this.slime == 1) {
@@ -8993,71 +9006,75 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (this.barracks >= 1 || this.assembler >= 1 || this.bulbplant >= 1 || this.slime == 1) {
                 this.timer--
                 if (this.timer == 0) {
-                    if (this.seer == 1) {
-                        this.que = 0
-                        this.seer = 0
-                        this.finishSporeseer()
-                    } else if (this.vizier == 1) {
-                        this.que = 0
-                        this.vizier = 0
-                        this.finishVizier()
-                    } else if (this.knight == 1) {
-                        this.que = 0
-                        this.knight = 0
-                        this.finishMycoknight()
-                    } else if (this.buddy == 1) {
-                        this.que = 0
-                        this.buddy = 0
-                        this.finishFruitingbuddy()
-                    } else if (this.drone == 1) {
-                        this.que = 0
-                        this.drone = 0
-                        this.finishScout()
-                    } else if (this.infantry == 1) {
-                        this.infantry = 0
-                        this.que = 0
-                        this.finishInfantry()
-                    } else if (this.harvester == 1) {
-                        this.harvester = 0
-                        this.que = 0
-                        this.finishHarvester()
-                    } else if (this.sniper == 1) {
-                        this.sniper = 0
-                        this.que = 0
-                        this.finishSniper()
-                    } else if (this.soldier == 1) {
-                        this.soldier = 0
-                        this.que = 0
-                        this.finishHamartansoldier()
-                    } else if (this.scout == 1) {
-                        this.scout = 0
-                        this.que = 0
-                        this.finishHamartanscout()
-                    }
-                    if (this.worker == 1) {
-                        this.worker = 0
-                        this.que = 0
-                        this.finishHamartanworker()
-                    } else if (this.invader == 1) {
-                        this.invader = 0
-                        this.que = 0
-                        this.finishHamartaninvader()
-                    } else if (this.pollinator == 1) {
-                        this.pollinator = 0
-                        this.que = 0
-                        this.finishLibrilbianpollinator()
-                    } else if (this.podman == 1) {
-                        this.podman = 0
-                        this.que = 0
-                        this.finishLibrilbianpodman()
-                    } else if (this.goliophyte == 1) {
-                        this.goliophyte = 0
-                        this.que = 0
-                        this.finishLibrilbiangoliophyte()
-                    } else if (this.pufffellow == 1) {
-                        this.pufffellow = 0
-                        this.que = 0
-                        this.finishLibrilbianpufffellow()
+                    if (this.faction.units.length < 50) {
+                        if (this.seer == 1) {
+                            this.que = 0
+                            this.seer = 0
+                            this.finishSporeseer()
+                        } else if (this.vizier == 1) {
+                            this.que = 0
+                            this.vizier = 0
+                            this.finishVizier()
+                        } else if (this.knight == 1) {
+                            this.que = 0
+                            this.knight = 0
+                            this.finishMycoknight()
+                        } else if (this.buddy == 1) {
+                            this.que = 0
+                            this.buddy = 0
+                            this.finishFruitingbuddy()
+                        } else if (this.drone == 1) {
+                            this.que = 0
+                            this.drone = 0
+                            this.finishScout()
+                        } else if (this.infantry == 1) {
+                            this.infantry = 0
+                            this.que = 0
+                            this.finishInfantry()
+                        } else if (this.harvester == 1) {
+                            this.harvester = 0
+                            this.que = 0
+                            this.finishHarvester()
+                        } else if (this.sniper == 1) {
+                            this.sniper = 0
+                            this.que = 0
+                            this.finishSniper()
+                        } else if (this.soldier == 1) {
+                            this.soldier = 0
+                            this.que = 0
+                            this.finishHamartansoldier()
+                        } else if (this.scout == 1) {
+                            this.scout = 0
+                            this.que = 0
+                            this.finishHamartanscout()
+                        }
+                        if (this.worker == 1) {
+                            this.worker = 0
+                            this.que = 0
+                            this.finishHamartanworker()
+                        } else if (this.invader == 1) {
+                            this.invader = 0
+                            this.que = 0
+                            this.finishHamartaninvader()
+                        } else if (this.pollinator == 1) {
+                            this.pollinator = 0
+                            this.que = 0
+                            this.finishLibrilbianpollinator()
+                        } else if (this.podman == 1) {
+                            this.podman = 0
+                            this.que = 0
+                            this.finishLibrilbianpodman()
+                        } else if (this.goliophyte == 1) {
+                            this.goliophyte = 0
+                            this.que = 0
+                            this.finishLibrilbiangoliophyte()
+                        } else if (this.pufffellow == 1) {
+                            this.pufffellow = 0
+                            this.que = 0
+                            this.finishLibrilbianpufffellow()
+                        }
+                    } else {
+                        this.timer = 1
                     }
                 }
             }
@@ -9795,11 +9812,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
         }
         metamorph1() {
-            ////////////////////////console.log(this.que, 1)
+            //////////////////////////console.log(this.que, 1)
             if (this.que != 1) {
-                ////////////////////////console.log(this.hotrock, 2)
+                //////////////////////////console.log(this.hotrock, 2)
                 if (this.faction.hotrock >= 180) {
-                    ////////////////////////console.log(this.nymph, 3)
+                    //////////////////////////console.log(this.nymph, 3)
                     if (this.nymph == 1) {
                         this.faction.hotrock -= 180
                         this.morphing = 1
@@ -9809,7 +9826,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                 }
             }
-            ////////////////////////console.log(this.timer, 4)
+            //////////////////////////console.log(this.timer, 4)
         }
         metamorph2() {
             if (this.que != 1) {
@@ -10023,465 +10040,476 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         attack() {
             if (this.attacktarget.health <= 0 || (Math.abs((this.attacktarget.tile.y - this.tile.y)) + Math.abs((this.attacktarget.tile.x - this.tile.x))) > (this.attackrange * 21)) {
-                for (let t = -this.attackrange; t <= this.attackrange; t++) {
-                    for (let k = -this.attackrange; k <= this.attackrange; k++) {
-                        if (this.tile.t + t >= 0) {
-                            if (this.tile.k + k >= 0) {
-                                if (this.tile.t + t < 128) {
-                                    if (this.tile.k + k < 128) {
-                                        if (typeof (sandmap.blocks[this.tile.t + t] != undefined)) {
-                                            if (typeof (sandmap.blocks[this.tile.t + t][this.tile.k + k] != undefined)) {
+                // for (let t = -this.attackrange; t <= this.attackrange; t++) {
+                //     for (let k = -this.attackrange; k <= this.attackrange; k++) {
+                //         if (this.tile.t + t >= 0) {
+                //             if (this.tile.k + k >= 0) {
+                //                 if (this.tile.t + t < 128) {
+                //                     if (this.tile.k + k < 128) {
+                //                         if (typeof (sandmap.blocks[this.tile.t + t] != undefined)) {
+                //                             if (typeof (sandmap.blocks[this.tile.t + t][this.tile.k + k] != undefined)) {
 
 
 
-                                                for (let g = 0; g < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length; g++) {
-                                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
+                for (let g = 0; g < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length; g++) {
 
-                                                        if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
-                                                            if (this.nymph == 1) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    if (Math.random() < .5) {
-                                                                        itstheedgeofusfight.play()
-                                                                    } else {
-                                                                        seethemseetheme.play()
-                                                                    }
-                                                                }
-                                                            }
-                                                            if (this.imago == 1) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    if (Math.random() < .5) {
-                                                                        ahhbarber.play()
-                                                                    } else {
-                                                                        slamdownmustard.play()
-                                                                    }
-                                                                }
-                                                            }
-                                                            if (this.imago == 2) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    youhurtme.play()
-                                                                }
-                                                            }
-                                                            if (this.infantry == 2) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    if (Math.random() < .3) {
-                                                                        isnipedyouaweekago2.play()
-                                                                    } else if (Math.random() < .3) {
-                                                                        isnipedyouaweekago.play()
-                                                                    } else if (Math.random() < .3) {
-                                                                        theresone.play()
-                                                                    } else if (Math.random() < .3) {
-                                                                        bossaroundhere.play()
-                                                                    } else if (Math.random() < .3) {
-                                                                        bossaroundhere2.play()
-                                                                    } else {
-                                                                        adjustingforwindspeed.play()
-                                                                    }
-                                                                }
-                                                            }
-                                                            if (this.nymph == 2) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    if (Math.random() < .3) {
-                                                                        icannamethevillans.play()
-                                                                    } else if (Math.random() < .3) {
-                                                                        suresawwithvenom.play()
-                                                                    } else {
-                                                                        ohisthattheeyeofthesnake.play()
-                                                                    }
-                                                                }
-                                                            }
-                                                            if (this.hamartaninvader == 1) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    youhome.play()
-                                                                }
-                                                            }
-                                                            if (this.hamartansoldier == 1) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    if (Math.random() < .3) {
-                                                                        inthejetsarm.play()
-                                                                    } else if (Math.random() < .3) {
-                                                                        youareabuse.play()
-                                                                    } else if (Math.random() < .3) {
-                                                                        sorcery.play()
-                                                                    } else if (Math.random() < .3) {
-                                                                        arerats.play()
-                                                                    } else if (Math.random() < .3) {
-                                                                        enormoushead.play()
-                                                                    } else {
-                                                                        reallytacky.play()
-                                                                    }
-                                                                }
-                                                            }
-                                                            if (this.drone == 1) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    combatinit.play()
-                                                                }
-                                                            }
-                                                            if (this.infantry == 1) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    lightemup.play()
-                                                                }
-                                                            }
-                                                            if (this.harvester == 1) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    if (Math.random() < .3) {
-                                                                        myfuneral.play()
-                                                                    } else {
-                                                                        hopeyouknow.play()
-                                                                    }
-                                                                }
-                                                            }
-                                                            if (this.pufffellow == 1) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    pufffellowaudio.play()
-                                                                }
-                                                            }
-                                                            if (this.pollinator == 1) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    pollinatoraudio.play()
-                                                                }
-                                                            }
+                    let link = (new LineOP(this.body, sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].body)).hypotenuse()
+                    // if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
+                    if (link < (this.attackrange * 14)) {
 
-                                                            if (this.goliophyte == 1) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    golophyteaudio.play()
-                                                                }
-                                                            }
-
-
-                                                            if (this.fruiting == 1) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    buddyaudio.play()
-                                                                }
-                                                            }
-                                                            if (this.sporevizir == 1) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    vizieraudio.play()
-                                                                }
-                                                            }
-                                                            if (this.mycoknight == 1) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    mycoknightaudio.play()
-                                                                }
-                                                            }
-                                                        }
-
-                                                        if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].submerged != 1) {
-                                                            this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
-                                                            this.attacktarget.faction.blocks[this.tile.t][this.tile.k].markdraw = 1
-                                                            if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].isAI == 1) {
-                                                                sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].pathTo(this.tile)
-                                                                sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].attackedAt = this.tile
-
-                                                                if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending < 0) {
-                                                                    sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending = 1
-                                                                } else {
-                                                                    sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending += sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length
-                                                                }
-
-
-
-                                                            }
-                                                            break
-                                                        } else {
-                                                            let wet = 0
-                                                            for (let n = 0; n < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units.length; n++) {
-                                                                let ct = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile.t
-                                                                let ck = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile.k
-                                                                let xt = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].tile.t
-                                                                let xk = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].tile.k
-                                                                let line = new Line(ct, ck, xt, xk)
-                                                                if (line.hypotenuse() <= sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].sight) {
-                                                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].drone == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].imago == 2 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].hamartanscout == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].pufffellow == 1) {
-                                                                        wet = 1
-                                                                    }
-                                                                }
-                                                            }
-
-                                                            if (wet == 1) {
-                                                                this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
-
-                                                                this.attacktarget.faction.blocks[this.tile.t][this.tile.k].markdraw = 1
-                                                                // ////////////////////console.log(this.attacktarget.faction.blocks[this.tile.t][this.tile.k])
-                                                                if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].isAI == 1) {
-                                                                    sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].pathTo(this.tile)
-                                                                    sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].attackedAt = this.tile
-
-                                                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending < 0) {
-                                                                        sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending = 1
-                                                                    } else {
-                                                                        sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending += sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length
-                                                                    }
-
-
-
-                                                                }
-                                                                break
-                                                            }
-                                                        }
-                                                    }
-                                                }
-
-                                                //snadwich
-                                                //moved up?
-                                                for (let g = 0; g < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings.length; g++) {
-                                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
-                                                        this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings[g]
-                                                        this.attacktarget.faction.blocks[this.tile.t][this.tile.k].markdraw = 1
-                                                        this.attacktarget.isABuilding = 1
-
-                                                        if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].isAI == 1) {
-                                                            sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].attackedAt = this.tile
-
-                                                            if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending < 0) {
-                                                                sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending = 1
-                                                            } else {
-                                                                sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending += sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length
-                                                            }
-
-                                                        }
-                                                        break
-                                                    }
-                                                }
-
-
-                                                for (let g = 0; g < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length; g++) {
-                                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
-
-                                                        if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
-                                                            if (this.nymph == 1) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    if (Math.random() < .5) {
-                                                                        itstheedgeofusfight.play()
-                                                                    } else {
-                                                                        seethemseetheme.play()
-                                                                    }
-                                                                }
-                                                            }
-                                                            if (this.imago == 1) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    if (Math.random() < .5) {
-                                                                        ahhbarber.play()
-                                                                    } else {
-                                                                        slamdownmustard.play()
-                                                                    }
-                                                                }
-                                                            }
-                                                            if (this.imago == 2) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    youhurtme.play()
-                                                                }
-                                                            }
-                                                            if (this.infantry == 2) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    if (Math.random() < .3) {
-                                                                        isnipedyouaweekago2.play()
-                                                                    } else if (Math.random() < .3) {
-                                                                        isnipedyouaweekago.play()
-                                                                    } else if (Math.random() < .3) {
-                                                                        theresone.play()
-                                                                    } else if (Math.random() < .3) {
-                                                                        bossaroundhere.play()
-                                                                    } else if (Math.random() < .3) {
-                                                                        bossaroundhere2.play()
-                                                                    } else {
-                                                                        adjustingforwindspeed.play()
-                                                                    }
-                                                                }
-                                                            }
-                                                            if (this.nymph == 2) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    if (Math.random() < .3) {
-                                                                        icannamethevillans.play()
-                                                                    } else if (Math.random() < .3) {
-                                                                        suresawwithvenom.play()
-                                                                    } else {
-                                                                        ohisthattheeyeofthesnake.play()
-                                                                    }
-                                                                }
-                                                            }
-                                                            if (this.hamartaninvader == 1) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    youhome.play()
-                                                                }
-                                                            }
-                                                            if (this.hamartansoldier == 1) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    if (Math.random() < .3) {
-                                                                        inthejetsarm.play()
-                                                                    } else if (Math.random() < .3) {
-                                                                        youareabuse.play()
-                                                                    } else if (Math.random() < .3) {
-                                                                        sorcery.play()
-                                                                    } else if (Math.random() < .3) {
-                                                                        arerats.play()
-                                                                    } else if (Math.random() < .3) {
-                                                                        enormoushead.play()
-                                                                    } else {
-                                                                        reallytacky.play()
-                                                                    }
-                                                                }
-                                                            }
-                                                            if (this.drone == 1) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    combatinit.play()
-                                                                }
-                                                            }
-                                                            if (this.podman == 1) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    if (Math.random() < .3) {
-                                                                        seeyesineed.play()
-                                                                    } else if (Math.random() < .3) {
-                                                                        bombbuoy.play()
-                                                                    } else {
-                                                                        notinhere.play()
-                                                                    }
-                                                                }
-                                                            }
-                                                            if (this.infantry == 1) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    lightemup.play()
-                                                                }
-                                                            }
-                                                            if (this.harvester == 1) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    if (Math.random() < .3) {
-                                                                        myfuneral.play()
-                                                                    } else {
-                                                                        hopeyouknow.play()
-                                                                    }
-                                                                }
-                                                            }
-
-                                                            if (this.pufffellow == 1) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    pufffellowaudio.play()
-                                                                }
-                                                            }
-                                                            if (this.pollinator == 1) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    pollinatoraudio.play()
-                                                                }
-                                                            }
-                                                            if (this.goliophyte == 1) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    golophyteaudio.play()
-                                                                }
-                                                            }
-
-                                                            if (this.fruiting == 1) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    buddyaudio.play()
-                                                                }
-                                                            }
-                                                            if (this.sporevizir == 1) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    vizieraudio.play()
-                                                                }
-                                                            }
-                                                            if (this.mycoknight == 1) {
-                                                                if (Math.random() < (soundspamdrop * engageconstant)) {
-                                                                    soundCancel()
-                                                                    mycoknightaudio.play()
-                                                                }
-                                                            }
-                                                        }
-
-                                                        if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].submerged != 1) {
-                                                            this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
-                                                            this.attacktarget.faction.blocks[this.tile.t][this.tile.k].markdraw = 1
-                                                            if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].isAI == 1) {
-                                                                sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].pathTo(this.tile)
-                                                                sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].attackedAt = this.tile
-
-                                                                if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending < 0) {
-                                                                    sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending = 1
-                                                                } else {
-                                                                    sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending += sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length
-                                                                }
-
-
-
-                                                            }
-                                                            break
-                                                        } else {
-                                                            let wet = 0
-                                                            for (let n = 0; n < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units.length; n++) {
-                                                                let ct = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile.t
-                                                                let ck = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile.k
-                                                                let xt = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].tile.t
-                                                                let xk = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].tile.k
-                                                                let line = new Line(ct, ck, xt, xk)
-                                                                if (line.hypotenuse() <= sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].sight) {
-                                                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].drone == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].imago == 2 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].hamartanscout == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].pufffellow == 1) {
-                                                                        wet = 1
-                                                                    }
-                                                                }
-                                                            }
-
-                                                            if (wet == 1) {
-                                                                this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
-
-                                                                this.attacktarget.faction.blocks[this.tile.t][this.tile.k].markdraw = 1
-                                                                // ////////////////////console.log(this.attacktarget.faction.blocks[this.tile.t][this.tile.k])
-                                                                if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].isAI == 1) {
-                                                                    sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].pathTo(this.tile)
-                                                                    sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].attackedAt = this.tile
-
-                                                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending < 0) {
-                                                                        sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending = 1
-                                                                    } else {
-                                                                        sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending += sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length
-                                                                    }
-
-
-
-                                                                }
-                                                                break
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                                //building was here, should be first?
-                                            }
-                                        }
+                        if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
+                            if (this.nymph == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    if (Math.random() < .5) {
+                                        itstheedgeofusfight.play()
+                                    } else {
+                                        seethemseetheme.play()
                                     }
                                 }
+                            }
+                            if (this.imago == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    if (Math.random() < .5) {
+                                        ahhbarber.play()
+                                    } else {
+                                        slamdownmustard.play()
+                                    }
+                                }
+                            }
+                            if (this.imago == 2) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    youhurtme.play()
+                                }
+                            }
+                            if (this.infantry == 2) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    if (Math.random() < .3) {
+                                        isnipedyouaweekago2.play()
+                                    } else if (Math.random() < .3) {
+                                        isnipedyouaweekago.play()
+                                    } else if (Math.random() < .3) {
+                                        theresone.play()
+                                    } else if (Math.random() < .3) {
+                                        bossaroundhere.play()
+                                    } else if (Math.random() < .3) {
+                                        bossaroundhere2.play()
+                                    } else {
+                                        adjustingforwindspeed.play()
+                                    }
+                                }
+                            }
+                            if (this.nymph == 2) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    if (Math.random() < .3) {
+                                        icannamethevillans.play()
+                                    } else if (Math.random() < .3) {
+                                        suresawwithvenom.play()
+                                    } else {
+                                        ohisthattheeyeofthesnake.play()
+                                    }
+                                }
+                            }
+                            if (this.hamartaninvader == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    youhome.play()
+                                }
+                            }
+                            if (this.hamartansoldier == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    if (Math.random() < .3) {
+                                        inthejetsarm.play()
+                                    } else if (Math.random() < .3) {
+                                        youareabuse.play()
+                                    } else if (Math.random() < .3) {
+                                        sorcery.play()
+                                    } else if (Math.random() < .3) {
+                                        arerats.play()
+                                    } else if (Math.random() < .3) {
+                                        enormoushead.play()
+                                    } else {
+                                        reallytacky.play()
+                                    }
+                                }
+                            }
+                            if (this.drone == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    combatinit.play()
+                                }
+                            }
+                            if (this.infantry == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    lightemup.play()
+                                }
+                            }
+                            if (this.harvester == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    if (Math.random() < .3) {
+                                        myfuneral.play()
+                                    } else {
+                                        hopeyouknow.play()
+                                    }
+                                }
+                            }
+                            if (this.pufffellow == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    pufffellowaudio.play()
+                                }
+                            }
+                            if (this.pollinator == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    pollinatoraudio.play()
+                                }
+                            }
+
+                            if (this.goliophyte == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    golophyteaudio.play()
+                                }
+                            }
+
+
+                            if (this.fruiting == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    buddyaudio.play()
+                                }
+                            }
+                            if (this.sporevizir == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    vizieraudio.play()
+                                }
+                            }
+                            if (this.mycoknight == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    mycoknightaudio.play()
+                                }
+                            }
+                        }
+
+                        if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].submerged != 1) {
+                            this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
+                            this.attacktarget.faction.blocks[this.tile.t][this.tile.k].markdraw = 1
+                            if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].isAI == 1) {
+                                sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].pathTo(this.tile)
+                                sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].attackedAt = this.tile
+
+                                if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending < 0) {
+                                    sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending = 1
+                                } else {
+                                    sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending += sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length
+                                }
+
+
+
+                            }
+                            break
+                        } else {
+                            let wet = 0
+                            for (let n = 0; n < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units.length; n++) {
+                                let ct = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile.t
+                                let ck = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile.k
+                                let xt = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].tile.t
+                                let xk = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].tile.k
+                                let line = new Line(ct, ck, xt, xk)
+                                if (line.hypotenuse() <= sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].sight) {
+                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].drone == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].imago == 2 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].hamartanscout == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].pufffellow == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].sporevizir == 1) {
+                                        wet = 1
+                                    }
+                                }
+                            }
+
+                            if (wet == 1) {
+                                this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
+
+                                this.attacktarget.faction.blocks[this.tile.t][this.tile.k].markdraw = 1
+                                // //////////////////////console.log(this.attacktarget.faction.blocks[this.tile.t][this.tile.k])
+                                if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].isAI == 1) {
+                                    sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].pathTo(this.tile)
+                                    sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].attackedAt = this.tile
+
+                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending < 0) {
+                                        sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending = 1
+                                    } else {
+                                        sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending += sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length
+                                    }
+
+
+
+                                }
+                                break
                             }
                         }
                     }
                 }
+
+                //snadwich
+                //moved up?
+                for (let g = 0; g < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings.length; g++) {
+                    // if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
+
+                    let link = (new LineOP(this.tile, sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings[g].tile)).hypotenuse()
+                    // if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
+                    if (link < (this.attackrange * 14)) {
+
+
+                        this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings[g]
+                        this.attacktarget.faction.blocks[this.tile.t][this.tile.k].markdraw = 1
+                        this.attacktarget.isABuilding = 1
+
+                        if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].isAI == 1) {
+                            sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].attackedAt = this.tile
+
+                            if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending < 0) {
+                                sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending = 1
+                            } else {
+                                sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending += sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length
+                            }
+
+                        }
+                        break
+                    }
+                }
+
+
+                for (let g = 0; g < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length; g++) {
+                    let link = (new LineOP(this.body, sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].body)).hypotenuse()
+                    // if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
+                    if (link < (this.attackrange * 14)) {
+
+                        if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
+                            if (this.nymph == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    if (Math.random() < .5) {
+                                        itstheedgeofusfight.play()
+                                    } else {
+                                        seethemseetheme.play()
+                                    }
+                                }
+                            }
+                            if (this.imago == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    if (Math.random() < .5) {
+                                        ahhbarber.play()
+                                    } else {
+                                        slamdownmustard.play()
+                                    }
+                                }
+                            }
+                            if (this.imago == 2) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    youhurtme.play()
+                                }
+                            }
+                            if (this.infantry == 2) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    if (Math.random() < .3) {
+                                        isnipedyouaweekago2.play()
+                                    } else if (Math.random() < .3) {
+                                        isnipedyouaweekago.play()
+                                    } else if (Math.random() < .3) {
+                                        theresone.play()
+                                    } else if (Math.random() < .3) {
+                                        bossaroundhere.play()
+                                    } else if (Math.random() < .3) {
+                                        bossaroundhere2.play()
+                                    } else {
+                                        adjustingforwindspeed.play()
+                                    }
+                                }
+                            }
+                            if (this.nymph == 2) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    if (Math.random() < .3) {
+                                        icannamethevillans.play()
+                                    } else if (Math.random() < .3) {
+                                        suresawwithvenom.play()
+                                    } else {
+                                        ohisthattheeyeofthesnake.play()
+                                    }
+                                }
+                            }
+                            if (this.hamartaninvader == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    youhome.play()
+                                }
+                            }
+                            if (this.hamartansoldier == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    if (Math.random() < .3) {
+                                        inthejetsarm.play()
+                                    } else if (Math.random() < .3) {
+                                        youareabuse.play()
+                                    } else if (Math.random() < .3) {
+                                        sorcery.play()
+                                    } else if (Math.random() < .3) {
+                                        arerats.play()
+                                    } else if (Math.random() < .3) {
+                                        enormoushead.play()
+                                    } else {
+                                        reallytacky.play()
+                                    }
+                                }
+                            }
+                            if (this.drone == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    combatinit.play()
+                                }
+                            }
+                            if (this.podman == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    if (Math.random() < .3) {
+                                        seeyesineed.play()
+                                    } else if (Math.random() < .3) {
+                                        bombbuoy.play()
+                                    } else {
+                                        notinhere.play()
+                                    }
+                                }
+                            }
+                            if (this.infantry == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    lightemup.play()
+                                }
+                            }
+                            if (this.harvester == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    if (Math.random() < .3) {
+                                        myfuneral.play()
+                                    } else {
+                                        hopeyouknow.play()
+                                    }
+                                }
+                            }
+
+                            if (this.pufffellow == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    pufffellowaudio.play()
+                                }
+                            }
+                            if (this.pollinator == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    pollinatoraudio.play()
+                                }
+                            }
+                            if (this.goliophyte == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    golophyteaudio.play()
+                                }
+                            }
+
+                            if (this.fruiting == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    buddyaudio.play()
+                                }
+                            }
+                            if (this.sporevizir == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    vizieraudio.play()
+                                }
+                            }
+                            if (this.mycoknight == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    mycoknightaudio.play()
+                                }
+                            }
+                        }
+
+                        if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].submerged != 1) {
+                            this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
+                            this.attacktarget.faction.blocks[this.tile.t][this.tile.k].markdraw = 1
+                            if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].isAI == 1) {
+                                sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].pathTo(this.tile)
+                                sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].attackedAt = this.tile
+
+                                if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending < 0) {
+                                    sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending = 1
+                                } else {
+                                    sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending += sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length
+                                }
+
+
+
+                            }
+                            break
+                        } else {
+                            let wet = 0
+                            for (let n = 0; n < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units.length; n++) {
+                                let ct = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile.t
+                                let ck = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile.k
+                                let xt = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].tile.t
+                                let xk = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].tile.k
+                                let line = new Line(ct, ck, xt, xk)
+                                if (line.hypotenuse() <= sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].sight) {
+                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].drone == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].imago == 2 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].hamartanscout == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].pufffellow == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].sporevizir == 1) {
+                                        wet = 1
+                                    }
+                                }
+                            }
+
+                            if (wet == 1) {
+                                this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
+
+                                this.attacktarget.faction.blocks[this.tile.t][this.tile.k].markdraw = 1
+                                // //////////////////////console.log(this.attacktarget.faction.blocks[this.tile.t][this.tile.k])
+                                if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].isAI == 1) {
+                                    sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].pathTo(this.tile)
+                                    sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].attackedAt = this.tile
+
+                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending < 0) {
+                                        sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending = 1
+                                    } else {
+                                        sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].defending += sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length
+                                    }
+
+
+
+                                }
+                                break
+                            }
+                        }
+                    }
+                }
+                //building was here, should be first?
+                //                             }
+                //                         }
+                //                     }
+                //                 }
+                //             }
+                //         }
+                //     }
+                // }
             } else {
             }
         }
@@ -10506,44 +10534,63 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         attackmove() {
             if (this.attacktargetmove.health <= 0 || (Math.abs((this.attacktargetmove.tile.y - this.tile.y)) + Math.abs((this.attacktargetmove.tile.x - this.tile.x))) > (this.sight * 21)) {
-                for (let t = -this.sight; t <= this.sight; t++) {
-                    for (let k = -this.sight; k <= this.sight; k++) {
-                        if (this.tile.t + t >= 0) {
-                            if (this.tile.k + k >= 0) {
-                                if (this.tile.t + t < 128) {
-                                    if (this.tile.k + k < 128) {
-                                        if (typeof (sandmap.blocks[this.tile.t + t] != undefined)) {
-                                            if (typeof (sandmap.blocks[this.tile.t + t][this.tile.k + k] != undefined)) {
-                                                for (let g = 0; g < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length; g++) {
-                                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
-                                                        this.attacktargetmove = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
-                                                        this.pathTo(this.attacktargetmove.tile)
-                                                        if (this.tile.walkable == false || this.tile.ice == 1 || this.tile.builtOn == 1) {
-                                                        } else {
-                                                            this.submerged = 0
-                                                        }
-                                                        break
-                                                    }
-                                                }
-                                                for (let g = 0; g < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings.length; g++) {
-                                                    if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
-                                                        this.attacktargetmove = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings[g]
-                                                        this.pathTo(this.attacktargetmove.tile)
-                                                        if (this.tile.walkable == false || this.tile.ice == 1 || this.tile.builtOn == 1) {
-                                                        } else {
-                                                            this.submerged = 0
-                                                        }
-                                                        break
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
+                // for (let t = -this.sight; t <= this.sight; t++) {
+                //     for (let k = -this.sight; k <= this.sight; k++) {
+                //         if (this.tile.t + t >= 0) {
+                //             if (this.tile.k + k >= 0) {
+                //                 if (this.tile.t + t < 128) {
+                //                     if (this.tile.k + k < 128) {
+                //                         if (typeof (sandmap.blocks[this.tile.t + t] != undefined)) {
+                //                             if (typeof (sandmap.blocks[this.tile.t + t][this.tile.k + k] != undefined)) {
+                for (let g = 0; g < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length; g++) {
+                    let link = new LineOP(this.body, sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].body)
+                    // if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
+                    if (link.hypotenuse() <= (this.sight * 17)) { //should probably be 14
+                        this.attacktargetmove = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
+                        this.pathTo(this.attacktargetmove.tile)
+                        if (this.tile.walkable == false || this.tile.ice == 1 || this.tile.builtOn == 1) {
+                        } else {
+                            this.submerged = 0
                         }
+                        break
                     }
                 }
+                for (let g = 0; g < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings.length; g++) {
+                    let link = new LineOP(this.tile, sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings[g].tile)
+
+                    // if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
+                    if (link.hypotenuse() <= (this.sight * 17)) {
+                        this.attacktargetmove = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].buildings[g]
+                        this.pathTo(this.attacktargetmove.tile)
+                        if (this.tile.walkable == false || this.tile.ice == 1 || this.tile.builtOn == 1) {
+                        } else {
+                            this.submerged = 0
+                        }
+                        break
+                    }
+                }
+                for (let g = 0; g < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length; g++) {
+                    let link = new LineOP(this.body, sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].body)
+                    // if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
+                    if (link.hypotenuse() <= (this.sight * 17)) { //should probably be 14
+                        this.attacktargetmove = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
+                        this.pathTo(this.attacktargetmove.tile)
+                        if (this.tile.walkable == false || this.tile.ice == 1 || this.tile.builtOn == 1) {
+                        } else {
+                            this.submerged = 0
+                        }
+                        break
+                    }
+                }
+                //                             }
+                //                         }
+                //                     }
+                //                 }
+                //             }
+                //         }
+                //     }
+                // }
+
             } else {
                 if (Math.abs(this.attacktargetmove.tile.x - this.tile.x) + Math.abs((this.attacktargetmove.tile.y - this.tile.y)) > (this.sight * 21)) {
                     this.attacktargetmove = {}
@@ -10557,8 +10604,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 return
             }
             if ((point.walkable == true || this.submerged == 1 || (this.mounted == 0 && point.occupied == false)) && point != this.tile) {
+                if(point!=this.realPath[this.realPath.length-1]){
+                    let vec = new Vector(this.body, this.body.x-(this.tile.x+5), this.body.y-(this.tile.y+5))
+                    let spot = new Point(point.x+5, point.y+5)
+                    if(!vec.isToward(spot)){
+                        this.movespeedcount = 0
+                    }
+                }
                 // if(this.submerged == 1){
-                //     //////////////////console.log(point, this.tile)
+                //     ////////////////////console.log(point, this.tile)
                 // }
                 this.stepout = 1
                 if (this.submerged == 1 || this.mounted == 0) {
@@ -10575,7 +10629,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.stacksnap++
                 this.realPath = [...this.pather.search(sandmap, this.tile, point, {})]
                 this.moved = 1
-                //////////////////console.log(this.realPath)
+                ////////////////////console.log(this.realPath)
                 if (this.obvious == this.realPath[0]) {
                     this.index = 0
                 } else {
@@ -10618,7 +10672,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     let max = 9999999999
                     for (let t = 0; t < this.tempcheck.length; t++) {
                         let link = (new LineOP(this.tile, this.tempcheck[t])).hypotenuse()
-                        // //////////////////////////console.log(link)
+                        // ////////////////////////////console.log(link)
                         if (link < max) {
                             max = link
                             index = t
@@ -10636,17 +10690,21 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         if (this.tile.k + k >= 0) {
                             if (this.tile.t + t < 128) {
                                 if (this.tile.k + k < 128) {
-
                                     if (typeof (sandmap.blocks[this.tile.t + t] != undefined)) {
                                         if (typeof (sandmap.blocks[this.tile.t + t][this.tile.k + k] != undefined)) {
                                             this.faction.fog[this.tile.t + t][this.tile.k + k].color = "transparent"
                                             this.faction.fog[this.tile.t + t][this.tile.k + k].timer = 100
                                             this.faction.blocks[this.tile.t + t][this.tile.k + k].markdraw = 1
-                                            if (!this.faction.seen.includes(sandmap.blocks[this.tile.t + t][this.tile.k + k])) {
+                                            if (!sandmap.blocks[this.tile.t + t][this.tile.k + k].factions.includes(sandmap.players.indexOf(this.faction))) {
+                                                sandmap.blocks[this.tile.t + t][this.tile.k + k].factions.push(sandmap.players.indexOf(this.faction))
                                                 this.faction.seen.push(sandmap.blocks[this.tile.t + t][this.tile.k + k])
-                                                if (sandmap.blocks[this.tile.t + t][this.tile.k + k].sourcerock >= 1) {
+                                                if (!sandmap.blocks[this.tile.t + t][this.tile.k + k].factionsrock.includes(sandmap.players.indexOf(this.faction)) && sandmap.blocks[this.tile.t + t][this.tile.k + k].sourcerock > 0) {
                                                     // this.faction.clickrate++
+                                                sandmap.blocks[this.tile.t + t][this.tile.k + k].factionsrock.push(sandmap.players.indexOf(this.faction))
                                                     this.faction.seenrocks.push(sandmap.blocks[this.tile.t + t][this.tile.k + k])
+                                                    //console.log(sandmap.blocks[this.tile.t + t][this.tile.k + k].factionsrock)
+                                                }else{
+                                                    sandmap.blocks[this.tile.t + t][this.tile.k + k].factionsrock.push(sandmap.players.indexOf(this.faction))
                                                 }
                                             }
                                         }
@@ -10812,7 +10870,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             } else {
                 this.decayingInTheWind = 0
             }
-            ////////////////////////////////console.log( (this.decayingInTheWind*sandmap.windspeed))
+            //////////////////////////////////console.log( (this.decayingInTheWind*sandmap.windspeed))
             if (this.faction.type == 0) {
                 this.health -= ((this.decayRate * this.decayingInTheWind * sandmap.windspeed))
             }
@@ -10955,10 +11013,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (this.imago == 1 || this.imago == 2 || this.nymph > 0) {
                 this.timer--
                 if (this.timer == 0) {
+
                     if (this.spawn == 1) {
-                        this.que = 0
-                        this.spawn = 0
-                        this.spawnNymph()
+                        if (this.faction.units.length < 50) {
+                            this.que = 0
+                            this.spawn = 0
+                            this.spawnNymph()
+                        } else {
+                            this
+                        }
                     }
                     if (this.morphing == 1) {
                         this.morphing = 0
@@ -11040,7 +11103,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     } else {
                         let wet = 0
                         for (let k = 0; k < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length; k++) {
-                            if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].drone == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].imago == 2 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].hamartanscout == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].pufffellow == 1) {
+                            if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].drone == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].imago == 2 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].hamartanscout == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].pufffellow == 1 || sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].sporevizir == 1) {
                                 let ct = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].tile.t
                                 let ck = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[k].tile.k
                                 let xt = this.tile.t
@@ -11109,7 +11172,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.shots[t].draw()
                 if (this.shots[t].stage >= this.projectilespeed) {
                     this.shots[t].refhealth.health -= Math.max((this.damage * 3) - this.shots[t].attacktarget.defense, 0) //5?
-                    //////////////////////////console.log(this.shots[t].refhealth)
+                    ////////////////////////////console.log(this.shots[t].refhealth)
                     this.shots[t].marked = 1
 
                     if (this.shots[t].refhealth.submerged == 1) {
@@ -11268,9 +11331,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             //     sandmap.turn = 0
             // }
             // if (keysPressed['q']) {
-            //     ////////////////////////console.log(sandmap)
+            //     //////////////////////////console.log(sandmap)
             // }
-            //////////////////////////////////console.log(selectrect)
+            ////////////////////////////////////console.log(selectrect)
 
             if (sandmap.players[0].units.length == 0 || sandmap.players[1].units.length == 0) {
                 endbutton.draw()
