@@ -6129,7 +6129,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                         if (this.buildings[t].assembler == 1) {
                             if (this.seen.length <= this.units.length) {
-                                if (this.hotrock > 235 && Math.random() < .75) {
+                                if (this.hotrock > 200 && Math.random() < .75) { //235
                                     this.buildings[t].makeHamartansoldier()
                                 }
                             }
@@ -6140,9 +6140,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     this.buildings[t].makeHamartanworker()
                                 }
                             }
-                            if (Math.random() < (.13 + (this.units.length * .0015)) + (this.hotrock * .0001)) {  // - unitslength not + //too frequent too early //45 not 15
+                            if (Math.random() < (.13 + (this.units.length * .0015)) + (this.hotrock * .0003)) {  // - unitslength not + //too frequent too early //45 not 15 //0001
                                 if (this.hotrock > 340) {
-                                    this.buildings[t].makeHamartaninvader()
+                                    if(this.buildings[t].que == 1){
+                                        if(this.hotrock > 700){
+                                            this.racks = 0
+                                        }
+                                    }else{
+                                        this.buildings[t].makeHamartaninvader()
+                                    }
                                 }
                             }
                             if (Math.random() < 1 / (this.buildings.length * 2)) {
@@ -6169,7 +6175,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                         for (let t = 0; t < this.buildings.length; t++) {
                             if (this.buildings[t].assembler == 1) {
-                                if (this.hotrock > 235 && Math.random() < .75) {
+                                if (this.hotrock > 200 && Math.random() < .75) { //235 
                                     this.buildings[t].makeHamartansoldier()
                                 }
                             }
@@ -6204,9 +6210,31 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
 
 
+                if(this.units.length == 3){
+                    let tpos = 0
+                    let kpos = 0
+                    
+                for (let t = 0; t < this.units.length; t++) {
+                    tpos+=this.units[t].tile.t
+                    kpos+=this.units[t].tile.k
+                }
+                tpos = Math.round(tpos/3)
+                kpos = Math.round(kpos/3)
+
+                let tile = sandmap.blocks[tpos][kpos]
+                let count = 0
+                for (let t = 0; t < this.units.length; t++) {
+                    let link = new LineOP(this.units[t].tile, tile)
+                    if ((this.units[t].suffocating > 0 && (this.units[t].health/this.units[t].maxhealth) < .97) && link.hypotenuse()<=119){
+                        count++
+                    }
+                }
+                if(count == 3){
+                    this.buildWall(tile,  1)
+                }else if (count==0) {
                 for (let t = 0; t < this.units.length; t++) {
                     if (this.units[t].realPath.length - 1 == this.units[t].index) {
-                        if (this.units[t].suffocating > 0 || (this.racks !== 1 && this.hotrock > 400)) {
+                        if ((this.units[t].suffocating > 0 && (this.units[t].health/this.units[t].maxhealth) < .9) || (this.racks !== 1 && this.hotrock > 400)) {
                             if (Math.random() < .5) {
                                 if (Math.random() < .5) {
                                     this.buildWall(sandmap.blocks[Math.max(this.units[t].tile.t - 1, 0)][this.units[t].tile.k])
@@ -6224,6 +6252,30 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         }
                     }
                 }
+                }
+
+                }else{
+                for (let t = 0; t < this.units.length; t++) {
+                    if (this.units[t].realPath.length - 1 == this.units[t].index) {
+                        if ((this.units[t].suffocating > 0 && (this.units[t].health/this.units[t].maxhealth) < .9) || (this.racks !== 1 && this.hotrock > 400)) {
+                            if (Math.random() < .5) {
+                                if (Math.random() < .5) {
+                                    this.buildWall(sandmap.blocks[Math.max(this.units[t].tile.t - 1, 0)][this.units[t].tile.k])
+                                } else {
+                                    this.buildWall(sandmap.blocks[Math.min(this.units[t].tile.t + 1, 127)][this.units[t].tile.k])
+                                }
+                            } else {
+                                if (Math.random() < .5) {
+                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][Math.min(this.units[t].tile.k + 1, 127)])
+                                } else {
+                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][Math.max(this.units[t].tile.k - 1, 0)])
+                                }
+                            }
+                            break
+                        }
+                    }
+                }
+                }
 
 
                 let index
@@ -6236,9 +6288,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if(Math.random()<.3){
                         for (let t = 0; t < this.units.length; t++) {
                             if (this.units[t].hamartanscout == 1) {
-                                if (this.units.length >= this.seenrocks.length+5 && (this.units[t].health / this.units[t].maxhealth) > .3) { //seen
+                                if (this.units[t].realPath.length - 1 == this.units[t].index) {
+                                if (this.units.length >= this.seenrocks.length+0 && (this.units[t].health / this.units[t].maxhealth) > .3) { //seen //5
                                     let block = sandmap.gridPoints[Math.floor(Math.random() * sandmap.gridPoints.length)]
                                     this.units[t].pathTo(block)
+                                }
                                 }
                             }
                         }
@@ -6585,6 +6639,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     }
                                 }
                             }
+                            if (this.units[t].infantry == 2) {
+                                if (Math.random() < 7 / this.defenseforce) { //2
+                                    if (this.units[t].index == this.units[t].realPath.length - 1) {
+                                        this.units[t].pathTo(this.attackedAt)
+                                    }
+                                }
+                            }
                         }
                     } else {
                         for (let t = 0; t < this.units.length; t++) {
@@ -6760,23 +6821,25 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         }
                     }
 
-                    if (Math.random() < .01) {
+                    // if (Math.random() < .01) {
                         for (let t = 0; t < this.units.length; t++) {
                             if (this.units[t].infantry == 1) {
                                 this.units[t].attackmove()
                             }
                             if (this.units[t].drone == 1) {
-                                if (Math.random() < .03) {
+                                if (typeof this.units[t].realPath[this.units[t].index + 1]  == "undefined") {
+                                if (Math.random() <(.0005*this.clickrate) || this.seenrocks.length <= this.units.length) { // 03?
                                     // let block = sandmap.gridPoints[Math.floor(Math.random()*sandmap.gridPoints.length)]
                                     // this.units[t].pathTo(block)
                                     let block = sandmap.gridPoints[Math.floor(Math.random() * sandmap.gridPoints.length)]
                                     this.units[t].pathTo(block)
                                 }
                             }
+                            }
                         }
-                    }
+                    // }
 
-                    if (Math.random() < (.3 / this.units.length)) {
+                    if (Math.random() < (3 / this.units.length)) {  //.3
                         for (let t = 0; t < this.buildings.length; t++) {
                             if (this.buildings[t].barracks == 1) {
                                 if (Math.random() < .1 - (this.units.length * .005)) {
@@ -6796,12 +6859,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         }
                         for (let t = 0; t < this.buildings.length; t++) {
                             if (this.buildings[t].barracks == 2) {
-                                if (Math.random() < .1 - (this.units.length * .008)) {
+                                if (Math.random() < (.005*this.clickrate) - (this.units.length * .008)) { //.1
                                     if (this.hotrock > 70) {
                                         this.buildings[t].makeScout()
                                     }
                                 }
-                                if (Math.random() < (.1 + (this.units.length * .003)) + (this.hotrock * .0001)) { //- to +
+                                if (Math.random() < (.2 + (this.units.length * .003)) + (this.hotrock * .0001)) { //- to + //.1
                                     if (this.hotrock > 170) { //200
                                         this.buildings[t].makeHarvester()
                                     }
@@ -6815,7 +6878,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     } else {
                         for (let t = 0; t < this.buildings.length; t++) {
                             if (this.buildings[t].barracks == 1) {
-                                if (Math.random() < .005) {
+                                if (Math.random() < .15) { //005
                                     if (this.hotrock > 100) { //200
                                         this.buildings[t].makeInfantry()
                                     }
@@ -7236,7 +7299,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             }
         }
-        buildWall(tile) {
+        buildWall(tile, options = 0) {
             if (this.type == 1) {
                 return
             } else if (this.type == 4) {
@@ -7279,7 +7342,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         building.tile.slime = true
                         this.slimeflag = 1
                         building.slime = 1
-                        building.health = 10
+                        building.health = 5
                         building.maxhealth = building.health
                         building.pather = slimyastar
                         building.active = 0
@@ -7336,15 +7399,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     this.racksflag += 4
                 }
 
-                if (this.racks == 0 && this.isAI == 1 && this.hotrock > 340) {
-                    if (Math.random() < .5) {
+                if (this.racks == 0 && this.isAI == 1 && this.hotrock > 340 && options == 0) {
+                    if (Math.random() < .95) {
                         this.buildGate(tile)
-                    } else if (this.lab == 0 && this.isAI == 1 && this.hotrock > 150) {
+                    } else if (this.lab == 0 && this.isAI == 1 && this.hotrock > 150 && options == 0) {
                         this.buildBarracks(tile)
                     }
-                } else if (this.lab == 0 && this.isAI == 1 && this.hotrock > 150 && this.racks == 1) {
+                } else if (this.lab == 0 && this.isAI == 1 && this.hotrock > 150 && this.racks == 1 && options == 0) {
                     this.buildBarracks(tile)
-                } else if (this.lab == 1 && this.isAI == 1 && this.hotrock > 150 && this.racks == 1) {
+                } else if (this.lab == 1 && this.isAI == 1 && this.hotrock > 150 && this.racks == 1 && options == 0) {
                     this.buildMachineLab(tile)
                 } else {
                     let wet = 0
@@ -8352,8 +8415,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         makeFruitingbuddy() {
             if (this.que != 1) {
-                if (this.faction.hotrock >= 40 && this.faction.units.length < 51) {
-                    this.faction.hotrock -= 40
+                if (this.faction.hotrock >= 45 && this.faction.units.length < 51) {
+                    this.faction.hotrock -= 45
                     this.que = 1
                     this.buddy = 1
                     this.timer = 25
@@ -8654,7 +8717,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (dataflop == 0) {
                         canvas_context.fillStyle = "white"
                         canvas_context.font = "12px arial"
-                        canvas_context.fillText("Buddy: 40", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
+                        canvas_context.fillText("Buddy: 45", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
                         canvas_context.fillText("Seer: 80", this.spawnmedium.x + 1, this.spawnmedium.y + 46)
                         canvas_context.fillText("Vizier: 130", this.spawnbig.x + 1, this.spawnbig.y + 46)
                         canvas_context.fillText("Knight: 200", this.spawnlast.x + 1, this.spawnlast.y + 46)
@@ -9526,6 +9589,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         isHamartanworker() {
             this.hamartanworker = 1
             this.hamartansoldier = 0
+            this.hamartansoldier = 0
+            this.hamartanscout = 0
             this.movespeed = 3 //too high?
             this.body.color = "red"
             this.body.radius = 4
@@ -9547,6 +9612,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         isHamartaninvader() {
             this.hamartaninvader = 1
             this.hamartansoldier = 0
+            this.hamartanscout = 0
+            this.hamartanworker = 0
             this.movespeed = 7
             this.body.color = "red"
             this.body.radius = 4.5
@@ -9566,6 +9633,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         isHamartansoldier() {
             this.hamartansoldier = 1
+            this.hamartaninvader = 0
+            this.hamartanscout = 0
+            this.hamartanworker = 0
             this.movespeed = 4 //5
             this.body.color = "red"
             this.body.radius = 4
@@ -9584,7 +9654,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.decayRate = .09
         }
         isHamartanscout() {
+            this.hamartaninvader = 0
             this.hamartanscout = 1
+            this.hamartanworker = 0
             this.hamartansoldier = 0
             this.movespeed = 9 //13
             this.body.color = "red"
@@ -9633,7 +9705,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.defense = 7
             this.name = "Sniper"
             this.sight = 1 + this.movespeed
-            this.damage = 23
+            this.damage = 24 //72 vs 70 + 3 armor for nymph
             this.firerate = 3 //12 //(this.movespeed * 5)
             this.attackrange = this.sight
             this.maxhealth = this.health
@@ -9642,7 +9714,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.attacktarget.health = 0
             this.attackcounter = 0
             this.decayRate = (12) * .02
-            this.health = 725
+            this.health = 775 //725
             this.maxhealth = this.health
             this.mounted = 0
         }
@@ -10039,7 +10111,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
 
         attack() {
-            if (this.attacktarget.health <= 0 || (Math.abs((this.attacktarget.tile.y - this.tile.y)) + Math.abs((this.attacktarget.tile.x - this.tile.x))) > (this.attackrange * 21)) {
+
+            if(typeof this.attacktarget.defense == "undefined"){
+                this.attacktarget.defense = 0
+            }
+            let scumrat = (this.shots.length*Math.max((this.damage-this.attacktarget.defense),0))
+            // if(scumrat!= 0){
+            //     console.log(scumrat, this.attacktarget.health)
+            //     console.log(scumrat >= this.attacktarget.health)
+            // }
+            if (this.attacktarget.health <= 0 || (Math.abs((this.attacktarget.tile.y - this.tile.y)) + Math.abs((this.attacktarget.tile.x - this.tile.x))) > (this.attackrange * 21) || scumrat >= this.attacktarget.health) {
                 // for (let t = -this.attackrange; t <= this.attackrange; t++) {
                 //     for (let k = -this.attackrange; k <= this.attackrange; k++) {
                 //         if (this.tile.t + t >= 0) {
@@ -10900,7 +10981,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     this.tile.sourcerock -= this.movespeed * .004
                     this.faction.income += this.movespeed * .004
                 } else {
-                    if (this.drone == 1 || this.hamartanscout == 1) { //|| this.hamartaninvader == 1
+                    if (this.drone == 1 ||  this.hamartanscout == 1) { //|| this.hamartaninvader == 1 //
 
                         this.faction.hotrock += this.movespeed * .005
                         this.tile.sourcerock -= this.movespeed * .005
@@ -10926,6 +11007,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             this.tile.sourcerock -= this.movespeed * .00625 //625
                             this.faction.income += this.movespeed * .00625
                         }
+                        if (this.harvester == 1) {
+                            this.faction.hotrock += this.movespeed * .000625//625
+                            this.tile.sourcerock -= this.movespeed * .000625 //625
+                            this.faction.income += this.movespeed * .000625
+                        }
                         if (this.nymph == 1 || this.harvester == 1 || this.pollinator == 1) { //  || this.pollinator == 1) { //harvester?
                             this.faction.hotrock += this.movespeed * .025
                             this.tile.sourcerock -= this.movespeed * .025
@@ -10941,7 +11027,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     this.tile.sourcerock -= this.movespeed * .008
                     this.faction.income += this.movespeed * .008
                 } else {
-                    if (this.drone == 1 || this.hamartanscout == 1) { // || this.hamartaninvader == 1
+                    if (this.drone == 1 || this.hamartanscout == 1) { // || this.hamartaninvader == 1 //
                         this.faction.hotrock += this.movespeed * .01
                         this.tile.sourcerock -= this.movespeed * .01
                         this.faction.income += this.movespeed * .01
@@ -10963,6 +11049,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             this.faction.hotrock += this.movespeed * .0125 //125
                             this.tile.sourcerock -= this.movespeed * .0125 //125
                             this.faction.income += this.movespeed * .0125
+                        }
+                        if (this.harvester == 1) {
+                            this.faction.hotrock += this.movespeed * .00125 //125
+                            this.tile.sourcerock -= this.movespeed * .00125 //125
+                            this.faction.income += this.movespeed * .00125
                         }
                         if (this.nymph == 1 || this.harvester == 1 || this.pollinator == 1) { // || this.pollinator == 1) { //harvester?
                             this.faction.hotrock += this.movespeed * .05
