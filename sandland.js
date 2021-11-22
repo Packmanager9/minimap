@@ -625,7 +625,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         golonotch = Math.floor(Math.random() * golophyteaudio.duration)
         golophyteaudio.currentTime = golonotch
         golophyteaudio.volume = .5
-        ////////////////console.log(pollinatoraudio.duration)
+        //////////////////console.log(pollinatoraudio.duration)
         pollinatortick = ((Math.random() * 400) + 1000) / 1000
         pufftick = ((Math.random() * 400) + 900) / 1000
         golotick = ((Math.random() * 400) + 800) / 1000
@@ -753,7 +753,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     //     }
     //     return (1.4 * distX + ((distY - distX)));
     // }
-    // ////////////////////console.time("onetile")
+    // //////////////////////console.time("onetile")
     // for(let t = 0;t<100;t+=10){
     //     for(let k = 0;k<1280;k+=10){
     //         for(let g = 0;g<1280;g+=10){
@@ -766,10 +766,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
     //                 ob2.y = n
     //                 distancetable[`${t},${k},${g},${n}`] = makeDistanceTable(t,k, g,n)
     //             }
-    //             ////////////////////console.log(g)
+    //             //////////////////////console.log(g)
     //         }
     //     }
-    //     ////////////////////console.log(t)
+    //     //////////////////////console.log(t)
     // }
     // // distancetable = JSON.stringify(distancetable)
     // function downloadObject(obj, filename){
@@ -837,7 +837,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     //         }
     //         gamepadAPI.axesStatus = axes;// assign received values
     //         gamepadAPI.buttonsStatus = pressed;
-    //         // //////////////////////////////////////////console.log(pressed); // return buttons for debugging purposes
+    //         // ////////////////////////////////////////////console.log(pressed); // return buttons for debugging purposes
     //         return pressed;
     //     },
     //     buttonPressed: function (button, hold) {
@@ -1201,7 +1201,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.fill()
                 canvas_context.stroke();
             } else {
-                //////////////////////////////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                ////////////////////////////////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -1353,7 +1353,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 map_context.strokeStyle = "#00000010"
                 map_context.stroke();
             } else {
-                //////////////////////////////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                ////////////////////////////////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -1504,7 +1504,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.fill()
                 canvas_context.stroke();
             } else {
-                //////////////////////////////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                ////////////////////////////////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -1990,7 +1990,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             }
 
-            //////////////////////////////////////////console.log(this)
+            ////////////////////////////////////////////console.log(this)
 
             // this.spring = new Spring(x, y, radius, color, this.pin, memberLength, gravity)
             // this.springs.push(this.spring)
@@ -3055,6 +3055,57 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                 }
 
+                if(sandmap.players[sandmap.turn].flopped == 1){
+                    if(sandmap.players[sandmap.turn].buildingN.isPointInside(TIP_engine)){
+                        if(sandmap.players[sandmap.turn].Nflag == 0){
+                            sandmap.players[sandmap.turn].Bflag = 0
+                            sandmap.players[sandmap.turn].Nflag = 1
+                            sandmap.players[sandmap.turn].Mflag = 0
+                            sandmap.players[sandmap.turn].Gflag = 0
+                        }else  if(sandmap.players[sandmap.turn].Nflag == 1){
+                            sandmap.players[sandmap.turn].Nflag = 0
+                        }
+                    }
+                }
+
+                if(sandmap.players[sandmap.turn].flopped == 1){
+                    if(sandmap.players[sandmap.turn].buildingM.isPointInside(TIP_engine)){
+                        if(sandmap.players[sandmap.turn].Mflag == 0){
+                            sandmap.players[sandmap.turn].Bflag = 0
+                            sandmap.players[sandmap.turn].Nflag = 0
+                            sandmap.players[sandmap.turn].Mflag = 1
+                            sandmap.players[sandmap.turn].Gflag = 0
+                        }else  if(sandmap.players[sandmap.turn].Mflag == 1){
+                            sandmap.players[sandmap.turn].Mflag = 0
+                        }
+                    }
+                }
+                if(sandmap.players[sandmap.turn].flopped == 1){
+                    if(sandmap.players[sandmap.turn].buildingG.isPointInside(TIP_engine)){
+                        if(sandmap.players[sandmap.turn].Gflag == 0){
+                            sandmap.players[sandmap.turn].Bflag = 0
+                            sandmap.players[sandmap.turn].Nflag = 0
+                            sandmap.players[sandmap.turn].Mflag = 0
+                            sandmap.players[sandmap.turn].Gflag = 1
+                        }else  if(sandmap.players[sandmap.turn].Gflag == 1){
+                            sandmap.players[sandmap.turn].Gflag = 0
+                        }
+                    }
+                }
+                if(sandmap.players[sandmap.turn].flopped == 1){
+                    if(sandmap.players[sandmap.turn].buildingB.isPointInside(TIP_engine)){
+                        if(sandmap.players[sandmap.turn].Bflag == 0){
+                            sandmap.players[sandmap.turn].Bflag = 1
+                            sandmap.players[sandmap.turn].Nflag = 0
+                            sandmap.players[sandmap.turn].Mflag = 0
+                            sandmap.players[sandmap.turn].Gflag = 0
+                        }else  if(sandmap.players[sandmap.turn].Bflag == 1){
+                            sandmap.players[sandmap.turn].Bflag = 0
+                        }
+                    }
+                }
+
+
 
                 if (sandmap.players[0].units.length == 0 || sandmap.players[1].units.length == 0) {
                     if (endbutton.isPointInside(TIP_engine)) {
@@ -3309,7 +3360,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 } else {
 
                     if (TIP_engine.x <= sandmap.window.body.x + sandmap.window.body.width) {
-                        if (keysPressed['b']) {
+                        if (keysPressed['b'] || sandmap.players[sandmap.turn].Bflag == 1) {
                             let structuredpoint = new Point(0, 0)
                             structuredpoint.x += sandmap.window.guide.x
                             structuredpoint.y += sandmap.window.guide.y
@@ -3338,7 +3389,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             if (wet == 0) {
                                 sandmap.players[sandmap.turn].buildWall(sandmap.players[sandmap.turn].selected_tile, 0)
                             }
-                        } else if (keysPressed['g']) {
+                        } else if (keysPressed['g'] || sandmap.players[sandmap.turn].Gflag == 1) {
                             let structuredpoint = new Point(0, 0)
                             structuredpoint.x += sandmap.window.guide.x
                             structuredpoint.y += sandmap.window.guide.y
@@ -3395,7 +3446,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     break
                                 }
                             }
-                        } else if (keysPressed['n']) {
+                        } else if (keysPressed['n'] || sandmap.players[sandmap.turn].Nflag == 1) {
                             let structuredpoint = new Point(0, 0)
                             structuredpoint.x += sandmap.window.guide.x
                             structuredpoint.y += sandmap.window.guide.y
@@ -3422,7 +3473,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 // let building = new Building(sandmap.players[sandmap.turn].selected_tile, sandmap.players[sandmap.turn], 0)
 
                             }
-                        } else if (keysPressed['m']) {
+                        } else if (keysPressed['m'] || sandmap.players[sandmap.turn].Mflag == 1) {
                             let structuredpoint = new Point(0, 0)
                             structuredpoint.x += sandmap.window.guide.x
                             structuredpoint.y += sandmap.window.guide.y
@@ -3855,7 +3906,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             sandmap.players[sandmap.turn].units[t].selected = 2
                         }
 
-                        ////////////////////////////////console.log(sandmap.players[sandmap.turn].selected_tile)
+                        //////////////////////////////////console.log(sandmap.players[sandmap.turn].selected_tile)
                         sandmap.players[sandmap.turn].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile)
 
 
@@ -4065,7 +4116,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     continue
                                 }
                             }
-                            ////////////////////////////////console.log(sandmap.players[sandmap.turn].selected_tile)
+                            //////////////////////////////////console.log(sandmap.players[sandmap.turn].selected_tile)
                             sandmap.players[sandmap.turn].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile)
                             if (sandmap.players[sandmap.turn].selected_tile.hotrock > 0) {
 
@@ -4134,7 +4185,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             if (TIP_engine.x <= sandmap.window.body.x + sandmap.window.body.width) {
 
-                if (keysPressed['b']) {
+                if (keysPressed['b'] || sandmap.players[sandmap.turn].Bflag == 1) {
                     let structuredpoint = new Point(0, 0)
                     structuredpoint.x += sandmap.window.guide.x
                     structuredpoint.y += sandmap.window.guide.y
@@ -4162,7 +4213,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                         sandmap.players[sandmap.turn].buildWall(sandmap.players[sandmap.turn].selected_tile, 0)
                     }
-                } else if (keysPressed['g']) {
+                } else if (keysPressed['n'] || sandmap.players[sandmap.turn].Nflag == 1) {
+                } else if (keysPressed['m'] || sandmap.players[sandmap.turn].Mflag == 1) {
+                } else if (keysPressed['g'] || sandmap.players[sandmap.turn].Gflag == 1) {
                     let structuredpoint = new Point(0, 0)
                     structuredpoint.x += sandmap.window.guide.x
                     structuredpoint.y += sandmap.window.guide.y
@@ -4212,7 +4265,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         selectrect.height = Math.abs(selectrect.height)
                     }
 
-                    // ////////////////////////////////////console.log(selectrect)
+                    // //////////////////////////////////////console.log(selectrect)
                     // selectrect.draw()
                     // sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
                     // sandmap.turn++
@@ -4236,7 +4289,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     }
     //     function gamepad_control(object, speed = 1) { // basic control for objects using the controler
-    // //         //////////////////////////////////////////console.log(gamepadAPI.axesStatus[1]*gamepadAPI.axesStatus[0]) //debugging
+    // //         ////////////////////////////////////////////console.log(gamepadAPI.axesStatus[1]*gamepadAPI.axesStatus[0]) //debugging
     //         if (typeof object.body != 'undefined') {
     //             if(typeof (gamepadAPI.axesStatus[1]) != 'undefined'){
     //                 if(typeof (gamepadAPI.axesStatus[0]) != 'undefined'){
@@ -4477,8 +4530,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             // let link = new Line(this.posx, this.posy, bottle.crew[bottle.selectedcrew].body.x-100, bottle.crew[bottle.selectedcrew].body.y-300, "red", 1)
             // if (link.hypotenuse() < 108) {
-            // //////////////////////////////////////////////console.log(link)
-            // //////////////////////////////////////////////console.log(bottle)
+            // ////////////////////////////////////////////////console.log(link)
+            // ////////////////////////////////////////////////console.log(bottle)
             // }
             // let roundedx = (Math.round((startPoint.x) / 10))
             // let roundedy = (Math.round((startPoint.y) / 10))
@@ -4491,13 +4544,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // if (this.inPath === true) {
             //     // this.drawPath();
             // } else if (this.walkable === false) {
-            //     // //////////////////////////////////////////////console.log(this)
+            //     // ////////////////////////////////////////////////console.log(this)
 
             //     // this.createWall();
             //     return;
             //     // }else if (link.hypotenuse() < 11) {
             // } else if (this.posx == roundedx && this.posy == roundedy) {
-            //     //   //////////////////////////////////////////////console.log("hit the startNode");
+            //     //   ////////////////////////////////////////////////console.log("hit the startNode");
             //     //   this.createStartNode();
             //     return;
             // } else if (this.posx == endPoint.x && this.posy == endPoint.y) {
@@ -4701,8 +4754,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             // let link = new Line(this.posx, this.posy, bottle.crew[bottle.selectedcrew].body.x-100, bottle.crew[bottle.selectedcrew].body.y-300, "red", 1)
             // if (link.hypotenuse() < 108) {
-            // //////////////////////////////////////////////console.log(link)
-            // //////////////////////////////////////////////console.log(bottle)
+            // ////////////////////////////////////////////////console.log(link)
+            // ////////////////////////////////////////////////console.log(bottle)
             // }
             // let roundedx = (Math.round((startPoint.x) / 10))
             // let roundedy = (Math.round((startPoint.y) / 10))
@@ -4715,13 +4768,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // if (this.inPath === true) {
             //     // this.drawPath();
             // } else if (this.walkable === false) {
-            //     // //////////////////////////////////////////////console.log(this)
+            //     // ////////////////////////////////////////////////console.log(this)
 
             //     // this.createWall();
             //     return;
             //     // }else if (link.hypotenuse() < 11) {
             // } else if (this.posx == roundedx && this.posy == roundedy) {
-            //     //   //////////////////////////////////////////////console.log("hit the startNode");
+            //     //   ////////////////////////////////////////////////console.log("hit the startNode");
             //     //   this.createStartNode();
             //     return;
             // } else if (this.posx == endPoint.x && this.posy == endPoint.y) {
@@ -4834,7 +4887,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     force1 += (sandmap.players[1].units[t].damage * 9)
                     force1 += (sandmap.players[1].units[t].defense * 15)
                 }
-                // ////////////////console.log(force1)
+                // //////////////////console.log(force1)
                 this.faction0.firepower.push(force0)
                 this.faction1.firepower.push(force1)
                 this.wind.push(sandmap.windspeed)
@@ -4870,14 +4923,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     let x = (1000 / this.faction0.firepower.length) * t
                     let y = (720 - (this.faction0.firepowerx[t] * 720))
                     let point = new Circle(x, y, 1, sandmap.players[0].color)
-                    // ////////////////console.log(point)
+                    // //////////////////console.log(point)
                     point.draw()
                 }
                 for (let t = 0; t < this.faction1.firepower.length; t++) {
                     let x = (1000 / this.faction1.firepower.length) * t
                     let y = (720 - (this.faction1.firepowerx[t] * 720))
                     let point = new Circle(x, y, 1, sandmap.players[1].color)
-                    // ////////////////console.log(point)
+                    // //////////////////console.log(point)
                     point.draw()
                 }
 
@@ -4993,7 +5046,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     for (let p = 0; p < this.hotrocks.length; p++) {
                                         let link = new LineOP(this.hotrocks[p], rect)
                                         if (link.hypotenuse() < 120 + ((Math.random() - .5) * 60)) {
-                                            // ////////////////console.log(this.hotrocks)
+                                            // //////////////////console.log(this.hotrocks)
                                             bump = 1
                                         }
                                     }
@@ -5048,7 +5101,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     this.gridPoints.push(this.blocks[t][k])
                 }
             }
-            ////////////////////////////console.log(this)
+            //////////////////////////////console.log(this)
             this.dirtyNodes = []
         }
         cleanDirty() {
@@ -5145,7 +5198,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 for (var j = 0; j < this.height; j += NODESIZE) {
                     gridPointsByPos[i][j] = countNodes;
                     //here's the problem , need to set the walkability of the node without always being true...
-                    //////////////////////////////////////////////console.log(countNodes)
+                    ////////////////////////////////////////////////console.log(countNodes)
                     tempNode = new Tile(i, j, 10, 10, "tan", countNodes, NODESIZE, i, j, true);
 
                     // let cutOut = [0,1 ,2, 3, 4, 5,6,7, 8, 9, 10, 11, 12,13, 18, 19,20, 32,33,  26, 31, 39, 44, 45, 46, 52, 57,58,59,99, 112, 108, 95, 197, 198, 199, 205, 203, 204, 236, 237, 238, 242, 243,244, 216, 212, 229, 225, 210, 211, 223, 224, 217, 218, 230, 231]
@@ -5177,7 +5230,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                     // }
                     // if (wallSet.has(countNodes)) {
-                    // //   //////////////////////////////////////////////console.log("wallSet had countNodes!")
+                    // //   ////////////////////////////////////////////////console.log("wallSet had countNodes!")
                     //   tempNode.walkable = false;
                     // }
 
@@ -5276,6 +5329,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.players[t].uiDraw()
             }
             for (let t = 0; t < this.players.length; t++) {
+                this.players[t].dataOutput()
+            }
+
+            
+            for (let t = 0; t < this.players.length; t++) {
                 this.players[t].slimeflag = 0
             }
 
@@ -5328,6 +5386,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
     class Player {
         constructor(name, color, ai, type) {
+            this.counterUI = 0
+            this.Mflag = 0
+            this.Nflag = 0
+            this.Bflag = 0
+            this.Gflag = 0
             this.surf = 0
             this.slimeflag = 0
             this.attacktimeout = 0
@@ -5353,6 +5416,222 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.baseMoveFlag = 0
             this.defending = 0
             this.income = 0
+        }
+
+        dataOutput() {
+            if(sandmap.players.indexOf(this) == sandmap.turn){
+
+                canvas_context.fillStyle = this.color
+                canvas_context.font = "28px arial"
+
+                canvas_context.fillStyle = "black"
+                canvas_context.strokeStyle = sandmap.players[sandmap.turn].color
+                canvas_context.lineWidth = 1.5
+                canvas_context.font = "28px arial"
+                if (dataflop == 0) {
+                    canvas_context.strokeText(this.name , sandmap.window.body.x + sandmap.window.body.width + 10, 25)
+                    canvas_context.fillText(this.name , sandmap.window.body.x + sandmap.window.body.width + 10, 25)
+                }
+
+
+                this.buildingB = new UiRectangle(sandmap.window.body.x+sandmap.window.body.width+20, 70, 140, 70, "black")
+                this.buildingN = new UiRectangle(sandmap.window.body.x+sandmap.window.body.width+170, 70, 140, 70, "black")
+                this.buildingM = new UiRectangle(sandmap.window.body.x+sandmap.window.body.width+20, 170, 140, 70, "black")
+                this.buildingG = new UiRectangle(sandmap.window.body.x+sandmap.window.body.width+170, 170, 140, 70, "black")
+
+                if (dataflop == 0) {
+
+                    if(this.type == 4){
+                        this.buildingB.draw()
+                        this.buildingN.draw()
+                        
+                        let barrect = new UiRectangle(this.buildingN.x + 25, this.buildingN.y + 5, 40, 40,this.color)
+                        barrect.draw()
+                        canvas_context.drawImage(sporeball, 0, 0, 10, 10, this.buildingN.x + 25, this.buildingN.y + 5, 40, 40)
+                        canvas_context.fillStyle = "white"
+                        canvas_context.font = "12px arial"
+                        canvas_context.fillText("Sporeball: 170", this.buildingN.x + 15, this.buildingN.y + 66)
+
+                        canvas_context.drawImage(slime, 0, 0, 10, 10, this.buildingB.x + 25, this.buildingB.y + 5, 40, 40)
+                        canvas_context.fillStyle = "white"
+                        canvas_context.font = "12px arial"
+                        canvas_context.fillText("Slime: 5", this.buildingB.x + 15, this.buildingB.y + 66)
+                        if(this.Nflag == 1){
+                            let xout = new RedX(this.buildingN.x+105, this.buildingN.y+15)
+                            xout.draw()
+                        }
+                        if(this.Bflag == 1){
+                            let xout = new RedX(this.buildingB.x+105, this.buildingB.y+15)
+                            xout.draw()
+                        }
+                        
+                    }else if(this.type == 0){
+                        this.buildingB.draw()
+                        this.buildingN.draw()
+                        this.buildingM.draw()
+                        this.buildingG.draw()
+                        
+                        let barrect = new UiRectangle(this.buildingN.x + 25, this.buildingN.y + 5, 40, 40,this.color)
+                        barrect.draw()
+                        canvas_context.drawImage(barracks, 0, 0, 10, 10, this.buildingN.x + 25, this.buildingN.y + 5, 40, 40)
+                        canvas_context.fillStyle = "white"
+                        canvas_context.font = "12px arial"
+                        canvas_context.fillText("Barracks: 70", this.buildingN.x + 15, this.buildingN.y + 66)
+
+                        barrect = new UiRectangle(this.buildingM.x + 25, this.buildingM.y + 5, 40, 40,this.color)
+                        barrect.draw()
+                        canvas_context.drawImage(machinelab, 0, 0, 10, 10, this.buildingM.x + 25, this.buildingM.y + 5, 40, 40)
+                        canvas_context.fillStyle = "white"
+                        canvas_context.font = "12px arial"
+                        canvas_context.fillText("Machine Lab: 110", this.buildingM.x + 15, this.buildingM.y + 66)
+
+                        barrect = new UiRectangle(this.buildingG.x + 25, this.buildingG.y + 5, 40, 40,this.color)
+                        barrect.draw()
+                        canvas_context.drawImage(closedgate, 0, 0, 10, 10, this.buildingG.x + 25, this.buildingG.y + 5, 40, 40)
+                        canvas_context.fillStyle = "white"
+                        canvas_context.font = "12px arial"
+                        canvas_context.fillText("Blast Door: 25", this.buildingG.x + 15, this.buildingG.y + 66)
+
+                        barrect = new UiRectangle(this.buildingB.x + 25, this.buildingB.y + 5, 40, 40,this.color)
+                        barrect.draw()
+                        canvas_context.drawImage(icewall, 0, 0, 10, 10, this.buildingB.x + 25, this.buildingB.y + 5, 40, 40)
+                        canvas_context.fillStyle = "white"
+                        canvas_context.font = "12px arial"
+                        canvas_context.fillText("Wall: 10", this.buildingB.x + 15, this.buildingB.y + 66)
+                        if(this.Nflag == 1){
+                            let xout = new RedX(this.buildingN.x+105, this.buildingN.y+15)
+                            xout.draw()
+                        }
+                        if(this.Gflag == 1){
+                            let xout = new RedX(this.buildingG.x+105, this.buildingG.y+15)
+                            xout.draw()
+                        }
+                        if(this.Mflag == 1){
+                            let xout = new RedX(this.buildingM.x+105, this.buildingM.y+15)
+                            xout.draw()
+                        }
+                        if(this.Bflag == 1){
+                            let xout = new RedX(this.buildingB.x+105, this.buildingB.y+15)
+                            xout.draw()
+                        }
+                    }else if (this.type == 1){
+                        
+                    }else if (this.type == 2){
+                        this.counterUI++
+                        this.buildingB.draw()
+                        this.buildingN.draw()
+                        this.buildingM.draw()
+                        this.buildingG.draw()
+                        
+                        let barrect = new UiRectangle(this.buildingN.x + 25, this.buildingN.y + 5, 40, 40,this.color)
+                        // barrect.draw()
+                        canvas_context.drawImage(assembler1, (this.counterUI % 10),0, 10, 10, this.buildingN.x + 25, this.buildingN.y + 5, 40, 40)
+                        canvas_context.fillStyle = "white"
+                        canvas_context.font = "11px arial"
+                        canvas_context.fillText("Soldier Assembler: 130", this.buildingN.x + 5, this.buildingN.y + 66)
+
+                        barrect = new UiRectangle(this.buildingM.x + 25, this.buildingM.y + 5, 40, 40,this.color)
+                        // barrect.draw()
+                        canvas_context.drawImage(assembler2, 0, 0, 10, 10, this.buildingM.x + 25, this.buildingM.y + 5, 40, 40)
+                        canvas_context.fillStyle = "white"
+                        canvas_context.font = "11px arial"
+                        canvas_context.fillText("Scout Assembler: 210", this.buildingM.x + 5, this.buildingM.y + 66)
+
+                        barrect = new UiRectangle(this.buildingG.x + 25, this.buildingG.y + 5, 40, 40,this.color)
+                        // barrect.draw()
+                        canvas_context.drawImage(assembler3, 0, 0, 10, 10, this.buildingG.x + 25, this.buildingG.y + 5, 40, 40)
+                        canvas_context.fillStyle = "white"
+                        canvas_context.font = "10.5px arial"
+                        canvas_context.fillText("High-Caste Assembler: 340", this.buildingG.x + 3, this.buildingG.y + 66)
+
+                        barrect = new UiRectangle(this.buildingB.x + 25, this.buildingB.y + 5, 40, 40,this.color)
+                        // barrect.draw()
+                        canvas_context.drawImage(spire, (this.counterUI % 5) * 10, 0, 10, 10, this.buildingB.x + 25, this.buildingB.y + 5, 40, 40)
+                        canvas_context.fillStyle = "white"
+                        canvas_context.font = "11px arial"
+                        canvas_context.fillText("Spire: 40", this.buildingB.x + 35, this.buildingB.y + 66)
+                        if(this.Nflag == 1){
+                            let xout = new RedX(this.buildingN.x+105, this.buildingN.y+15)
+                            xout.draw()
+                        }
+                        if(this.Gflag == 1){
+                            let xout = new RedX(this.buildingG.x+105, this.buildingG.y+15)
+                            xout.draw()
+                        }
+                        if(this.Mflag == 1){
+                            let xout = new RedX(this.buildingM.x+105, this.buildingM.y+15)
+                            xout.draw()
+                        }
+                        if(this.Bflag == 1){
+                            let xout = new RedX(this.buildingB.x+105, this.buildingB.y+15)
+                            xout.draw()
+                        }
+                        
+                    }else if (this.type == 3){
+                        this.counterUI++
+                        // this.buildingB.draw()
+                        this.buildingN.draw()
+                        this.buildingM.draw()
+                        // this.buildingG.draw()
+                        
+                        let barrect = new UiRectangle(this.buildingN.x + 25, this.buildingN.y + 5, 40, 40,this.color)
+                        // barrect.draw()
+                        canvas_context.drawImage(librilbianbulbplant,0,0, 10, 10, this.buildingN.x + 25, this.buildingN.y + 5, 40, 40)
+                        canvas_context.fillStyle = "white"
+                        canvas_context.font = "11px arial"
+                        canvas_context.fillText("Bulbplant: 80", this.buildingN.x + 5, this.buildingN.y + 66)
+
+                        barrect = new UiRectangle(this.buildingM.x + 25, this.buildingM.y + 5, 40, 40,this.color)
+                        // barrect.draw()
+                        canvas_context.drawImage(librilbianpodmother, 0, 0, 10, 10, this.buildingM.x + 25, this.buildingM.y + 5, 40, 40)
+                        canvas_context.fillStyle = "white"
+                        canvas_context.font = "11px arial"
+                        canvas_context.fillText("Podmother: 210", this.buildingM.x + 5, this.buildingM.y + 66)
+
+                        // barrect = new UiRectangle(this.buildingG.x + 25, this.buildingG.y + 5, 40, 40,this.color)
+                        // // barrect.draw()
+                        // canvas_context.drawImage(assembler3, 0, 0, 10, 10, this.buildingG.x + 25, this.buildingG.y + 5, 40, 40)
+                        // canvas_context.fillStyle = "white"
+                        // canvas_context.font = "10.5px arial"
+                        // canvas_context.fillText("High-Caste Assembler: 340", this.buildingG.x + 3, this.buildingG.y + 66)
+
+                        // barrect = new UiRectangle(this.buildingB.x + 25, this.buildingB.y + 5, 40, 40,this.color)
+                        // // barrect.draw()
+                        // canvas_context.drawImage(spire, (this.counterUI % 5) * 10, 0, 10, 10, this.buildingB.x + 25, this.buildingB.y + 5, 40, 40)
+                        // canvas_context.fillStyle = "white"
+                        // canvas_context.font = "11px arial"
+                        // canvas_context.fillText("Spire: 40", this.buildingB.x + 35, this.buildingB.y + 66)
+
+                        if(this.Nflag == 1){
+                            let xout = new RedX(this.buildingN.x+105, this.buildingN.y+15)
+                            xout.draw()
+                        }
+                        if(this.Gflag == 1){
+                            let xout = new RedX(this.buildingG.x+105, this.buildingG.y+15)
+                            xout.draw()
+                        }
+                        if(this.Mflag == 1){
+                            let xout = new RedX(this.buildingM.x+105, this.buildingM.y+15)
+                            xout.draw()
+                        }
+                        if(this.Bflag == 1){
+                            let xout = new RedX(this.buildingB.x+105, this.buildingB.y+15)
+                            xout.draw()
+                        }
+                        
+                    }
+                }
+
+
+
+            if (dataflop == 0) {
+                this.flopped = 1
+                dataflop = 1
+            }else{
+                this.flopped = 0
+            }
+
+            }
         }
         findBase() {
             this.averageSpace.dirs1 = 0
@@ -5470,7 +5749,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 //     continue
                                 // }
                                 if (slimetarget.breaker.includes(t)) {
-                                    //////console.log("what")
+                                    ////////console.log("what")
                                     // if(Math.random()<.01){
                                     //     slimetarget.breaker.splice(slimetarget.breaker.indexOf(t), 1)
                                     // }
@@ -5479,24 +5758,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     // }
                                     // continue
                                 } else if (Math.abs(slimetarget.t - this.buildings[t].tile.t) + Math.abs(slimetarget.k - this.buildings[t].tile.k) > 1000) {//cost to build new sporeball and change
-                                    //////console.log("huh")
+                                    ////////console.log("huh")
 
                                     if (Math.random() < .001) {
                                         if (slimetarget.primed != 1) {
                                             if (Math.random() < .5) {
                                                 if (Math.random() < .5) {
-                                                    ////////console.log("ball")
+                                                    //////////console.log("ball")
                                                     this.buildBarracks(sandmap.blocks[slimetarget.t][slimetarget.k + 1])
                                                 } else {
-                                                    ////////console.log("ball")
+                                                    //////////console.log("ball")
                                                     this.buildBarracks(sandmap.blocks[slimetarget.t][slimetarget.k - 1])
                                                 }
                                             } else {
                                                 if (Math.random() < .5) {
-                                                    ////////console.log("ball")
+                                                    //////////console.log("ball")
                                                     this.buildBarracks(sandmap.blocks[slimetarget.t + 1][slimetarget.k])
                                                 } else {
-                                                    ////////console.log("ball")
+                                                    //////////console.log("ball")
                                                     this.buildBarracks(sandmap.blocks[slimetarget.t - 1][slimetarget.k])
                                                 }
 
@@ -5535,9 +5814,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             //         this.buildWall(this.path[p])
                                             //     }
                                             // }
-                                            // ////////console.log((this.path.length*5), discount)
+                                            // //////////console.log((this.path.length*5), discount)
                                             if (Math.random() < .01) {
-                                                ////////console.log("length ball")
+                                                //////////console.log("length ball")
                                                 this.buildBarracks(this.path[(this.path.length - 2)])
                                             }
                                             // if(t > 0){
@@ -5553,7 +5832,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         if (wet == 0) {
                             if (this.seen.length > 0) {
 
-                                ////////console.log("solo ball")
+                                //////////console.log("solo ball")
                                 this.buildBarracks(this.seen[Math.floor(Math.random() * this.seen.length)])
                             }
                         }
@@ -5568,7 +5847,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                     if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                         let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                        // ////////////////////////////console.log(link)
+                                        // //////////////////////////////console.log(link)
                                         if (link < max) {
                                             max = link
                                             index = h
@@ -5607,7 +5886,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                         if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                             let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                            // ////////////////////////////console.log(link)
+                                            // //////////////////////////////console.log(link)
                                             if (link < max) { //reversals time //rereverse
                                                 max = link
                                                 index = h
@@ -5753,7 +6032,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         for (let t = 0; t < this.buildings.length; t++) {
                             if (this.buildings[t].slime == 1) {
                                 if (Math.random() < .5) {
-                                    //////////console.log(this.seenrocks.length, this.units.length)
+                                    ////////////console.log(this.seenrocks.length, this.units.length)
                                     if ((this.hotrock > 70 + (this.buildings.length * 5) || this.seenrocks.length <= this.units.length) && this.units.length < 15) {
                                         this.buildings[t].makeFruitingbuddy()
                                         j++
@@ -6023,7 +6302,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                     if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                         let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                        // ////////////////////////////console.log(link)
+                                        // //////////////////////////////console.log(link)
                                         if (link < max) {
                                             max = link
                                             index = h
@@ -6057,7 +6336,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                         if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                             let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                            // ////////////////////////////console.log(link)
+                                            // //////////////////////////////console.log(link)
                                             if (link < max) {
                                                 max = link
                                                 index = h
@@ -6305,7 +6584,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                     if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                         let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                        // ////////////////////////////console.log(link)
+                                        // //////////////////////////////console.log(link)
                                         if (link < max) {
                                             max = link
                                             index = h
@@ -6339,7 +6618,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                         if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                             let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                            // ////////////////////////////console.log(link)
+                                            // //////////////////////////////console.log(link)
                                             if (link < max) {
                                                 max = link
                                                 index = h
@@ -6459,7 +6738,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                         if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                             let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                            // ////////////////////////////console.log(link)
+                                            // //////////////////////////////console.log(link)
                                             if (link < max) {
                                                 max = link
                                                 index = h
@@ -6493,7 +6772,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                             if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                                 let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                                // ////////////////////////////console.log(link)
+                                                // //////////////////////////////console.log(link)
                                                 if (link < max) {
                                                     max = link
                                                     index = h
@@ -6607,7 +6886,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             } else { // human below, itzler above
 
                 if (this.hotrock > (this.racksflag * 75)) {
-                    // ////////////////console.log("earthoid effect")
+                    // //////////////////console.log("earthoid effect")
                     this.racks = 0
                     this.lab = 0
                     this.racksflag += 4
@@ -6713,7 +6992,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             if (this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                                 if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false) {
                                                     let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                                    // ////////////////////////////console.log(link)
+                                                    // //////////////////////////////console.log(link)
                                                     if (link < max) {
                                                         max = link
                                                         index = h
@@ -6783,7 +7062,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                 if (this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                                     if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false) {
                                                         let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                                        // ////////////////////////////console.log(link)
+                                                        // //////////////////////////////console.log(link)
                                                         if (link < max) {
                                                             max = link
                                                             index = h
@@ -6974,7 +7253,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                             if (Math.abs(this.units[t].realPath.length - this.units[t].index) < 3 || Math.abs(this.units[t].realPath.length - this.units[t].index) > (calcdeath - (this.units[t].movespeed * 10))) {
 
-                                // //////////////////////////console.log(this.units[t])
+                                // ////////////////////////////console.log(this.units[t])
 
                             } else {
                                 continue
@@ -7313,7 +7592,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
                         wet = 1
                         debreak = 1
-                        // //////////////////////////console.log(tile)
+                        // ////////////////////////////console.log(tile)
                     }
                 }
                 if (tile.walkable == false) {
@@ -7353,7 +7632,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 sandmap.diagonal = false
                                 let path = [...building.pather.search(sandmap, building.tile, this.buildings[t].tile, {})]
                                 sandmap.diagonal = true
-                                ////////////////console.log(path)
+                                //////////////////console.log(path)
                                 if (path.length > 0) {
                                     building.active = 1
                                     building.tile.primed = 1
@@ -7375,7 +7654,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
                             wet = 1
                             debreak = 1
-                            // //////////////////////////console.log(tile)
+                            // ////////////////////////////console.log(tile)
                         }
                     }
                     if (tile.walkable == false) {
@@ -7392,8 +7671,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             } else if (this.type == 2) {
 
+                this.Bflag = 0
                 if (this.hotrock > (this.racksflag * 75)) {
-                    // ////////////////console.log("hamartan effect")
+                    // //////////////////console.log("hamartan effect")
                     this.racks = 0
                     this.lab = 0
                     this.racksflag += 4
@@ -7415,7 +7695,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
                             wet = 1
                             debreak = 1
-                            // //////////////////////////console.log(tile)
+                            // ////////////////////////////console.log(tile)
                         }
                     }
                     if (tile.walkable == false) {
@@ -7458,7 +7738,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
                             wet = 1
                             debreak = 1
-                            // //////////////////////////console.log(tile)
+                            // ////////////////////////////console.log(tile)
                         }
                     }
                     if (tile.walkable == false) {
@@ -7480,12 +7760,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             } else if (this.type == 2) {
 
+                this.Gflag = 0
                 let wet = 0
                 for (let t = 0; t < this.buildings.length; t++) {
                     if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
                         wet = 1
                         debreak = 1
-                        // //////////////////////////console.log(tile)
+                        // ////////////////////////////console.log(tile)
                     }
                 }
                 if (tile.walkable == false) {
@@ -7514,6 +7795,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (this.type == 1) {
                 return
             } else if (this.type == 4) {
+
+                this.Nflag = 0
                 let wet = 0
                 if (tile.walkable == false) {
                     wet = 1
@@ -7543,6 +7826,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
             } else if (this.type == 0) {
+                this.Nflag = 0
 
 
                 let wet = 0
@@ -7570,6 +7854,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
 
             } else if (this.type == 2) {
+
+                this.Nflag = 0
                 let wet = 0
                 if (tile.walkable == false) {
                     wet = 1
@@ -7595,6 +7881,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                 }
             } else if (this.type == 3) {
+
+                this.Nflag = 0
                 let wet = 0
                 let dirty = 0
                 for (let t = 0; t < this.buildings.length; t++) {
@@ -7635,6 +7923,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (this.type == 1) {
                 return
             } else if (this.type == 0) {
+
+                this.Mflag = 0
                 let wet = 0
                 if (tile.walkable == false) {
                     wet = 1
@@ -7659,6 +7949,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                 }
             } else if (this.type == 2) {
+
+                this.Mflag = 0
                 let wet = 0
                 if (tile.walkable == false) {
                     wet = 1
@@ -7684,6 +7976,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                 }
             } else if (this.type == 3) {
+
+                this.Mflag = 0
                 let wet = 0
 
                 let dirty = 0
@@ -7888,6 +8182,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 
+    class RedX {
+        constructor(x,y){
+            let angle = Math.PI/4
+            this.point1 = new Point(x+(Math.cos(angle)*10),y+(Math.sin(angle)*10))
+            this.point2 = new Point(x+(Math.cos(angle)*-10),y+(Math.sin(angle)*-10))
+            this.point3 = new Point(x+(Math.cos(angle+Math.PI*.5)*10),y+(Math.sin(angle+Math.PI*.5)*10))
+            this.point4 = new Point(x+(Math.cos(angle+Math.PI*.5)*-10),y+(Math.sin(angle+Math.PI*.5)*-10))
+
+            this.link1 = new LineOP(this.point1, this.point2, "red", 3)
+            this.link2 = new LineOP(this.point3, this.point4, "red", 3)
+        }
+        draw(){
+            this.link1.draw()
+            this.link2.draw()
+            //console.log(this)
+        }
+    }
+
 
     gCanvasOffset = new Vec2(gCanvas.offsetLeft, gCanvas.offsetTop);
 
@@ -7909,8 +8221,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // this.startNode = gridPointsByPos[startNode.x][startNode.y];
             let roundedx = (Math.round((startNode.x))) * .1
             let roundedy = (Math.round((startNode.y))) * .1
-            //////////////////////////////////////////console.log(gridPointsByPos, roundedx, roundedy)
-            //////////////////////////////////////////////console.log(gridPointsByPos[roundedx] [roundedy])
+            ////////////////////////////////////////////console.log(gridPointsByPos, roundedx, roundedy)
+            ////////////////////////////////////////////////console.log(gridPointsByPos[roundedx] [roundedy])
             this.startNode = startNode // gridPointsByPos[roundedx] [roundedy]
             this.endNode = endNode //gridPointsByPos[endNode.x][endNode.y];
             this.currentNode = null;
@@ -7930,7 +8242,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             var grid = this.grid; //the grid we're working with
 
             var currentNode = this.startNode; // the currentNode, defaults to start node for now
-            ////////////////////////////////console.log(this.endNode)
+            //////////////////////////////////console.log(this.endNode)
             var endNode = this.endNode //sandmap.gridPoints[this.endNode.id]; //the target node
             var startNode = this.startNode
 
@@ -7939,9 +8251,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             var newMovementCost; //the new movement cost to neighbor
 
             openSet.add(currentNode);
-            //   ////////////////////////////////////////console.log(currentNode)
+            //   //////////////////////////////////////////console.log(currentNode)
             // currentNode.color = "black"
-            // //////////////////////////////////////////////console.log('begin');
+            // ////////////////////////////////////////////////console.log('begin');
 
             let j = 0
             let timeout = 0
@@ -7951,7 +8263,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     timeout = 1
                 }
                 tempArray = Array.from(openSet);
-                ////////////////////////////////////////console.log(tempArray)
+                //////////////////////////////////////////console.log(tempArray)
                 currentNode = tempArray[0];
 
                 for (var i = 1; i < tempArray.length; i++) {
@@ -7983,18 +8295,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 //   currentNode.drawNode();
                 // }
 
-                ////////////////////////////////////////console.log(currentNode, endNode)
+                //////////////////////////////////////////console.log(currentNode, endNode)
                 // currentNode.color = "black"
-                ////////////////////////////////console.log(currentNode, endNode)
+                //////////////////////////////////console.log(currentNode, endNode)
                 if (currentNode.id == endNode.id) {
-                    //////////////////////////////console.log(startNode, endNode)
+                    ////////////////////////////////console.log(startNode, endNode)
                     retracePath(startNode, endNode, this.agent);
                     //hit the last point, exit's the loop.
 
                     return; //exits loop
                 } else if (timeout == 1) {
 
-                    //////////////////////////////console.log(startNode, endNode)
+                    ////////////////////////////////console.log(startNode, endNode)
                     retracePath(startNode, currentNode, this.agent);
                     //hit the last point, exit's the loop.
 
@@ -8056,9 +8368,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         var reverseArray;
         while (currentNode != startNode) {
             path.add(currentNode);
-            //////////////////////////////console.log(currentNode)
+            ////////////////////////////////console.log(currentNode)
             currentNode = currentNode.parent;
-            //////////////////////////////console.log(currentNode)
+            ////////////////////////////////console.log(currentNode)
             // currentNode.inPath = true;
             // if (currentNode != startNode)
             //     currentNode.drawPath();
@@ -8069,19 +8381,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
         reverseArray.reverse();
         path = new Set(reverseArray);
 
-        //   //////////////////////////////////////////////console.log(path)
+        //   ////////////////////////////////////////////////console.log(path)
 
         realPath = Array.from(path)
-        //   //////////////////////////////////////////////console.log(realPath)
+        //   ////////////////////////////////////////////////console.log(realPath)
 
         if (realPath.length == 1) {
             // realPath[0].walkable = false
-            ////////////////////////////////////////////console.log("hit")
+            //////////////////////////////////////////////console.log("hit")
             // wallSet.add(realPath[0])
-            ////////////////////////////////////////////console.log(wallSet)
+            //////////////////////////////////////////////console.log(wallSet)
         }
 
-        ////////////////////////////////////////console.log(realPath)
+        //////////////////////////////////////////console.log(realPath)
         if (realPath.length > 0) {
             realPath.unshift(agent.tile)
             agent.realPath = [...realPath]
@@ -8096,24 +8408,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // bottle.crew[bottle.selectedcrew].body.x =startPoint.x+4
             // bottle.crew[bottle.selectedcrew].body.y  = startPoint.y+4
             // startPoint = new Vec2(realPath[0].posx, realPath[0].posy);
-            //////////////////////////////////////////////console.log(startPoint)
+            ////////////////////////////////////////////////console.log(startPoint)
             // bottle.crew[bottle.selectedcrew].moving = 1
         } else {
-            //   //////////////////////////////////////////console.log(endPoint)
+            //   ////////////////////////////////////////////console.log(endPoint)
 
             //     if(bottle.crew[bottle.selectedcrew].moving == 1){
-            //         // //////////////////////////////////////////console.log(endPoint)
+            //         // ////////////////////////////////////////////console.log(endPoint)
             //     // bottle.crew[bottle.selectedcrew].body.x =endPoint.x+96
             //     // bottle.crew[bottle.selectedcrew].body.y  = endPoint.y+284
             //     // bottle.crew[bottle.selectedcrew].moving = 0
-            //     // //////////////////////////////////////////console.log(endPoint)
+            //     // ////////////////////////////////////////////console.log(endPoint)
             //         reset()
             //   }
         }
     }
     //list of neighbors
     function getNeighbors(node, agent, parent) {
-        // ////////////////////////console.log(agent)
+        // //////////////////////////console.log(agent)
         var checkX;
         var checkY;
         var neighborList = [];
@@ -8155,7 +8467,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (checkX >= 0 && checkX <= sandmap.blocks.length && checkY >= 0 && checkY <= sandmap.blocks.length) { //127 mapsize
 
                     if (x == 0 || y == 0 || Math.random() < .525) {  // randomness leads to organic //.25
-                        ////////////////////////////////console.log(sandmap)
+                        //////////////////////////////////console.log(sandmap)
                         if (checkX < sandmap.blocks.length) {
                             if (checkY < sandmap.blocks[0].length) {
                                 if ((sandmap.blocks[checkX][checkY].walkable !== false || agent.submerged == 1 || agent.mounted == 0) || sandmap.blocks[checkX][checkY].occupied == false) { //occupied? false?
@@ -8173,7 +8485,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         neighborList = tempList;
         neighborList.agent = agent
-        ////////////////////////////////////////console.log(neighborList)
+        //////////////////////////////////////////console.log(neighborList)
         return (neighborList);
 
     }
@@ -8261,7 +8573,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     // this.faction.clickrate++
                                                 sandmap.blocks[this.tile.t + t][this.tile.k + k].factionsrock.push(sandmap.players.indexOf(this.faction))
                                                     this.faction.seenrocks.push(sandmap.blocks[this.tile.t + t][this.tile.k + k])
-                                                    //console.log(sandmap.blocks[this.tile.t + t][this.tile.k + k].factionsrock)
+                                                    ////console.log(sandmap.blocks[this.tile.t + t][this.tile.k + k].factionsrock)
                                                 }else{
                                                     sandmap.blocks[this.tile.t + t][this.tile.k + k].factionsrock.push(sandmap.players.indexOf(this.faction))
                                                 }
@@ -8992,7 +9304,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             let path = [...this.pather.search(sandmap, this.tile, this.faction.buildings[t].tile, {})]
                             sandmap.slimeflag = 0
                             sandmap.diagonal = true
-                            //////////////console.log(path)
+                            ////////////////console.log(path)
                             if (path.length > 0) {
                                 sum += path.length
                             }
@@ -9015,7 +9327,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             let path = [...this.pather.search(sandmap, this.tile, this.faction.buildings[t].tile, {})]
                             sandmap.slimeflag = 0
                             sandmap.diagonal = true
-                            //////////////console.log(path)
+                            ////////////////console.log(path)
                             if (path.length > 0) {
                                 this.active = 1
                                 this.tile.primed = 1
@@ -9049,7 +9361,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
 
             }
-            ////////////////console.log(this)
+            //////////////////console.log(this)
             if (this.bulbplant == 1 || this.slime == 1) {
                 this.sight = 10
                 if (this.slime == 1) {
@@ -9884,11 +10196,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
         }
         metamorph1() {
-            //////////////////////////console.log(this.que, 1)
+            ////////////////////////////console.log(this.que, 1)
             if (this.que != 1) {
-                //////////////////////////console.log(this.hotrock, 2)
+                ////////////////////////////console.log(this.hotrock, 2)
                 if (this.faction.hotrock >= 180) {
-                    //////////////////////////console.log(this.nymph, 3)
+                    ////////////////////////////console.log(this.nymph, 3)
                     if (this.nymph == 1) {
                         this.faction.hotrock -= 180
                         this.morphing = 1
@@ -9898,7 +10210,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                 }
             }
-            //////////////////////////console.log(this.timer, 4)
+            ////////////////////////////console.log(this.timer, 4)
         }
         metamorph2() {
             if (this.que != 1) {
@@ -10117,8 +10429,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
             let scumrat = (this.shots.length*Math.max((this.damage-this.attacktarget.defense),0))
             // if(scumrat!= 0){
-            //     console.log(scumrat, this.attacktarget.health)
-            //     console.log(scumrat >= this.attacktarget.health)
+            //     //console.log(scumrat, this.attacktarget.health)
+            //     //console.log(scumrat >= this.attacktarget.health)
             // }
             if (this.attacktarget.health <= 0 || (Math.abs((this.attacktarget.tile.y - this.tile.y)) + Math.abs((this.attacktarget.tile.x - this.tile.x))) > (this.attackrange * 21) || scumrat >= this.attacktarget.health) {
                 // for (let t = -this.attackrange; t <= this.attackrange; t++) {
@@ -10318,7 +10630,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
 
                                 this.attacktarget.faction.blocks[this.tile.t][this.tile.k].markdraw = 1
-                                // //////////////////////console.log(this.attacktarget.faction.blocks[this.tile.t][this.tile.k])
+                                // ////////////////////////console.log(this.attacktarget.faction.blocks[this.tile.t][this.tile.k])
                                 if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].isAI == 1) {
                                     sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].pathTo(this.tile)
                                     sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].attackedAt = this.tile
@@ -10563,7 +10875,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
 
                                 this.attacktarget.faction.blocks[this.tile.t][this.tile.k].markdraw = 1
-                                // //////////////////////console.log(this.attacktarget.faction.blocks[this.tile.t][this.tile.k])
+                                // ////////////////////////console.log(this.attacktarget.faction.blocks[this.tile.t][this.tile.k])
                                 if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].isAI == 1) {
                                     sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].pathTo(this.tile)
                                     sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].attackedAt = this.tile
@@ -10693,7 +11005,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                 }
                 // if(this.submerged == 1){
-                //     ////////////////////console.log(point, this.tile)
+                //     //////////////////////console.log(point, this.tile)
                 // }
                 this.stepout = 1
                 if (this.submerged == 1 || this.mounted == 0) {
@@ -10710,7 +11022,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.stacksnap++
                 this.realPath = [...this.pather.search(sandmap, this.tile, point, {})]
                 this.moved = 1
-                ////////////////////console.log(this.realPath)
+                //////////////////////console.log(this.realPath)
                 if (this.obvious == this.realPath[0]) {
                     this.index = 0
                 } else {
@@ -10753,7 +11065,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     let max = 9999999999
                     for (let t = 0; t < this.tempcheck.length; t++) {
                         let link = (new LineOP(this.tile, this.tempcheck[t])).hypotenuse()
-                        // ////////////////////////////console.log(link)
+                        // //////////////////////////////console.log(link)
                         if (link < max) {
                             max = link
                             index = t
@@ -10783,7 +11095,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     // this.faction.clickrate++
                                                 sandmap.blocks[this.tile.t + t][this.tile.k + k].factionsrock.push(sandmap.players.indexOf(this.faction))
                                                     this.faction.seenrocks.push(sandmap.blocks[this.tile.t + t][this.tile.k + k])
-                                                    //console.log(sandmap.blocks[this.tile.t + t][this.tile.k + k].factionsrock)
+                                                    ////console.log(sandmap.blocks[this.tile.t + t][this.tile.k + k].factionsrock)
                                                 }else{
                                                     sandmap.blocks[this.tile.t + t][this.tile.k + k].factionsrock.push(sandmap.players.indexOf(this.faction))
                                                 }
@@ -10951,7 +11263,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             } else {
                 this.decayingInTheWind = 0
             }
-            //////////////////////////////////console.log( (this.decayingInTheWind*sandmap.windspeed))
+            ////////////////////////////////////console.log( (this.decayingInTheWind*sandmap.windspeed))
             if (this.faction.type == 0) {
                 this.health -= ((this.decayRate * this.decayingInTheWind * sandmap.windspeed))
             }
@@ -11263,7 +11575,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.shots[t].draw()
                 if (this.shots[t].stage >= this.projectilespeed) {
                     this.shots[t].refhealth.health -= Math.max((this.damage * 3) - this.shots[t].attacktarget.defense, 0) //5?
-                    ////////////////////////////console.log(this.shots[t].refhealth)
+                    //////////////////////////////console.log(this.shots[t].refhealth)
                     this.shots[t].marked = 1
 
                     if (this.shots[t].refhealth.submerged == 1) {
@@ -11422,9 +11734,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             //     sandmap.turn = 0
             // }
             // if (keysPressed['q']) {
-            //     //////////////////////////console.log(sandmap)
+            //     ////////////////////////////console.log(sandmap)
             // }
-            ////////////////////////////////////console.log(selectrect)
+            //////////////////////////////////////console.log(selectrect)
 
             if (sandmap.players[0].units.length == 0 || sandmap.players[1].units.length == 0) {
                 endbutton.draw()
