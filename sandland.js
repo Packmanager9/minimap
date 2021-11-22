@@ -5700,7 +5700,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
 
             for (let t = 0; t < this.units.length; t++) {
-                if(this.units[t].pollinator != 1 && this.units[t].hamartanworker != 1){
+                if(this.units[t].pollinator != 1 && this.units[t].hamartanworker != 1 && this.units[t].nymph != 1){
                     this.units[t].attackmove()
                 }
             }
@@ -5714,7 +5714,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
 
                 if ((this.units.length > this.racksflag) || this.hotrock * .004 > this.racksflag) {
-                    this.racksflag += 17 //8
+                    if(this.racks > 0){
+                        this.racksflag += 17 //8 //17
+                    }
                     this.racks = 0
                 }
 
@@ -6239,28 +6241,39 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
 
 
-                if (this.units.length > this.racksflag) {
-                    this.racksflag += 5
-                    this.racks = 0
+                if (this.units.length > this.racksflag || this.hotrock * .0035 > this.racksflag) {
+                    if(this.racks > 0){
+                        this.racksflag += 5
+                    }
+                    if(Math.random()<.4){
+                        this.racks = 0
+                    }
                     this.lab = 0
                 }
 
-                if (this.racks == 0) {
+                let breakbuilding = 0
+                for(let t = 0;t<this.buildings.length;t++){
+                    if(this.buildings[t].bulbplant == 1){
+                        breakbuilding = 1
+                    }
+                }
+
+                if (this.racks == 0 && (breakbuilding == 0 || Math.random()<.5)) {
                     let length = this.buildings.length
                     for (let t = 0; t < this.units.length; t++) {
                         if (this.units[t].realPath.length - 1 == this.units[t].index) {
                             // if (this.units[t].suffocating > 0 || (this.racks !== 1 && this.hotrock > 400)) {
                             if (Math.random() < .5) {
                                 if (Math.random() < .5) {
-                                    this.buildBarracks(sandmap.blocks[Math.max(this.units[t].tile.t - 1, 0)][this.units[t].tile.k])
+                                    this.buildBarracks(sandmap.blocks[Math.max(this.units[t].tile.t - Math.floor(Math.random()*5), 0)][this.units[t].tile.k])
                                 } else {
-                                    this.buildBarracks(sandmap.blocks[Math.min(this.units[t].tile.t + 1, 127)][this.units[t].tile.k])
+                                    this.buildBarracks(sandmap.blocks[Math.min(this.units[t].tile.t + Math.floor(Math.random()*5), 127)][this.units[t].tile.k])
                                 }
                             } else {
                                 if (Math.random() < .5) {
-                                    this.buildBarracks(sandmap.blocks[this.units[t].tile.t][Math.min(this.units[t].tile.k + 1, 127)])
+                                    this.buildBarracks(sandmap.blocks[this.units[t].tile.t][Math.min(this.units[t].tile.k + Math.floor(Math.random()*5), 127)])
                                 } else {
-                                    this.buildBarracks(sandmap.blocks[this.units[t].tile.t][Math.max(this.units[t].tile.k - 1, 0)])
+                                    this.buildBarracks(sandmap.blocks[this.units[t].tile.t][Math.max(this.units[t].tile.k - Math.floor(Math.random()*5), 0)])
                                 }
                             }
                             if (this.buildings.length > length) {
@@ -6276,15 +6289,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         // if (this.units[t].suffocating > 0 || (this.racks !== 1 && this.hotrock > 400)) {
                         if (Math.random() < .5) {
                             if (Math.random() < .5) {
-                                this.buildMachineLab(sandmap.blocks[Math.max(this.buildings[t].tile.t - 1, 0)][this.buildings[t].tile.k])
+                                this.buildMachineLab(sandmap.blocks[Math.max(this.buildings[t].tile.t - Math.floor(Math.random()*5), 0)][this.buildings[t].tile.k])
                             } else {
-                                this.buildMachineLab(sandmap.blocks[Math.min(this.buildings[t].tile.t + 1, 127)][this.buildings[t].tile.k])
+                                this.buildMachineLab(sandmap.blocks[Math.min(this.buildings[t].tile.t + Math.floor(Math.random()*5), 127)][this.buildings[t].tile.k])
                             }
                         } else {
                             if (Math.random() < .5) {
-                                this.buildMachineLab(sandmap.blocks[this.buildings[t].tile.t][Math.min(this.buildings[t].tile.k + 1, 127)])
+                                this.buildMachineLab(sandmap.blocks[this.buildings[t].tile.t][Math.min(this.buildings[t].tile.k + Math.floor(Math.random()*5), 127)])
                             } else {
-                                this.buildMachineLab(sandmap.blocks[this.buildings[t].tile.t][Math.max(this.buildings[t].tile.k - 1, 0)])
+                                this.buildMachineLab(sandmap.blocks[this.buildings[t].tile.t][Math.max(this.buildings[t].tile.k - Math.floor(Math.random()*5), 0)])
                             }
                         }
                         if (this.buildings.length > length) {
@@ -6393,7 +6406,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (this.chunk % this.clickrate == 0) {
 
                     if (this.units.length > this.racksflag) {
-                        this.racksflag += 10
+                        if(this.lab > 0){
+                            this.racksflag += 10
+                        }
                         this.lab = 0
                     }
 
@@ -6888,10 +6903,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
             } else { // human below, itzler above
 
                 if (this.hotrock > (this.racksflag * 75)) {
-                    // //////////////////console.log("earthoid effect")
+                    console.log("earthoid effect")
+                    if(this.racks == 1){
+                        this.racksflag += 4
+                    }
                     this.racks = 0
                     this.lab = 0
-                    this.racksflag += 4
                 }
 
 
@@ -8368,7 +8385,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
         path = new Set();
         var currentNode = endNode;
         var reverseArray;
+        let j = 0
         while (currentNode != startNode) {
+            j++
+            if(j > 129*129){
+                break
+            }
             path.add(currentNode);
             ////////////////////////////////console.log(currentNode)
             currentNode = currentNode.parent;
