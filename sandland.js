@@ -5700,7 +5700,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
 
             for (let t = 0; t < this.units.length; t++) {
-                this.units[t].attackmove()
+                if(this.units[t].pollinator != 1 && this.units[t].hamartanworker != 1){
+                    this.units[t].attackmove()
+                }
             }
             this.defending--
             if (this.type == 4) {
