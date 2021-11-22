@@ -2257,7 +2257,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         } else if (sandmap.players[1].clickrate == 200) {
                             canvas_context.fillText(`Power: Warm (2)`, difftoggle2.x + 10, difftoggle2.y + 50)
                         } else if (sandmap.players[1].clickrate == 400) {
-                            canvas_context.fillText(`Power: Balmy (1)`, difftoggle2.x + 10, difftoggle2.y + 50)
+                            canvas_context.fillText(`Power: Toasty (1)`, difftoggle2.x + 10, difftoggle2.y + 50)
                         }
                     }
                     if (sandmap.players[0].isAI == 1) {
@@ -2287,7 +2287,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         } else if (sandmap.players[0].clickrate == 200) {
                             canvas_context.fillText(`Power: Warm (2)`, difftoggle1.x + 10, difftoggle1.y + 50)
                         } else if (sandmap.players[0].clickrate == 400) {
-                            canvas_context.fillText(`Power: Balmy (1)`, difftoggle1.x + 10, difftoggle1.y + 50)
+                            canvas_context.fillText(`Power: Toasty (1)`, difftoggle1.x + 10, difftoggle1.y + 50)
                         }
                     }
                     canvas_context.font = "40px Arial";
@@ -6687,7 +6687,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             this.units[t].metamorph1()
                         }
                         if (this.units[t].imago == 2) {
-                            this.units[t].submerged = 1
+                            this.units[t].submerged = 0 //1?
                         }
                     }
                     if (this.defenseforce > 0) {
@@ -10882,7 +10882,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             break
                         } else {
                             let wet = 0
-                            for (let n = 0; n < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units.length; n++) {
+                            for (let n = 0; n < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units.length; n++) { //major if
                                 let ct = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile.t
                                 let ck = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile.k
                                 let xt = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction))].units[n].tile.t
@@ -11033,7 +11033,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 // }
                 this.stepout = 1
                 if (this.submerged == 1 || this.mounted == 0) {
-                    this.pather = liarsastar
+                    this.pather = liarsastar //big if?
                 } else {
                     this.pather = astar
                 }
