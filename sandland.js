@@ -7189,8 +7189,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     }
                                 }
                                 if (Math.random() < (.13 + (this.units.length * .0045)) + (this.hotrock * .0001)) { // - not +
-                                    if (this.hotrock > 300) {
-                                        this.buildings[t].makeSniper()
+                                    if (this.hotrock > 190) {
+                                        if(this.units.length > 7){
+                                            this.buildings[t].makeSniper()
+
+                                        }
                                     }
                                 }
                                 if (Math.random() < .3) {
@@ -9502,8 +9505,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         makeSniper() {
             if (this.que != 1) {
-                if (this.faction.hotrock >= 290 && this.faction.units.length < 51) {
-                    this.faction.hotrock -= 290
+                if (this.faction.hotrock >= 195 && this.faction.units.length < 51) {
+                    this.faction.hotrock -= 195
                     this.que = 1
                     this.sniper = 1
                     this.timer = 200
@@ -9538,8 +9541,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         makeHarvester() {
 
             if (this.que != 1) {
-                if (this.faction.hotrock >= 160 && this.faction.units.length < 51) {
-                    this.faction.hotrock -= 160
+                if (this.faction.hotrock >= 190 && this.faction.units.length < 51) {
+                    this.faction.hotrock -= 190
                     this.que = 1
                     this.harvester = 1
                     this.timer = 140
@@ -9601,7 +9604,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         canvas_context.font = "12px arial"
                         // canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
                         canvas_context.fillText("Infantry: 85", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
-                        canvas_context.fillText("Sniper: 290", this.spawnbig.x + 1, this.spawnbig.y + 46)
+                        canvas_context.fillText("Sniper: 195", this.spawnbig.x + 1, this.spawnbig.y + 46)
                         // canvas_context.fillText("Drone: 30")
                         // canvas_context.fillText("Drone: 30")
                     }
@@ -9852,7 +9855,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         canvas_context.font = "13px arial"
                         canvas_context.fillText("Drone: 30", this.spawnsmall.x + 1, this.spawnsmall.y + 46)
                         // canvas_context.fillText("Infantry: 90", this.spawnmedium.x + 1, this.spawnmedium.y + 46)
-                        canvas_context.fillText("Harvester: 160", this.spawnbig.x + 1, this.spawnbig.y + 46)
+                        canvas_context.fillText("Harvester: 190", this.spawnbig.x + 1, this.spawnbig.y + 46)
                         // canvas_context.fillText("Drone: 30")
                         // canvas_context.fillText("Drone: 30")
                     }
@@ -10662,7 +10665,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.attacktarget.health = 0
             this.attackcounter = 0
             this.decayRate = (this.sight * this.movespeed) * .01
-            this.health = 1400
+            this.health = 1400 //1400
             this.maxhealth = this.health
         }
         spawnNymph() {
@@ -11979,11 +11982,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             this.faction.income += this.movespeed * .0125
                         }
                         if (this.harvester == 1) {
-                            this.faction.hotrock -= this.movespeed * .03 //125
-                            this.tile.sourcerock += this.movespeed * .03 //125
-                            this.faction.income -= this.movespeed * .03
+                            this.faction.hotrock += this.movespeed * .005 //125
+                            this.tile.sourcerock -= this.movespeed * .005 //125
+                            this.faction.income += this.movespeed * .005
                         }
-                        if (this.nymph == 1 || this.harvester == 1 || this.pollinator == 1) { // || this.pollinator == 1) { //harvester?
+                        if (this.nymph == 1 || this.pollinator == 1) { // || this.pollinator == 1) { //harvester?//|| this.harvester == 1 
                             this.faction.hotrock += this.movespeed * .05
                             this.tile.sourcerock -= this.movespeed * .05
                             this.faction.income += this.movespeed * .05
@@ -12343,12 +12346,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // // game code goes here
             dataflop = 0
             sandmap.draw()
-            // if (keysPressed['h']) {
-            //     sandmap.turn = 1
-            // }
-            // if (keysPressed['k']) {
-            //     sandmap.turn = 0
-            // }
+            if (keysPressed['h']) {
+                sandmap.turn = 1
+            }
+            if (keysPressed['k']) {
+                sandmap.turn = 0
+            }
             // if (keysPressed['q']) {
             //     ////////////////////////////console.log(sandmap)
             // }
