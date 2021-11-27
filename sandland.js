@@ -155,6 +155,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
     sounds.push(ritual)
 
     //plaztilite audio
+    let seeraudio = new Audio()
+    seeraudio.src = "seeraudio.mp3"
+    sounds.push(seeraudio)
     let vizieraudio = new Audio()
     vizieraudio.src = "vizieraudio2.mp3"
     sounds.push(vizieraudio)
@@ -588,9 +591,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let golotick = Math.floor(Math.random() * 20) + 25
 
     let buddynotch = 0
+    let seernotch = 0
     let viznotch = 0
     let myconotch = 0
     let buddytick = Math.floor(Math.random() * 20) + 25
+    let seertick = Math.floor(Math.random() * 20) + 25
     let mycotick = Math.floor(Math.random() * 20) + 25
     let viztick = Math.floor(Math.random() * 20) + 25
 
@@ -617,6 +622,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
         vizieraudio.currentTime = viznotch
         vizieraudio.volume = .5
 
+        seernotch = Math.floor(Math.random() * seeraudio.duration)
+        seeraudio.currentTime = seernotch
+        seeraudio.volume = .5
+
+
         myconotch = Math.floor(Math.random() * mycoknightaudio.duration)
         mycoknightaudio.currentTime = myconotch
         mycoknightaudio.volume = .5
@@ -631,6 +641,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         golotick = ((Math.random() * 400) + 800) / 1000
 
         buddytick = ((Math.random() * 400) + 500) / 1000
+        seertick = ((Math.random() * 400) + 700) / 1000
         viztick = ((Math.random() * 400) + 700) / 1000
         mycotick = ((Math.random() * 400) + 1000) / 1000
     }
@@ -3581,6 +3592,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         if (sandmap.players[sandmap.turn].units[t].sporevizir == 1) {
                                             vizieraudio.play()
                                         }
+                                        if (sandmap.players[sandmap.turn].units[t].seer == 1) {
+                                            seeraudio.play()
+                                        }
                                         if (sandmap.players[sandmap.turn].units[t].mycoknight == 1) {
                                             mycoknightaudio.play()
                                         }
@@ -3929,6 +3943,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 if (sandmap.players[sandmap.turn].units[t].sporevizir == 1) {
                                     vizieraudio.play()
                                 }
+                                if (sandmap.players[sandmap.turn].units[t].seer == 1) {
+                                    seeraudio.play()
+                                }
+
                                 if (sandmap.players[sandmap.turn].units[t].mycoknight == 1) {
                                     mycoknightaudio.play()
                                 }
@@ -4017,6 +4035,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 }
                                 if (sandmap.players[sandmap.turn].units[t].sporevizir == 1) {
                                     vizieraudio.play()
+                                }
+                                if (sandmap.players[sandmap.turn].units[t].seer == 1) {
+                                    seeraudio.play()
                                 }
                                 if (sandmap.players[sandmap.turn].units[t].mycoknight == 1) {
                                     mycoknightaudio.play()
@@ -7190,7 +7211,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 }
                                 if (Math.random() < (.13 + (this.units.length * .0045)) + (this.hotrock * .0001)) { // - not +
                                     if (this.hotrock > 190) {
-                                        if(this.units.length > 7){
+                                        if (this.units.length > 7) {
                                             this.buildings[t].makeSniper()
 
                                         }
@@ -7220,7 +7241,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             }
                         }
                     } else {
-                        
+
                         if (sandmap.players.indexOf(this) == 0) {
                             for (let t = 0; t < this.buildings.length; t++) {
                                 if (this.buildings[t].barracks == 1) {
@@ -7228,7 +7249,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         if (this.hotrock > 100) { //200
                                             this.buildings[t].makeInfantry()
                                         }
-                                    } 
+                                    }
                                 } else {
                                     if (this.hotrock > 160) {
                                         this.buildings[t].makeHarvester()
@@ -7412,7 +7433,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                 if (Math.abs(this.units[t].tile.k - x) > 16) {
                                                     continue
                                                 }
-                                                if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1  || Math.abs(this.units[t].tile.k - x) > 15) {
+                                                if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1 || Math.abs(this.units[t].tile.k - x) > 15) {
                                                     this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
                                                 } else if (x == 2) {
                                                     this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
@@ -7511,7 +7532,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                 if (Math.abs(this.units[t].tile.k - x) > 16) {
                                                     continue
                                                 }
-                                                if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1  || Math.abs(this.units[t].tile.k - x) > 15) {
+                                                if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1 || Math.abs(this.units[t].tile.k - x) > 15) {
                                                     this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
                                                 } else if (x == 2) {
                                                     this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
@@ -7570,10 +7591,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             }
                                         }
                                     }
-                                    
 
 
-                                }  else if ((this.units[t].decayingInTheWind > .27 && this.units[t].decayingInTheWind < .55 && this.units[t].drone != 1) || (this.units[t].decayingInTheWind > .27 && this.units[t].decayingInTheWind < .55 && this.units[t].drone == 1 && (Math.random() < (this.hotrock * .006)))) {
+
+                                } else if ((this.units[t].decayingInTheWind > .27 && this.units[t].decayingInTheWind < .55 && this.units[t].drone != 1) || (this.units[t].decayingInTheWind > .27 && this.units[t].decayingInTheWind < .55 && this.units[t].drone == 1 && (Math.random() < (this.hotrock * .006)))) {
                                     if (this.units[t].dirs2 == 1) {
                                     } else {
                                         if (this.units[t].health < (this.units[t].maxhealth * .9)) {
@@ -7611,7 +7632,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                 if (Math.abs(this.units[t].tile.k - x) > 16) {
                                                     continue
                                                 }
-                                                if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1  || Math.abs(this.units[t].tile.k - x) > 15) {
+                                                if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1 || Math.abs(this.units[t].tile.k - x) > 15) {
                                                     this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
                                                 } else if (x == 2) {
                                                     this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
@@ -7708,7 +7729,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                 if (Math.abs(this.units[t].tile.k - x) > 16) {
                                                     continue
                                                 }
-                                                if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1  || Math.abs(this.units[t].tile.k - x) > 15) {
+                                                if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1 || Math.abs(this.units[t].tile.k - x) > 15) {
                                                     this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
                                                 } else if (x == 2) {
                                                     this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
@@ -8661,6 +8682,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             if (this.units[t].sporevizir == 1) {
                                 vizieraudio.play()
                             }
+                            if (this.units[t].seer == 1) {
+                                seeraudio.play()
+                            }
                             if (this.units[t].mycoknight == 1) {
                                 mycoknightaudio.play()
                             }
@@ -9389,6 +9413,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (Math.random() < soundspamdrop) {
                 if (sandmap.players.indexOf(this.faction) == sandmap.turn) {
                     soundCancel()
+                    seeraudio.play()
                 }
             }
             let agent1 = new Agent(this.tile, this.faction)
@@ -11211,6 +11236,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     mycoknightaudio.play()
                                 }
                             }
+                            if (this.seer == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    seeraudio.play()
+                                }
+                            }
                         }
 
                         if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].submerged != 1) {
@@ -11454,6 +11485,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 if (Math.random() < (soundspamdrop * engageconstant)) {
                                     soundCancel()
                                     mycoknightaudio.play()
+                                }
+                            }
+                            if (this.seer == 1) {
+                                if (Math.random() < (soundspamdrop * engageconstant)) {
+                                    soundCancel()
+                                    seeraudio.play()
                                 }
                             }
                         }
@@ -12316,6 +12353,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 volhold *= 1.1
                 if (volhold <= 1) {
                     vizieraudio.volume = volhold
+                }
+            }
+
+            if (seeraudio.currentTime >= seernotch + seertick) {
+                seeraudio.volume *= .93
+                // pollinatoraudio.pause()
+            } else {
+                let volhold = seeraudio.volume
+                volhold *= 1.1
+                if (volhold <= 1) {
+                    seeraudio.volume = volhold
                 }
             }
 
