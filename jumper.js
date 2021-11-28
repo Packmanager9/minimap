@@ -5788,7 +5788,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             for (let t = 0; t < this.units.length; t++) {
                 if (this.units[t].pollinator != 1 && this.units[t].hamartanworker != 1 && this.units[t].nymph != 1) {
-                    this.units[t].attackmove()
+                    if(Math.random()<.9){
+                        this.units[t].attackmoveunit()
+                    }else{
+                        this.units[t].attackmove()
+                    }
                 }
             }
             this.defending--
@@ -5796,7 +5800,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                 if (Math.random() < .01) {
                     for (let t = 0; t < this.units.length; t++) {
-                        this.units[t].attackmove()
+                        if(Math.random()<.9){
+                            this.units[t].attackmoveunit()
+                        }else{
+                            this.units[t].attackmove()
+                        }
                     }
                 }
 
@@ -6178,7 +6186,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (Math.random() < .1) { //new
                     for (let t = 0; t < this.units.length; t++) {
                         if (this.units[t].pufffellow == 1) {
-                            this.units[t].attackmove()
+                            if(Math.random()<.97){
+                                this.units[t].attackmoveunit()
+                            }else{
+                                this.units[t].attackmove()
+                            }
                         }
                     }
                 } //end new
@@ -7105,14 +7117,25 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         this.units[t].attackmove()
                                     }
                                 }
+
+                                if (Math.random() < .98) {
+                                if (this.units[t].nymph == 2) {
+                                    this.units[t].attackmoveunit()
+                                }
+                            }else{
                                 if (this.units[t].nymph == 2) {
                                     this.units[t].attackmove()
                                 }
+                            }
                                 if (this.units[t].imago == 2) {
                                     if (this.units[t].tile.sourcerock >= 1) {
                                         this.units[t].submerged = 1
                                     }
-                                    this.units[t].attackmove()
+                                    if (Math.random() < .98) {
+                                    this.units[t].attackmoveunit()
+                                    }else{
+                                        this.units[t].attackmove()
+                                    }
                                 }
                             }
                         }
@@ -11471,6 +11494,29 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 //     }
                 // }
 
+            } else {
+                if (Math.abs(this.attacktargetmove.tile.x - this.tile.x) + Math.abs((this.attacktargetmove.tile.y - this.tile.y)) > (this.sight * 21)) {
+                    this.attacktargetmove = {}
+                    this.attacktargetmove.health = 0
+                    return
+                }
+            }
+        }
+        attackmoveunit() {
+            if (this.attacktargetmove.health <= 0 || (Math.abs((this.attacktargetmove.tile.y - this.tile.y)) + Math.abs((this.attacktargetmove.tile.x - this.tile.x))) > (this.sight * 17.01)) {
+                for (let g = 0; g < sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units.length; g++) {
+                    let link = new LineOP(this.body, sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].body)
+                    // if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].tile == sandmap.blocks[this.tile.t + t][this.tile.k + k]) {
+                    if (link.hypotenuse() <= (this.sight * 17)) { //should probably be 14
+                        this.attacktargetmove = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
+                        this.pathTo(this.attacktargetmove.tile)
+                        if (this.tile.walkable == false || this.tile.ice == 1 || this.tile.builtOn == 1) {
+                        } else {
+                            this.submerged = 0
+                        }
+                        break
+                    }
+                }
             } else {
                 if (Math.abs(this.attacktargetmove.tile.x - this.tile.x) + Math.abs((this.attacktargetmove.tile.y - this.tile.y)) > (this.sight * 21)) {
                     this.attacktargetmove = {}
