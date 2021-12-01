@@ -5092,12 +5092,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
             this.seed = 256 + (Math.floor(Math.random() * 256))
             // this.players.push(new Player('Hamartans', "#0000FF", 0, 2))
             // this.players.push(new Player('Earthoids', "#0000FF", 1, 0))
-            // this.players.push(new Player('Hamartans', "#0000FF", 1, 2))
-            this.players.push(new Player('Plaztilites', "#0000FF", 1, 4))
-            this.players.push(new Player('Librilbians', "#FF0000", 1, 3))
-            // this.players.push(new Player('Librilbians', "#FF0000", 1, 3))
-            // this.players.push(new Player('Hamartans', "#FFAA00", 1, 2))
+            // this.players.push(new Player('Earthoids', "#FF00FF", 1, 0))
+            // this.players.push(new Player('Cold Itzlerians', "#00FF00", 1, 1))
             // this.players.push(new Player('Cold Itzlerians', "#FF0000", 1, 1))
+            // this.players.push(new Player('Hamartans', "#0000FF", 1, 2))
+            // this.players.push(new Player('Plaztilites', "#FF00FF", 1, 4))
+            // this.players.push(new Player('Plaztilites', "#0000FF", 1, 4))
+            this.players.push(new Player('Librilbians', "#FF0000", 1, 3))
+            this.players.push(new Player('Librilbians', "#FF0000", 1, 3))
+            // this.players.push(new Player('Hamartans', "#FFAA00", 1, 2))
             // this.players.push(new Player('Cold Itzlerians', "#00AA00", 1, 1))
             // this.players[0].aimode = 0
             // this.players[1].aimode = 1
@@ -5406,7 +5409,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
             for (let t = 0; t < this.players.length; t++) {
                 if (this.players[t].isAI == 1) {
-                    this.players[t].ai()
+                    if(t == 0){
+                        this.players[t].ai()
+                    }else{
+                        this.players[t].oldai()
+                    }
+                   
                 }
             }
             for (let t = 0; t < this.players.length; t++) {
@@ -5777,7 +5785,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.averageSpace.tile = sandmap.blocks[10][10]
             }
         }
-        ai() {
+        oldai() {
             if (sandmap.players.indexOf(this) == 1) {
                 if (dynamic2 == 1) {
                     this.clickrate = this.units.length
@@ -5791,11 +5799,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             for (let t = 0; t < this.units.length; t++) {
                 if (this.units[t].pollinator != 1 && this.units[t].hamartanworker != 1 && this.units[t].nymph != 1) {
-                    if(Math.random()<.9){
-                        this.units[t].attackmoveunit()
-                    }else{
-                        this.units[t].attackmove()
-                    }
+                    this.units[t].attackmove()
                 }
             }
             this.defending--
@@ -5803,11 +5807,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                 if (Math.random() < .01) {
                     for (let t = 0; t < this.units.length; t++) {
-                        if(Math.random()<.9){
-                            this.units[t].attackmoveunit()
-                        }else{
-                            this.units[t].attackmove()
-                        }
+                        this.units[t].attackmove()
                     }
                 }
 
@@ -5968,18 +5968,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         }
                                     }
                                 } else {
-                                    // if (Math.random() < (1 / this.units.length)) {
-                                    if (this.seen.length > 0) {
-                                        // let block = this.seen[Math.floor(Math.random() * this.seen.length)]
-                                        let block = this.seen[this.seen.length - 1]
-                                        this.units[t].pathTo(block)
+                                    if (Math.random() < (1 / this.units.length)) {
+                                        if (this.seen.length > 0) {
+                                            let block = this.seen[Math.floor(Math.random() * this.seen.length)]
+                                            this.units[t].pathTo(block)
 
-                                        j++
-                                        if (j > 3) { //6
-                                            break
+                                            j++
+                                            if (j > 3) { //6
+                                                break
+                                            }
                                         }
                                     }
-                                    // }
                                 }
                             }
                         } else if (typeof this.units[t].realPath[this.units[t].index + 1] !== "undefined") {
@@ -6014,8 +6013,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     } else {
                                         if (Math.random() < .13) { //03
                                             if (this.seen.length > 0) {
-                                                // let block = this.seen[Math.floor(Math.random() * this.seen.length)]
-                                                let block = this.seen[this.seen.length - 1]
+                                                let block = this.seen[Math.floor(Math.random() * this.seen.length)]
                                                 this.units[t].pathTo(block)
                                                 j++
                                                 if (j > 3) { //6
@@ -6131,7 +6129,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                 } else {
                     let j = 0
-                    if (Math.random() < .3) { //holy wowie, this was a
+                    if (Math.random(), .3) {
 
                         for (let t = 0; t < this.buildings.length; t++) {
                             if (this.buildings[t].slime == 1) {
@@ -6164,6 +6162,2570 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             break
                                         }
                                     } else if ((this.hotrock > 180 + (this.buildings.length * 1) || this.seenrocks.length <= this.units.length) && this.units.length < 51) {
+
+                                        this.buildings[t].makeMycoknight()
+                                        j++
+                                        if (j > 5) { //6
+                                            break
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
+
+            } else if (this.type == 3) {
+                this.chunk++
+                let index = -1
+                let j = 0
+
+                if (Math.random() < .1) { //new
+                    for (let t = 0; t < this.units.length; t++) {
+                        if (this.units[t].pufffellow == 1) {
+                            this.units[t].attackmove()
+                        }
+                    }
+                } //end new
+
+
+                for (let t = 0; t < this.units.length; t++) {
+                    if (this.units[t].pollinator == 1) {
+                        if (this.units.length >= this.seenrocks.length && (this.units[t].health / this.units[t].maxhealth) > .3) { //seen
+                            let block = sandmap.gridPoints[Math.floor(Math.random() * sandmap.gridPoints.length)]
+                            this.units[t].pathTo(block)
+                        }
+                    }
+                }
+
+                if (this.defending >= 32) {
+                    if (this.defending > 39) {
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (this.units[t].pollinator == 1) {
+                                if (Math.random() < (this.hotrock / 2000)) {
+                                    this.units[t].metamorphpufffellow()
+                                    if (sandmap.players.indexOf(this) == sandmap.turn) {
+                                        if (Math.random() < soundspamdrop) {
+                                            soundCancel()
+                                            pollinatoraudio.play()
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    this.defending = 0
+                    this.defenseforce = 0
+                    for (let t = 0; t < this.units.length; t++) {
+                        if (this.units[t].pufffellow == 1) {
+                            this.defenseforce++
+                        }
+                        if (this.units[t].podman == 1) {
+                            this.defenseforce += 1.5
+                        }
+                        if (this.units[t].goliophyte == 1) {
+                            this.defenseforce += 2
+                        }
+                    }
+                    if (this.defenseforce > 0) {
+
+                        for (let t = 0; t < this.buildings.length; t++) {
+
+                            if (this.buildings[t].bulbplant == 2) {
+                                if (Math.random() < .5) {
+                                    if (this.hotrock > 140) {
+                                        this.buildings[t].makeLibrilbianpodman()
+                                    }
+                                } else {
+                                    if (Math.random() < .5) {
+                                        if (Math.random() < .5) {
+                                            if (this.hotrock > 140) {
+                                                this.buildings[t].makeLibrilbianpodman()
+                                            }
+                                        } else {
+                                            if (Math.random() < .5) {
+                                                if (this.hotrock > 95 && Math.random() < .7) {
+                                                    this.buildings[t].makeLibrilbianpufffellow()
+                                                }
+                                            } else {
+                                                if (this.hotrock > 355) {
+                                                    this.buildings[t].makeLibrilbiangoliophyte()
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        if (this.hotrock > 355) {
+                                            this.buildings[t].makeLibrilbiangoliophyte()
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (this.units[t].podman == 1) {
+                                if (Math.random() < 7 / this.defenseforce) { //2
+                                    if (this.units[t].index == this.units[t].realPath.length - 1) {
+                                        this.units[t].pathTo(this.attackedAt)
+                                    }
+                                }
+                            }
+
+                            if (this.units[t].goliophyte == 1) {
+                                if (Math.random() < 7 / this.defenseforce) { //2
+                                    if (this.units[t].index == this.units[t].realPath.length - 1) {
+                                        this.units[t].pathTo(this.attackedAt)
+                                    }
+                                }
+                            }
+
+                            if (this.units[t].pufffellow == 1) {
+                                if (Math.random() < 7 / this.defenseforce) { //2
+                                    if (this.units[t].index == this.units[t].realPath.length - 1) {
+                                        this.units[t].pathTo(this.attackedAt)
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+
+                    }
+                }
+
+
+
+                if (this.chunk % this.clickrate == 0) {
+                    for (let t = 0; t < this.buildings.length; t++) {
+                        if (this.buildings[t].bulbplant == 2) {
+                            if (Math.random() < .5) {
+                                if (this.hotrock > 140) {
+                                    this.buildings[t].makeLibrilbianpodman()
+                                }
+                            } else {
+                                if (Math.random() < .5) {
+                                    if (Math.random() < .5) {
+                                        if (this.hotrock > 140) {
+                                            this.buildings[t].makeLibrilbianpodman()
+                                        }
+                                    } else {
+                                        if (Math.random() < .5) {
+                                            if (this.hotrock > 95 && Math.random() < .7) {  // 100%
+                                                this.buildings[t].makeLibrilbianpufffellow()
+                                            }
+                                        } else {
+                                            if (this.hotrock > 355) {
+                                                this.buildings[t].makeLibrilbiangoliophyte()
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    if (this.hotrock > 355) {
+                                        this.buildings[t].makeLibrilbiangoliophyte()
+                                    }
+                                }
+                            }
+                        }
+                        if (this.buildings[t].bulbplant == 1) {
+                            if (this.units.length <= 8) {
+                                if (this.hotrock > 90) {
+                                    this.buildings[t].makeLibrilbianpollinator()
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+                if (this.units.length > this.racksflag || this.hotrock * .0035 > this.racksflag) {
+                    if (this.racks > 0) {
+                        this.racksflag += 5
+                    }
+                    if (Math.random() < .4) {
+                        this.racks = 0
+                    }
+                    this.lab = 0
+                }
+
+                let breakbuilding = 0
+                for (let t = 0; t < this.buildings.length; t++) {
+                    if (this.buildings[t].bulbplant == 1) {
+                        breakbuilding = 1
+                    }
+                }
+
+                if (this.racks == 0 && (breakbuilding == 0 || Math.random() < .5)) {
+                    let length = this.buildings.length
+                    for (let t = 0; t < this.units.length; t++) {
+                        if (this.units[t].realPath.length - 1 == this.units[t].index) {
+                            // if (this.units[t].suffocating > 0 || (this.racks !== 1 && this.hotrock > 400)) {
+                            if (Math.random() < .5) {
+                                if (Math.random() < .5) {
+                                    this.buildBarracks(sandmap.blocks[Math.max(this.units[t].tile.t - Math.floor(Math.random() * 5), 0)][this.units[t].tile.k])
+                                } else {
+                                    this.buildBarracks(sandmap.blocks[Math.min(this.units[t].tile.t + Math.floor(Math.random() * 5), 127)][this.units[t].tile.k])
+                                }
+                            } else {
+                                if (Math.random() < .5) {
+                                    this.buildBarracks(sandmap.blocks[this.units[t].tile.t][Math.min(this.units[t].tile.k + Math.floor(Math.random() * 5), 127)])
+                                } else {
+                                    this.buildBarracks(sandmap.blocks[this.units[t].tile.t][Math.max(this.units[t].tile.k - Math.floor(Math.random() * 5), 0)])
+                                }
+                            }
+                            if (this.buildings.length > length) {
+                                break
+                            }
+                        }
+                        // }
+                    }
+                } else if (this.lab == 0) {
+                    let length = this.buildings.length
+                    for (let t = 0; t < this.buildings.length; t++) {
+                        // if (this.buildings[t].realPath.length - 1 == this.buildings[t].index) {
+                        // if (this.units[t].suffocating > 0 || (this.racks !== 1 && this.hotrock > 400)) {
+                        if (Math.random() < .5) {
+                            if (Math.random() < .5) {
+                                this.buildMachineLab(sandmap.blocks[Math.max(this.buildings[t].tile.t - Math.floor(Math.random() * 5), 0)][this.buildings[t].tile.k])
+                            } else {
+                                this.buildMachineLab(sandmap.blocks[Math.min(this.buildings[t].tile.t + Math.floor(Math.random() * 5), 127)][this.buildings[t].tile.k])
+                            }
+                        } else {
+                            if (Math.random() < .5) {
+                                this.buildMachineLab(sandmap.blocks[this.buildings[t].tile.t][Math.min(this.buildings[t].tile.k + Math.floor(Math.random() * 5), 127)])
+                            } else {
+                                this.buildMachineLab(sandmap.blocks[this.buildings[t].tile.t][Math.max(this.buildings[t].tile.k - Math.floor(Math.random() * 5), 0)])
+                            }
+                        }
+                        if (this.buildings.length > length) {
+                            break
+                        }
+                        // }
+                        // }
+                    }
+                }
+
+
+                if (this.chunk % this.clickrate == 0) {
+                    for (let t = 0; t < this.units.length; t++) {
+                        if (this.units[t].realPath.length - 1 == this.units[t].index) { //} || this.units[t].realPath[this.units[t].index].walkable !== true) {
+                            if (this.units[t].tile.hotrock != 1 && this.units[t].tile.hotrock != 2) {
+                                let max = 999999999
+                                for (let h = 0; h < sandmap.hotrocks.length; h++) {
+                                    if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
+                                        let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
+                                        // //////////////////////////////console.log(link)
+                                        if (link < max) {
+                                            max = link
+                                            index = h
+                                        }
+                                    }
+                                }
+
+                                if (typeof sandmap.hotrocks[index] !== "undefined") {
+                                    if (this.units[t].attacktarget.health > 0) {
+
+                                    } else {
+                                        j++
+                                        this.units[t].pathTo(sandmap.hotrocks[index])
+                                        if (j > 3) { //6
+                                            break
+                                        }
+                                    }
+                                } else {
+                                    if (Math.random() < (1 / this.units.length)) {
+                                        if (this.seen.length > 0) {
+                                            let block = this.seen[Math.floor(Math.random() * this.seen.length)]
+                                            this.units[t].pathTo(block)
+                                        }
+                                    }
+                                }
+                            }
+                        } else if (typeof this.units[t].realPath[this.units[t].index + 1] !== "undefined") {
+                            if (this.units[t].realPath[this.units[t].index + 1].walkable !== true) {
+                                if (this.units[t].tile.hotrock != 1 && this.units[t].tile.hotrock != 2) {
+                                    let max = 999999999
+                                    for (let h = 0; h < sandmap.hotrocks.length; h++) {
+                                        if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
+                                            let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
+                                            // //////////////////////////////console.log(link)
+                                            if (link < max) {
+                                                max = link
+                                                index = h
+                                            }
+                                        }
+                                    }
+
+                                    if (typeof sandmap.hotrocks[index] !== "undefined") {
+                                        if (this.units[t].attacktarget.health > 0) {
+
+                                        } else {
+                                            j++
+                                            this.units[t].pathTo(sandmap.hotrocks[index])
+                                            if (j > 3) { //6
+                                                break
+                                            }
+                                        }
+                                    } else {
+                                        if (Math.random() < .03) {
+                                            if (this.seen.length > 0) {
+                                                let block = this.seen[Math.floor(Math.random() * this.seen.length)]
+                                                this.units[t].pathTo(block)
+                                            }
+                                        } else {
+
+                                            if (this.seen.length <= this.units.length) {
+                                                if (this.units[t].pollinator == 1) {
+                                                    if (Math.random() < .5) {
+                                                        let block = sandmap.gridPoints[Math.floor(Math.random() * sandmap.gridPoints.length)]
+                                                        this.units[t].pathTo(block)
+                                                    }
+                                                }
+                                            } else if (this.units[t].pufffellow == 1 || this.units[t].pollinator == 1) {
+                                                if (Math.random() < .5) {
+                                                    let block = sandmap.gridPoints[Math.floor(Math.random() * sandmap.gridPoints.length)]
+                                                    this.units[t].pathTo(block)
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
+            } else if (this.type == 2) {
+
+
+                if (this.chunk % this.clickrate == 0) {
+
+                    if (this.units.length > this.racksflag) {
+                        if (this.lab > 0) {
+                            this.racksflag += 10
+                        }
+                        this.lab = 0
+                    }
+
+
+                    for (let t = 0; t < this.buildings.length; t++) {
+                        if (this.buildings[t].assembler == 2) {
+                            if (this.seenrocks.length <= this.units.length) { //seen
+                                if (this.hotrock > 135) {
+                                    this.buildings[t].makeHamartanscout()
+                                    break
+                                }
+                            }
+                        }
+
+                        if (this.buildings[t].assembler == 1) {
+                            if (this.seen.length <= this.units.length) {
+                                if (this.hotrock > 200 && Math.random() < .75) { //235
+                                    this.buildings[t].makeHamartansoldier()
+                                }
+                            }
+                        }
+                        if (this.buildings[t].assembler == 3) {
+                            if (Math.random() < .12 - (this.units.length * .005)) { //.1
+                                if (this.hotrock > 145) { //220 //170
+                                    this.buildings[t].makeHamartanworker()
+                                }
+                            }
+                            if (Math.random() < (.13 + (this.units.length * .0015)) + (this.hotrock * .0003)) {  // - unitslength not + //too frequent too early //45 not 15 //0001
+                                if (this.hotrock > 340) {
+                                    if (this.buildings[t].que == 1) {
+                                        if (this.hotrock > 700) {
+                                            this.racks = 0
+                                        }
+                                    } else {
+                                        this.buildings[t].makeHamartaninvader()
+                                    }
+                                }
+                            }
+                            if (Math.random() < 1 / (this.buildings.length * 2)) {
+                                break
+                            }
+                        }
+                    }
+                }
+
+
+
+                if (this.defending >= 32) {
+                    this.defending = 0
+                    this.defenseforce = 0
+                    for (let t = 0; t < this.units.length; t++) {
+                        if (this.units[t].soldier == 1) {
+                            this.defenseforce++
+                        }
+                        if (this.units[t].hamartaninvader == 1) {
+                            this.defenseforce += 2
+                        }
+                    }
+                    if (this.defenseforce > 0) {
+
+                        for (let t = 0; t < this.buildings.length; t++) {
+                            if (this.buildings[t].assembler == 1) {
+                                if (this.hotrock > 200 && Math.random() < .75) { //235 
+                                    this.buildings[t].makeHamartansoldier()
+                                }
+                            }
+
+                            if (this.buildings[t].assembler == 2) {
+                                if (this.hotrock > 340) {
+                                    this.buildings[t].makeHamartaninvader()
+                                }
+                            }
+                        }
+
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (this.units[t].hamartaninvader == 1) {
+                                if (Math.random() < 7 / this.defenseforce) { //2
+                                    if (this.units[t].index == this.units[t].realPath.length - 1) {
+                                        this.units[t].pathTo(this.attackedAt)
+                                    }
+                                }
+                            }
+
+                            if (this.units[t].soldier == 1) {
+                                if (Math.random() < 7 / this.defenseforce) { //2
+                                    if (this.units[t].index == this.units[t].realPath.length - 1) {
+                                        this.units[t].pathTo(this.attackedAt)
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+
+                    }
+                }
+
+
+                if (this.units.length == 3) {
+                    let tpos = 0
+                    let kpos = 0
+
+                    for (let t = 0; t < this.units.length; t++) {
+                        tpos += this.units[t].tile.t
+                        kpos += this.units[t].tile.k
+                    }
+                    tpos = Math.round(tpos / 3)
+                    kpos = Math.round(kpos / 3)
+
+                    let tile = sandmap.blocks[tpos][kpos]
+                    let count = 0
+                    for (let t = 0; t < this.units.length; t++) {
+                        let link = new LineOP(this.units[t].tile, tile)
+                        if ((this.units[t].suffocating > 0 && (this.units[t].health / this.units[t].maxhealth) < .97) && link.hypotenuse() <= 119) {
+                            count++
+                        }
+                    }
+                    if (count == 3) {
+                        this.buildWall(tile, 1)
+                    } else if (count == 0) {
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (this.units[t].realPath.length - 1 == this.units[t].index) {
+                                if ((this.units[t].suffocating > 0 && (this.units[t].health / this.units[t].maxhealth) < .9) || (this.racks !== 1 && this.hotrock > 400)) {
+                                    if (Math.random() < .5) {
+                                        if (Math.random() < .5) {
+                                            this.buildWall(sandmap.blocks[Math.max(this.units[t].tile.t - 1, 0)][this.units[t].tile.k])
+                                        } else {
+                                            this.buildWall(sandmap.blocks[Math.min(this.units[t].tile.t + 1, 127)][this.units[t].tile.k])
+                                        }
+                                    } else {
+                                        if (Math.random() < .5) {
+                                            this.buildWall(sandmap.blocks[this.units[t].tile.t][Math.min(this.units[t].tile.k + 1, 127)])
+                                        } else {
+                                            this.buildWall(sandmap.blocks[this.units[t].tile.t][Math.max(this.units[t].tile.k - 1, 0)])
+                                        }
+                                    }
+                                    break
+                                }
+                            }
+                        }
+                    }
+
+                } else {
+                    for (let t = 0; t < this.units.length; t++) {
+                        if (this.units[t].realPath.length - 1 == this.units[t].index) {
+                            if ((this.units[t].suffocating > 0 && (this.units[t].health / this.units[t].maxhealth) < .9) || (this.racks !== 1 && this.hotrock > 400)) {
+                                if (Math.random() < .5) {
+                                    if (Math.random() < .5) {
+                                        this.buildWall(sandmap.blocks[Math.max(this.units[t].tile.t - 1, 0)][this.units[t].tile.k])
+                                    } else {
+                                        this.buildWall(sandmap.blocks[Math.min(this.units[t].tile.t + 1, 127)][this.units[t].tile.k])
+                                    }
+                                } else {
+                                    if (Math.random() < .5) {
+                                        this.buildWall(sandmap.blocks[this.units[t].tile.t][Math.min(this.units[t].tile.k + 1, 127)])
+                                    } else {
+                                        this.buildWall(sandmap.blocks[this.units[t].tile.t][Math.max(this.units[t].tile.k - 1, 0)])
+                                    }
+                                }
+                                break
+                            }
+                        }
+                    }
+                }
+
+
+                let index
+                let j = 0
+                this.chunk++
+                if (this.chunk % this.clickrate == 0) {
+
+
+
+                    if (Math.random() < .3) {
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (this.units[t].hamartanscout == 1) {
+                                if (this.units[t].realPath.length - 1 == this.units[t].index) {
+                                    if (this.units.length >= this.seenrocks.length + 0 && (this.units[t].health / this.units[t].maxhealth) > .3) { //seen //5
+                                        let block = sandmap.gridPoints[Math.floor(Math.random() * sandmap.gridPoints.length)]
+                                        this.units[t].pathTo(block)
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    for (let t = 0; t < this.units.length; t++) {
+                        if (this.units[t].realPath.length - 1 == this.units[t].index) { //} || this.units[t].realPath[this.units[t].index].walkable !== true) {
+                            if (this.units[t].tile.hotrock != 1 && this.units[t].tile.hotrock != 2) {
+                                let max = 999999999
+                                for (let h = 0; h < sandmap.hotrocks.length; h++) {
+                                    if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
+                                        let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
+                                        // //////////////////////////////console.log(link)
+                                        if (link < max) {
+                                            max = link
+                                            index = h
+                                        }
+                                    }
+                                }
+
+                                if (typeof sandmap.hotrocks[index] !== "undefined") {
+                                    if (this.units[t].attacktarget.health > 0) {
+
+                                    } else {
+                                        j++
+                                        this.units[t].pathTo(sandmap.hotrocks[index])
+                                        if (j > 3) { //6
+                                            break
+                                        }
+                                    }
+                                } else {
+                                    if (Math.random() < (1 / this.units.length)) {
+                                        if (this.seen.length > 0) {
+                                            let block = this.seen[Math.floor(Math.random() * this.seen.length)]
+                                            this.units[t].pathTo(block)
+                                        }
+                                    }
+                                }
+                            }
+                        } else if (typeof this.units[t].realPath[this.units[t].index + 1] !== "undefined") {
+                            if (this.units[t].realPath[this.units[t].index + 1].walkable !== true) {
+                                if (this.units[t].tile.hotrock != 1 && this.units[t].tile.hotrock != 2) {
+                                    let max = 999999999
+                                    for (let h = 0; h < sandmap.hotrocks.length; h++) {
+                                        if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
+                                            let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
+                                            // //////////////////////////////console.log(link)
+                                            if (link < max) {
+                                                max = link
+                                                index = h
+                                            }
+                                        }
+                                    }
+
+                                    if (typeof sandmap.hotrocks[index] !== "undefined") {
+                                        if (this.units[t].attacktarget.health > 0) {
+
+                                        } else {
+                                            j++
+                                            this.units[t].pathTo(sandmap.hotrocks[index])
+                                            if (j > 3) { //6
+                                                break
+                                            }
+                                        }
+                                    } else {
+                                        if (Math.random() < .03) {
+                                            if (this.seen.length > 0) {
+                                                let block = this.seen[Math.floor(Math.random() * this.seen.length)]
+                                                this.units[t].pathTo(block)
+                                            }
+                                        } else {
+                                            if (this.units[t].hamartanscout == 1) {
+                                                if (Math.random() < .015) { //.5?
+                                                    let block = sandmap.gridPoints[Math.floor(Math.random() * sandmap.gridPoints.length)]
+                                                    this.units[t].pathTo(block)
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            } else if (this.type == 1) {
+
+                if (this.defending >= 25) { //25 not 32 because they favor early advantage
+                    this.defending = 0
+                    this.defenseforce = 0
+                    for (let t = 0; t < this.units.length; t++) {
+                        if (this.units[t].nymph == 2) {
+                            this.defenseforce++
+                        }
+                        if (this.units[t].nymph == 1) {
+                            this.units[t].metamorph1()
+                        }
+                        if (this.units[t].imago == 2) {
+                            this.units[t].submerged = 0 //1?
+                        }
+                    }
+                    if (this.defenseforce > 0) {
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (this.units[t].nymph == 2) {
+                                if (Math.random() < 7 / this.defenseforce) { //2
+                                    if (this.units[t].index == this.units[t].realPath.length - 1) {
+                                        this.units[t].pathTo(this.attackedAt)
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (Math.random() < 7 / this.defenseforce) {
+                                if (this.units[t].nymph !== 1) {
+                                    if ((this.units[t].imago == 1) && Math.random() < .4) { //.9
+                                        continue
+                                    }
+                                    if (this.units[t].index == this.units[t].realPath.length - 1) {
+                                        this.units[t].pathTo(this.attackedAt)
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+                let index = sandmap.hotrocks.length + 1
+                this.chunk++
+                if (this.aimode == 1) {
+                    for (let t = 0; t < this.units.length; t++) {
+                        if (this.units[t].imago == 1 || this.units[t].imago == 2) {
+                            this.units[t].makeNymph()
+                        }
+                    }
+                    let j = 0
+                    if (Math.random() < this.units.length * .075) {
+                        // for (let t = 0; t < this.units.length; t++) {
+                        //     if (this.units[t].imago !== 1) {
+                        //         //hardcoding this gid helf mi
+                        //         if (Math.random() < .3) {
+                        //             if (sandmap.players[Math.abs(sandmap.players.indexOf(this) - 1)].units.length > 0) {
+                        //                 if (typeof sandmap.players[Math.abs(sandmap.players.indexOf(this) - 1)].units[Math.floor(Math.random() * sandmap.players[Math.abs(sandmap.players.indexOf(this) - 1)].units.length)].tile !== "undefined") {
+                        //                     j++
+                        //                     this.units[t].pathTo(sandmap.players[Math.abs(sandmap.players.indexOf(this) - 1)].units[Math.floor(Math.random() * sandmap.players[Math.abs(sandmap.players.indexOf(this) - 1)].units.length)].tile)
+                        //                     if (j > 3) { //6
+                        //                         break
+                        //                     }
+                        //                 }
+                        //             }
+                        //         }
+                        //     }
+                        // }
+                        this.aimode = 0
+                    }
+                } else if (this.aimode == 0) {
+                    let j = 0
+
+                    if (this.chunk % this.clickrate == 0) {
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (this.units[t].realPath.length - 1 == this.units[t].index) { //} || this.units[t].realPath[this.units[t].index].walkable !== true) {
+                                if (this.units[t].tile.hotrock != 1 && this.units[t].tile.hotrock != 2) {
+                                    let max = 999999999
+                                    for (let h = 0; h < sandmap.hotrocks.length; h++) {
+                                        if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
+                                            let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
+                                            // //////////////////////////////console.log(link)
+                                            if (link < max) {
+                                                max = link
+                                                index = h
+                                            }
+                                        }
+                                    }
+
+                                    if (typeof sandmap.hotrocks[index] !== "undefined") {
+                                        if (this.units[t].attacktarget.health > 0) {
+
+                                        } else {
+                                            j++
+                                            this.units[t].pathTo(sandmap.hotrocks[index])
+                                            if (j > 3) { //6
+                                                break
+                                            }
+                                        }
+                                    } else {
+                                        if (Math.random() < (1 / this.units.length)) {
+                                            if (this.seen.length > 0) {
+                                                let block = this.seen[Math.floor(Math.random() * this.seen.length)]
+                                                this.units[t].pathTo(block)
+                                            }
+                                        }
+                                    }
+                                }
+                            } else if (typeof this.units[t].realPath[this.units[t].index + 1] !== "undefined") {
+                                if (this.units[t].realPath[this.units[t].index + 1].walkable !== true) {
+                                    if (this.units[t].tile.hotrock != 1 && this.units[t].tile.hotrock != 2) {
+                                        let max = 999999999
+                                        for (let h = 0; h < sandmap.hotrocks.length; h++) {
+                                            if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
+                                                let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
+                                                // //////////////////////////////console.log(link)
+                                                if (link < max) {
+                                                    max = link
+                                                    index = h
+                                                }
+                                            }
+                                        }
+
+                                        if (typeof sandmap.hotrocks[index] !== "undefined") {
+                                            if (this.units[t].attacktarget.health > 0) {
+
+                                            } else {
+                                                j++
+                                                this.units[t].pathTo(sandmap.hotrocks[index])
+                                                if (j > 3) { //6
+                                                    break
+                                                }
+                                            }
+                                        } else {
+                                            if (Math.random() < .03) {
+                                                if (this.seen.length > 0) {
+                                                    let block = this.seen[Math.floor(Math.random() * this.seen.length)]
+                                                    this.units[t].pathTo(block)
+                                                }
+                                            } else {
+                                                if (this.units[t].nymph == 1) {
+                                                    if (Math.random() < .01) {
+                                                        let block = sandmap.gridPoints[Math.floor(Math.random() * sandmap.gridPoints.length)]
+                                                        this.units[t].pathTo(block)
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if (Math.random() < .1) {
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (this.units[t].nymph == 1) {
+                                this.units[t].attackmove()
+                            }
+                            if (this.units[t].nymph == 2) {
+                                this.units[t].attackmove()
+                            }
+                            if (this.units[t].imago == 2) {
+                                if (this.units[t].tile.sourcerock >= 1) {
+                                    this.units[t].submerged = 1
+                                }
+                                this.units[t].attackmove()
+                            }
+                        }
+                    }
+
+                    if (Math.random() < (.3 / this.units.length)) {
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (this.units[t].imago == 1 || this.units[t].imago == 2) {
+                                this.units[t].makeNymph()
+                                if (Math.random() < .1) {
+                                    break
+                                }
+                            }
+                        }
+                    }
+                    if (Math.random() < (this.units.length * .001)) {
+                        let n = 0
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (this.units[t].nymph == 1) {
+                                n++
+                            }
+                        }
+                        if (n > 2) {
+                            for (let t = 0; t < this.units.length; t++) {
+                                if (this.units[t].nymph == 1) {
+                                    this.units[t].metamorph1()
+                                    break
+                                }
+                            }
+                        }
+                    }
+
+                    if (Math.random() < (this.units.length * .0009)) {
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (Math.random() < .5) {
+                                if (this.units[t].nymph == 2) {
+                                    this.units[t].metamorph2()
+                                    break
+                                }
+                            } else {
+                                if (this.units[t].nymph == 2) {
+                                    this.units[t].metamorph3()
+                                    break
+                                }
+                            }
+                        }
+                    }
+
+
+                    if (this.units.length > 25) {
+                        if (this.attacktimeout <= 0) {
+                            this.aimode = 1
+                            this.attacktimeout = 3000
+                        }
+                        this.attacktimeout--
+                    }
+                }
+
+
+
+            } else { // human below, itzler above
+
+                if (this.hotrock > (this.racksflag * 75)) {
+                    console.log("earthoid effect")
+                    if (this.racks == 1) {
+                        this.racksflag += 4
+                    }
+                    this.racks = 0
+                    this.lab = 0
+                }
+
+
+
+                if (this.defending >= 32) {
+                    this.defending = 0
+                    this.defenseforce = 0
+                    for (let t = 0; t < this.units.length; t++) {
+                        if (this.units[t].infantry == 1) {
+                            this.defenseforce++
+                        }
+                    }
+                    for (let t = 0; t < this.buildings.length; t++) {
+                        if (this.buildings[t].barracks == 1) {
+                            if (this.hotrock > 40) { // 40??
+                                this.buildings[t].makeInfantry()
+                            }
+                        }
+                    }
+                    if (this.defenseforce > 0) {
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (this.units[t].infantry == 1) {
+                                if (Math.random() < 7 / this.defenseforce) { //2
+                                    if (this.units[t].index == this.units[t].realPath.length - 1) {
+                                        this.units[t].pathTo(this.attackedAt)
+                                    }
+                                }
+                            }
+                            if (this.units[t].infantry == 2) {
+                                if (Math.random() < 7 / this.defenseforce) { //2
+                                    if (this.units[t].index == this.units[t].realPath.length - 1) {
+                                        this.units[t].pathTo(this.attackedAt)
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (Math.random() < 7 / this.defenseforce) { //2
+                                if (this.units[t].harvester == 1 && Math.random() < .4) { //.9
+                                    continue
+                                }
+
+                                if (this.units[t].index == this.units[t].realPath.length - 1) {
+                                    this.units[t].pathTo(this.attackedAt)
+                                }
+                            }
+                        }
+
+                    }
+                }
+
+                if (Math.random() < .0001) {
+                    this.racks = 0
+                    this.lab = 0
+                }
+                let index = 0
+                this.chunk++
+                if (this.aimode == 1) {
+                    let j = 0
+                    if (Math.random() < this.units.length * .075) {
+                        // for (let t = 0; t < this.units.length; t++) {
+                        //     if (this.units[t].imago !== 1) {
+                        //         //hardcoding this gid helf mi
+                        //         if (Math.random() < .3) {
+                        //             if (sandmap.players[0].units.length > 0) {
+                        //                 if (typeof sandmap.players[0].units[Math.floor(Math.random() * sandmap.players[0].units.length)].tile !== "undefined") {
+                        //                     j++
+                        //                     this.units[t].pathTo(sandmap.players[0].units[Math.floor(Math.random() * sandmap.players[0].units.length)].tile)
+                        //                     if (j > 3) { //6
+                        //                         break
+                        //                     }
+                        //                 }
+                        //             }
+                        //         }
+                        //     }
+                        // }
+                        this.aimode = 0
+                    }
+                } else if (this.aimode == 0) {
+                    let j = 0
+
+                    if (this.chunk % this.clickrate == 0) {
+
+                        this.findBase() // to make an averagespace
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (this.units[t].realPath.length - 1 == this.units[t].index) { //} || this.units[t].realPath[this.units[t].index].walkable !== true) {
+
+                                if (this.units[t].health < (this.units[t].maxhealth * .33)) {
+                                    j++
+                                    let block = this.averageSpace.tile
+                                    this.units[t].pathTo(block)
+                                    if (j > 3) { //6
+                                        break
+                                    }
+                                } else {
+                                    if (this.units[t].tile.hotrock != 1 && this.units[t].tile.hotrock != 2) {
+                                        let max = 999999999
+                                        for (let h = 0; h < sandmap.hotrocks.length; h++) {
+                                            if (this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
+                                                if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false) {
+                                                    let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
+                                                    // //////////////////////////////console.log(link)
+                                                    if (link < max) {
+                                                        max = link
+                                                        index = h
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        if (typeof sandmap.hotrocks[index] !== "undefined" && max < 999999999) {
+                                            if (this.units[t].attacktarget.health > 0) {
+
+                                            } else {
+                                                j++
+                                                this.units[t].pathTo(sandmap.hotrocks[index])
+                                                if (j > 3) { //6
+                                                    break
+                                                }
+                                            }
+                                        } else {
+                                            if (this.units[t].drone == 1 && Math.random() < (.05 / this.units.length)) {
+                                                if (this.units[t].health > (this.units[t].maxhealth * .33)) {
+                                                    let block = sandmap.gridPoints[Math.floor(Math.random() * sandmap.gridPoints.length)]
+                                                    this.units[t].pathTo(block)
+                                                } else {
+                                                    j++
+                                                    let block = this.averageSpace.tile
+                                                    this.units[t].pathTo(block)
+                                                    if (j > 3) { //6
+                                                        break
+                                                    }
+                                                }
+                                            } else if (Math.random() < (1 / this.units.length)) {
+                                                if (this.units[t].health > (this.units[t].maxhealth * .33)) {
+                                                    if (this.seen.length > 0) {
+                                                        j++
+                                                        let block = this.seen[Math.floor(Math.random() * this.seen.length)]
+                                                        this.units[t].pathTo(block)
+                                                        if (j > 3) { //6
+                                                            break
+                                                        }
+                                                    }
+                                                } else {
+                                                    j++
+                                                    let block = this.averageSpace.tile
+                                                    this.units[t].pathTo(block)
+                                                    if (j > 3) { //6
+                                                        break
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } else if (typeof this.units[t].realPath[this.units[t].index + 1] !== "undefined") {
+                                if (this.units[t].health < (this.units[t].maxhealth * .33)) {
+                                    j++
+                                    let block = this.averageSpace.tile
+                                    this.units[t].pathTo(block)
+                                    if (j > 3) { //6
+                                        break
+                                    }
+                                } else {
+                                    if (this.units[t].realPath[this.units[t].index + 1].walkable !== true) {
+                                        if (this.units[t].tile.hotrock != 1 && this.units[t].tile.hotrock != 2) {
+                                            let max = 999999999
+                                            for (let h = 0; h < sandmap.hotrocks.length; h++) {
+                                                if (this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
+                                                    if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false) {
+                                                        let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
+                                                        // //////////////////////////////console.log(link)
+                                                        if (link < max) {
+                                                            max = link
+                                                            index = h
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                            if (typeof sandmap.hotrocks[index] !== "undefined" && max < 999999999) {
+                                                if (this.units[t].attacktarget.health > 0) {
+
+                                                } else {
+                                                    j++
+                                                    this.units[t].pathTo(sandmap.hotrocks[index])
+                                                    if (j > 3) { //6
+                                                        break
+                                                    }
+                                                }
+                                            } else {
+                                                if (Math.random() < (1 / this.units.length)) {
+                                                    if (this.seen.length > 0) {
+                                                        j++
+                                                        let block = this.seen[Math.floor(Math.random() * this.seen.length)]
+                                                        this.units[t].pathTo(block)
+                                                        if (j > 3) { //6
+                                                            break
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // if (Math.random() < .01) {
+                    for (let t = 0; t < this.units.length; t++) {
+                        if (this.units[t].infantry == 1) {
+                            this.units[t].attackmove()
+                        }
+                        if (this.units[t].drone == 1) {
+                            if (typeof this.units[t].realPath[this.units[t].index + 1] == "undefined") {
+                                if (Math.random() < (.0005 * this.clickrate) || this.seenrocks.length <= this.units.length) { // 03?
+                                    // let block = sandmap.gridPoints[Math.floor(Math.random()*sandmap.gridPoints.length)]
+                                    // this.units[t].pathTo(block)
+                                    let block = sandmap.gridPoints[Math.floor(Math.random() * sandmap.gridPoints.length)]
+                                    this.units[t].pathTo(block)
+                                }
+                            }
+                        }
+                    }
+                    // }
+
+                    if (Math.random() < (3 / this.units.length)) {  //.3
+                        for (let t = 0; t < this.buildings.length; t++) {
+                            if (this.buildings[t].barracks == 1) {
+                                if (Math.random() < .1 - (this.units.length * .005)) {
+                                    if (this.hotrock > 120) {
+                                        if (sandmap.players.indexOf(this) == 1) {
+                                            if (Math.random() < .15) {
+                                                this.buildings[t].makeInfantry()
+                                            }
+                                        }
+                                    }
+                                }
+                                if (Math.random() < (.13 + (this.units.length * .0045)) + (this.hotrock * .0001)) { // - not +
+                                    if (this.hotrock > 190) {
+                                        if (this.units.length > 7) {
+                                            this.buildings[t].makeSniper()
+
+                                        }
+                                    }
+                                }
+                                if (Math.random() < .3) {
+                                    break
+                                }
+                            }
+                        }
+                        for (let t = 0; t < this.buildings.length; t++) {
+                            if (this.buildings[t].barracks == 2) {
+                                if (Math.random() < (.005 * this.clickrate) - (this.units.length * .008)) { //.1
+                                    if (this.hotrock > 70) {
+                                        this.buildings[t].makeScout()
+                                    }
+                                }
+                                if (Math.random() < (.2 + (this.units.length * .003)) + (this.hotrock * .0001)) { //- to + //.1
+                                    if (this.hotrock > 160) { //200
+                                        this.buildings[t].makeHarvester()
+                                    }
+                                }
+
+                                if (Math.random() < .3) {
+                                    break
+                                }
+                            }
+                        }
+                    } else {
+
+                        if (sandmap.players.indexOf(this) == 0) {
+                            for (let t = 0; t < this.buildings.length; t++) {
+                                if (this.buildings[t].barracks == 1) {
+                                    if (Math.random() < .01) { //005 //15
+                                        if (this.hotrock > 100) { //200
+                                            this.buildings[t].makeInfantry()
+                                        }
+                                    }
+                                } else {
+                                    if (this.hotrock > 160) {
+                                        this.buildings[t].makeHarvester()
+                                    }
+                                }
+                            }
+                        } else {
+                            for (let t = 0; t < this.buildings.length; t++) {
+                                if (this.buildings[t].barracks == 1) {
+                                    if (Math.random() < .15) { //005 //15
+                                        if (this.hotrock > 100) { //200
+                                            this.buildings[t].makeInfantry()
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+
+                    if (sandmap.players.indexOf(this) == 0) {
+
+                        if (this.baseMoveFlag == 1 && this.buildings.length > 15) {
+                            this.baseMoveFlag = 0
+                            if (this.averageSpace.dirs2 == 1) {
+                            } else {
+                                for (let x = this.averageSpace.tile.k; x < 127; x++) {
+                                    if (sandmap.blocks[this.averageSpace.tile.t][x + 1].faction == sandmap.players.indexOf(this)) {
+                                        break
+                                    }
+                                    if (x < 0 || x > 127) {
+                                        continue
+                                    }
+                                    if ((Math.abs(this.averageSpace.tile.k - x) > 16)) {
+                                        continue
+                                    }
+                                    if (this.blocks[this.averageSpace.tile.t][x + 1].markdraw != 1 || (Math.abs(this.averageSpace.tile.k - x) > 15)) {
+                                        this.buildWall(sandmap.blocks[this.averageSpace.tile.t][x])
+                                    } else if (x == 126) {
+                                        this.buildWall(sandmap.blocks[this.averageSpace.tile.t][x])
+                                    }
+                                    if (debreak == 0) {
+                                        break
+                                    }
+                                }
+                            }
+                            if (this.averageSpace.dirs4 == 1) {
+                            } else {
+                                for (let x = this.averageSpace.tile.k; x > 1; x--) {
+                                    if (sandmap.blocks[this.averageSpace.tile.t][x + 1].faction == sandmap.players.indexOf(this)) {
+                                        break
+                                    }
+                                    if (x < 0 || x > 127) {
+                                        continue
+                                    }
+                                    if ((Math.abs(this.averageSpace.tile.k - x) > 16)) {
+                                        continue
+                                    }
+                                    if (this.blocks[this.averageSpace.tile.t][x - 1].markdraw != 1 || (Math.abs(this.averageSpace.tile.k - x) > 15)) {
+                                        this.buildWall(sandmap.blocks[this.averageSpace.tile.t][x])
+                                    } else if (x == 2) {
+                                        this.buildWall(sandmap.blocks[this.averageSpace.tile.t][x])
+                                    }
+                                    if (debreak == 0) {
+                                        break
+                                    }
+                                }
+                            }
+                            if (this.averageSpace.dirs3 == 1) {
+                            } else {
+                                for (let x = this.averageSpace.tile.t; x > 1; x--) {
+                                    if (sandmap.blocks[x + 1][this.averageSpace.tile.k].faction == sandmap.players.indexOf(this)) {
+                                        break
+                                    }
+                                    if (x < 0 || x > 127) {
+                                        continue
+                                    }
+                                    if ((Math.abs(this.averageSpace.tile.t - x) > 16)) {
+                                        continue
+                                    }
+                                    if (this.blocks[x - 1][this.averageSpace.tile.k].markdraw != 1 || (Math.abs(this.averageSpace.tile.t - x) > 15)) {
+                                        this.buildWall(sandmap.blocks[x][this.averageSpace.tile.k])
+                                    } else if (x == 2) {
+                                        this.buildWall(sandmap.blocks[x][this.averageSpace.tile.k])
+                                    }
+                                    if (debreak == 0) {
+                                        break
+                                    }
+                                }
+                            }
+                            if (this.averageSpace.dirs1 == 1) {
+                            } else {
+                                for (let x = this.averageSpace.tile.t; x < 127; x++) {
+                                    // if (sandmap.blocks[x ][this.averageSpace.tile.k].faction == sandmap.players.indexOf(this)){
+                                    //     break
+                                    // }
+                                    if (sandmap.blocks[x + 1][this.averageSpace.tile.k].faction == sandmap.players.indexOf(this)) {
+                                        break
+                                    }
+                                    if (x < 0 || x > 127) {
+                                        continue
+                                    }
+                                    if ((Math.abs(this.averageSpace.tile.t - x) > 16)) {
+                                        continue
+                                    }
+                                    if (this.blocks[x + 1][this.averageSpace.tile.k].markdraw != 1 || (Math.abs(this.averageSpace.tile.t - x) > 15)) {
+                                        this.buildWall(sandmap.blocks[x][this.averageSpace.tile.k])
+                                    } else if (x == 126) {
+                                        this.buildWall(sandmap.blocks[x][this.averageSpace.tile.k])
+                                    }
+                                    if (debreak == 0) {
+                                        break
+                                    }
+                                }
+                            }
+                        }
+
+
+
+
+
+                        //sliced in
+
+
+                        if ((Math.random() * .13) && this.hotrock >= 10) {
+
+                            for (let t = 0; t < this.units.length; t++) {
+                                if (this.units[t].tile.sourcerock >= 1 || ((Math.random() * .03) && this.units[t].index < this.units[t].realPath.length - 1)) {
+
+                                } else {
+                                    continue
+                                }
+
+
+                                let calcdeath = this.units[t].health / (((this.units[t].decayRate * this.units[t].decayingInTheWind * sandmap.windspeed)))
+
+                                if (Math.abs(this.units[t].realPath.length - this.units[t].index) < 3 || Math.abs(this.units[t].realPath.length - this.units[t].index) > (calcdeath - (this.units[t].movespeed * 10))) {
+
+                                    // ////////////////////////////console.log(this.units[t])
+
+                                } else {
+                                    continue
+                                }
+
+
+                                if ((this.units[t].decayingInTheWind == 1 && this.units[t].drone != 1) || (this.units[t].decayingInTheWind == 1 && this.units[t].drone == 1 && (Math.random() < (this.hotrock * .002)))) {
+                                    if (this.units[t].dirs2 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.k; x < 127; x++) {
+                                                if (sandmap.blocks[this.units[t].tile.t][x + 1].faction == sandmap.players.indexOf(this)) {
+                                                    break
+                                                }
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (Math.abs(this.units[t].tile.k - x) > 16) {
+                                                    continue
+                                                }
+                                                if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1 || Math.abs(this.units[t].tile.k - x) > 15) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                } else if (x == 126) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (this.units[t].dirs4 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.k; x > 1; x--) {
+                                                if (sandmap.blocks[this.units[t].tile.t][x - 1].faction == sandmap.players.indexOf(this)) {
+                                                    break
+                                                }
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (Math.abs(this.units[t].tile.k - x) > 16) {
+                                                    continue
+                                                }
+                                                if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1 || Math.abs(this.units[t].tile.k - x) > 15) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                } else if (x == 2) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (this.units[t].dirs3 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.t; x > 1; x--) {
+                                                if (sandmap.blocks[x - 1][this.units[t].tile.k].faction == sandmap.players.indexOf(this)) {
+                                                    break
+                                                }
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (Math.abs(this.units[t].tile.t - x) > 16) {
+                                                    continue
+                                                }
+                                                if (this.blocks[x - 1][this.units[t].tile.k].markdraw != 1 || Math.abs(this.units[t].tile.t - x) > 15) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                } else if (x == 2) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (this.units[t].dirs1 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.t; x < 127; x++) {
+                                                if (sandmap.blocks[x + 1][this.units[t].tile.k].faction == sandmap.players.indexOf(this)) {
+                                                    break
+                                                }
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (Math.abs(this.units[t].tile.t - x) > 16) {
+                                                    continue
+                                                }
+                                                if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1 || Math.abs(this.units[t].tile.t - x) > 15) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                } else if (x == 126) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+
+
+                                } else if ((this.units[t].decayingInTheWind > .51 && this.units[t].decayingInTheWind < .8 && this.units[t].drone != 1) || (this.units[t].decayingInTheWind > .51 && this.units[t].decayingInTheWind < .8 && this.units[t].drone == 1 && (Math.random() < (this.hotrock * .004)))) {
+                                    if (this.units[t].dirs2 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.k; x < 127; x++) {
+                                                if (sandmap.blocks[this.units[t].tile.t][x + 1].faction == sandmap.players.indexOf(this)) {
+                                                    break
+                                                }
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (Math.abs(this.units[t].tile.k - x) > 16) {
+                                                    continue
+                                                }
+                                                if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1 || Math.abs(this.units[t].tile.k - x) > 15) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                } else if (x == 126) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (this.units[t].dirs4 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.k; x > 1; x--) {
+                                                if (sandmap.blocks[this.units[t].tile.t][x - 1].faction == sandmap.players.indexOf(this)) {
+                                                    break
+                                                }
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (Math.abs(this.units[t].tile.k - x) > 16) {
+                                                    continue
+                                                }
+                                                if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1 || Math.abs(this.units[t].tile.k - x) > 15) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                } else if (x == 2) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (this.units[t].dirs3 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.t; x > 1; x--) {
+                                                if (sandmap.blocks[x - 1][this.units[t].tile.k].faction == sandmap.players.indexOf(this)) {
+                                                    break
+                                                }
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (Math.abs(this.units[t].tile.t - x) > 16) {
+                                                    continue
+                                                }
+                                                if (this.blocks[x - 1][this.units[t].tile.k].markdraw != 1 || Math.abs(this.units[t].tile.t - x) > 15) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                } else if (x == 2) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (this.units[t].dirs1 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.t; x < 127; x++) {
+                                                if (sandmap.blocks[x + 1][this.units[t].tile.k].faction == sandmap.players.indexOf(this)) {
+                                                    break
+                                                }
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (Math.abs(this.units[t].tile.t - x) > 16) {
+                                                    continue
+                                                }
+                                                if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1 || Math.abs(this.units[t].tile.t - x) > 15) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                } else if (x == 126) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+
+
+
+                                } else if ((this.units[t].decayingInTheWind > .27 && this.units[t].decayingInTheWind < .55 && this.units[t].drone != 1) || (this.units[t].decayingInTheWind > .27 && this.units[t].decayingInTheWind < .55 && this.units[t].drone == 1 && (Math.random() < (this.hotrock * .006)))) {
+                                    if (this.units[t].dirs2 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.k; x < 127; x++) {
+                                                if (sandmap.blocks[this.units[t].tile.t][x + 1].faction == sandmap.players.indexOf(this)) {
+                                                    break
+                                                }
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (Math.abs(this.units[t].tile.k - x) > 16) {
+                                                    continue
+                                                }
+                                                if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1 || Math.abs(this.units[t].tile.k - x) > 15) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                } else if (x == 126) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (this.units[t].dirs4 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.k; x > 1; x--) {
+                                                if (sandmap.blocks[this.units[t].tile.t][x - 1].faction == sandmap.players.indexOf(this)) {
+                                                    break
+                                                }
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (Math.abs(this.units[t].tile.k - x) > 16) {
+                                                    continue
+                                                }
+                                                if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1 || Math.abs(this.units[t].tile.k - x) > 15) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                } else if (x == 2) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (this.units[t].dirs3 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.t; x > 1; x--) {
+                                                if (sandmap.blocks[x - 1][this.units[t].tile.k].faction == sandmap.players.indexOf(this)) {
+                                                    break
+                                                }
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (Math.abs(this.units[t].tile.t - x) > 16) {
+                                                    continue
+                                                }
+                                                if (this.blocks[x - 1][this.units[t].tile.k].markdraw != 1 || Math.abs(this.units[t].tile.t - x) > 15) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                } else if (x == 2) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (this.units[t].dirs1 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.t; x < 127; x++) {
+                                                if (sandmap.blocks[x + 1][this.units[t].tile.k].faction == sandmap.players.indexOf(this)) {
+                                                    break
+                                                }
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (Math.abs(this.units[t].tile.t - x) > 16) {
+                                                    continue
+                                                }
+                                                if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1 || Math.abs(this.units[t].tile.t - x) > 15) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                } else if (x == 126) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else if ((this.units[t].decayingInTheWind >= .01 && this.units[t].decayingInTheWind < .3 && this.units[t].drone != 1) || (this.units[t].decayingInTheWind > .01 && this.units[t].decayingInTheWind < .3 && this.units[t].drone == 1 && (Math.random() < (this.hotrock * .008)))) {
+                                    if (this.units[t].dirs2 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.k; x < 127; x++) {
+                                                if (sandmap.blocks[this.units[t].tile.t][x + 1].faction == sandmap.players.indexOf(this)) {
+                                                    break
+                                                }
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (Math.abs(this.units[t].tile.k - x) > 16) {
+                                                    continue
+                                                }
+                                                if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1 || Math.abs(this.units[t].tile.k - x) > 15) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                } else if (x == 126) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (this.units[t].dirs4 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.k; x > 1; x--) {
+                                                if (sandmap.blocks[this.units[t].tile.t][x - 1].faction == sandmap.players.indexOf(this)) {
+                                                    break
+                                                }
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (Math.abs(this.units[t].tile.k - x) > 16) {
+                                                    continue
+                                                }
+                                                if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1 || Math.abs(this.units[t].tile.k - x) > 15) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                } else if (x == 2) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (this.units[t].dirs3 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.t; x > 1; x--) {
+                                                if (sandmap.blocks[x - 1][this.units[t].tile.k].faction == sandmap.players.indexOf(this)) {
+                                                    break
+                                                }
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (Math.abs(this.units[t].tile.t - x) > 16) {
+                                                    continue
+                                                }
+                                                if (this.blocks[x - 1][this.units[t].tile.k].markdraw != 1 || Math.abs(this.units[t].tile.t - x) > 15) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                } else if (x == 2) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (this.units[t].dirs1 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.t; x < 127; x++) {
+                                                if (sandmap.blocks[x + 1][this.units[t].tile.k].faction == sandmap.players.indexOf(this)) {
+                                                    break
+                                                }
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (Math.abs(this.units[t].tile.t - x) > 16) {
+                                                    continue
+                                                }
+                                                if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1 || Math.abs(this.units[t].tile.t - x) > 15) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                } else if (x == 126) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else {
+
+
+                                }
+                            }
+
+                        }
+
+
+
+
+                        //sliced in
+
+                    } else if (sandmap.players.indexOf(this) == 1) {
+
+                        if (this.baseMoveFlag == 1) {
+                            this.baseMoveFlag = 0
+                            if (this.averageSpace.dirs2 == 1) {
+                            } else {
+                                for (let x = this.averageSpace.tile.k; x < 127; x++) {
+                                    if (x < 0 || x > 127) {
+                                        continue
+                                    }
+                                    if (this.blocks[this.averageSpace.tile.t][x + 1].markdraw != 1) {
+                                        this.buildWall(sandmap.blocks[this.averageSpace.tile.t][x])
+                                    } else if (x == 126) {
+                                        this.buildWall(sandmap.blocks[this.averageSpace.tile.t][x])
+                                    }
+                                    if (debreak == 0) {
+                                        break
+                                    }
+                                }
+                            }
+                            if (this.averageSpace.dirs4 == 1) {
+                            } else {
+                                for (let x = this.averageSpace.tile.k; x > 1; x--) {
+                                    if (x < 0 || x > 127) {
+                                        continue
+                                    }
+                                    if (this.blocks[this.averageSpace.tile.t][x - 1].markdraw != 1) {
+                                        this.buildWall(sandmap.blocks[this.averageSpace.tile.t][x])
+                                    } else if (x == 2) {
+                                        this.buildWall(sandmap.blocks[this.averageSpace.tile.t][x])
+                                    }
+                                    if (debreak == 0) {
+                                        break
+                                    }
+                                }
+                            }
+                            if (this.averageSpace.dirs3 == 1) {
+                            } else {
+                                for (let x = this.averageSpace.tile.t; x > 1; x--) {
+                                    if (x < 0 || x > 127) {
+                                        continue
+                                    }
+                                    if (this.blocks[x - 1][this.averageSpace.tile.k].markdraw != 1) {
+                                        this.buildWall(sandmap.blocks[x][this.averageSpace.tile.k])
+                                    } else if (x == 2) {
+                                        this.buildWall(sandmap.blocks[x][this.averageSpace.tile.k])
+                                    }
+                                    if (debreak == 0) {
+                                        break
+                                    }
+                                }
+                            }
+                            if (this.averageSpace.dirs1 == 1) {
+                            } else {
+                                for (let x = this.averageSpace.tile.t; x < 127; x++) {
+                                    if (x < 0 || x > 127) {
+                                        continue
+                                    }
+                                    if (this.blocks[x + 1][this.averageSpace.tile.k].markdraw != 1) {
+                                        this.buildWall(sandmap.blocks[x][this.averageSpace.tile.k])
+                                    } else if (x == 126) {
+                                        this.buildWall(sandmap.blocks[x][this.averageSpace.tile.k])
+                                    }
+                                    if (debreak == 0) {
+                                        break
+                                    }
+                                }
+                            }
+                        }
+
+                        if ((Math.random() * .13) && this.hotrock >= 10) {
+
+                            for (let t = 0; t < this.units.length; t++) {
+                                if (this.units[t].tile.sourcerock >= 1 || ((Math.random() * .03) && this.units[t].index < this.units[t].realPath.length - 1)) {
+
+                                } else {
+                                    continue
+                                }
+
+
+                                let calcdeath = this.units[t].health / (((this.units[t].decayRate * this.units[t].decayingInTheWind * sandmap.windspeed)))
+
+                                if (Math.abs(this.units[t].realPath.length - this.units[t].index) < 3 || Math.abs(this.units[t].realPath.length - this.units[t].index) > (calcdeath - (this.units[t].movespeed * 10))) {
+
+                                    // ////////////////////////////console.log(this.units[t])
+
+                                } else {
+                                    continue
+                                }
+
+
+                                if ((this.units[t].decayingInTheWind == 1 && this.units[t].drone != 1) || (this.units[t].decayingInTheWind == 1 && this.units[t].drone == 1 && (Math.random() < (this.hotrock * .002)))) {
+                                    if (this.units[t].dirs2 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.k; x < 127; x++) {
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                } else if (x == 126) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (this.units[t].dirs4 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.k; x > 1; x--) {
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                } else if (x == 2) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (this.units[t].dirs3 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.t; x > 1; x--) {
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (this.blocks[x - 1][this.units[t].tile.k].markdraw != 1) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                } else if (x == 2) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (this.units[t].dirs1 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.t; x < 127; x++) {
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                } else if (x == 126) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+
+
+                                } else if ((this.units[t].decayingInTheWind > .51 && this.units[t].decayingInTheWind < .8 && this.units[t].drone != 1) || (this.units[t].decayingInTheWind > .51 && this.units[t].decayingInTheWind < .8 && this.units[t].drone == 1 && (Math.random() < (this.hotrock * .004)))) {
+                                    if (this.units[t].dirs2 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.k; x < 127; x++) {
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                } else if (x == 126) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (this.units[t].dirs4 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.k; x > 1; x--) {
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                } else if (x == 2) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (this.units[t].dirs3 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.t; x > 1; x--) {
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (this.blocks[x - 1][this.units[t].tile.k].markdraw != 1) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                } else if (x == 2) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (this.units[t].dirs1 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.t; x < 127; x++) {
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                } else if (x == 126) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                } else if ((this.units[t].decayingInTheWind > .27 && this.units[t].decayingInTheWind < .55 && this.units[t].drone != 1) || (this.units[t].decayingInTheWind > .27 && this.units[t].decayingInTheWind < .55 && this.units[t].drone == 1 && (Math.random() < (this.hotrock * .006)))) {
+                                    if (this.units[t].dirs2 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.k; x < 127; x++) {
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                } else if (x == 126) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (this.units[t].dirs4 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.k; x > 1; x--) {
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                } else if (x == 2) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (this.units[t].dirs3 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.t; x > 1; x--) {
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (this.blocks[x - 1][this.units[t].tile.k].markdraw != 1) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                } else if (x == 2) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (this.units[t].dirs1 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.t; x < 127; x++) {
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                } else if (x == 126) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                } else if ((this.units[t].decayingInTheWind >= .01 && this.units[t].decayingInTheWind < .3 && this.units[t].drone != 1) || (this.units[t].decayingInTheWind > .01 && this.units[t].decayingInTheWind < .3 && this.units[t].drone == 1 && (Math.random() < (this.hotrock * .008)))) {
+                                    if (this.units[t].dirs2 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.k; x < 127; x++) {
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                } else if (x == 126) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (this.units[t].dirs4 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.k; x > 1; x--) {
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                } else if (x == 2) {
+                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (this.units[t].dirs3 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.t; x > 1; x--) {
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (this.blocks[x - 1][this.units[t].tile.k].markdraw != 1) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                } else if (x == 2) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (this.units[t].dirs1 == 1) {
+                                    } else {
+                                        if (this.units[t].health < (this.units[t].maxhealth * .9)) {
+                                            for (let x = this.units[t].tile.t; x < 127; x++) {
+                                                if (x < 0 || x > 127) {
+                                                    continue
+                                                }
+                                                if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                } else if (x == 126) {
+                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                }
+                                                if (debreak == 0) {
+                                                    break
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                } else {
+
+
+                                }
+                            }
+
+                        }
+                    }
+
+                    if (this.units.length > 25) {
+                        if (this.attacktimeout <= 0) {
+                            this.aimode = 1
+                            this.attacktimeout = 3000
+                        }
+                        this.attacktimeout--
+                    }
+                }
+
+
+
+            }
+        }
+        ai() {
+            if (sandmap.players.indexOf(this) == 1) {
+                if (dynamic2 == 1) {
+                    this.clickrate = this.units.length
+                }
+            }
+            if (sandmap.players.indexOf(this) == 0) {
+                if (dynamic1 == 1) {
+                    this.clickrate = this.units.length
+                }
+            }
+
+            for (let t = 0; t < this.units.length; t++) {
+                if (this.units[t].pollinator != 1 && this.units[t].hamartanworker != 1 && this.units[t].nymph != 1) {
+                    if(Math.random()<.9){
+                        this.units[t].attackmoveunit()
+                    }else{
+                        this.units[t].attackmove()
+                    }
+                }
+            }
+            this.defending--
+            if (this.type == 4) {
+
+                if (Math.random() < .01) {
+                    for (let t = 0; t < this.units.length; t++) {
+                        if(Math.random()<.9){
+                            this.units[t].attackmoveunit()
+                        }else{
+                            this.units[t].attackmove()
+                        }
+                    }
+                }
+
+                if ((this.units.length*2 > this.racksflag) || this.hotrock * .0037 > this.racksflag) {
+                    if (this.racks > 0) {
+                        this.racksflag += 17 //8 //17
+                    }
+                    this.racks = 0
+                }
+
+
+                this.chunk++
+                let index = -1
+                let j = 0
+                if (this.chunk % this.clickrate == 0) {
+
+                    if (this.hotrock >= 10) {
+
+                        let wet = 0
+                        for (let t = this.buildings.length - 1; t >= 0; t--) {
+                            if (this.buildings[t].sporeball == 1) {
+                                if (this.racks == 1) {
+                                    wet = 1
+                                }
+
+                                let max = 999999999999
+                                let slimetarget = this.buildings[t].tile
+
+                                for (let k = 0; k < this.seenrocks.length; k++) {
+                                    if (this.seenrocks[k].slime == false || this.seenrocks[k].primed != 1) {
+                                        let dis = (new LineOP(this.buildings[t].tile, this.seenrocks[k])).hypotenuse()
+                                        if (dis < max && !this.seenrocks[k].breaker.includes(t)) {
+                                            max = dis
+                                            slimetarget = this.seenrocks[k]
+                                        }
+                                    }
+
+                                }
+                                // for(let k = 0;k<this.seenrocks.length;k++){
+                                // if(slimetarget.primed == 1){
+                                //     continue
+                                // }
+                                if (slimetarget.breaker.includes(t)) {
+                                    ////////console.log("what")
+                                    // if(Math.random()<.01){
+                                    //     slimetarget.breaker.splice(slimetarget.breaker.indexOf(t), 1)
+                                    // }
+                                    // if(t > 0){
+                                    //     t--
+                                    // }
+                                    // continue
+                                } else if (Math.abs(slimetarget.t - this.buildings[t].tile.t) + Math.abs(slimetarget.k - this.buildings[t].tile.k) > 1000) {//cost to build new sporeball and change
+                                    ////////console.log("huh")
+
+                                    for (let g = this.buildings.length - 1; g >= 0; g--) {
+                                        if (this.buildings[g].sporeball == 1) {
+                                                this.racks = 1
+                                                wet = 1
+                                        }
+                                    }
+                                    if (wet == 0) {
+                                    if (Math.random() < .001) {
+                                        if (slimetarget.primed != 1) {
+                                            if (Math.random() < .5) {
+                                                if (Math.random() < .5) {
+                                                    //////////console.log("ball")
+                                                    this.buildBarracks(sandmap.blocks[slimetarget.t][slimetarget.k + 1])
+                                                    console.log("case A")
+                                                } else {
+                                                    //////////console.log("ball")
+                                                    this.buildBarracks(sandmap.blocks[slimetarget.t][slimetarget.k - 1])
+                                                    console.log("case B")
+                                                }
+                                            } else {
+                                                if (Math.random() < .5) {
+                                                    //////////console.log("ball")
+                                                    this.buildBarracks(sandmap.blocks[slimetarget.t + 1][slimetarget.k])
+                                                    console.log("case C")
+                                                } else {
+                                                    //////////console.log("ball")
+                                                    this.buildBarracks(sandmap.blocks[slimetarget.t - 1][slimetarget.k])
+                                                    console.log("case D")
+                                                }
+
+                                            }
+                                        }
+                                    }
+                                }
+                                    slimetarget.breaker.push(t)
+                                    // if(t > 0){
+                                    //     // t--
+                                    // }
+                                    // continue
+                                }
+
+                                if ((slimetarget.builtOn == 0) || slimetarget.primed != 1) { // && slimetarget.occupied == false){ //wow primed is a big diff
+
+                                    this.pather = slimemakingastar
+                                    sandmap.diagonal = false
+                                    this.path = [...this.pather.search(sandmap, this.buildings[t].tile, slimetarget, {}, this.seen)]
+                                    sandmap.diagonal = true
+                                    if (this.path.length > 0) {
+                                        let discount = 0
+                                        for (let p = 0; p < this.path.length; p++) {
+                                            if (this.path[p].slime == true) {
+                                                discount -= 5
+                                            }
+                                        }
+
+                                        if (((this.path.length * 5) + discount) <= this.hotrock && ((this.path.length * 5) + discount) < 170) {//} &&  ((this.path.length*5)+discount) > 0){ //cost to build new sporeball // no free paths
+                                            for (let p = 0; p < this.path.length; p++) {
+                                                this.buildWall(this.path[p])
+                                            }
+                                            // break
+                                        } else if (((this.path.length * 2) + discount) >= 170) {
+                                            // for(let p = 0;p<this.path.length;p++){
+                                            //     if(p%2 ==0){
+                                            //         this.buildWall(this.path[p])
+                                            //     }
+                                            // }
+                                            // //////////console.log((this.path.length*5), discount)
+                                            if (Math.random() < .01) {
+                                                //////////console.log("length ball")
+
+                        for (let g = this.buildings.length - 1; g >= 0; g--) {
+                            if (this.buildings[g].sporeball == 1) {
+                                    this.racks = 1
+                                    wet = 1
+                            }
+                        }
+                        if (wet == 0) {
+                                                this.buildBarracks(this.path[(this.path.length - 2)])
+                                                console.log("case E")
+                        }
+                                            }
+                                            // if(t > 0){
+                                            //     // t--
+                                            // }
+                                            // break
+                                        }
+                                    }
+                                }
+                                // }
+                            }
+                        }
+
+
+                        for (let g = this.buildings.length - 1; g >= 0; g--) {
+                            if (this.buildings[g].sporeball == 1) {
+                                    this.racks = 1
+                                    wet = 1
+                            }
+                        }
+                        if (wet == 0) {
+                            if (this.seenrocks.length > 0) {
+                                let slimetarget = this.seenrocks[Math.floor(Math.random() * this.seenrocks.length)]
+
+                                if (Math.random() < .5) {
+                                    if (Math.random() < .5) {
+                                        //////////console.log("ball")
+                                        this.buildBarracks(sandmap.blocks[slimetarget.t][slimetarget.k + 1])
+                                        console.log("case A")
+                                    } else {
+                                        //////////console.log("ball")
+                                        this.buildBarracks(sandmap.blocks[slimetarget.t][slimetarget.k - 1])
+                                        console.log("case B")
+                                    }
+                                } else {
+                                    if (Math.random() < .5) {
+                                        //////////console.log("ball")
+                                        this.buildBarracks(sandmap.blocks[slimetarget.t + 1][slimetarget.k])
+                                        console.log("case C")
+                                    } else {
+                                        //////////console.log("ball")
+                                        this.buildBarracks(sandmap.blocks[slimetarget.t - 1][slimetarget.k])
+                                        console.log("case D")
+                                    }
+
+                                }
+
+                                
+                                //////////console.log("solo ball")
+                                // this.buildBarracks(this.seenrocks[Math.floor(Math.random() * this.seen.length)])
+                                console.log("case F")
+                            }
+                        }
+
+
+                    }
+
+                    for (let t = 0; t < this.units.length; t++) {
+                        if (this.units[t].realPath.length - 1 == this.units[t].index) { //} || this.units[t].realPath[this.units[t].index].walkable !== true) {
+                            if (this.units[t].tile.hotrock != 1 && this.units[t].tile.hotrock != 2) {
+                                let max = 999999999
+                                for (let h = 0; h < sandmap.hotrocks.length; h++) {
+                                    if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
+                                        let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
+                                        // //////////////////////////////console.log(link)
+                                        if (link < max) {
+                                            max = link
+                                            index = h
+                                        }
+                                    }
+                                }
+
+                                if (typeof sandmap.hotrocks[index] !== "undefined") {
+                                    if (this.units[t].attacktarget.health > 0) {
+
+                                    } else {
+                                        j++
+                                        this.units[t].pathTo(sandmap.hotrocks[index])
+                                        if (j > 3) { //6
+                                            break
+                                        }
+                                    }
+                                } else {
+                                    // if (Math.random() < (1 / this.units.length)) {
+                                    if (this.seen.length > 0) {
+                                        // let block = this.seen[Math.floor(Math.random() * this.seen.length)]
+                                        let block = this.seen[this.seen.length - 1]
+                                        this.units[t].pathTo(block)
+
+                                        j++
+                                        if (j > 3) { //6
+                                            break
+                                        }
+                                    }
+                                    // }
+                                }
+                            }
+                        } else if (typeof this.units[t].realPath[this.units[t].index + 1] !== "undefined") {
+                            if (this.units[t].realPath[this.units[t].index + 1].walkable !== true) {
+                                if (this.units[t].tile.hotrock != 1 && this.units[t].tile.hotrock != 2) {
+                                    let max = 0
+                                    for (let h = 0; h < sandmap.hotrocks.length; h++) {
+                                        if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
+                                            let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
+                                            // //////////////////////////////console.log(link)
+                                            if (link < max) { //reversals time //rereverse
+                                                max = link
+                                                index = h
+
+                                                // if(Math.random()<.5){
+                                                //     break
+                                                // }
+                                            }
+                                        }
+                                    }
+
+                                    if (typeof sandmap.hotrocks[index] !== "undefined" && (this.hotrock < 60 + (this.buildings.length * 5) || this.seenrocks.length > (this.units.length + 5))) {
+                                        if (this.units[t].attacktarget.health > 0) {
+
+                                        } else {
+                                            j++
+                                            this.units[t].pathTo(sandmap.hotrocks[index])
+                                            if (j > 3) { //6
+                                                break
+                                            }
+                                        }
+                                    } else {
+                                        if (Math.random() < .13) { //03
+                                            if (this.seen.length > 0) {
+                                                // let block = this.seen[Math.floor(Math.random() * this.seen.length)]
+                                                let block = this.seen[this.seen.length - 1]
+                                                this.units[t].pathTo(block)
+                                                j++
+                                                if (j > 3) { //6
+                                                    break
+                                                }
+                                            }
+                                        } else {
+
+                                            if (this.seenrocks.length <= this.units.length) {
+                                                if (this.units[t].fruiting == 1) { //lmao pollinator
+                                                    if (Math.random() < .05) { //.5
+                                                        let block = sandmap.gridPoints[Math.floor(Math.random() * sandmap.gridPoints.length)]
+                                                        this.units[t].pathTo(block)
+                                                        j++
+                                                        if (j > 3) { //6
+                                                            break
+                                                        }
+                                                    }
+                                                }
+                                            } else {
+                                                if (Math.random() < .05) { //.5
+                                                    let block = sandmap.gridPoints[Math.floor(Math.random() * sandmap.gridPoints.length)]
+                                                    this.units[t].pathTo(block)
+                                                    j++
+                                                    if (j > 3) { //6
+                                                        break
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+                if (this.defending >= 5) {
+                    this.defending = 0
+                    this.defenseforce = 1
+                    if (this.defenseforce > 0) {
+                        // console.log(this.buildings, "bef")
+                        this.buildings.sort((a, b) => ((new LineOP(a.tile, this.attackedAt).hypotenuse()) < (new LineOP(b.tile, this.attackedAt)).hypotenuse()) ? 1 : -1)
+                        // console.log(this.buildings, "ant")
+
+
+                        for (let t = this.buildings.length-1;t>0; t--) { //reversal for prox
+                            if (this.buildings[t].slime == 1) {
+                                if (Math.random() < .5) {
+                                    if (this.hotrock > 95 && Math.random() < .7) {
+                                        this.buildings[t].makeSporeseer()
+                                    } else {
+                                        this.buildings[t].makeVizier()
+                                    }
+                                } else {
+                                    if (Math.random() < .5) {
+                                        if (Math.random() < .5) {
+                                            if (Math.random() < .5) {
+                                                if (Math.random() < .5) {
+                                                    if (this.hotrock > 65) {
+                                                        this.buildings[t].makeFruitingbuddy()
+                                                    }
+                                                } else {
+                                                    if (Math.random() < .5) {
+                                                        if (this.hotrock > 95 && Math.random() < .7) {
+                                                            this.buildings[t].makeSporeseer()
+                                                        } else {
+                                                            this.buildings[t].makeVizier()
+                                                        }
+                                                    } else {
+                                                        if (this.hotrock > 355) {
+                                                            this.buildings[t].makeMycoknight()
+                                                        }
+                                                    }
+                                                }
+                                            } else {
+                                                if (Math.random() < .5) {
+                                                    if (this.hotrock > 95 && Math.random() < .7) {
+                                                        this.buildings[t].makeSporeseer()
+                                                    } else {
+                                                        this.buildings[t].makeVizier()
+                                                    }
+                                                } else {
+                                                    if (this.hotrock > 355) {
+                                                        this.buildings[t].makeMycoknight()
+                                                    }
+                                                }
+                                            }
+                                        } else {
+                                            if (Math.random() < .5) {
+                                                if (this.hotrock > 95 && Math.random() < .7) {
+                                                    this.buildings[t].makeSporeseer()
+                                                } else {
+                                                    this.buildings[t].makeVizier()
+                                                }
+                                            } else {
+                                                if (this.hotrock > 355) {
+                                                    this.buildings[t].makeMycoknight()
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        if (this.hotrock > 355) {
+                                            this.buildings[t].makeMycoknight()
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        for (let t = 0; t < this.units.length; t++) {
+                            if (this.units[t].fruiting == 1) {
+                                if (Math.random() < 7 / this.defenseforce) { //2
+                                    if (this.units[t].index == this.units[t].realPath.length - 1) {
+                                        this.units[t].pathTo(this.attackedAt)
+                                    }
+                                }
+                            }
+
+                            if (this.units[t].mycoknight == 1) {
+                                if (Math.random() < 7 / this.defenseforce) { //2
+                                    if (this.units[t].index == this.units[t].realPath.length - 1) {
+                                        this.units[t].pathTo(this.attackedAt)
+                                    }
+                                }
+                            }
+
+                            if (this.units[t].seer == 1) {
+                                if (Math.random() < 7 / this.defenseforce) { //2
+                                    if (this.units[t].index == this.units[t].realPath.length - 1) {
+                                        this.units[t].pathTo(this.attackedAt)
+                                    }
+                                }
+                            }
+                            if (this.units[t].sporevizir == 1) { //was busted
+                                if (Math.random() < 7 / this.defenseforce) { //2
+                                    if (this.units[t].index == this.units[t].realPath.length - 1) {
+                                        this.units[t].pathTo(this.attackedAt)
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+
+                    }
+                } else {
+                    let j = 0
+                    if (Math.random() < (.000095*this.clickrate*this.hotrock)) { //holy wowie, this was a comma //25 _9
+                        for (let t = this.buildings.length-1;t>0; t--) { //reversal for prox
+                            if (this.buildings[t].slime == 1) {
+                                if (Math.random() <  3/this.buildings.length) {  //.5
+                                    ////////////console.log(this.seenrocks.length, this.units.length)
+                                    if ((this.hotrock > 70 + (this.buildings.length * 5) || this.seenrocks.length <= this.units.length) && (Math.random() < (3/this.units.length))) {
+                                        this.buildings[t].makeFruitingbuddy()
+                                        j++
+                                        if (j > 5) { //6
+                                            break
+                                        }
+                                        if (Math.random() < .1) {
+                                            break
+                                        }
+                                    } else if ((this.hotrock > 80 + (this.buildings.length * 2) || this.seenrocks.length <= this.units.length) && (Math.random() < (17/this.units.length))) {
+                                         if (Math.random() <  3/this.buildings.length) {  //.5
+                                            this.buildings[t].makeSporeseer()
+                                            j++
+                                            if (j > 5) { //6
+                                                break
+                                            }
+                                        } else {
+
+                                            if (Math.random() <  3/this.buildings.length) {  //.5
+                                                this.buildings[t].makeVizier()
+                                            }
+                                            j++
+                                            if (j > 5) { //6
+                                                break
+                                            }
+                                        }
+                                        if (Math.random() < .1) {
+                                            break
+                                        }
+                                    } else if ((this.hotrock > 180 + (this.buildings.length * 1) || this.seenrocks.length <= this.units.length) && (Math.random() < (50/this.units.length))) {
 
                                         this.buildings[t].makeMycoknight()
                                         j++
