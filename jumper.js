@@ -5095,12 +5095,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // this.players.push(new Player('Earthoids', "#FF00FF", 1, 0))
             // this.players.push(new Player('Cold Itzlerians', "#00FF00", 1, 1))
             // this.players.push(new Player('Cold Itzlerians', "#FF0000", 1, 1))
-            // this.players.push(new Player('Hamartans', "#0000FF", 1, 2))
+            this.players.push(new Player('Hamartans', "#0000FF", 1, 2))
             // this.players.push(new Player('Plaztilites', "#FF00FF", 1, 4))
             // this.players.push(new Player('Plaztilites', "#0000FF", 1, 4))
-            this.players.push(new Player('Librilbians', "#FF0000", 1, 3))
-            this.players.push(new Player('Librilbians', "#FF0000", 1, 3))
-            // this.players.push(new Player('Hamartans', "#FFAA00", 1, 2))
+            // this.players.push(new Player('Librilbians', "#FF0000", 1, 3))
+            // this.players.push(new Player('Librilbians', "#FF0000", 1, 3))
+            this.players.push(new Player('Hamartans', "#FFAA00", 1, 2))
             // this.players.push(new Player('Cold Itzlerians', "#00AA00", 1, 1))
             // this.players[0].aimode = 0
             // this.players[1].aimode = 1
@@ -9105,6 +9105,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         }
                     }
 
+
+                    let stuck = 0
+                    for (let t = 0; t < this.buildings.length; t++) {
+                        if (this.buildings[t].assembler == 3) {
+                            stuck++
+                        }
+                    }
+
+
+
                     for (let t = 0; t < this.buildings.length; t++) {
                         if (this.buildings[t].assembler == 2) {
                             if (this.seenrocks.length <= this.units.length) { //seen
@@ -9123,16 +9133,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             // }
                         }
                         if (this.buildings[t].assembler == 3) {
-                            if (Math.random() < .12 - (this.units.length * .005)  && (workercount/this.units.length) < .75) { //.1  //NEW && (workercount/this.units.length) < .75 NEW
+                            if (Math.random() < .12 - (this.units.length * .005)  && (workercount/this.units.length) < .85) { //.1  //NEW && (workercount/this.units.length) < .75 NEW
                                 if (this.hotrock > 135) { //220 //170 //145
                                     this.buildings[t].makeHamartanworker()
                                 }
                             }
-                            if (Math.random() < (((-.1) + (this.units.length * .011)) + (this.hotrock * .0003)*.0025)*this.clickrate) {  // - unitslength not + //too frequent too early //45 not 15 //0001
+                            if (Math.random() < (this.units.length*.01)+(this.hotrock*.0025)) {  // - unitslength not + //too frequent too early //45 not 15 //0001
                                 if (this.hotrock > 340) {
                                     if (this.buildings[t].que == 1) {
-                                        if (this.hotrock > 700) {
-                                            this.racks = 0
+                                        if (this.hotrock > 400) { //700
+                                            stuck--
+                                            if(stuck == 0){
+                                                this.racks = 0
+                                                console.log("stuck effect")
+                                            }
                                         }
                                     } else {
                                         this.buildings[t].makeHamartaninvader()
@@ -9213,7 +9227,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     let count = 0
                     for (let t = 0; t < this.units.length; t++) {
                         let link = new LineOP(this.units[t].tile, tile)
-                        if ((this.units[t].suffocating > 0 && (this.units[t].health / this.units[t].maxhealth) < .97) && link.hypotenuse() <= 119) {
+                        if ((this.units[t].suffocating > 0 && (this.units[t].health / this.units[t].maxhealth) < .975) && link.hypotenuse() <= 119) {
                             count++
                         }
                     }
