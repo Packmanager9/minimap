@@ -636,7 +636,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         golonotch = Math.floor(Math.random() * golophyteaudio.duration)
         golophyteaudio.currentTime = golonotch
         golophyteaudio.volume = .5
-        //////////////////console.log(pollinatoraudio.duration)
+        ////////////////////console.log(pollinatoraudio.duration)
         pollinatortick = ((Math.random() * 400) + 1000) / 1000
         pufftick = ((Math.random() * 400) + 900) / 1000
         golotick = ((Math.random() * 400) + 800) / 1000
@@ -779,10 +779,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
     //                 ob2.y = n
     //                 distancetable[`${t},${k},${g},${n}`] = makeDistanceTable(t,k, g,n)
     //             }
-    //             //////////////////////console.log(g)
+    //             ////////////////////////console.log(g)
     //         }
     //     }
-    //     //////////////////////console.log(t)
+    //     ////////////////////////console.log(t)
     // }
     // // distancetable = JSON.stringify(distancetable)
     // function downloadObject(obj, filename){
@@ -850,7 +850,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     //         }
     //         gamepadAPI.axesStatus = axes;// assign received values
     //         gamepadAPI.buttonsStatus = pressed;
-    //         // ////////////////////////////////////////////console.log(pressed); // return buttons for debugging purposes
+    //         // //////////////////////////////////////////////console.log(pressed); // return buttons for debugging purposes
     //         return pressed;
     //     },
     //     buttonPressed: function (button, hold) {
@@ -1214,7 +1214,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.fill()
                 canvas_context.stroke();
             } else {
-                ////////////////////////////////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                //////////////////////////////////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -1366,7 +1366,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 map_context.strokeStyle = "#00000010"
                 map_context.stroke();
             } else {
-                ////////////////////////////////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                //////////////////////////////////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -1517,7 +1517,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 canvas_context.fill()
                 canvas_context.stroke();
             } else {
-                ////////////////////////////////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
+                //////////////////////////////////////////////console.log("The circle is below a radius of 0, and has not been drawn. The circle is:", this)
             }
         }
         move() {
@@ -2003,7 +2003,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
             }
 
-            ////////////////////////////////////////////console.log(this)
+            //////////////////////////////////////////////console.log(this)
 
             // this.spring = new Spring(x, y, radius, color, this.pin, memberLength, gravity)
             // this.springs.push(this.spring)
@@ -3923,7 +3923,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             sandmap.players[sandmap.turn].units[t].selected = 2
                         }
 
-                        //////////////////////////////////console.log(sandmap.players[sandmap.turn].selected_tile)
+                        ////////////////////////////////////console.log(sandmap.players[sandmap.turn].selected_tile)
                         sandmap.players[sandmap.turn].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile)
 
 
@@ -4140,7 +4140,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     continue
                                 }
                             }
-                            //////////////////////////////////console.log(sandmap.players[sandmap.turn].selected_tile)
+                            ////////////////////////////////////console.log(sandmap.players[sandmap.turn].selected_tile)
                             sandmap.players[sandmap.turn].units[t].pathTo(sandmap.players[sandmap.turn].selected_tile)
                             if (sandmap.players[sandmap.turn].selected_tile.hotrock > 0) {
 
@@ -4289,7 +4289,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         selectrect.height = Math.abs(selectrect.height)
                     }
 
-                    // //////////////////////////////////////console.log(selectrect)
+                    // ////////////////////////////////////////console.log(selectrect)
                     // selectrect.draw()
                     // sandmap.players[sandmap.turn].selected_tile = sandmap.blocks[structuredpoint.x][structuredpoint.y]
                     // sandmap.turn++
@@ -4313,7 +4313,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     }
     //     function gamepad_control(object, speed = 1) { // basic control for objects using the controler
-    // //         ////////////////////////////////////////////console.log(gamepadAPI.axesStatus[1]*gamepadAPI.axesStatus[0]) //debugging
+    // //         //////////////////////////////////////////////console.log(gamepadAPI.axesStatus[1]*gamepadAPI.axesStatus[0]) //debugging
     //         if (typeof object.body != 'undefined') {
     //             if(typeof (gamepadAPI.axesStatus[1]) != 'undefined'){
     //                 if(typeof (gamepadAPI.axesStatus[0]) != 'undefined'){
@@ -4553,8 +4553,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             // let link = new Line(this.posx, this.posy, bottle.crew[bottle.selectedcrew].body.x-100, bottle.crew[bottle.selectedcrew].body.y-300, "red", 1)
             // if (link.hypotenuse() < 108) {
-            // ////////////////////////////////////////////////console.log(link)
-            // ////////////////////////////////////////////////console.log(bottle)
+            // //////////////////////////////////////////////////console.log(link)
+            // //////////////////////////////////////////////////console.log(bottle)
             // }
             // let roundedx = (Math.round((startPoint.x) / 10))
             // let roundedy = (Math.round((startPoint.y) / 10))
@@ -4567,13 +4567,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // if (this.inPath === true) {
             //     // this.drawPath();
             // } else if (this.walkable === false) {
-            //     // ////////////////////////////////////////////////console.log(this)
+            //     // //////////////////////////////////////////////////console.log(this)
 
             //     // this.createWall();
             //     return;
             //     // }else if (link.hypotenuse() < 11) {
             // } else if (this.posx == roundedx && this.posy == roundedy) {
-            //     //   ////////////////////////////////////////////////console.log("hit the startNode");
+            //     //   //////////////////////////////////////////////////console.log("hit the startNode");
             //     //   this.createStartNode();
             //     return;
             // } else if (this.posx == endPoint.x && this.posy == endPoint.y) {
@@ -4777,8 +4777,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             // let link = new Line(this.posx, this.posy, bottle.crew[bottle.selectedcrew].body.x-100, bottle.crew[bottle.selectedcrew].body.y-300, "red", 1)
             // if (link.hypotenuse() < 108) {
-            // ////////////////////////////////////////////////console.log(link)
-            // ////////////////////////////////////////////////console.log(bottle)
+            // //////////////////////////////////////////////////console.log(link)
+            // //////////////////////////////////////////////////console.log(bottle)
             // }
             // let roundedx = (Math.round((startPoint.x) / 10))
             // let roundedy = (Math.round((startPoint.y) / 10))
@@ -4791,13 +4791,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // if (this.inPath === true) {
             //     // this.drawPath();
             // } else if (this.walkable === false) {
-            //     // ////////////////////////////////////////////////console.log(this)
+            //     // //////////////////////////////////////////////////console.log(this)
 
             //     // this.createWall();
             //     return;
             //     // }else if (link.hypotenuse() < 11) {
             // } else if (this.posx == roundedx && this.posy == roundedy) {
-            //     //   ////////////////////////////////////////////////console.log("hit the startNode");
+            //     //   //////////////////////////////////////////////////console.log("hit the startNode");
             //     //   this.createStartNode();
             //     return;
             // } else if (this.posx == endPoint.x && this.posy == endPoint.y) {
@@ -4910,7 +4910,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     force1 += (sandmap.players[1].units[t].damage * 9)
                     force1 += (sandmap.players[1].units[t].defense * 15)
                 }
-                // //////////////////console.log(force1)
+                // ////////////////////console.log(force1)
                 this.faction0.firepower.push(force0)
                 this.faction1.firepower.push(force1)
                 this.wind.push(sandmap.windspeed)
@@ -4985,14 +4985,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     let x = (1000 / this.faction0.firepower.length) * t
                     let y = (720 - (this.faction0.firepowerx[t] * 720))
                     let point = new Circle(x, y, 1, sandmap.players[0].color)
-                    // //////////////////console.log(point)
+                    // ////////////////////console.log(point)
                     point.draw()
                 }
                 for (let t = 0; t < this.faction1.firepower.length; t++) {
                     let x = (1000 / this.faction1.firepower.length) * t
                     let y = (720 - (this.faction1.firepowerx[t] * 720))
                     let point = new Circle(x, y, 1, sandmap.players[1].color)
-                    // //////////////////console.log(point)
+                    // ////////////////////console.log(point)
                     point.draw()
                 }
 
@@ -5094,14 +5094,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // this.players.push(new Player('Earthoids', "#0000FF", 1, 0))
             // this.players.push(new Player('Earthoids', "#FF00FF", 1, 0))
             // this.players.push(new Player('Cold Itzlerians', "#00FF00", 1, 1))
-            // this.players.push(new Player('Cold Itzlerians', "#FF0000", 1, 1))
-            this.players.push(new Player('Hamartans', "#0000FF", 1, 2))
+            this.players.push(new Player('Cold Itzlerians', "#FF0000", 1, 1))
+            // this.players.push(new Player('Hamartans', "#0000FF", 1, 2))
             // this.players.push(new Player('Plaztilites', "#FF00FF", 1, 4))
             // this.players.push(new Player('Plaztilites', "#0000FF", 1, 4))
             // this.players.push(new Player('Librilbians', "#FF0000", 1, 3))
             // this.players.push(new Player('Librilbians', "#FF0000", 1, 3))
-            this.players.push(new Player('Hamartans', "#FFAA00", 1, 2))
-            // this.players.push(new Player('Cold Itzlerians', "#00AA00", 1, 1))
+            // this.players.push(new Player('Hamartans', "#FFAA00", 1, 2))
+            this.players.push(new Player('Cold Itzlerians', "#00AA00", 1, 1))
             // this.players[0].aimode = 0
             // this.players[1].aimode = 1
             this.players[1].units = []
@@ -5119,7 +5119,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     for (let p = 0; p < this.hotrocks.length; p++) {
                                         let link = new LineOP(this.hotrocks[p], rect)
                                         if (link.hypotenuse() < 120 + ((Math.random() - .5) * 60)) {
-                                            // //////////////////console.log(this.hotrocks)
+                                            // ////////////////////console.log(this.hotrocks)
                                             bump = 1
                                         }
                                     }
@@ -5194,7 +5194,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     this.gridPoints.push(this.blocks[t][k])
                 }
             }
-            //////////////////////////////console.log(this)
+            ////////////////////////////////console.log(this)
             this.dirtyNodes = []
         }
         cleanDirty() {
@@ -5291,7 +5291,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 for (var j = 0; j < this.height; j += NODESIZE) {
                     gridPointsByPos[i][j] = countNodes;
                     //here's the problem , need to set the walkability of the node without always being true...
-                    ////////////////////////////////////////////////console.log(countNodes)
+                    //////////////////////////////////////////////////console.log(countNodes)
                     tempNode = new Tile(i, j, 10, 10, "tan", countNodes, NODESIZE, i, j, true);
 
                     // let cutOut = [0,1 ,2, 3, 4, 5,6,7, 8, 9, 10, 11, 12,13, 18, 19,20, 32,33,  26, 31, 39, 44, 45, 46, 52, 57,58,59,99, 112, 108, 95, 197, 198, 199, 205, 203, 204, 236, 237, 238, 242, 243,244, 216, 212, 229, 225, 210, 211, 223, 224, 217, 218, 230, 231]
@@ -5323,7 +5323,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                     // }
                     // if (wallSet.has(countNodes)) {
-                    // //   ////////////////////////////////////////////////console.log("wallSet had countNodes!")
+                    // //   //////////////////////////////////////////////////console.log("wallSet had countNodes!")
                     //   tempNode.walkable = false;
                     // }
 
@@ -5851,7 +5851,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 //     continue
                                 // }
                                 if (slimetarget.breaker.includes(t)) {
-                                    ////////console.log("what")
+                                    //////////console.log("what")
                                     // if(Math.random()<.01){
                                     //     slimetarget.breaker.splice(slimetarget.breaker.indexOf(t), 1)
                                     // }
@@ -5860,24 +5860,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     // }
                                     // continue
                                 } else if (Math.abs(slimetarget.t - this.buildings[t].tile.t) + Math.abs(slimetarget.k - this.buildings[t].tile.k) > 1000) {//cost to build new sporeball and change
-                                    ////////console.log("huh")
+                                    //////////console.log("huh")
 
                                     if (Math.random() < .001) {
                                         if (slimetarget.primed != 1) {
                                             if (Math.random() < .5) {
                                                 if (Math.random() < .5) {
-                                                    //////////console.log("ball")
+                                                    ////////////console.log("ball")
                                                     this.buildBarracks(sandmap.blocks[slimetarget.t][slimetarget.k + 1])
                                                 } else {
-                                                    //////////console.log("ball")
+                                                    ////////////console.log("ball")
                                                     this.buildBarracks(sandmap.blocks[slimetarget.t][slimetarget.k - 1])
                                                 }
                                             } else {
                                                 if (Math.random() < .5) {
-                                                    //////////console.log("ball")
+                                                    ////////////console.log("ball")
                                                     this.buildBarracks(sandmap.blocks[slimetarget.t + 1][slimetarget.k])
                                                 } else {
-                                                    //////////console.log("ball")
+                                                    ////////////console.log("ball")
                                                     this.buildBarracks(sandmap.blocks[slimetarget.t - 1][slimetarget.k])
                                                 }
 
@@ -5907,18 +5907,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                                         if (((this.path.length * 5) + discount) <= this.hotrock && ((this.path.length * 5) + discount) < 170) {//} &&  ((this.path.length*5)+discount) > 0){ //cost to build new sporeball // no free paths
                                             for (let p = 0; p < this.path.length; p++) {
-                                                this.buildWall(this.path[p])
+                                                this.buildWallOld(this.path[p])
                                             }
                                             // break
                                         } else if (((this.path.length * 2) + discount) >= 170) {
                                             // for(let p = 0;p<this.path.length;p++){
                                             //     if(p%2 ==0){
-                                            //         this.buildWall(this.path[p])
+                                            //         this.buildWallOld(this.path[p])
                                             //     }
                                             // }
-                                            // //////////console.log((this.path.length*5), discount)
+                                            // ////////////console.log((this.path.length*5), discount)
                                             if (Math.random() < .01) {
-                                                //////////console.log("length ball")
+                                                ////////////console.log("length ball")
                                                 this.buildBarracks(this.path[(this.path.length - 2)])
                                             }
                                             // if(t > 0){
@@ -5934,7 +5934,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         if (wet == 0) {
                             if (this.seen.length > 0) {
 
-                                //////////console.log("solo ball")
+                                ////////////console.log("solo ball")
                                 this.buildBarracks(this.seen[Math.floor(Math.random() * this.seen.length)])
                             }
                         }
@@ -5949,7 +5949,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                     if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                         let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                        // //////////////////////////////console.log(link)
+                                        // ////////////////////////////////console.log(link)
                                         if (link < max) {
                                             max = link
                                             index = h
@@ -5988,7 +5988,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                         if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                             let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                            // //////////////////////////////console.log(link)
+                                            // ////////////////////////////////console.log(link)
                                             if (link < max) { //reversals time //rereverse
                                                 max = link
                                                 index = h
@@ -6134,7 +6134,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         for (let t = 0; t < this.buildings.length; t++) {
                             if (this.buildings[t].slime == 1) {
                                 if (Math.random() < .5) {
-                                    ////////////console.log(this.seenrocks.length, this.units.length)
+                                    //////////////console.log(this.seenrocks.length, this.units.length)
                                     if ((this.hotrock > 70 + (this.buildings.length * 5) || this.seenrocks.length <= this.units.length) && this.units.length < 15) {
                                         this.buildings[t].makeFruitingbuddy()
                                         j++
@@ -6415,7 +6415,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                     if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                         let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                        // //////////////////////////////console.log(link)
+                                        // ////////////////////////////////console.log(link)
                                         if (link < max) {
                                             max = link
                                             index = h
@@ -6449,7 +6449,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                         if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                             let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                            // //////////////////////////////console.log(link)
+                                            // ////////////////////////////////console.log(link)
                                             if (link < max) {
                                                 max = link
                                                 index = h
@@ -6624,22 +6624,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         }
                     }
                     if (count == 3) {
-                        this.buildWall(tile, 1)
+                        this.buildWallOld(tile, 1)
                     } else if (count == 0) {
                         for (let t = 0; t < this.units.length; t++) {
                             if (this.units[t].realPath.length - 1 == this.units[t].index) {
                                 if ((this.units[t].suffocating > 0 && (this.units[t].health / this.units[t].maxhealth) < .9) || (this.racks !== 1 && this.hotrock > 400)) {
                                     if (Math.random() < .5) {
                                         if (Math.random() < .5) {
-                                            this.buildWall(sandmap.blocks[Math.max(this.units[t].tile.t - 1, 0)][this.units[t].tile.k])
+                                            this.buildWallOld(sandmap.blocks[Math.max(this.units[t].tile.t - 1, 0)][this.units[t].tile.k])
                                         } else {
-                                            this.buildWall(sandmap.blocks[Math.min(this.units[t].tile.t + 1, 127)][this.units[t].tile.k])
+                                            this.buildWallOld(sandmap.blocks[Math.min(this.units[t].tile.t + 1, 127)][this.units[t].tile.k])
                                         }
                                     } else {
                                         if (Math.random() < .5) {
-                                            this.buildWall(sandmap.blocks[this.units[t].tile.t][Math.min(this.units[t].tile.k + 1, 127)])
+                                            this.buildWallOld(sandmap.blocks[this.units[t].tile.t][Math.min(this.units[t].tile.k + 1, 127)])
                                         } else {
-                                            this.buildWall(sandmap.blocks[this.units[t].tile.t][Math.max(this.units[t].tile.k - 1, 0)])
+                                            this.buildWallOld(sandmap.blocks[this.units[t].tile.t][Math.max(this.units[t].tile.k - 1, 0)])
                                         }
                                     }
                                     break
@@ -6654,15 +6654,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             if ((this.units[t].suffocating > 0 && (this.units[t].health / this.units[t].maxhealth) < .9) || (this.racks !== 1 && this.hotrock > 400)) {
                                 if (Math.random() < .5) {
                                     if (Math.random() < .5) {
-                                        this.buildWall(sandmap.blocks[Math.max(this.units[t].tile.t - 1, 0)][this.units[t].tile.k])
+                                        this.buildWallOld(sandmap.blocks[Math.max(this.units[t].tile.t - 1, 0)][this.units[t].tile.k])
                                     } else {
-                                        this.buildWall(sandmap.blocks[Math.min(this.units[t].tile.t + 1, 127)][this.units[t].tile.k])
+                                        this.buildWallOld(sandmap.blocks[Math.min(this.units[t].tile.t + 1, 127)][this.units[t].tile.k])
                                     }
                                 } else {
                                     if (Math.random() < .5) {
-                                        this.buildWall(sandmap.blocks[this.units[t].tile.t][Math.min(this.units[t].tile.k + 1, 127)])
+                                        this.buildWallOld(sandmap.blocks[this.units[t].tile.t][Math.min(this.units[t].tile.k + 1, 127)])
                                     } else {
-                                        this.buildWall(sandmap.blocks[this.units[t].tile.t][Math.max(this.units[t].tile.k - 1, 0)])
+                                        this.buildWallOld(sandmap.blocks[this.units[t].tile.t][Math.max(this.units[t].tile.k - 1, 0)])
                                     }
                                 }
                                 break
@@ -6699,7 +6699,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                     if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                         let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                        // //////////////////////////////console.log(link)
+                                        // ////////////////////////////////console.log(link)
                                         if (link < max) {
                                             max = link
                                             index = h
@@ -6733,7 +6733,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                         if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                             let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                            // //////////////////////////////console.log(link)
+                                            // ////////////////////////////////console.log(link)
                                             if (link < max) {
                                                 max = link
                                                 index = h
@@ -6853,7 +6853,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                         if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                             let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                            // //////////////////////////////console.log(link)
+                                            // ////////////////////////////////console.log(link)
                                             if (link < max) {
                                                 max = link
                                                 index = h
@@ -6887,7 +6887,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                             if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                                 let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                                // //////////////////////////////console.log(link)
+                                                // ////////////////////////////////console.log(link)
                                                 if (link < max) {
                                                     max = link
                                                     index = h
@@ -7001,7 +7001,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             } else { // human below, itzler above
 
                 if (this.hotrock > (this.racksflag * 75)) {
-                    console.log("earthoid effect")
+                    //console.log("earthoid effect")
                     if (this.racks == 1) {
                         this.racksflag += 4
                     }
@@ -7109,7 +7109,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             if (this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                                 if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false) {
                                                     let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                                    // //////////////////////////////console.log(link)
+                                                    // ////////////////////////////////console.log(link)
                                                     if (link < max) {
                                                         max = link
                                                         index = h
@@ -7179,7 +7179,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                 if (this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                                     if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false) {
                                                         let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                                        // //////////////////////////////console.log(link)
+                                                        // ////////////////////////////////console.log(link)
                                                         if (link < max) {
                                                             max = link
                                                             index = h
@@ -7325,9 +7325,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         continue
                                     }
                                     if (this.blocks[this.averageSpace.tile.t][x + 1].markdraw != 1 || (Math.abs(this.averageSpace.tile.k - x) > 15)) {
-                                        this.buildWall(sandmap.blocks[this.averageSpace.tile.t][x])
+                                        this.buildWallOld(sandmap.blocks[this.averageSpace.tile.t][x])
                                     } else if (x == 126) {
-                                        this.buildWall(sandmap.blocks[this.averageSpace.tile.t][x])
+                                        this.buildWallOld(sandmap.blocks[this.averageSpace.tile.t][x])
                                     }
                                     if (debreak == 0) {
                                         break
@@ -7347,9 +7347,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         continue
                                     }
                                     if (this.blocks[this.averageSpace.tile.t][x - 1].markdraw != 1 || (Math.abs(this.averageSpace.tile.k - x) > 15)) {
-                                        this.buildWall(sandmap.blocks[this.averageSpace.tile.t][x])
+                                        this.buildWallOld(sandmap.blocks[this.averageSpace.tile.t][x])
                                     } else if (x == 2) {
-                                        this.buildWall(sandmap.blocks[this.averageSpace.tile.t][x])
+                                        this.buildWallOld(sandmap.blocks[this.averageSpace.tile.t][x])
                                     }
                                     if (debreak == 0) {
                                         break
@@ -7369,9 +7369,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         continue
                                     }
                                     if (this.blocks[x - 1][this.averageSpace.tile.k].markdraw != 1 || (Math.abs(this.averageSpace.tile.t - x) > 15)) {
-                                        this.buildWall(sandmap.blocks[x][this.averageSpace.tile.k])
+                                        this.buildWallOld(sandmap.blocks[x][this.averageSpace.tile.k])
                                     } else if (x == 2) {
-                                        this.buildWall(sandmap.blocks[x][this.averageSpace.tile.k])
+                                        this.buildWallOld(sandmap.blocks[x][this.averageSpace.tile.k])
                                     }
                                     if (debreak == 0) {
                                         break
@@ -7394,9 +7394,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         continue
                                     }
                                     if (this.blocks[x + 1][this.averageSpace.tile.k].markdraw != 1 || (Math.abs(this.averageSpace.tile.t - x) > 15)) {
-                                        this.buildWall(sandmap.blocks[x][this.averageSpace.tile.k])
+                                        this.buildWallOld(sandmap.blocks[x][this.averageSpace.tile.k])
                                     } else if (x == 126) {
-                                        this.buildWall(sandmap.blocks[x][this.averageSpace.tile.k])
+                                        this.buildWallOld(sandmap.blocks[x][this.averageSpace.tile.k])
                                     }
                                     if (debreak == 0) {
                                         break
@@ -7426,7 +7426,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                                 if (Math.abs(this.units[t].realPath.length - this.units[t].index) < 3 || Math.abs(this.units[t].realPath.length - this.units[t].index) > (calcdeath - (this.units[t].movespeed * 10))) {
 
-                                    // ////////////////////////////console.log(this.units[t])
+                                    // //////////////////////////////console.log(this.units[t])
 
                                 } else {
                                     continue
@@ -7448,9 +7448,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1 || Math.abs(this.units[t].tile.k - x) > 15) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 } else if (x == 126) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -7472,9 +7472,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1 || Math.abs(this.units[t].tile.k - x) > 15) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 } else if (x == 2) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -7496,9 +7496,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[x - 1][this.units[t].tile.k].markdraw != 1 || Math.abs(this.units[t].tile.t - x) > 15) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 } else if (x == 2) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -7520,9 +7520,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1 || Math.abs(this.units[t].tile.t - x) > 15) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 } else if (x == 126) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -7547,9 +7547,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1 || Math.abs(this.units[t].tile.k - x) > 15) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 } else if (x == 126) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -7571,9 +7571,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1 || Math.abs(this.units[t].tile.k - x) > 15) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 } else if (x == 2) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -7595,9 +7595,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[x - 1][this.units[t].tile.k].markdraw != 1 || Math.abs(this.units[t].tile.t - x) > 15) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 } else if (x == 2) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -7619,9 +7619,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1 || Math.abs(this.units[t].tile.t - x) > 15) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 } else if (x == 126) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -7647,9 +7647,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1 || Math.abs(this.units[t].tile.k - x) > 15) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 } else if (x == 126) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -7671,9 +7671,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1 || Math.abs(this.units[t].tile.k - x) > 15) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 } else if (x == 2) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -7695,9 +7695,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[x - 1][this.units[t].tile.k].markdraw != 1 || Math.abs(this.units[t].tile.t - x) > 15) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 } else if (x == 2) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -7719,9 +7719,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1 || Math.abs(this.units[t].tile.t - x) > 15) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 } else if (x == 126) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -7744,9 +7744,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1 || Math.abs(this.units[t].tile.k - x) > 15) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 } else if (x == 126) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -7768,9 +7768,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1 || Math.abs(this.units[t].tile.k - x) > 15) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 } else if (x == 2) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -7792,9 +7792,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[x - 1][this.units[t].tile.k].markdraw != 1 || Math.abs(this.units[t].tile.t - x) > 15) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 } else if (x == 2) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -7816,9 +7816,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1 || Math.abs(this.units[t].tile.t - x) > 15) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 } else if (x == 126) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -7850,9 +7850,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         continue
                                     }
                                     if (this.blocks[this.averageSpace.tile.t][x + 1].markdraw != 1) {
-                                        this.buildWall(sandmap.blocks[this.averageSpace.tile.t][x])
+                                        this.buildWallOld(sandmap.blocks[this.averageSpace.tile.t][x])
                                     } else if (x == 126) {
-                                        this.buildWall(sandmap.blocks[this.averageSpace.tile.t][x])
+                                        this.buildWallOld(sandmap.blocks[this.averageSpace.tile.t][x])
                                     }
                                     if (debreak == 0) {
                                         break
@@ -7866,9 +7866,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         continue
                                     }
                                     if (this.blocks[this.averageSpace.tile.t][x - 1].markdraw != 1) {
-                                        this.buildWall(sandmap.blocks[this.averageSpace.tile.t][x])
+                                        this.buildWallOld(sandmap.blocks[this.averageSpace.tile.t][x])
                                     } else if (x == 2) {
-                                        this.buildWall(sandmap.blocks[this.averageSpace.tile.t][x])
+                                        this.buildWallOld(sandmap.blocks[this.averageSpace.tile.t][x])
                                     }
                                     if (debreak == 0) {
                                         break
@@ -7882,9 +7882,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         continue
                                     }
                                     if (this.blocks[x - 1][this.averageSpace.tile.k].markdraw != 1) {
-                                        this.buildWall(sandmap.blocks[x][this.averageSpace.tile.k])
+                                        this.buildWallOld(sandmap.blocks[x][this.averageSpace.tile.k])
                                     } else if (x == 2) {
-                                        this.buildWall(sandmap.blocks[x][this.averageSpace.tile.k])
+                                        this.buildWallOld(sandmap.blocks[x][this.averageSpace.tile.k])
                                     }
                                     if (debreak == 0) {
                                         break
@@ -7898,9 +7898,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         continue
                                     }
                                     if (this.blocks[x + 1][this.averageSpace.tile.k].markdraw != 1) {
-                                        this.buildWall(sandmap.blocks[x][this.averageSpace.tile.k])
+                                        this.buildWallOld(sandmap.blocks[x][this.averageSpace.tile.k])
                                     } else if (x == 126) {
-                                        this.buildWall(sandmap.blocks[x][this.averageSpace.tile.k])
+                                        this.buildWallOld(sandmap.blocks[x][this.averageSpace.tile.k])
                                     }
                                     if (debreak == 0) {
                                         break
@@ -7923,7 +7923,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                                 if (Math.abs(this.units[t].realPath.length - this.units[t].index) < 3 || Math.abs(this.units[t].realPath.length - this.units[t].index) > (calcdeath - (this.units[t].movespeed * 10))) {
 
-                                    // ////////////////////////////console.log(this.units[t])
+                                    // //////////////////////////////console.log(this.units[t])
 
                                 } else {
                                     continue
@@ -7939,9 +7939,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 } else if (x == 126) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -7957,9 +7957,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 } else if (x == 2) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -7975,9 +7975,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[x - 1][this.units[t].tile.k].markdraw != 1) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 } else if (x == 2) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -7993,9 +7993,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 } else if (x == 126) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -8014,9 +8014,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 } else if (x == 126) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -8032,9 +8032,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 } else if (x == 2) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -8050,9 +8050,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[x - 1][this.units[t].tile.k].markdraw != 1) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 } else if (x == 2) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -8068,9 +8068,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 } else if (x == 126) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -8088,9 +8088,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 } else if (x == 126) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -8106,9 +8106,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 } else if (x == 2) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -8124,9 +8124,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[x - 1][this.units[t].tile.k].markdraw != 1) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 } else if (x == 2) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -8142,9 +8142,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 } else if (x == 126) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -8162,9 +8162,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[this.units[t].tile.t][x + 1].markdraw != 1) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 } else if (x == 126) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -8180,9 +8180,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[this.units[t].tile.t][x - 1].markdraw != 1) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 } else if (x == 2) {
-                                                    this.buildWall(sandmap.blocks[this.units[t].tile.t][x])
+                                                    this.buildWallOld(sandmap.blocks[this.units[t].tile.t][x])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -8198,9 +8198,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[x - 1][this.units[t].tile.k].markdraw != 1) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 } else if (x == 2) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -8216,9 +8216,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     continue
                                                 }
                                                 if (this.blocks[x + 1][this.units[t].tile.k].markdraw != 1) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 } else if (x == 126) {
-                                                    this.buildWall(sandmap.blocks[x][this.units[t].tile.k])
+                                                    this.buildWallOld(sandmap.blocks[x][this.units[t].tile.k])
                                                 }
                                                 if (debreak == 0) {
                                                     break
@@ -8323,7 +8323,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 //     continue
                                 // }
                                 if (slimetarget.breaker.includes(t)) {
-                                    ////////console.log("what")
+                                    //////////console.log("what")
                                     // if(Math.random()<.01){
                                     //     slimetarget.breaker.splice(slimetarget.breaker.indexOf(t), 1)
                                     // }
@@ -8332,7 +8332,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     // }
                                     // continue
                                 } else if (Math.abs(slimetarget.t - this.buildings[t].tile.t) + Math.abs(slimetarget.k - this.buildings[t].tile.k) > 1000) {//cost to build new sporeball and change
-                                    ////////console.log("huh")
+                                    //////////console.log("huh")
 
                                     for (let g = this.buildings.length - 1; g >= 0; g--) {
                                         if (this.buildings[g].sporeball == 1) {
@@ -8345,23 +8345,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         if (slimetarget.primed != 1) {
                                             if (Math.random() < .5) {
                                                 if (Math.random() < .5) {
-                                                    //////////console.log("ball")
+                                                    ////////////console.log("ball")
                                                     this.buildBarracks(sandmap.blocks[slimetarget.t][slimetarget.k + 1])
-                                                    console.log("case A")
+                                                    //console.log("case A")
                                                 } else {
-                                                    //////////console.log("ball")
+                                                    ////////////console.log("ball")
                                                     this.buildBarracks(sandmap.blocks[slimetarget.t][slimetarget.k - 1])
-                                                    console.log("case B")
+                                                    //console.log("case B")
                                                 }
                                             } else {
                                                 if (Math.random() < .5) {
-                                                    //////////console.log("ball")
+                                                    ////////////console.log("ball")
                                                     this.buildBarracks(sandmap.blocks[slimetarget.t + 1][slimetarget.k])
-                                                    console.log("case C")
+                                                    //console.log("case C")
                                                 } else {
-                                                    //////////console.log("ball")
+                                                    ////////////console.log("ball")
                                                     this.buildBarracks(sandmap.blocks[slimetarget.t - 1][slimetarget.k])
-                                                    console.log("case D")
+                                                    //console.log("case D")
                                                 }
 
                                             }
@@ -8400,9 +8400,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             //         this.buildWall(this.path[p])
                                             //     }
                                             // }
-                                            // //////////console.log((this.path.length*5), discount)
+                                            // ////////////console.log((this.path.length*5), discount)
                                             if (Math.random() < .01) {
-                                                //////////console.log("length ball")
+                                                ////////////console.log("length ball")
 
                         for (let g = this.buildings.length - 1; g >= 0; g--) {
                             if (this.buildings[g].sporeball == 1) {
@@ -8412,7 +8412,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         }
                         if (wet == 0) {
                                                 this.buildBarracks(this.path[(this.path.length - 2)])
-                                                console.log("case E")
+                                                //console.log("case E")
                         }
                                             }
                                             // if(t > 0){
@@ -8439,31 +8439,31 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                                 if (Math.random() < .5) {
                                     if (Math.random() < .5) {
-                                        //////////console.log("ball")
+                                        ////////////console.log("ball")
                                         this.buildBarracks(sandmap.blocks[slimetarget.t][slimetarget.k + 1])
-                                        console.log("case A")
+                                        //console.log("case A")
                                     } else {
-                                        //////////console.log("ball")
+                                        ////////////console.log("ball")
                                         this.buildBarracks(sandmap.blocks[slimetarget.t][slimetarget.k - 1])
-                                        console.log("case B")
+                                        //console.log("case B")
                                     }
                                 } else {
                                     if (Math.random() < .5) {
-                                        //////////console.log("ball")
+                                        ////////////console.log("ball")
                                         this.buildBarracks(sandmap.blocks[slimetarget.t + 1][slimetarget.k])
-                                        console.log("case C")
+                                        //console.log("case C")
                                     } else {
-                                        //////////console.log("ball")
+                                        ////////////console.log("ball")
                                         this.buildBarracks(sandmap.blocks[slimetarget.t - 1][slimetarget.k])
-                                        console.log("case D")
+                                        //console.log("case D")
                                     }
 
                                 }
 
                                 
-                                //////////console.log("solo ball")
+                                ////////////console.log("solo ball")
                                 // this.buildBarracks(this.seenrocks[Math.floor(Math.random() * this.seen.length)])
-                                console.log("case F")
+                                //console.log("case F")
                             }
                         }
 
@@ -8477,7 +8477,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                     if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                         let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                        // //////////////////////////////console.log(link)
+                                        // ////////////////////////////////console.log(link)
                                         if (link < max) {
                                             max = link
                                             index = h
@@ -8517,7 +8517,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                         if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                             let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                            // //////////////////////////////console.log(link)
+                                            // ////////////////////////////////console.log(link)
                                             if (link < max) { //reversals time //rereverse
                                                 max = link
                                                 index = h
@@ -8586,9 +8586,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     this.defending = 0
                     this.defenseforce = 1
                     if (this.defenseforce > 0) {
-                        // console.log(this.buildings, "bef")
+                        // //console.log(this.buildings, "bef")
                         this.buildings.sort((a, b) => ((new LineOP(a.tile, this.attackedAt).hypotenuse()) < (new LineOP(b.tile, this.attackedAt)).hypotenuse()) ? 1 : -1)
-                        // console.log(this.buildings, "ant")
+                        // //console.log(this.buildings, "ant")
 
 
                         for (let t = this.buildings.length-1;t>0; t--) { //reversal for prox
@@ -8695,7 +8695,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         for (let t = this.buildings.length-1;t>0; t--) { //reversal for prox
                             if (this.buildings[t].slime == 1) {
                                 if (Math.random() <  3/this.buildings.length) {  //.5
-                                    ////////////console.log(this.seenrocks.length, this.units.length)
+                                    //////////////console.log(this.seenrocks.length, this.units.length)
                                     if ((this.hotrock > 70 + (this.buildings.length * 5) || this.seenrocks.length <= this.units.length) && (Math.random() < (3/this.units.length))) {
                                         this.buildings[t].makeFruitingbuddy()
                                         j++
@@ -9001,7 +9001,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                     if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                         let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                        // //////////////////////////////console.log(link)
+                                        // ////////////////////////////////console.log(link)
                                         if (link < max) {
                                             max = link
                                             index = h
@@ -9036,7 +9036,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                         if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                             let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                            // //////////////////////////////console.log(link)
+                                            // ////////////////////////////////console.log(link)
                                             if (link < max) {
                                                 max = link
                                                 index = h
@@ -9091,12 +9091,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                 if (this.chunk % this.clickrate == 0) {
 
-                    if (this.units.length > this.racksflag) {
-                        if (this.lab > 0) {
-                            this.racksflag += 10
-                        }
-                        this.lab = 0
-                    }
+                    // if (this.units.length > this.racksflag) {
+                    //     if (this.lab > 0) {
+                    //         this.racksflag += 10
+                    //         //console.log("inside ham")
+                    //     }
+                    //     this.lab = 0
+                    //     //console.log("secondary ham")
+                    // }
 
                     let workercount = 0
                     for (let t = 0; t < this.units.length; t++) {
@@ -9118,7 +9120,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     for (let t = 0; t < this.buildings.length; t++) {
                         if (this.buildings[t].assembler == 2) {
                             if (this.seenrocks.length <= this.units.length) { //seen
-                                if (this.hotrock > 115) { //135
+                                if (this.hotrock > 75) { //135 //115
                                     this.buildings[t].makeHamartanscout()
                                     break
                                 }
@@ -9145,7 +9147,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             stuck--
                                             if(stuck == 0){
                                                 this.racks = 0
-                                                console.log("stuck effect")
+                                                //console.log("stuck effect")
                                             }
                                         }
                                     } else {
@@ -9162,7 +9164,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
 
-                if (this.defending >= 32) {
+                if (this.defending >= 32 || (this.defending > 0 && this.defending < 10)) {
                     this.defending = 0
                     this.defenseforce = 0
                     for (let t = 0; t < this.units.length; t++) {
@@ -9224,16 +9226,25 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     kpos = Math.round(kpos / 3)
 
                     let tile = sandmap.blocks[tpos][kpos]
+                    if(tile.occupied == true){
+                        if(kpos < 128){
+                            tile = sandmap.blocks[tpos][kpos+1]
+                        }else{
+                            if(tpos < 128){
+                                tile = sandmap.blocks[tpos+1][kpos]
+                            }
+                        }
+                    }
                     let count = 0
                     for (let t = 0; t < this.units.length; t++) {
                         let link = new LineOP(this.units[t].tile, tile)
-                        if ((this.units[t].suffocating > 0 && (this.units[t].health / this.units[t].maxhealth) < .975) && link.hypotenuse() <= 119) {
+                        if (((this.units[t].suffocating > 0 && (this.units[t].health / this.units[t].maxhealth) < .975) || this.hotrock >= 380) && link.hypotenuse() <= 119) {
                             count++
                         }
                     }
                     if (count == 3) {
                         this.buildWall(tile, 1)
-                    } else if (count == 0) {
+                    } else if (count == 0 || ((count == 1 || count ==2) && this.hotrock > 390)) {
                         for (let t = 0; t < this.units.length; t++) {
                             if (this.units[t].realPath.length - 1 == this.units[t].index) {
                                 if ((this.units[t].suffocating > 0 && (this.units[t].health / this.units[t].maxhealth) < .9) || (this.racks !== 1 && this.hotrock > 340)) { //400
@@ -9307,7 +9318,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                     if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                         let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                        // //////////////////////////////console.log(link)
+                                        // ////////////////////////////////console.log(link)
                                         if (link < max) {
                                             max = link
                                             index = h
@@ -9342,7 +9353,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                         if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                             let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                            // //////////////////////////////console.log(link)
+                                            // ////////////////////////////////console.log(link)
                                             if (link < max) {
                                                 max = link
                                                 index = h
@@ -9441,7 +9452,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 //                     for (let h = 0; h < sandmap.hotrocks.length; h++) {
                 //                         if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                 //                             let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                //                             // //////////////////////////////console.log(link)
+                //                             // ////////////////////////////////console.log(link)
                 //                             if (link < max) {
                 //                                 max = link
                 //                                 index = h
@@ -9475,7 +9486,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 //                         for (let h = 0; h < sandmap.hotrocks.length; h++) {
                 //                             if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                 //                                 let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                //                                 // //////////////////////////////console.log(link)
+                //                                 // ////////////////////////////////console.log(link)
                 //                                 if (link < max) {
                 //                                     max = link
                 //                                     index = h
@@ -9636,7 +9647,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                     for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                         if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                             let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                            // //////////////////////////////console.log(link)
+                                            // ////////////////////////////////console.log(link)
                                             if (link < max) {
                                                 max = link
                                                 index = h
@@ -9671,7 +9682,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                         for (let h = 0; h < sandmap.hotrocks.length; h++) {
                                             if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false && this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                                 let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                                // //////////////////////////////console.log(link)
+                                                // ////////////////////////////////console.log(link)
                                                 if (link < max) {
                                                     max = link
                                                     index = h
@@ -9811,7 +9822,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             } else { // human below, itzler above
 
                 if (this.hotrock > (this.racksflag * 75)) {
-                    console.log("earthoid effect")
+                    //console.log("earthoid effect")
                     if (this.racks == 1) {
                         this.racksflag += 4
                     }
@@ -9919,7 +9930,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                             if (this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                                 if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false) {
                                                     let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                                    // //////////////////////////////console.log(link)
+                                                    // ////////////////////////////////console.log(link)
                                                     if (link < max) {
                                                         max = link
                                                         index = h
@@ -9990,7 +10001,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                 if (this.blocks[sandmap.hotrocks[h].t][sandmap.hotrocks[h].k].markdraw == 1) {
                                                     if (sandmap.hotrocks[h].walkable == true && sandmap.hotrocks[h].occupied == false) {
                                                         let link = (new LineOP(this.units[t].tile, sandmap.hotrocks[h])).hypotenuse()
-                                                        // //////////////////////////////console.log(link)
+                                                        // ////////////////////////////////console.log(link)
                                                         if (link < max) {
                                                             max = link
                                                             index = h
@@ -10238,7 +10249,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                                 if (Math.abs(this.units[t].realPath.length - this.units[t].index) < 3 || Math.abs(this.units[t].realPath.length - this.units[t].index) > (calcdeath - (this.units[t].movespeed * 10))) {
 
-                                    // ////////////////////////////console.log(this.units[t])
+                                    // //////////////////////////////console.log(this.units[t])
 
                                 } else {
                                     continue
@@ -10666,7 +10677,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             }
         }
-        buildWall(tile, options = 0) {
+        buildWallOld(tile, options = 0) {
             if (this.type == 1) {
                 return
             } else if (this.type == 4) {
@@ -10680,7 +10691,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
                         wet = 1
                         debreak = 1
-                        // ////////////////////////////console.log(tile)
+                        // //////////////////////////////console.log(tile)
                     }
                 }
                 if (tile.walkable == false) {
@@ -10720,7 +10731,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 sandmap.diagonal = false
                                 let path = [...building.pather.search(sandmap, building.tile, this.buildings[t].tile, {})]
                                 sandmap.diagonal = true
-                                //////////////////console.log(path)
+                                ////////////////////console.log(path)
                                 if (path.length > 0) {
                                     building.active = 1
                                     building.tile.primed = 1
@@ -10742,7 +10753,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
                             wet = 1
                             debreak = 1
-                            // ////////////////////////////console.log(tile)
+                            // //////////////////////////////console.log(tile)
                         }
                     }
                     if (tile.walkable == false) {
@@ -10761,7 +10772,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                 this.Bflag = 0
                 if (this.hotrock > (this.racksflag * 75)) {
-                    // //////////////////console.log("hamartan effect")
+                    // ////////////////////console.log("hamartan effect")
                     this.racks = 0
                     this.lab = 0
                     this.racksflag += 4
@@ -10783,7 +10794,160 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
                             wet = 1
                             debreak = 1
-                            // ////////////////////////////console.log(tile)
+                            // //////////////////////////////console.log(tile)
+                        }
+                    }
+                    if (tile.walkable == false) {
+                        wet = 1
+                    }
+                    if (wet == 0) {
+                        if (this.hotrock >= 40) {
+                            // this.racks = 1
+                            this.hotrock -= 40
+                            let building = new Building(tile, this, 0)
+                            building.defense = 10
+                            building.damage = 0
+                            building.name = "Spire"
+                            building.body = new UnitCircle(building.tile.x + 5, building.tile.y + 5, 110, "#FFFF0010")
+                            building.bodybig = new UnitCircle(building.tile.x + 5, building.tile.y + 5, 170, "#FFFF0010")
+                            building.health = 420
+                            building.maxhealth = building.health
+                            building.spire = 1
+                            building.tile.spiretile = 1
+                            for (let t = 0; t < this.units.length; t++) {
+                                this.units[t].spirecheck()
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+        buildWall(tile, options = 0) {
+            if (this.type == 1) {
+                return
+            } else if (this.type == 4) {
+                // if (this.racks == 0 && this.isAI == 1) {
+                //     this.buildBarracks(tile)
+                // } else if (this.lab == 0 && this.isAI == 1 && this.hotrock > 150) {
+                //     this.buildMachineLab(tile)
+                // } else {
+                let wet = 0
+                for (let t = 0; t < this.buildings.length; t++) {
+                    if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
+                        wet = 1
+                        debreak = 1
+                        // //////////////////////////////console.log(tile)
+                    }
+                }
+                if (tile.walkable == false) {
+                    let us = 0
+                    for (let u = 0; u < this.units.length; u++) {
+                        if (this.units[u].tile == tile) {
+                            us = 1
+                        }
+                    }
+                    if (us == 0) {
+                        wet = 1
+                    }
+                }
+                if (tile.builtOn == 1) {
+                    wet = 1
+                }
+                if (wet == 0) {
+                    if (this.hotrock >= 5) {
+                        this.hotrock -= 5
+                        let building = new Building(tile, this, 0)
+                        building.name = "Slime"
+                        building.defense = 0
+                        building.damage = 0
+                        building.tile.spiretile = 1
+                        building.tile.walkable = true
+                        building.tile.slime = true
+                        this.slimeflag = 1
+                        building.slime = 1
+                        building.health = 5
+                        building.maxhealth = building.health
+                        building.pather = slimyastar
+                        building.active = 0
+                        building.tile.primed = 0
+                        building.pather.agent = building
+                        for (let t = 0; t < this.buildings.length; t++) {
+                            if (this.buildings[t].sporeball == 1) {
+                                sandmap.diagonal = false
+                                let path = [...building.pather.search(sandmap, building.tile, this.buildings[t].tile, {})]
+                                sandmap.diagonal = true
+                                ////////////////////console.log(path)
+                                if (path.length > 0) {
+                                    building.active = 1
+                                    building.tile.primed = 1
+                                    break
+                                }
+                            }
+                        }
+                    }
+                }
+                // }
+            } else if (this.type == 0) {
+                if (this.racks == 0 && this.isAI == 1) {
+                    this.buildBarracks(tile)
+                } else if (this.lab == 0 && this.isAI == 1 && this.hotrock > 150) {
+                    this.buildMachineLab(tile)
+                } else {
+                    let wet = 0
+                    for (let t = 0; t < this.buildings.length; t++) {
+                        if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
+                            wet = 1
+                            debreak = 1
+                            // //////////////////////////////console.log(tile)
+                        }
+                    }
+                    if (tile.walkable == false) {
+                        wet = 1
+                    }
+                    if (wet == 0) {
+                        if (this.hotrock >= 10) {
+                            this.hotrock -= 10
+                            let building = new Building(tile, this, 0)
+                            building.defense = 3
+                            building.damage = 0
+                        }
+                    }
+                }
+            } else if (this.type == 2) {
+
+                this.Bflag = 0
+                if (this.hotrock > (this.racksflag * 75)) {
+                    //console.log("hamartan effect")
+                    this.racks = 0
+                    this.lab = 0
+                    this.racksflag += 4
+                }
+                let workfactory = 0
+                if(this.isAI == 1){
+                    for (let t = 0; t < this.buildings.length; t++) {
+                        if(this.buildings[t].assembler == 3){
+                            workfactory = 1
+                        }
+                    }
+                }
+
+                if(workfactory == 0 && options == 0){
+                    this.buildGate(tile)
+                }else if (this.racks == 0 && this.isAI == 1 && this.hotrock > 340 && options == 0) {
+                    this.buildGate(tile)
+                } else if (this.lab == 0 && this.isAI == 1 && this.hotrock > 150 && this.racks == 1 && options == 0) {
+                    this.buildBarracks(tile)
+                } else if (this.lab == 1 && this.isAI == 1 && this.hotrock >= 210 && this.racks == 1 && options == 0) {
+                    this.buildMachineLab(tile)
+                    //console.log("scout assembler")
+                } else {
+                    let wet = 0
+                    for (let t = 0; t < this.buildings.length; t++) {
+                        if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
+                            wet = 1
+                            debreak = 1
+                            // //////////////////////////////console.log(tile)
                         }
                     }
                     if (tile.walkable == false) {
@@ -10826,7 +10990,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
                             wet = 1
                             debreak = 1
-                            // ////////////////////////////console.log(tile)
+                            // //////////////////////////////console.log(tile)
                         }
                     }
                     if (tile.walkable == false) {
@@ -10854,7 +11018,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     if (tile == this.buildings[t].tile || this.blocks[tile.t][tile.k].markdraw != 1) {
                         wet = 1
                         debreak = 1
-                        // ////////////////////////////console.log(tile)
+                        // //////////////////////////////console.log(tile)
                     }
                 }
                 if (tile.walkable == false) {
@@ -11287,7 +11451,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         draw() {
             this.link1.draw()
             this.link2.draw()
-            //console.log(this)
+            ////console.log(this)
         }
     }
 
@@ -11312,8 +11476,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // this.startNode = gridPointsByPos[startNode.x][startNode.y];
             let roundedx = (Math.round((startNode.x))) * .1
             let roundedy = (Math.round((startNode.y))) * .1
-            ////////////////////////////////////////////console.log(gridPointsByPos, roundedx, roundedy)
-            ////////////////////////////////////////////////console.log(gridPointsByPos[roundedx] [roundedy])
+            //////////////////////////////////////////////console.log(gridPointsByPos, roundedx, roundedy)
+            //////////////////////////////////////////////////console.log(gridPointsByPos[roundedx] [roundedy])
             this.startNode = startNode // gridPointsByPos[roundedx] [roundedy]
             this.endNode = endNode //gridPointsByPos[endNode.x][endNode.y];
             this.currentNode = null;
@@ -11333,7 +11497,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             var grid = this.grid; //the grid we're working with
 
             var currentNode = this.startNode; // the currentNode, defaults to start node for now
-            //////////////////////////////////console.log(this.endNode)
+            ////////////////////////////////////console.log(this.endNode)
             var endNode = this.endNode //sandmap.gridPoints[this.endNode.id]; //the target node
             var startNode = this.startNode
 
@@ -11342,9 +11506,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             var newMovementCost; //the new movement cost to neighbor
 
             openSet.add(currentNode);
-            //   //////////////////////////////////////////console.log(currentNode)
+            //   ////////////////////////////////////////////console.log(currentNode)
             // currentNode.color = "black"
-            // ////////////////////////////////////////////////console.log('begin');
+            // //////////////////////////////////////////////////console.log('begin');
 
             let j = 0
             let timeout = 0
@@ -11354,7 +11518,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     timeout = 1
                 }
                 tempArray = Array.from(openSet);
-                //////////////////////////////////////////console.log(tempArray)
+                ////////////////////////////////////////////console.log(tempArray)
                 currentNode = tempArray[0];
 
                 for (var i = 1; i < tempArray.length; i++) {
@@ -11386,18 +11550,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 //   currentNode.drawNode();
                 // }
 
-                //////////////////////////////////////////console.log(currentNode, endNode)
+                ////////////////////////////////////////////console.log(currentNode, endNode)
                 // currentNode.color = "black"
-                //////////////////////////////////console.log(currentNode, endNode)
+                ////////////////////////////////////console.log(currentNode, endNode)
                 if (currentNode.id == endNode.id) {
-                    ////////////////////////////////console.log(startNode, endNode)
+                    //////////////////////////////////console.log(startNode, endNode)
                     retracePath(startNode, endNode, this.agent);
                     //hit the last point, exit's the loop.
 
                     return; //exits loop
                 } else if (timeout == 1) {
 
-                    ////////////////////////////////console.log(startNode, endNode)
+                    //////////////////////////////////console.log(startNode, endNode)
                     retracePath(startNode, currentNode, this.agent);
                     //hit the last point, exit's the loop.
 
@@ -11464,9 +11628,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 break
             }
             path.add(currentNode);
-            ////////////////////////////////console.log(currentNode)
+            //////////////////////////////////console.log(currentNode)
             currentNode = currentNode.parent;
-            ////////////////////////////////console.log(currentNode)
+            //////////////////////////////////console.log(currentNode)
             // currentNode.inPath = true;
             // if (currentNode != startNode)
             //     currentNode.drawPath();
@@ -11477,19 +11641,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
         reverseArray.reverse();
         path = new Set(reverseArray);
 
-        //   ////////////////////////////////////////////////console.log(path)
+        //   //////////////////////////////////////////////////console.log(path)
 
         realPath = Array.from(path)
-        //   ////////////////////////////////////////////////console.log(realPath)
+        //   //////////////////////////////////////////////////console.log(realPath)
 
         if (realPath.length == 1) {
             // realPath[0].walkable = false
-            //////////////////////////////////////////////console.log("hit")
+            ////////////////////////////////////////////////console.log("hit")
             // wallSet.add(realPath[0])
-            //////////////////////////////////////////////console.log(wallSet)
+            ////////////////////////////////////////////////console.log(wallSet)
         }
 
-        //////////////////////////////////////////console.log(realPath)
+        ////////////////////////////////////////////console.log(realPath)
         if (realPath.length > 0) {
             realPath.unshift(agent.tile)
             agent.realPath = [...realPath]
@@ -11504,24 +11668,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
             // bottle.crew[bottle.selectedcrew].body.x =startPoint.x+4
             // bottle.crew[bottle.selectedcrew].body.y  = startPoint.y+4
             // startPoint = new Vec2(realPath[0].posx, realPath[0].posy);
-            ////////////////////////////////////////////////console.log(startPoint)
+            //////////////////////////////////////////////////console.log(startPoint)
             // bottle.crew[bottle.selectedcrew].moving = 1
         } else {
-            //   ////////////////////////////////////////////console.log(endPoint)
+            //   //////////////////////////////////////////////console.log(endPoint)
 
             //     if(bottle.crew[bottle.selectedcrew].moving == 1){
-            //         // ////////////////////////////////////////////console.log(endPoint)
+            //         // //////////////////////////////////////////////console.log(endPoint)
             //     // bottle.crew[bottle.selectedcrew].body.x =endPoint.x+96
             //     // bottle.crew[bottle.selectedcrew].body.y  = endPoint.y+284
             //     // bottle.crew[bottle.selectedcrew].moving = 0
-            //     // ////////////////////////////////////////////console.log(endPoint)
+            //     // //////////////////////////////////////////////console.log(endPoint)
             //         reset()
             //   }
         }
     }
     //list of neighbors
     function getNeighbors(node, agent, parent) {
-        // //////////////////////////console.log(agent)
+        // ////////////////////////////console.log(agent)
         var checkX;
         var checkY;
         var neighborList = [];
@@ -11563,7 +11727,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (checkX >= 0 && checkX <= sandmap.blocks.length && checkY >= 0 && checkY <= sandmap.blocks.length) { //127 mapsize
 
                     if (x == 0 || y == 0 || Math.random() < .525) {  // randomness leads to organic //.25
-                        //////////////////////////////////console.log(sandmap)
+                        ////////////////////////////////////console.log(sandmap)
                         if (checkX < sandmap.blocks.length) {
                             if (checkY < sandmap.blocks[0].length) {
                                 if ((sandmap.blocks[checkX][checkY].walkable !== false || agent.submerged == 1 || agent.mounted == 0) || sandmap.blocks[checkX][checkY].occupied == false) { //occupied? false?
@@ -11581,7 +11745,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         neighborList = tempList;
         neighborList.agent = agent
-        //////////////////////////////////////////console.log(neighborList)
+        ////////////////////////////////////////////console.log(neighborList)
         return (neighborList);
 
     }
@@ -11670,7 +11834,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     // this.faction.clickrate++
                                                     sandmap.blocks[this.tile.t + t][this.tile.k + k].factionsrock.push(sandmap.players.indexOf(this.faction))
                                                     this.faction.seenrocks.push(sandmap.blocks[this.tile.t + t][this.tile.k + k])
-                                                    ////console.log(sandmap.blocks[this.tile.t + t][this.tile.k + k].factionsrock)
+                                                    //////console.log(sandmap.blocks[this.tile.t + t][this.tile.k + k].factionsrock)
                                                 } else {
                                                     sandmap.blocks[this.tile.t + t][this.tile.k + k].factionsrock.push(sandmap.players.indexOf(this.faction))
                                                 }
@@ -12402,7 +12566,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             let path = [...this.pather.search(sandmap, this.tile, this.faction.buildings[t].tile, {})]
                             sandmap.slimeflag = 0
                             sandmap.diagonal = true
-                            ////////////////console.log(path)
+                            //////////////////console.log(path)
                             if (path.length > 0) {
                                 sum += path.length
                             }
@@ -12425,7 +12589,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             let path = [...this.pather.search(sandmap, this.tile, this.faction.buildings[t].tile, {})]
                             sandmap.slimeflag = 0
                             sandmap.diagonal = true
-                            ////////////////console.log(path)
+                            //////////////////console.log(path)
                             if (path.length > 0) {
                                 this.active = 1
                                 this.tile.primed = 1
@@ -12459,7 +12623,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
 
             }
-            //////////////////console.log(this)
+            ////////////////////console.log(this)
             if (this.bulbplant == 1 || this.slime == 1) {
                 this.sight = 10
                 if (this.slime == 1) {
@@ -13298,11 +13462,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
         }
         metamorph1() {
-            ////////////////////////////console.log(this.que, 1)
+            //////////////////////////////console.log(this.que, 1)
             if (this.que != 1) {
-                ////////////////////////////console.log(this.hotrock, 2)
+                //////////////////////////////console.log(this.hotrock, 2)
                 if (this.faction.hotrock >= 180) {
-                    ////////////////////////////console.log(this.nymph, 3)
+                    //////////////////////////////console.log(this.nymph, 3)
                     if (this.nymph == 1) {
                         this.faction.hotrock -= 180 //180
                         this.morphing = 1
@@ -13312,7 +13476,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                 }
             }
-            ////////////////////////////console.log(this.timer, 4)
+            //////////////////////////////console.log(this.timer, 4)
         }
         metamorph2() {
             if (this.que != 1) {
@@ -13531,8 +13695,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
             let scumrat = (this.shots.length * Math.max((this.damage - this.attacktarget.defense), 0))
             // if(scumrat!= 0){
-            //     //console.log(scumrat, this.attacktarget.health)
-            //     //console.log(scumrat >= this.attacktarget.health)
+            //     ////console.log(scumrat, this.attacktarget.health)
+            //     ////console.log(scumrat >= this.attacktarget.health)
             // }
             if (this.attacktarget.health <= 0 || (Math.abs((this.attacktarget.tile.y - this.tile.y)) + Math.abs((this.attacktarget.tile.x - this.tile.x))) > (this.attackrange * 21) || scumrat >= this.attacktarget.health) {
                 // for (let t = -this.attackrange; t <= this.attackrange; t++) {
@@ -13738,7 +13902,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
 
                                 this.attacktarget.faction.blocks[this.tile.t][this.tile.k].markdraw = 1
-                                // ////////////////////////console.log(this.attacktarget.faction.blocks[this.tile.t][this.tile.k])
+                                // //////////////////////////console.log(this.attacktarget.faction.blocks[this.tile.t][this.tile.k])
                                 if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].isAI == 1) {
                                     sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].pathTo(this.tile)
                                     sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].attackedAt = this.tile
@@ -13989,7 +14153,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                 this.attacktarget = sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g]
 
                                 this.attacktarget.faction.blocks[this.tile.t][this.tile.k].markdraw = 1
-                                // ////////////////////////console.log(this.attacktarget.faction.blocks[this.tile.t][this.tile.k])
+                                // //////////////////////////console.log(this.attacktarget.faction.blocks[this.tile.t][this.tile.k])
                                 if (sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].isAI == 1) {
                                     sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].units[g].pathTo(this.tile)
                                     sandmap.players[Math.abs(sandmap.players.indexOf(this.faction) - 1)].attackedAt = this.tile
@@ -14142,7 +14306,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     }
                 }
                 // if(this.submerged == 1){
-                //     //////////////////////console.log(point, this.tile)
+                //     ////////////////////////console.log(point, this.tile)
                 // }
                 this.stepout = 1
                 if (this.submerged == 1 || this.mounted == 0) {
@@ -14159,7 +14323,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.stacksnap++
                 this.realPath = [...this.pather.search(sandmap, this.tile, point, {})]
                 this.moved = 1
-                //////////////////////console.log(this.realPath)
+                ////////////////////////console.log(this.realPath)
                 if (this.obvious == this.realPath[0]) {
                     this.index = 0
                 } else {
@@ -14202,7 +14366,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     let max = 9999999999
                     for (let t = 0; t < this.tempcheck.length; t++) {
                         let link = (new LineOP(this.tile, this.tempcheck[t])).hypotenuse()
-                        // //////////////////////////////console.log(link)
+                        // ////////////////////////////////console.log(link)
                         if (link < max) {
                             max = link
                             index = t
@@ -14232,7 +14396,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                                                     // this.faction.clickrate++
                                                     sandmap.blocks[this.tile.t + t][this.tile.k + k].factionsrock.push(sandmap.players.indexOf(this.faction))
                                                     this.faction.seenrocks.push(sandmap.blocks[this.tile.t + t][this.tile.k + k])
-                                                    ////console.log(sandmap.blocks[this.tile.t + t][this.tile.k + k].factionsrock)
+                                                    //////console.log(sandmap.blocks[this.tile.t + t][this.tile.k + k].factionsrock)
                                                 } else {
                                                     sandmap.blocks[this.tile.t + t][this.tile.k + k].factionsrock.push(sandmap.players.indexOf(this.faction))
                                                 }
@@ -14400,7 +14564,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             } else {
                 this.decayingInTheWind = 0
             }
-            ////////////////////////////////////console.log( (this.decayingInTheWind*sandmap.windspeed))
+            //////////////////////////////////////console.log( (this.decayingInTheWind*sandmap.windspeed))
             if (this.faction.type == 0) {
                 this.health -= ((this.decayRate * this.decayingInTheWind * sandmap.windspeed))
             }
@@ -14712,7 +14876,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 this.shots[t].draw()
                 if (this.shots[t].stage >= this.projectilespeed) {
                     this.shots[t].refhealth.health -= Math.max((this.damage * 3) - this.shots[t].attacktarget.defense, 0) //5?
-                    //////////////////////////////console.log(this.shots[t].refhealth)
+                    ////////////////////////////////console.log(this.shots[t].refhealth)
                     this.shots[t].marked = 1
 
                     if (this.shots[t].refhealth.submerged == 1) {
@@ -14776,6 +14940,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         // } else {
         //     endgame = 0
         // }
+        if(keysPressed['r']){
+            return
+        }
         canvas_context.clearRect(0, 0, canvas.width, canvas.height)  // refreshes the image
         map_context.clearRect(0, 0, map_canvas.width, map_canvas.height)  // refreshes the image
         if (endgame == 1) {
@@ -14883,7 +15050,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (keysPressed['k']) {
                 sandmap.turn = 0
             }
-            if (Math.abs(sandmap.players[0].units.length - sandmap.players[1].units.length) >= 40 || Math.abs(sandmap.players[0].units.length * sandmap.players[1].units.length) == 0) {
+            if (Math.abs(sandmap.players[0].units.length - sandmap.players[1].units.length) >= 25 || Math.abs(sandmap.players[0].units.length * sandmap.players[1].units.length) == 0) { //40
                 start = 0
                 if (sandmap.players[0].units.length > sandmap.players[1].units.length) {
                     topside++
@@ -14895,9 +15062,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 startGame()
             }
             // if (keysPressed['q']) {
-            //     ////////////////////////////console.log(sandmap)
+            //     //////////////////////////////console.log(sandmap)
             // }
-            //////////////////////////////////////console.log(selectrect)
+            ////////////////////////////////////////console.log(selectrect)
 
             if (sandmap.players[0].units.length == 0 || sandmap.players[1].units.length == 0) {
                 endbutton.draw()
